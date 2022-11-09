@@ -1,0 +1,10 @@
+chrome:
+
+开一个新的标签页【Ctrl+T】
+不小心关闭了一个或者多个标签页【Ctrl+Shift+T】
+打开的是新的窗口【Ctrl+N】
+【Ctrl+Tab】标签页之间切换；
+【Alt+Tab】窗口之间切换。
+【Ctrl+Shift+Delete】即可调出清除缓存窗口。
+一个标签页切换多层历史记录【Alt】组合左右方向键。
+

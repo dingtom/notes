@@ -1,0 +1,104 @@
+- [ 思想](#head1)
+	- [回归树（Regression Decision Tree）](#head2)
+	- [梯度迭代（Gradient Boosting）](#head3)
+	- [ 缩减（Shrinkage）](#head4)
+- [ 优缺点](#head5)
+	- [ 优点](#head6)
+	- [ 缺点](#head7)
+- [ 问题](#head8)
+	- [ RF(随机森林)与GBDT之间的区别与联系](#head9)
+	- [GBDT与 Adaboost 的对比](#head10)
+		- [ 相同：](#head11)
+		- [ 同：](#head12)
+	- [ 逻辑回归(LR)和GBDT的区别](#head13)
+GBDT（Gradient Boosting Decision Tree）是一种迭代的决策树算法，该算法由多棵决策树组成。GBDT 是被公认的泛化能力较强的算法。
+
+# <span id="head1"> 思想</span>
+
+GBDT 由三个概念组成：Regression Decision Tree（即 DT）、Gradient Boosting（即 GB），和 Shrinkage（一个重要演变）
+
+## <span id="head2">回归树（Regression Decision Tree）</span>
+
+如果认为 GBDT 有很多分类树那就大错特错了（虽然调整后也可以分类）。对于**分类树而言，其值加减无意义**（如性别），而对于**回归树而言，其值加减才是有意义的**（如说年龄）。GBDT 的**核心在于累加所有树的结果作为最终结果，所以GBDT 中的树都是回归树，不是分类树**，这一点相当重要。
+
+回归树在分枝时会穷举每一个特征的每个阈值以找到最好的分割点，衡量标准是最小化均方误差。
+
+## <span id="head3">梯度迭代（Gradient Boosting）</span>
+
+上面说到 GBDT 的核心在于累加所有树的结果作为最终结果，**GBDT 的每一棵树都是以之前树得到的残差来更新目标值，这样每一棵树的值加起来即为 GBDT 的预测值**。
+![](https://upload-images.jianshu.io/upload_images/18339009-b961b7d246e7ed7e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](https://upload-images.jianshu.io/upload_images/18339009-a101b0f0d5942da4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+
+GBDT 的 Boosting 不同于 Adaboost 的 Boosting，**GBDT 的每一步残差计算其实变相地增大了被分错样本的权重，而对于分对样本的权重趋于 0**，这样后面的树就能专注于那些被分错的样本。
+
+## <span id="head4"> 缩减（Shrinkage）</span>
+
+Shrinkage 的思想认为，每走**一小步逐渐逼近结果的效果要比每次迈一大步很快逼近结果的方式更容易避免过拟合**。即它并不是完全信任每一棵残差树。
+
+![](https://upload-images.jianshu.io/upload_images/18339009-a67276ac07fd47c4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+Shrinkage 不直接用残差修复误差，而是只修复一点点，把大步切成小步。本质上 **Shrinkage 为每棵树设置了一个 weight，累加时要乘以这个 weight，当 weight 降低时，基模型数会配合增大**。
+
+# <span id="head5"> 优缺点</span>
+
+## <span id="head6"> 优点</span>
+1. **预测阶段的计算速度快**，树与树之间可并行化计算。
+
+2. 在**分布稠密的数据集上，泛化能力和表达能力都很好**，这使得GBDT在Kaggle的众多竞赛中，经常名列榜首。 
+
+3. 采用**决策树作为弱分类器使得GBDT模型具有较好的解释性和鲁棒性**，能够自动**发现特征间的高阶关系**，并且也**不需要对数据进行特殊的预处理如归一化**等。
+
+   > 为什么树模型不需要归一化
+   >
+   > 因为数值缩放不影响分裂点位置，对树模型的结构不造成影响，而且是不能进行梯度下降的，因为构建树模型（回归树）寻找最优点时是通过寻找最优分裂点完成的，因此树模型是阶跃的，阶跃点是不可导的，并且求导没意义，也就不需要归一化
+
+## <span id="head7"> 缺点</span>
+1. GBDT在高维稀疏的数据集上，表现不如支持向量机或者神经网络。
+2. GBDT在处理文本分类特征问题上，相对其他模型的优势不如它在处理数值特征时明显。 
+3. 训练过程需要串行训练。 **对异常点敏感**。
+
+
+
+# <span id="head8"> 问题</span>
+
+
+
+## <span id="head9"> RF(随机森林)与GBDT之间的区别与联系</span>
+
+**相同点**：
+
+都是由多棵树组成，最终的结果都是由多棵树一起决定。
+
+**不同点**：
+
+1. RF属于bagging思想，而GBDT是boosting思想。RF的树可以并行生成，而GBDT只能顺序生成(需要等上一棵树完全生成)。RF每次迭代的样本是从全部训练集中有放回抽样形成的，而GBDT每次使用全部样本。
+2. 组成随机森林的树可以分类树也可以是回归树，而GBDT只由回归树组成
+3. 组成随机森林的树可以并行生成，而GBDT是串行生成
+4. 对于最终的输出结果而言，随机森林采用多数投票或简单平均等；而GBDT则是将所有结果累加起来，或者加权累加起来（存在学习率）
+5. 随机森林对异常值不敏感，而GBDT对异常值比较敏感，RF不易过拟合，而GBDT容易过拟合。
+6. 随机森林对训练集一视同仁，GBDT是基于权值的弱分类器的集成
+7. 随机森林是通过减少模型方差提高性能，GBDT是通过减少模型偏差提高性能，但是xgb引入了正则项和列采样等等正则化手段之后，可以在少量增加偏差的情况下大幅度缩减模型的方差。
+
+## <span id="head10">GBDT与 Adaboost 的对比</span>
+
+
+### <span id="head11"> 相同：</span>
+
+1.  都是**Boosting 家族成员，使用弱分类器**；
+2.  都使用**前向分布算法**；
+
+### <span id="head12"> 同：</span>
+
+1.  **迭代思路不同**：Adaboost 是通过**提升错分数据点的权重来弥补模型的不足（利用错分样本）**，而 GBDT 是通过**算梯度来弥补模型的不足（利用残差）**；
+2.  **损失函数不同**：AdaBoost 采用的是**指数损失**，GBDT 使用的是**绝对损失或者 Huber 损失函数**；
+
+## <span id="head13"> 逻辑回归(LR)和GBDT的区别</span>
+
+- LR是线性模型，可解释性强，很容易并行化，但学习能力有限，需要大量的人工特征工程
+- GBDT是非线性模型，具有天然的特征组合优势，特征表达能力强，但是树与树之间无法并行训练，而且树模型很容易过拟合；
+- 对于高维稀疏数据，GBDT效果不如LR。
+
