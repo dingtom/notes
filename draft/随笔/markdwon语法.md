@@ -1,7 +1,7 @@
 # 生成目录
 ``` 
 [TOC]
- ```
+```
 [TOC]
 # To Do List
 ```
@@ -83,8 +83,9 @@
 > 一种编程语言
 
 > 一级引用
->> 二级引用
->>> 三级引用
+> > 二级引用
+> >
+> > > 三级引用
 
 # 链接
 ```
@@ -99,7 +100,25 @@
 [titleA](#titleA) //这是锚点引用格式
 ```
 [生成目录](#生成目录) //这是锚点引用格式
-#注脚
+
+
+
+
+
+首先是建立一个跳转的连接：
+
+```
+[说明文字](#jump)1
+```
+
+然后标记要跳转到的位置：
+
+```
+<span id = "jump">跳转到的位置</span>
+```
+
+# 注脚
+
 ```
 使用 Markdown[^1]可以效率的书写文档, 直接转换成 HTML[^2], 你可以使用 Leanote[^Le] 编辑器进行书写。
 [^1]:Markdown是一种纯文本标记语言
@@ -144,7 +163,7 @@
 <font face="微软雅黑">我是微软雅黑</font>
 <font face="STCAIYUN">我是华文彩云</font》
 <font face="黑体" color=green size=5>我是黑体，绿色，尺寸为5</font>
-   
+
 # emoj表情
 https://github.com/guodongxiaren/README/blob/master/emoji.md
 
