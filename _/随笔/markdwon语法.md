@@ -1,38 +1,60 @@
 - [ 生成目录](#head1)
-- [titleA //这是个一级标题，锚点](#head2)
+- [To Do List](#head2)
+- [ 横线](#head3)
+- [ 删除线](#head4)
+- [ 列表点号](#head5)
+- [ 表格](#head6)
+- [ 标注颜色](#head7)
+- [ 设置背景](#head8)
+- [ 设置文字背景](#head9)
+- [ 区块引用](#head10)
+- [ 链接](#head11)
+- [ 锚点](#head12)
+- [ 注脚](#head13)
+- [ 定义图片尺寸](#head14)
+- [ 图片居中](#head15)
+- [ 插入视频](#head16)
+- [ 插入音乐](#head17)
+- [ 设置字体](#head18)
+- [ emoj表情](#head19)
+- [ 首行缩进](#head20)
+- [ 绘图](#head21)
+- [ 甘特图](#head22)
+- [ 流程图](#head23)
+	- [ 指向流程(连接元素)：标识（类别）->下一个标识](#head24)
 # <span id="head1"> 生成目录</span>
 ``` 
 [TOC]
- ```
+```
 [TOC]
-# To Do List
+# <span id="head2">To Do List</span>
 ```
 - [x] 学习python基础 【减号+[+空格或x+]+空格】
 - [ ] 学习python网络编程
 ```
 ![image.png](https://upload-images.jianshu.io/upload_images/18339009-58fe77302ab071f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-# 横线
+# <span id="head3"> 横线</span>
 ```
 ---
 ```
 ----
 
-# 删除线
+# <span id="head4"> 删除线</span>
 ```
 ~~哈哈~~
 ```
 ~~哈哈~~
 
 
-# 列表点号
+# <span id="head5"> 列表点号</span>
 ```
 - 
 ```
 - 
 
 
-# 表格
+# <span id="head6"> 表格</span>
 ```
 |Theme name|Value|Directive|
 |:-:|:-:|:-:|
@@ -53,25 +75,25 @@
 ```
 
 
-# 标注颜色
+# <span id="head7"> 标注颜色</span>
 ```
 ==word==
 ```
 ==word==
 
-# 设置背景
+# <span id="head8"> 设置背景</span>
 ```
 ![bg](http://img0.imgtn.bdimg.com/it/u=1377132983,1746819781&fm=26&gp=0.jpg)
 ```
 [图片上传失败...(image-cc6f84-1606352227647)]
 
-# 设置文字背景
+# <span id="head9"> 设置文字背景</span>
 ```
 <span style="background-color:yellow;">yellow marker highlight</span>
 ```
 <span style="background-color:yellow;">yellow marker highlight</span>
 
-# 区块引用
+# <span id="head10"> 区块引用</span>
 ```
 * python
 > 一种编程语言
@@ -85,23 +107,42 @@
 > 一种编程语言
 
 > 一级引用
->> 二级引用
->>> 三级引用
+> > 二级引用
+> >
+> > > 三级引用
 
-# 链接
+# <span id="head11"> 链接</span>
 ```
 [Yuki Hattori](https://github.com/yhatt)
 ```
 [Yuki Hattori](https://github.com/yhatt)
-# 锚点
+# <span id="head12"> 锚点</span>
 跳转需要按住ctrl
 ```
-# <span id="head2">titleA //这是个一级标题，锚点</span>
+# titleA //这是个一级标题，锚点
 
 [titleA](#titleA) //这是锚点引用格式
 ```
 [生成目录](#生成目录) //这是锚点引用格式
-#注脚
+
+
+
+
+
+首先是建立一个跳转的连接：
+
+```
+[说明文字](#jump)1
+```
+
+然后标记要跳转到的位置：
+
+```
+<span id = "jump">跳转到的位置</span>
+```
+
+# <span id="head13"> 注脚</span>
+
 ```
 使用 Markdown[^1]可以效率的书写文档, 直接转换成 HTML[^2], 你可以使用 Leanote[^Le] 编辑器进行书写。
 [^1]:Markdown是一种纯文本标记语言
@@ -114,28 +155,28 @@
 [^Le]:开源笔记平台，支持Markdown和笔记直接发为博文
 
 
-# 定义图片尺寸
+# <span id="head14"> 定义图片尺寸</span>
 ```
 <img width = '150' height ='150' src ="https://tse2-mm.cn.bing.net/th?id=OIP.rF3VYN1CRvtyWBPU0I7kyQDMEy&p=0&pid=1.1"/>
 ```
 <img width = '150' height ='150' src ="https://tse2-mm.cn.bing.net/th?id=OIP.rF3VYN1CRvtyWBPU0I7kyQDMEy&p=0&pid=1.1"/>
 
-# 图片居中
+# <span id="head15"> 图片居中</span>
 ```
 <div align=center><img width = '150' height ='150' src ="https://tse2-mm.cn.bing.net/th?id=OIP.rF3VYN1CRvtyWBPU0I7kyQDMEy&p=0&pid=1.1"/></div>
 ```
 <div align=center><img width = '150' height ='150' src ="https://tse2-mm.cn.bing.net/th?id=OIP.rF3VYN1CRvtyWBPU0I7kyQDMEy&p=0&pid=1.1"/></div>
-# 插入视频
+# <span id="head16"> 插入视频</span>
 ```
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=528478901&auto=1&height=66"></iframe>
 ```
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=528478901&auto=1&height=66"></iframe>
-# 插入音乐
+# <span id="head17"> 插入音乐</span>
 ```
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Ilg3gGewQ5U" frameborder="0" allowfullscreen></iframe>
 ```
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Ilg3gGewQ5U" frameborder="0" allowfullscreen></iframe>
-# 设置字体
+# <span id="head18"> 设置字体</span>
 ```
 <font face="黑体">我是黑体字</font>
 <font face="微软雅黑">我是微软雅黑</font>
@@ -146,11 +187,11 @@
 <font face="微软雅黑">我是微软雅黑</font>
 <font face="STCAIYUN">我是华文彩云</font》
 <font face="黑体" color=green size=5>我是黑体，绿色，尺寸为5</font>
-   
-# emoj表情
+
+# <span id="head19"> emoj表情</span>
 https://github.com/guodongxiaren/README/blob/master/emoji.md
 
-# 首行缩进
+# <span id="head20"> 首行缩进</span>
 ```
 半方大的空白&ensp;或&#8194;
 全方大的空白&emsp;或&#8195;
@@ -169,11 +210,11 @@ cond(no)->sub->io
 
 
 
-# 绘图
+# <span id="head21"> 绘图</span>
 [https://blog.csdn.net/qq_18150255/article/details/88043774](https://blog.csdn.net/qq_18150255/article/details/88043774)
 [https://blog.csdn.net/weixin_30307267/article/details/99385290](https://blog.csdn.net/weixin_30307267/article/details/99385290)
 
-# 甘特图
+# <span id="head22"> 甘特图</span>
 ```
 gantt
 dateFormat YYYY-MM-DD
@@ -190,7 +231,7 @@ UI设计 :active, des2, 2019-04-26, 7d
 用户手册 :active, des2, 2019-05-15, 5d
 完善项目文档/准备答辩 : des3, after des2, 10d
 ```
-# 流程图
+# <span id="head23"> 流程图</span>
 流程图代码分两块，上面一块是创建你的流程（创建元素），然后隔一行，创建流程的走向(连接元素)
 
 #####创建流程（元素）：tag=>type: content:>url
@@ -199,7 +240,7 @@ UI设计 :active, des2, 2019-04-26, 7d
 标签有6种类型：start 、end 、operation 、subroutine 、condition 、inputoutput
 **content 是流程图文本框中的描述内容**，: 后面表示内容，中英文均可。特别注意，冒号与文本之间一定要有个空格
 **url是一个连接**，与框框中的文本相绑定，:>后面就是对应的 url 链接，点击文本时可以通过链接跳转到 url 指定页面
-##### 指向流程(连接元素)：标识（类别）->下一个标识
+##### <span id="head24"> 指向流程(连接元素)：标识（类别）->下一个标识</span>
 使用 -> 来连接两个元素
 对于**condition类型**，有yes和no两个分支，如示例中的cond(yes)和cond(no)
 每个元素可以制定分支走向，默认向下，也可以用right指向右边，如示例中cond2(yes,right)。
