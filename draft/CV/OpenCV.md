@@ -227,7 +227,6 @@ M = cv.getAffineTransform(pts1,pts2)
 dst = cv.warpAffine(img,M,(cols,rows))# 2.2 完成仿射变换
 
 # 透射变换
-
 pts1 = np.float32([[56,65],[368,52],[28,387],[389,390]]) # 2.1 创建变换矩阵
 pts2 = np.float32([[100,145],[300,100],[80,290],[310,300]])
 T = cv.getPerspectiveTransform(pts1,pts2)

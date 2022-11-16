@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "2dcce98604a1b806",
+        "id": "0ae2ae19dc38972a",
         "type": "tabs",
         "children": [
           {
-            "id": "5721b9e1f49c28b5",
+            "id": "7eff2cb5750b5a69",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CV/面试问题.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -69,7 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "e2ec1db0113021fc",
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CV/面试问题.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CV/面试问题.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,20 +118,19 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "CV/面试问题.md"
-              }
+              "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 281.5
   },
-  "active": "ad1316da532af65e",
+  "active": "7eff2cb5750b5a69",
   "lastOpenFiles": [
+    "CV/面试问题.md",
     "CV/CTPN算法.md",
     "决策树-集成学习/1.1-决策树(ID3、C4-5、CART).md"
   ]
