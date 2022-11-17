@@ -2,6 +2,6 @@
 
 git pull origin master
 git add .
-git commit -m "shutdown"
+git commit -m "auto commit"
 git push
 
