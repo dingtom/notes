@@ -4,17 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "9c33734b7c5bb059",
+        "id": "19a56ca7847a065c",
         "type": "tabs",
-        "dimension": 14.671361502347418,
+        "dimension": 15.77287066246057,
         "children": [
           {
-            "id": "86736ae542bdcd62",
+            "id": "23431d8fa647ec1e",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "数据分析/EXCEL.md"
+                "file": "CV/技术问题.md"
               }
             }
           }
@@ -23,7 +23,7 @@
       {
         "id": "384ad4733514b7af",
         "type": "tabs",
-        "dimension": 85.32863849765259,
+        "dimension": 84.22712933753944,
         "children": [
           {
             "id": "e88b39e56568ec08",
@@ -31,8 +31,32 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "数据分析/EXCEL.md",
-                "mode": "preview",
+                "file": "CV/技术问题.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "031d78e3fa595864",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ml/方差、偏差、过拟合与欠拟合.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "b15a146efed69f50",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CV/面试问题.md",
+                "mode": "source",
                 "source": false
               }
             }
@@ -69,8 +93,8 @@
                 "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
-                "collapseAll": false,
-                "extraContext": false,
+                "collapseAll": true,
+                "extraContext": true,
                 "sortOrder": "alphabetical"
               }
             }
@@ -83,11 +107,12 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "right": {
     "id": "10ede8d532e7c4de",
@@ -103,7 +128,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据分析/EXCEL.md",
+                "file": "CV/技术问题.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +145,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据分析/EXCEL.md",
+                "file": "CV/技术问题.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -142,20 +167,20 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 200,
     "collapsed": true
   },
-  "active": "53af3c21b7fb69aa",
+  "active": "f826d4d32ff834e9",
   "lastOpenFiles": [
+    "CV/面试问题.md",
+    "ml/方差、偏差、过拟合与欠拟合.md",
+    "CV/技术问题.md",
+    "决策树-集成学习/1.2-分类回归树-(-CART).md",
+    "决策树-集成学习/1.1-决策树(ID3、C4-5、CART).md",
+    "数据分析/EXCEL.md",
     "数据分析/CTR预估中GBDT与LR融合方案.md",
     "数据分析/异常值检测.md",
     "数据分析/异常处理.md",
-    "数据分析/特征构造、选择.md",
-    "数据分析/卡方检验.md",
-    "数据分析/孤立森林（Isolation-Forest）.md",
-    "CV/卡号识别.md",
-    "CV/面试问题.md",
-    "CV/CTPN算法.md",
-    "CV/技术问题.md"
+    "数据分析/特征构造、选择.md"
   ]
 }

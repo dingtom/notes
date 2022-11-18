@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "type": "file",
+      "title": "技术问题",
+      "path": "CV/技术问题.md"
+    },
+    {
+      "type": "file",
+      "title": "面试问题",
+      "path": "CV/面试问题.md"
+    }
+  ]
+}

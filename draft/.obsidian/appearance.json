@@ -1,6 +1,10 @@
 {
   "accentColor": "",
-  "theme": "moonstone",
-  "cssTheme": "Dayspring",
-  "baseFontSize": 20
+  "theme": "system",
+  "cssTheme": "Blue Topaz",
+  "baseFontSize": 29,
+  "textFontFamily": "思源黑体 CN",
+  "enabledCssSnippets": [
+    "obsidian_orange"
+  ]
 }

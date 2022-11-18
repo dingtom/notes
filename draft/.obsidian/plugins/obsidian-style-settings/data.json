@@ -1,0 +1,14 @@
+{
+  "blue-topaz-theme@@color-scheme-options": "color-scheme-options-simplicity-topaz",
+  "blue-topaz-theme@@transparent-setting-panel": false,
+  "blue-topaz-theme@@accent-strong@@light": "#B5302E",
+  "blue-topaz-theme@@h1-size": "2em",
+  "blue-topaz-theme@@h2-size": "1.7em",
+  "blue-topaz-theme@@h3-size": "1.4em",
+  "blue-topaz-theme@@h4-size": "1.1em",
+  "blue-topaz-theme@@accent-strong@@dark": "#B5302E",
+  "blue-topaz-theme@@bt-status-on": false,
+  "blue-topaz-theme@@tab-title-bar-position": false,
+  "blue-topaz-theme@@toggle-left-aligned-content": true,
+  "blue-topaz-theme@@view-button-front": false
+}
