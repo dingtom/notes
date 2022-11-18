@@ -14,7 +14,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "数据分析/异常处理.md"
+                "file": "数据分析/EXCEL.md"
               }
             }
           }
@@ -31,7 +31,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "数据分析/异常处理.md",
+                "file": "数据分析/EXCEL.md",
                 "mode": "preview",
                 "source": false
               }
@@ -103,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据分析/异常处理.md",
+                "file": "数据分析/EXCEL.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据分析/异常处理.md",
+                "file": "数据分析/EXCEL.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -145,8 +145,11 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "e88b39e56568ec08",
+  "active": "53af3c21b7fb69aa",
   "lastOpenFiles": [
+    "数据分析/CTR预估中GBDT与LR融合方案.md",
+    "数据分析/异常值检测.md",
+    "数据分析/异常处理.md",
     "数据分析/特征构造、选择.md",
     "数据分析/卡方检验.md",
     "数据分析/孤立森林（Isolation-Forest）.md",
