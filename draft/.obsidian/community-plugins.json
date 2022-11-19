@@ -2,5 +2,9 @@
   "quickadd",
   "obsidian-style-settings",
   "obsidian-admonition",
-  "cmenu-plugin"
+  "cmenu-plugin",
+  "remember-cursor-position",
+  "obsidian-better-command-palette",
+  "obsidian-excalidraw-plugin",
+  "obsidian-mind-map"
 ]

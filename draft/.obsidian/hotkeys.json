@@ -88,15 +88,7 @@
       "key": "="
     }
   ],
-  "command-palette:open": [
-    {
-      "modifiers": [
-        "Mod",
-        "Shift"
-      ],
-      "key": "P"
-    }
-  ],
+  "command-palette:open": [],
   "global-search:open": [
     {
       "modifiers": [
