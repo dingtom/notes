@@ -1,0 +1,20 @@
+{
+  "recentFiles": [
+    {
+      "basename": "卡号识别",
+      "path": "CV/卡号识别.md"
+    },
+    {
+      "basename": "语义分割",
+      "path": "CV/语义分割.md"
+    },
+    {
+      "basename": "面试问题",
+      "path": "CV/面试问题.md"
+    }
+  ],
+  "omittedPaths": [
+    ""
+  ],
+  "maxLength": null
+}

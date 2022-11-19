@@ -1,10 +1,9 @@
 [
-  "quickadd",
   "obsidian-style-settings",
-  "obsidian-admonition",
   "cmenu-plugin",
   "remember-cursor-position",
   "obsidian-better-command-palette",
-  "obsidian-excalidraw-plugin",
-  "obsidian-mind-map"
+  "ProxyGithub",
+  "recent-files-obsidian",
+  "better-fn"
 ]
