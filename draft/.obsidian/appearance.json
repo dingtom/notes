@@ -1,10 +1,11 @@
 {
   "accentColor": "",
   "theme": "system",
-  "cssTheme": "Things",
-  "baseFontSize": 29,
+  "cssTheme": "Minimal",
+  "baseFontSize": 19,
   "textFontFamily": "微软雅黑,Times New Roman,可免费商用-文泉驿等宽正黑",
   "enabledCssSnippets": [
     "obsidian_orange"
-  ]
+  ],
+  "interfaceFontFamily": "苹方-简"
 }
