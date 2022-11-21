@@ -1,63 +1,39 @@
-- YOLOv1论文名以及论文地址：**You Only Look Once:Unified, Real-Time Object Detection**、
+# YOLO vs Faster R-CNN
 
+1、统一网络：YOLO没有显示求取region proposal的过程。Faster R-CNN中尽管RPN与fast rcnn共享卷积层，但是在模型训练过程中，需要反复训练RPN网络和fast rcnn网络。相对于R-CNN系列的"看两眼"(候选框提取与分类)，YOLO只需要Look Once.
+
+2、YOLO统一为一个回归问题，而Faster R-CNN将检测结果分为两部分求解：物体类别（分类问题）、物体位置即bounding box（回归问题）。
+
+>- YOLOv1论文名以及论文地址：**You Only Look Once:Unified, Real-Time Object Detection**、
 You Only Look Once:Unified, Real-Time Object Detection: *https://arxiv.org/pdf/1506.02640.pdf*
-
 YOLOv1开源代码：**YOLOv1-Darkent**
-
 YOLOv1-Darkent: *https://github.com/pjreddie/darknet*
-
-- YOLOv2论文名以及论文地址：**YOLO9000:Better, Faster, Stronger**
-
+>- YOLOv2论文名以及论文地址：**YOLO9000:Better, Faster, Stronger**
 YOLO9000:Better, Faster, Stronger: *https://arxiv.org/pdf/1612.08242v1.pdf*
-
 YOLOv2开源代码：**YOLOv2-Darkent**
-
 YOLOv2-Darkent: *https://github.com/pjreddie/darknet*
-
-- YOLOv3论文名以及论文地址：**YOLOv3: An Incremental Improvement**
-
+>- YOLOv3论文名以及论文地址：**YOLOv3: An Incremental Improvement**
 YOLOv3: An Incremental Improvement: *https://arxiv.org/pdf/1804.02767.pdf*
-
 YOLOv3开源代码：**YOLOv3-PyTorch**
-
 YOLOv3-PyTorch: *https://github.com/ultralytics/yolov3*
-
-- YOLOv4论文名以及论文地址：**YOLOv4: Optimal Speed and Accuracy of Object Detection**
-
+>- YOLOv4论文名以及论文地址：**YOLOv4: Optimal Speed and Accuracy of Object Detection**
 YOLOv4: Optimal Speed and Accuracy of Object Detection: *https://arxiv.org/pdf/2004.10934.pdf*
-
 YOLOv4开源代码：**YOLOv4-Darkent**
-
 YOLOv4-Darkent: *https://github.com/AlexeyAB/darknet*
-
-- YOLOv5论文名以及论文地址：无
-
+>- YOLOv5论文名以及论文地址：无
 YOLOv5开源代码：**YOLOv5-PyTorch**
-
 YOLOv5-PyTorch: *https://github.com/ultralytics/yolov5*
-
-- YOLOx论文名以及论文地址：**YOLOX: Exceeding YOLO Series in 2021**
-
+>- YOLOx论文名以及论文地址：**YOLOX: Exceeding YOLO Series in 2021**
 YOLOX: Exceeding YOLO Series in 2021: *https://arxiv.org/pdf/2107.08430.pdf*
-
 YOLOx开源代码：**YOLOx-PyTorch**
-
 YOLOx-PyTorch: *https://github.com/Megvii-BaseDetection/YOLOX*
-
-- YOLOv6论文名以及论文地址：**YOLOv6: A Single-Stage Object Detection Framework for Industrial Applications**
-
+>- YOLOv6论文名以及论文地址：**YOLOv6: A Single-Stage Object Detection Framework for Industrial Applications**
 YOLOv6: A Single-Stage Object Detection Framework for Industrial Applications: *https://arxiv.org/pdf/2209.02976.pdf*
-
 YOLOv6开源代码：**YOLOv6-PyTorch**
-
 YOLOv6-PyTorch: *https://github.com/meituan/YOLOv6*
-
-- YOLOv7论文名以及论文地址：**YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors**
-
+>- YOLOv7论文名以及论文地址：**YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors**
 YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors: *https://arxiv.org/pdf/2207.02696.pdf*
-
 YOLOv7开源代码：**Official YOLOv7-PyTorch**
-
 Official YOLOv7-PyTorch: *https://github.com/WongKinYiu/yolov7*
 
 # V1
