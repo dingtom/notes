@@ -18,11 +18,11 @@
 
 - N × H × W × 512 最后**会经过一个类似RPN的网络，分成三个预测支**路：如上图所示，
 
-  其中一个分支输出N × H × W × 2k，这里的k指的是每个像素对应k个anchor，这里的2K指的是对某一个anchor的预测$v=[v_y,v_h]$(y坐标和到远点高度，宽度是固定的)；
+  其中一个分支输出N × H × W × 2k，这里的k指的是每个像素对应k个anchor，这里的2K指的是对某一个anchor的预测$v=[v_y,v_h]$(**y坐标和到原点高度，宽度是固定的**)；
 
-  第二个分支输出N × H × W × 2k，这里的2K指的是2K个前景背景得分，记做$s=[text,non−text]$。
+  第二个分支输出N × H × W × 2k，这里的2K指的是2K个**前景背景得分**，记做$s=[text,non−text]$。
 
-  最后一个分支输出N × H × W × k，这里是K个side-refinement，调整边界位置。
+  最后一个分支输出N × H × W × k，这里是K个**side-refinement，调整边界位置**。
 
 - 经过上面步骤，可以得到密密麻麻的**text proposal，这里使用nms来过滤掉多余的文本框**。
 
@@ -74,7 +74,7 @@ CTPN的RPN层和Faster R-CNN很像，第一个分支输出的是我们anchor的�
 
 第二个分支则是输出前景背景的得分情况(text/non-text scores)，通过softmax计算得分，所以这里也是输出20个channel。
 
-第三个分支则是输出最后水平精修side-refinement的比例$o$，这是由于我们每个anchor的宽是一定的，所以有时候会导致水平方向有一点不准，所以这时候就需要校准一下我们的框（在我自己的实验中这个帮助不大），精修的公式如下：
+第三个分支则是输出最后**水平精修side-refinement的比例$o$，这是由于我们每个anchor的宽是一定的，所以有时候会导致水平方向有一点不准，所以这时候就需要校准一下我们的框**（在我自己的实验中这个帮助不大），精修的公式如下：
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-11-11/2022-11-11_17-27-39-271.png)
 
@@ -96,19 +96,17 @@ CTPN的RPN层和Faster R-CNN很像，第一个分支输出的是我们anchor的�
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-11-11/2022-11-11_17-31-18-842.png)
 
-有2个text proposal，即蓝色和红色2组Anchor，CTPN采用如下算法构造文本线： 
+有2个text proposal，即蓝色和红色2组Anchor，**CTPN采用如下算法构造文本线：** 
 
-（1）按照水平$x$坐标排序Anchor 
+![](https://gitee.com/dingtom1995/picture/raw/master/2022-11-22/2022-11-22_11-07-36-767.png)
 
-（2）按照规则依次计算每个Anchor $box_i$的$pair(box_j)$ ，组成$pair(box_i,box_j)$ 
 
-（3）通过 $pair(box_i,box_j)$建立一个Connect graph，最终获得文本检测框
 
 这只是一个概述，接下来展开叙述。假设每个Anchor index是绿色数字，每个Anchor Softmax score是黑色数字：
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-11-11/2022-11-11_17-52-42-481.png)
 
-![](https://gitee.com/dingtom1995/picture/raw/master/2022-11-11/2022-11-11_18-01-55-488.png)
+![](https://gitee.com/dingtom1995/picture/raw/master/2022-11-22/2022-11-22_11-10-19-137.png)
 
 # 文本框矫正
 
