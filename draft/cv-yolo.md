@@ -1,8 +1,14 @@
-# YOLO vs Faster R-CNN
+## YOLO vs Faster R-CNN
 
-1、统一网络：YOLO没有显示求取region proposal的过程。Faster R-CNN中尽管RPN与fast rcnn共享卷积层，但是在模型训练过程中，需要反复训练RPN网络和fast rcnn网络。相对于R-CNN系列的"看两眼"(候选框提取与分类)，YOLO只需要Look Once.
 
-2、YOLO统一为一个回归问题，而Faster R-CNN将检测结果分为两部分求解：物体类别（分类问题）、物体位置即bounding box（回归问题）。
+
+Faster R-CNN**将检测结果分为两部分求解**：物体类别（分类问题）、物体位置即bounding box（回归问题），YOLO**统一为一个回归问题**。
+
+
+
+统一网络：YOLO没有显示求取region proposal的过程。Faster R-CNN中尽管RPN与fast rcnn共享卷积层，但是在模型训练过程中，需要反复训练RPN网络和fast rcnn网络。相对于R-CNN系列的"看两眼"(候选框提取与分类)，YOLO只需要Look Once.
+
+# 
 
 >- YOLOv1论文名以及论文地址：**You Only Look Once:Unified, Real-Time Object Detection**、
 You Only Look Once:Unified, Real-Time Object Detection: *https://arxiv.org/pdf/1506.02640.pdf*
