@@ -8,7 +8,7 @@ Faster R-CNN**将检测结果分为两部分求解**：物体类别（分类问�
 
 统一网络：YOLO没有显示求取region proposal的过程。Faster R-CNN中尽管RPN与fast rcnn共享卷积层，但是在模型训练过程中，需要反复训练RPN网络和fast rcnn网络。相对于R-CNN系列的"看两眼"(候选框提取与分类)，YOLO只需要Look Once.
 
-# 
+
 
 >- YOLOv1论文名以及论文地址：**You Only Look Once:Unified, Real-Time Object Detection**、
 You Only Look Once:Unified, Real-Time Object Detection: *https://arxiv.org/pdf/1506.02640.pdf*
@@ -48,7 +48,7 @@ Official YOLOv7-PyTorch: *https://github.com/WongKinYiu/yolov7*
 
 ## 思想
 
-YOLOv1的核心思想就是利用整张图作为网络的输入，直接在输出层回归bounding box的位置和bounding box所属的类别。
+**yolo的核心思想是将输入的图像经过backbone特征提取后，将的到的特征图划分为S x S的网格，物体的中心落在哪一个网格内，这个网格就负责预测该物体的置信度、类别以及坐标位置。**
 
 - 将一幅图像分成SxS个网格(grid cell),如果某个object的中心落在这个网格中，则这个网格就负责预测这个object。
 
@@ -66,7 +66,7 @@ YOLOv1的核心思想就是利用整张图作为网络的输入，直接在输�
 
 B=2， 7\*7\*30包含了坐标、置信度、类别结果
 
-x.y是相对每一个gird cell左上角个点的坐标，w,h是相对整幅图像的宽高，都是0-1的值。
+x.y是相对每一个gird cell左上角点的坐标，w,h是相对整幅图像的宽高，都是0-1的值。
 
 
 
@@ -155,7 +155,7 @@ YOLOv2 也叫 YOLO9000，因为使用了 COCO 数据集以及 Imagenet 数据集
 
 ## 网络结构
 
-使用 Darknet19 作为网络的主干网络。Darknet19 有点类似 VGG，在 Darknet19 中，使用的是 3 x 3 大小的卷积核，并且在每次Pooling 之后都增加一倍通道数，以及将特征图的宽高缩减为原来的一半。网络中有19个卷积层，所以叫 Darknet19，以及有5个 Max Pooling 层，所以这里进行了32倍的下采样。
+使用 Darknet19 作为网络的主干网络。Darknet19 有点类似 VGG，在 Darknet19 中，使用的是 3 x 3 大小的卷积核，并0且在每次Pooling 之后都增加一倍通道数，以及将特征图的宽高缩减为原来的一半。网络中有19个卷积层，所以叫 Darknet19，以及有5个 Max Pooling 层，所以这里进行了32倍的下采样。
 
 ![quicker_e071e5e8-99ff-40ab-9c03-b511a0572d92.png](https://s2.loli.net/2022/05/08/cENjmszArXtovaY.png)
 
@@ -165,11 +165,21 @@ YOLOv2 也叫 YOLO9000，因为使用了 COCO 数据集以及 Imagenet 数据集
 
 ### Batch Normalization
 
-在卷积层的后面、激活函数的前面加上了BN层，使得网络可以加速收敛，解决了梯度弥散的问题。不太受初始化的影响，同时，还可以起到正则化的作用。
+在卷积层的后面、激活函数的前面加上了BN层，
+
+使得网络可以加速收敛，
+
+解决了梯度弥散的问题。
+
+不太受初始化的影响，
+
+还可以起到正则化的作用。
 
 ![quicker_a21a2608-2876-4a16-80b6-8d6a59448be0.png](https://s2.loli.net/2022/05/08/lV83pBA7FsOHE6G.png)
 
-零均值标准差为1,sigmod、双曲正切函数(tanh)在0附近有比较大的梯度
+零均值标准差为1，sigmod、双曲正切函数(tanh)在0附近有比较大的梯度
+
+
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-22/2022-10-22_15-32-57-469.png)
 
@@ -193,7 +203,7 @@ yolov2避免了这个突变，首先对224\*224的预训练之后，然后在448
 
 Convolutional With Anchor Boxes
 
-先受Faster-rcnn的启发，使用锚框然后预测它的偏移量，而不是直接预测坐标位置，这样网络学习起来会更容易。所谓锚框，就是之前设定好不同宽高比的先验框
+先受Faster-rcnn的启发，使用**锚框然后预测它的偏移量，而不是直接预测坐标位置**，这样网络学习起来会更容易。所谓锚框，就是之前设定好不同宽高比的先验框
 
 为了更好的理解anchor，我们先来回忆一下yolov1没有anchor的时候是怎么回事？四个坐标呢完全就是由网络计算出来的，(x, y)坐标表示相对于网格单元格边界的方框中心，宽高是相对于整个图像的宽度和高度，这个值生成的宽高比、中心点的位置幔帐图像乱跑的，明显更难预测。
 
@@ -209,7 +219,7 @@ Convolutional With Anchor Boxes
 
 Dimension Clusters
 
-先验框先验框，这个宽高比该怎么定呢，该选择几个锚框呢，3个、5个？手动选择吗？显然不是那么合理，所以作何采用了对训练集的bounding_box进行k_means聚类的方法。
+先验框先验框，这个宽高比该怎么定呢，该选择几个锚框呢，3个、5个？手动选择吗？显然不是那么合理，所以作何采用了对训练集的bounding_box进行**k_means聚类**的方法。
 
 ![quicker_2940e48e-7b55-4a37-89cd-55562f7f9846.png](https://s2.loli.net/2022/05/08/jSmZx9cCOErkywX.png)
 
@@ -237,7 +247,7 @@ Dimension Clusters
 
 
 
-类似 Pixel-shuffle，**融合高层和低层的信息，这样可以保留一些细节信息，这样可以更好检测小物体。**具体来说，就是进行一拆四的操作，直接传递到池化后的特征图中，进行卷积后再叠加两者，最后一起作为输出特征图进行输出。通过使用 Pass through 层来检测细粒度特征使 mAP 提升了1个点。
+类似 Pixel-shuffle，**融合高层和低层的信息，这样可以保留一些细节信息，这样可以更好检测小物体。**具体来说，就是进行一拆四的操作，直接传递到池化后的特征图中，进行卷积后再叠加两者，最后一起作为输出特征图进行输出。通过使用 Pass through 层来检测细粒度特征使 mAP 提升了1个点。 
 
 <img src='https://s2.loli.net/2022/05/08/e3TdWYOHxlI2QDA.png' title='quicker_e58852f3-aa65-4471-af7e-881bbeae12b1.png' />
 
@@ -245,7 +255,7 @@ Dimension Clusters
 
 Multi-Scale Training
 
- 由于这个模型只有卷积层、池化层，所以可以动态的调整输入图像的大小，为了让网络适应不同的尺度的图像，每10个batch，网络随机选择一个新的图像维度大小，他们都是32的倍数,这一步是在检测数据集上fine tune时候采用的
+ 由于这个模型只有卷积层、池化层，所以可以动态的调整输入图像的大小，为了让网络适应不同的尺度的图像，**每10个batch，网络随机选择一个新的图像维度大小**，他们都是32的倍数,这一步是在检测数据集上fine tune时候采用的
 
 ![quicker_ee5ea3b8-9757-4c4e-ac61-4d1be128c63e.png](https://s2.loli.net/2022/05/08/dPnTxls9EhVo4FM.png)
 
@@ -340,58 +350,6 @@ Multi-Scale Training
 
 
 
-Mosaic 图像增强
-
-- 增加数据的多样性
-- 增加目标个数
-- BN能一次性统计多张图片的参数
-
-
-
-
-
-
-
-
-
-Iou
-
-优点
-1.能够更好的反应重合程度
-2.具有尺度不变性
-缺点
-1.当不相交时loss为0
-
-
-
-![quicker_f2a1c960-af71-468b-bfc6-c196f271d4d4.png](https://s2.loli.net/2022/05/10/cMQ7X5CHvRzV3Td.png)
-
-
-
- ![quicker_d779df84-222e-4f51-87b6-e2e1e3583caf.png](https://s2.loli.net/2022/05/10/dAV71qUPY5lxB4c.png)
-
-
-
-![quicker_bcd1a1aa-c1da-49de-b991-af043f653965.png](https://s2.loli.net/2022/05/10/kSZh1FtTiXdPD3n.png)
-
-![quicker_2c053b0c-571c-4387-ba12-401ae87fc02a.png](https://s2.loli.net/2022/05/10/ON9KcadtPpgiB2m.png)
-
-
-
-
-
-
-
-![quicker_977a2f54-dd1e-4b67-b1f9-466469773554.png](https://s2.loli.net/2022/05/10/E3Nco6ZrItFwkXH.png)
-
-![quicker_e2f1075b-de9f-4f15-8a23-3422ade2c0bf.png](https://s2.loli.net/2022/05/10/189pHGQJjEdsLgn.png)
-
-![quicker_06f8056f-fbea-4bdd-a52d-8953becc5e3e.png](https://s2.loli.net/2022/05/10/lyKXE8CjkSIPe7o.png)
-
-
-
-
-
 # V4
 
 [YOLOv4](https://so.csdn.net/so/search?q=YOLOv4&spm=1001.2101.3001.7020): Optimal Speed and Accuracy of Object Detection
@@ -433,6 +391,39 @@ Head: YOLOv3
 
 
 
+
+
+## CSPDarknet53网络结构
+
+CSPDarknet53就是将CSP结构融入了Darknet53中。CSP结构是在CSPNet（Cross Stage Partial Network）论文中提出的，CSPNet作者说在目标检测任务中使用CSP结构有如下好处：
+
+Strengthening learning ability of a CNN
+Removing computational bottlenecks
+Reducing memory costs
+**即减少网络的计算量以及对显存的占用，同时保证网络的能力不变或者略微提升。**CSP结构的思想参考原论文中绘制的CSPDenseNet，**进入每个stage（一般在下采样后）先将数据划分成俩部分**，如下图所示的Part1和Part2。但具体怎么划分呢，**在CSPNet中是直接按照通道均分**，但在**YOLOv4网络中是通过两个1x1的卷积层来实现的**。**在Part2后跟一堆Blocks然后在通过1x1的卷积层（图中的Transition），接着将两个分支的信息在通道方向进行Concat拼接，最后再通过1x1的卷积层进一步融合**（图中的Transition）。
+
+
+
+![quicker_9c3da51b-5d06-4c84-a90b-c08a371a0edf.png](https://s2.loli.net/2022/05/09/drBFhsqePQcnuYi.png)
+
+
+
+CSPDarknet53详细结构（以输入图片大小为416 × 416 × 3 为例）
+
+- 注意，`CSPDarknet53` Backbone中所有的激活函数都是`Mish`激活函数
+
+  ![quicker_d078c76a-ae00-4272-b93a-f4a5a4944b02.png](https://s2.loli.net/2022/05/09/mlPByM4hdgoIS71.png)
+
+
+
+## 网络详细结构
+
+![quicker_e0ec51d7-d578-4fb5-8a36-e590863d705f.png](https://s2.loli.net/2022/05/09/S7vgi5XTmFNOM21.png)
+
+
+
+
+
 ## 改进
 
 YoloV4的创新之处进行讲解，让大家一目了然。
@@ -469,17 +460,9 @@ YoloV4的创新之处进行讲解，让大家一目了然。
 
 CSPNet论文地址：[https://arxiv.org/pdf/1911.11929.pdf](https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1911.11929.pdf)
 
-CSPNet全称是Cross Stage Paritial Network，主要从网络结构设计的角度解决推理中从计算量很大的问题。CSPNet的作者认为推理计算过高的问题是由于网络优化中的**梯度信息重复**导致的。因此采用CSP模块先将基础层的特征映射划分为两部分，然后通过跨阶段层次结构将它们合并，在减少了计算量的同时可以保证准确率。
+CSPNet全称是Cross Stage Paritial Network，CSPNet的作者认为推理计算过高的问题是由于网络优化中的**梯度信息重复**导致的。因此采用CSP模块先将基础层的特征映射划分为两部分，然后通过**跨阶段层次结构将它们合并**，在**减少了计算量的同时可以保证准确率**。
 
-
-
-因此Yolov4在主干网络Backbone采用CSPDarknet53网络结构，主要有三个方面的优点：
-
-**优点一：**增强CNN的学习能力，使得在轻量化的同时保持准确性。
-
-**优点二：**降低计算瓶颈
-
-**优点三：**降低内存成本
+![](https://gitee.com/dingtom1995/picture/raw/master/2022-11-24/2022-11-24_19-39-16-343.png)
 
 
 
@@ -530,17 +513,13 @@ Dropblock在2018年提出，论文地址：[https://arxiv.org/pdf/1810.12890.pdf
 
 
 
-SPP模块，其实在Yolov3中已经存在了，在**Yolov4**的C++代码文件夹**中**有一个**Yolov3_spp版本**，但有的同学估计从来没有使用过，在Yolov4中，SPP模块仍然是在Backbone主干网络之后：
+SPP模块，其实在Yolov3中已经存在了，在**Yolov4**的C++代码文件夹中有一个**Yolov3_spp版本**，但有的同学估计从来没有使用过，在Yolov4中，SPP模块仍然是在Backbone主干网络之后：
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-24/2022-10-24_09-36-24-126.png)
 
-作者在SPP模块中，使用k={1\*1,5\*5,9\*9,13\*13}的最大池化的方式，再将不同尺度的特征图进行Concat操作。
+作者在SPP模块中，使用**k={1\*1,5\*5,9\*9,13\*13}**的最大池化的方式，再将不同尺度的特征图进行Concat操作。
 
 **注意：**这里最大池化采用**padding操作**，移动的步长为1，比如13×13的输入特征图，使用5×5大小的池化核池化，**padding=2**，因此池化后的特征图仍然是13×13大小。
-
-
-
-
 
 #### FPN+PAN
 
@@ -626,17 +605,27 @@ Yolov3的FPN层输出的三个大小不一的特征图①②③直接进行预�
 
 输出层的锚框机制和Yolov3相同，主要改进的是训练时的损失函数**CIOU_Loss**，以及预测框筛选的nms变为**DIOU_nms**
 
-#### CIOU_loss
-
-目标检测任务的损失函数一般由**Classificition Loss（分类损失函数）**和**Bounding Box Regeression Loss（回归损失函数）**两部分构成。
-
-Bounding Box Regeression的Loss近些年的发展过程是：**Smooth L1 Loss-> IoU Loss（2016）-> GIoU Loss（2019）-> DIoU Loss（2020）->CIoU Loss（2020）**
-
-我们从最常用的**IOU_Loss**开始，进行对比拆解分析，看下Yolov4为啥要选择**CIOU_Loss。**
 
 
+目标检测任务的损失函数一般由Classificition Loss（分类损失函数）和Bounding Box Regeression Loss（回归损失函数）两部分构成。
 
-IOU_Loss
+Bounding Box Regeression的Loss近些年的发展过程是：
+
+Smooth L1 Loss
+
+IoU Loss（2016）
+
+GIoU Loss（2019）
+
+DIoU Loss（2020）
+
+CIoU Loss（2020）
+
+#### CIOU_Loss
+
+
+
+##### IOU_Loss
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-24/2022-10-24_10-14-34-147.png)
 
@@ -644,24 +633,23 @@ IOU_Loss
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-24/2022-10-24_10-16-46-272.png)
 
-**问题1：**即状态1的情况，当预测框和目标框不相交时，IOU=0，无法反应两个框距离的远近，此时损失函数不可导，IOU_Loss无法优化两个框不相交的情况。
+问题1：即状态1的情况，当**预测框和目标框不相交时，IOU=0，无法反应两个框距离的远近**，此时损失函数不可导，IOU_Loss无法优化两个框不相交的情况。
 
-**问题2：**即状态2和状态3的情况，当两个预测框大小相同，两个IOU也相同，IOU_Loss无法区分两者相交情况的不同。
+问题2：即状态2和状态3的情况，当两个预测框大小相同，两个**IOU也相同，IOU_Loss无法区分两者相交情况的不同。**
 
-因此**2019**年出现了GIOU_Loss来进行改进。
 
-##### GIOU_Loss
+
+GIOU_Loss
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-24/2022-10-24_10-17-36-178.png)
 
-可以看到右图GIOU_Loss中，增加了相交尺度的衡量方式，缓解了单纯IOU_Loss时的尴尬。
+可以看到右图GIOU_Loss中，增加了**相交尺度的衡量方式**，缓解了单纯IOU_Loss时的尴尬。
 
-但为什么仅仅说缓解呢？因为还存在一种**不足**：
+但为什么仅仅说缓解呢？因为还存在一种不足：
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-24/2022-10-24_10-18-23-212.png)
 
-**问题**：状态1、2、3都是预测框在目标框内部且预测框大小一致的情况，这时预测框和目标框的差集都是相同的，因此这三种状态的**GIOU值**也都是相同的，这时GIOU退化成了IOU，无法区分相对位置关系。
-基于这个问题，**2020年**的AAAI又提出了**DIOU_Loss**。
+问题：状态1、2、3都是预测框在目标框内部且预测框大小一致的情况，这时预测框和目标框的差集都是相同的，因此这三种状态的GIOU值也都是相同的，这时GIOU退化成了IOU，无法区分相对位置关系。
 
 ##### DIOU_Loss
 
@@ -707,6 +695,8 @@ CIOU_Loss和DIOU_Loss前面的公式都是一样的，不过在此基础上还�
 
 Yolov4中采用了**CIOU_Loss**的回归方式，使得预测框回归的**速度和精度**更高一些。
 
+
+
 #### DIOU_nms
 
 Nms主要用于预测框的筛选，常用的目标检测算法中，一般采用普通的nms的方式，Yolov4则借鉴上面D/CIOU loss的论文：[https://arxiv.org/pdf/1911.08287.pdf](https://link.zhihu.com/?target=https%3A//arxiv.org/pdf/1911.08287.pdf)将其中计算IOU的部分替换成DIOU的方式：
@@ -715,9 +705,7 @@ Nms主要用于预测框的筛选，常用的目标检测算法中，一般采�
 
  ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-24/2022-10-24_10-53-59-691.png) 
 
-在上图重叠的摩托车检测中，中间的摩托车因为考虑边界框中心点的位置信息，也可以回归出来。
-
-因此在重叠目标的检测中，**DIOU_nms**的效果优于**传统的nms**。
+在上图重叠的摩托车检测中，中间的摩托车因为考虑边界框中心点的位置信息，也可以回归出来。因此在重叠目标的检测中，**DIOU_nms**的效果优于**传统的nms**。
 
 **注意：有读者会有疑问，这里为什么不用CIOU_nms，而用DIOU_nms?**
 
@@ -737,38 +725,6 @@ Yolov4 主要带来了 3 点新贡献：
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-![quicker_8cde5fd8-3a9f-4f86-9c73-c7ce21b21452.png](https://s2.loli.net/2022/05/09/zFAsxfuporB3hX4.png)
-
-
-
-
-
 ## 优化策略
 
 有关训练Backbone时采用的优化策略就不讲了有兴趣自己看下论文的`4.2`章节，这里直接讲下训练检测器时作者采用的一些方法。在论文`4.3`章节，作者也罗列了一堆方法，并做了部分消融实验。这里我只介绍确实在代码中有使用到的一些方法。
@@ -777,38 +733,11 @@ Yolov4 主要带来了 3 点新贡献：
 
 
 
-## CSPDarknet53网络结构
-
-CSPDarknet53就是将CSP结构融入了Darknet53中。CSP结构是在CSPNet（Cross Stage Partial Network）论文中提出的，CSPNet作者说在目标检测任务中使用CSP结构有如下好处：
-
-Strengthening learning ability of a CNN
-Removing computational bottlenecks
-Reducing memory costs
-**即减少网络的计算量以及对显存的占用，同时保证网络的能力不变或者略微提升。**CSP结构的思想参考原论文中绘制的CSPDenseNet，**进入每个stage（一般在下采样后）先将数据划分成俩部分**，如下图所示的Part1和Part2。但具体怎么划分呢，**在CSPNet中是直接按照通道均分**，但在**YOLOv4网络中是通过两个1x1的卷积层来实现的**。**在Part2后跟一堆Blocks然后在通过1x1的卷积层（图中的Transition），接着将两个分支的信息在通道方向进行Concat拼接，最后再通过1x1的卷积层进一步融合**（图中的Transition）。
-
-
-
-![quicker_9c3da51b-5d06-4c84-a90b-c08a371a0edf.png](https://s2.loli.net/2022/05/09/drBFhsqePQcnuYi.png)
-
-
-
-CSPDarknet53详细结构（以输入图片大小为416 × 416 × 3 为例）
-
-- 注意，`CSPDarknet53` Backbone中所有的激活函数都是`Mish`激活函数
-
-  ![quicker_d078c76a-ae00-4272-b93a-f4a5a4944b02.png](https://s2.loli.net/2022/05/09/mlPByM4hdgoIS71.png)
-
-
-
-## 网络结构
-
-![quicker_e0ec51d7-d578-4fb5-8a36-e590863d705f.png](https://s2.loli.net/2022/05/09/S7vgi5XTmFNOM21.png)
-
 # V5
 
 ## 网络结构
 
-Yolov5s网络最小，速度最少，AP精度也最低。但如果检测的以大目标为主，追求速度，倒也是个不错的选择。
+Yolov5s网络最小，速度最快，AP精度也最低。但如果检测的以大目标为主，追求速度，倒也是个不错的选择。
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-24/2022-10-24_10-59-23-477.png)
 
@@ -827,13 +756,11 @@ Yolov5s网络最小，速度最少，AP精度也最低。但如果检测的以�
 
 #### Mosaic数据增强
 
-Yolov5的输入端采用了和Yolov4一样的Mosaic数据增强的方式。
+**Mosaic数据增强**则采用了4张图片，**随机缩放、随机裁剪、随机排布**的方式进行拼接。
 
 ####  自适应锚框计算
 
-在Yolo算法中，针对不同的数据集，都会有**初始设定长宽的锚框**。
-
-在网络训练中，网络在初始锚框的基础上输出预测框，进而和**真实框groundtruth**进行比对，计算两者差距，再反向更新，**迭代网络参数**。
+在Yolo算法中，针对不同的数据集，都**会有初始设定长宽的锚框。在网络训练中，网络在初始锚框的基础上输出预测框，进而和真实框groundtruth进行比对，计算两者差距，再反向更新**，迭代网络参数。
 
 因此初始锚框也是比较重要的一部分，比如Yolov5在Coco数据集上初始设定的锚框：
 
@@ -843,7 +770,7 @@ Yolov5的输入端采用了和Yolov4一样的Mosaic数据增强的方式。
 
 但Yolov5中将此功能嵌入到代码中，每次训练时，自适应的计算不同训练集中的最佳锚框值。
 
-当然，如果觉得计算的锚框效果不是很好，也可以在代码中将自动计算锚框功能**关闭**。
+当然，如果觉得计算的锚框效果不是很好，也可以在代码中将自动计算锚框功能关闭。
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-24/2022-10-24_11-05-20-513.png)
 
@@ -851,23 +778,19 @@ Yolov5的输入端采用了和Yolov4一样的Mosaic数据增强的方式。
 
 在常用的目标检测算法中，不同的图片长宽都不相同，因此常用的方式是将原始图片统一缩放到一个标准尺寸，再送入检测网络中。
 
-比如Yolo算法中常用**416\*416，608\*608**等尺寸，比如对下面**800\*600**的图像进行缩放。
+比如Yolo算法中常用416\*416，608\*608等尺寸，比如对下面800*600的图像进行缩放。
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-24/2022-10-24_11-06-35-430.png)
 
-但**Yolov5代码**中对此进行了改进，也是**Yolov5推理速度**能够很快的一个不错的改进。
-
-作者认为，在项目实际使用时，很多图片的长宽比不同，因此缩放填充后，两端的黑边大小都不同，而如果填充的比较多，则存在信息冗余，影响推理速度。
-
-因此在Yolov5的代码中datasets.py的letterbox函数中进行了修改，对原始图像**自适应的添加最少的黑边**。
+作者认为，在项目实际使用时，很多图片的长宽比不同，因此缩放填充后，两端的黑边大小都不同，而如果填充的比较多，则存在信息冗余，影响推理速度。因此在Yolov5的代码中datasets.py的letterbox函数中进行了修改，对原始图像**自适应的添加最少的黑边**。
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-24/2022-10-24_11-06-44-568.png)
 
-图像高度上两端的黑边变少了，在推理时，计算量也会减少，即目标检测速度会得到提升。
+**图像高度上两端的黑边变少了，在推理时，计算量也会减少，即目标检测速度会得到提升。**
 
-这种方式在之前github上Yolov3中也进行了讨论：[https://github.com/ultralytics/yolov3/issues/232](https://link.zhihu.com/?target=https%3A//wx.qq.com/cgi-bin/mmwebwx-bin/webwxcheckurl%3Frequrl%3Dhttps%3A%2F%2Fgithub.com%2Fultralytics%2Fyolov3%2Fissues%2F232%26skey%3D%40crypt_96d23a7c_7a713cdc64109256773c39e67ce4a665%26deviceid%3De850832231813449%26pass_ticket%3DTgSQoHNgevOIg9%252B8R3aPNK%252F5sw6ZIUuR2A96p1sbiAGBktXTseCh8r9U9jZAQojj%26opcode%3D2%26scene%3D1%26username%3D%408bbd87b4deb686cd79c1471b85752510)
+这种方式在之前github上Yolov3中也进行了讨论：
 
-在讨论中，通过这种简单的改进，推理速度得到了37%的提升，可以说效果很明显。
+[https://github.com/ultralytics/yolov3/issues/232](https://link.zhihu.com/?target=https%3A//wx.qq.com/cgi-bin/mmwebwx-bin/webwxcheckurl%3Frequrl%3Dhttps%3A%2F%2Fgithub.com%2Fultralytics%2Fyolov3%2Fissues%2F232%26skey%3D%40crypt_96d23a7c_7a713cdc64109256773c39e67ce4a665%26deviceid%3De850832231813449%26pass_ticket%3DTgSQoHNgevOIg9%252B8R3aPNK%252F5sw6ZIUuR2A96p1sbiAGBktXTseCh8r9U9jZAQojj%26opcode%3D2%26scene%3D1%26username%3D%408bbd87b4deb686cd79c1471b85752510)在讨论中，通过这种简单的改进，推理速度得到了37%的提升，可以说效果很明显。
 
 但是有的同学可能会有**大大的问号？？**如何进行计算的呢？大白按照Yolov5中的思路详细的讲解一下，在**datasets.py的letterbox函数中**也有详细的代码。
 
@@ -879,15 +802,21 @@ Yolov5的输入端采用了和Yolov4一样的Mosaic数据增强的方式。
 
 - 这里大白填充的是黑色，即**（0，0，0）**，而Yolov5中填充的是灰色，即**（114,114,114）**，都是一样的效果。
 
-- 训练时没有采用缩减黑边的方式，还是采用传统填充的方式，即缩放到416*416大小。只是在测试，使用模型推理时，才采用缩减黑边的方式，提高目标检测，推理的速度。
+- **训练时没有采用缩减黑边的方式，还是采用传统填充的方式**，即缩放到416*416大小。只是在测试，使用**模型推理时，才采用缩减黑边的方式，提高目标检测，推理的速度**。
 
-- 为什么np.mod函数的后面用**32**？因为Yolov5的网络经过5次下采样，而2的5次方，等于**32**。所以至少要去掉32的倍数，再进行取余。
+- 为什么np.mod函数的后面用32？因为Yolov5的网络经过5次下采样，而2的5次方，等于32。所以至少要去掉32的倍数，再进行取余。
 
 ### Backbone
 
 #### Focus结构
 
-在减少特征信息损失的情况下，减少特征图尺寸的大小
+具体操作为把一张feature map每隔一个像素拿到一个值，类似于邻近下采样，这样我们就拿到了4张feature map
+
+
+
+在减少特征信息损失的情况下，**减少特征图尺寸的大小提高计算力**。通道多少对计算量影响不大
+
+
 
 切片顺序不同 focus列优先 passthrough行优先
 
@@ -907,11 +836,13 @@ Yolov4网络结构中，借鉴了CSPNet的设计思路，在主干网络中设�
 
 而Yolov5中设计了两种CSP结构，以**Yolov5s网络**为例，**CSP1_X结构**应用于**Backbone主干网络**，另一种**CSP2_X**结构则应用于**Neck**中。
 
-![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-24/2022-10-24_11-17-51-513.png)
+![](https://gitee.com/dingtom1995/picture/raw/master/2022-11-24/2022-11-24_19-38-14-562.png)
 
 ### Neck
 
-Yolov5现在的Neck和Yolov4中一样，都采用FPN+PAN的结构，但在Yolov5刚出来时，只使用了FPN结构，后面才增加了PAN结构，此外网络中其他部分也进行了调整。
+#### FPN+PAN
+
+Yolov5现在的Neck和Yolov4中一样，**都采用FPN+PAN的结构**，但在Yolov5刚出来时，只使用了FPN结构，后面才增加了PAN结构，此外网络中其他部分也进行了调整。
 
 
 
@@ -924,17 +855,15 @@ Yolov5现在的Neck和Yolov4中一样，都采用FPN+PAN的结构，但在Yolov5
 
 ### Prediction
 
-##### Bounding box损失函数
+##### CIOU_Loss—Bounding box损失函数
 
 Yolov5中采用其中的CIOU_Loss做Bounding box的损失函数。
 
-##### nms非极大值抑制
+##### DIOU_nms
 
 在目标检测的后处理过程中，针对很多目标框的筛选，通常需要nms操作。
 
-因为CIOU_Loss中包含影响因子v，涉及groudtruth的信息，而测试推理时，是没有groundtruth的。
-
-所以Yolov4在DIOU_Loss的基础上采用DIOU_nms的方式，而Yolov5中采用加权nms的方式。
+因为CIOU_Loss中包含影响因子v，涉及groudtruth的信息，而测试推理时，是没有groundtruth的。所以Yolov4在DIOU_Loss的基础上采用DIOU_nms的方式，而Yolov5中采用加权nms的方式。
 
 可以看出，采用DIOU_nms，下方中间箭头的黄色部分，原本被遮挡的摩托车也可以检出。
 
@@ -1123,37 +1052,31 @@ YOLOv5针对不同大小（n, s, m, l, x）的网络整体架构都是一样的�
 
 ### 输入端
 
-#### Strong augmentation
-
 在网络的输入端，Yolox主要采用了**Mosaic、Mixup两种数据增强方法。**
 
 而采用了这两种数据增强，直接将Yolov3 baseline，提升了2.4个百分点。
 
-##### Mosaic数据增强
+#### Mosaic数据增强
 
-Mosaic增强的方式，是U版YOLOv3引入的一种非常有效的增强策略。而且在Yolov4、Yolov5算法中，也得到了广泛的应用。通过**随机缩放**、**随机裁剪**、**随机排布**的方式进行拼接，对于**小目标**的检测效果提升，还是很不错的。
+Mosaic增强的方式，是U版YOLOv3引入的一种非常有效的增强策略。而且在Yolov4、Yolov5算法中，也得到了广泛的应用。通过**随机缩放**、**随机裁剪**、**随机排布**的方式进行**拼接**，对于**小目标**的检测效果提升，还是很不错的。
 
-##### MixUp数据增强
+#### MixUp数据增强
 
-MixUp是在Mosaic基础上，增加的一种**额外的增强策略。**
+**调整透明度两张图像叠加在一起。**
 
-主要来源于2017年，顶会ICLR的一篇论文[《mixup: Beyond Empirical Risk Minimization》](https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1710.09412)。当时主要应用在**图像分类任务中**，可以在几乎无额外计算开销的情况下，**稳定提升1个百分点的分类精度。**
-
-而在Yolox中，则也应用到目标检测中，代码在yolox/datasets/mosaicdetection.py这个文件中。  
+主要来源于2017年，顶会ICLR的一篇论文《mixup: Beyond Empirical Risk Minimization》。当时主要应用在图像分类任务中，可以在几乎无额外计算开销的情况下，稳定提升1个百分点的分类精度。而在Yolox中，则也应用到目标检测中，代码在yolox/datasets/mosaicdetection.py这个文件中。  
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-25/2022-10-25_17-01-42-515.png)
 
-其实方式很简单，比如我们在做**人脸检测的任务**。先读取一张图片，图像两侧填充，缩放到640*\640大小，即Image_1，人脸检测框为红色框。再随机选取一张图片，图像上下填充，也缩放到640\*640大小，即Image_2，人脸检测框为蓝色框。然后设置一个融合系数，比如上图中，设置为0.5，将Image_1和Image_2，加权融合，最终得到右面的Image。从右图可以看出，**人脸的红色框和蓝色框是叠加存在的。**
+其实方式很简单，比如我们在做人脸检测的任务。先读取一张图片，图像两侧填充，缩放到640\*640大小，即Image_1，人脸检测框为红色框。再随机选取一张图片，图像上下填充，也缩放到640*640大小，即Image_2，人脸检测框为蓝色框。然后设置一个融合系数，比如上图中，设置为0.5，将Image_1和Image_2，加权融合，最终得到右面的Image。从右图可以看出，人脸的红色框和蓝色框是叠加存在的。
 
 
 
-我们知道，在Mosaic和Mixup的基础上，Yolov3 baseline增加了**2.4个百分点**。不过有两点需要注意：
+我们知道，在Mosaic和Mixup的基础上，Yolov3 baseline增加了2.4个百分点。不过有两点需要注意：
 
+（1）在训练的**最后15个epoch，这两个数据增强会被关闭掉**。而在此之前，Mosaic和Mixup数据增强，都是打开的，这个细节需要注意。
 
-
-（1）在训练的**最后15个epoch**，这两个数据增强会被关闭掉。而在此之前，Mosaic和Mixup数据增强，都是打开的，这个细节需要注意。
-
-（2）由于采取了更强的数据增强方式，作者在研究中发现，**ImageNet预训练将毫无意义**，因此，所有的模型，均是**从头开始训练的。**
+（2）由于采取了更强的数据增强方式，作者在研究中发现，ImageNet预训练将毫无意义，因此，**所有的模型，均是从头开始训练的**。
 
 
 
@@ -1163,15 +1086,19 @@ Yolox-Darknet53的Backbone主干网络，和原本的Yolov3 baseline的主干网
 
 ### Neck
 
-在Neck结构中，Yolox-Darknet53和Yolov3 baseline的Neck结构，也是一样的，都是采用**FPN的结构**进行融合。而在Yolov4、Yolov5、甚至后面讲到的Yolox-s、l等版本中，都是采用**FPN+PAN的形式**，这里需要注意。
+在Neck结构中，Yolox-Darknet53和Yolov3 baseline的Neck结构，也是一样的，都是采用**FPN的结构**进行融合。
+
+而在Yolov4、Yolov5、甚至后面讲到的Yolox-s、l等版本中，都是采用**FPN+PAN的形式**，这里需要注意。
 
 ### Prediction
 
 在输出层中，主要从四个方面进行讲解：**Decoupled Head**、**Anchor Free**、**标签分配、Loss计算。**
 
-##### Decoupled	 Head
+#### Decoupled	 Head
 
-我们先来看一下Decoupled Head，目前在很多一阶段网络中都有类似应用，比如**RetinaNet、FCOS等**。而在Yolox中，作者增加了三个Decoupled Head，俗称“解耦头”。大白这里从两个方面对Decoupled Head进行讲解：
+在很多一阶段网络中都有类似应用，比如**RetinaNet、FCOS等**。
+
+而在Yolox中，作者增加了三个Decoupled Head，俗称“解耦头”。大白这里从两个方面对Decoupled Head进行讲解：
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-25/2022-10-25_17-06-20-655.png)
 
@@ -1184,13 +1111,15 @@ Yolox-Darknet53的Backbone主干网络，和原本的Yolov3 baseline的主干网
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-25/2022-10-25_17-08-07-827.png)
 
-我们知道**Yolov3 baseline的AP值为38.5。**作者想继续改进，比如输出端改进为End-to-end的方式（即无NMS的形式）。但意外的发现，改进完之后的AP值**只有34.3**。将Yolov3 baseline 中Yolo Head，也修改为Decoupled Head。发现AP值，从**38.5**，增加到**39.6**。当然作者在实验中还发现，不单单是**精度上的提高**。替换为Decoupled Head后，**网络的收敛速度也加快了。**
+
+
+作者想继续改进，比如输出端改进为End-to-end的方式（即无NMS的形式）。在实验中还发现，不单单是精度上的提高。替换为Decoupled Head后，网络的收敛速度也加快了。
 
 
 
 **但是需要注意的是：将检测头解耦，会增加运算的复杂度。**因此作者经过速度和性能上的权衡，最终使用 1个1x1 的卷积先进行降维，并在后面两个分支里，各使用了 2个3x3 卷积，最终调整到仅仅增加一点点的网络参数。而且这里解耦后，还有一个更深层次的重要性：**Yolox的网络架构，可以和很多算法任务，进行一体化结合。**
 
-**比如：**
+比如：
 
 （1）YOLOX + Yolact/CondInst/SOLO ，**实现端侧的实例分割。**
 
@@ -1204,106 +1133,95 @@ Yolox-Darknet53的Backbone主干网络，和原本的Yolov3 baseline的主干网
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-25/2022-10-25_17-14-04-120.png)
 
-从图上可以看出，Concat前总共有**三个分支**：
+从图上可以看出，Concat前总共有三个分支：
 
-**（1）cls_output：**主要对目标框的类别，预测分数。因为COCO数据集总共有80个类别，且主要是N个二分类判断，因此经过Sigmoid激活函数处理后，变为20\*20\*80大小。
+（1）cls_output：主要对目标框的类别，预测分数。因为COCO数据集总共有80个类别，且主要是N个二分类判断，因此经过Sigmoid激活函数处理后，变为20*20*80大小。
 
-**（2）obj_output：**主要判断目标框是前景还是背景，因此经过Sigmoid处理好，变为20\*20\*1大小。
+（2）obj_output：主要判断目标框是前景还是背景，因此经过Sigmoid处理好，变为20*20*1大小。
 
-**（3）reg_output：**主要对目标框的坐标信息（x，y，w，h）进行预测，因此大小为20\*20\*4。
+（3）reg_output：主要对目标框的坐标信息（x，y，w，h）进行预测，因此大小为20*20*4。
 
 最后三个output，经过Concat融合到一起，得到20\*20\*85的特征信息。
 
-当然，这只是**Decoupled Head①**的信息，再对**Decoupled Head②和③**进行处理。
+当然，这只是Decoupled Head①的信息，再对Decoupled Head②和③进行处理。
 
 
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-25/2022-10-25_17-16-07-450.png)
 
-Decoupled Head②输出特征信息，并进行**Concate，得到40\*40\*85特征信息。**
+Decoupled Head②输出特征信息，并进行Concate，得到40\*40\*85特征信息。
 
-Decoupled Head③输出特征信息，并进行**Concate，得到80\*80\*85特征信息**。
+Decoupled Head③输出特征信息，并进行Concate，得到80\*80\*85特征信息。
 
-再对①②③三个信息，进行Reshape操作，并进行总体的Concat，得到**8400\*85的预测信息。**
+再对①②③三个信息，进行Reshape操作，并进行总体的Concat，得到8400\*85的预测信息。
 
-并经过一次Transpose，变为85*8400大小的**二维向量信息。**
+并经过一次Transpose，变为85*8400大小的二维向量信息。
 
-这里的8400，**指的是预测框的数量**，而85是每个**预测框的信息（reg，obj，cls）。**
+这里的8400，指的是预测框的数量，而85是每个预测框的信息（reg，obj，cls）。
 
 有了预测框的信息，下面我们再了解，如何将这些预测框和标注的框，即groundtruth进行关联，从而计算Loss函数，更新网络参数呢？
 
 
 
-##### Anchor-free
+#### Anchor-free
 
-这里就要引入Anchor的内容，目前行业内，主要有Anchor Based和Anchor Free两种方式。
-
-在Yolov3、Yolov!4、Yolov5中，通常都是采用**Anchor Based的方式**，来提取目标框，进而和标注的groundtruth进行比对，判断两者的差距。
+在Yolov3、Yolov4、Yolov5中，通常都是采用Anchor Based的方式，来提取目标框，进而和标注的groundtruth进行比对，判断两者的差距。
 
 **① Anchor Based方式**
 
 比如输入图像，经过Backbone、Neck层，最终将特征信息，传送到输出的Feature Map中。
 
-这时，就要设置一些Anchor规则，**将预测框和标注框进行关联。**从而在训练中，计算两者的差距，即损失函数，再更新网络参数。比如在下图的，最后的三个Feature Map上，基于每个单元格，都有三个不同尺寸大小的锚框。
+这时，就要设置一些Anchor规则，将预测框和标注框进行关联。从而在训练中，计算两者的差距，即损失函数，再更新网络参数。比如在下图的，最后的三个Feature Map上，基于每个单元格，都有三个不同尺寸大小的锚框。
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-25/2022-10-25_17-19-23-910.png)
 
-当输入为416*416时，网络最后的三个特征图大小为**13\*13，26\*26，52\*52。**我们可以看到，黄色框为小狗的Groundtruth，即标注框。而蓝色的框，为**小狗中心点所在的单元格**，所对应的锚框，每个单元格都有3个蓝框。当采用COCO数据集，即有80个类别时。基于每个锚框，都有x、y、w、h、obj（前景背景）、class（80个类别），共85个参数。
+当输入为416*416时，网络最后的三个特征图大小为13\*13，26\*26，52\*52。我们可以看到，黄色框为小狗的Groundtruth，即标注框。而蓝色的框，为小狗中心点所在的单元格，所对应的锚框，每个单元格都有3个蓝框。当采用COCO数据集，即有80个类别时。基于每个锚框，都有x、y、w、h、obj（前景背景）、class（80个类别），共85个参数。
 
-因此会产生3\*(13\*13+26\*26+52\*52）*85=**904995个预测结果。**
+因此会产生3\*(13\*13+26\*26+52\*52）*85=904995个预测结果。
 
-如果将输入从416\*416，变为640\*640，最后的三个特征图大小为**20\*20,40\*40,80\*80。**
+如果将输入从416\*416，变为640\*640，最后的三个特征图大小为20\*20,40\*40,80\*80。
 
-则会产生3\*（20\*20+40\*40+80\*80）*85=**2142000个预测结果。**
+则会产生3\*（20\*20+40\*40+80\*80）*85=2142000个预测结果。
 
 **② Anchor Free方式**
 
 而Yolox-Darknet53中，则采用Anchor Free的方式。我们从两个方面，来对Anchor Free进行了解。
 
-**a.输出的参数量**
+a.输出的参数量
 
-当输入为**640\*640**时，最终输出得到的特征向量是**85\*8400。**
+当输入为640\*640时，最终输出得到的特征向量是85\*8400。通过计算，8400*85=714000个预测结果，**比基于Anchor Based的方式，少了2/3的参数量**。
 
-通过计算，8400*85=714000个预测结果，比基于**Anchor Based**的方式，少了2/3的参数量。
-
-**b.Anchor框信息**
+b.Anchor框信息
 
 在前面Anchor Based中，我们知道，每个Feature map的单元格，都有3个大小不一的锚框。
 
-那么Yolox-Darknet53就没有吗？其实并不然，这里只是巧妙的，将前面Backbone中，**下采样的大小信息引入进来。**
+那么Yolox-Darknet53就没有吗？其实并不然，这里只是巧**妙的，将前面Backbone中，下采样的大小信息引入进来。**
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-25/2022-10-25_17-41-54-908.png)
 
-比如上图中，最上面的分支，下采样了5次，**2的5次方为32**。并且Decoupled Head①的输出，为**20\*20\*85大小。**
+比如上图中，最上面的分支，下采样了5次，2的5次方为32。并且Decoupled Head①的输出，为20\*20\*85大小。
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-25/2022-10-25_17-46-38-244.png)
-  **因此如上图所示：**
 
-最后8400个预测框中，其中有400个框，所对应锚框的大小，**为32\*32。**同样的原理，中间的分支，最后有1600个预测框，所对应锚框的大小，**为16\*16。**最下面的分支，最后有6400个预测框，所对应锚框的大小，**为8\*8。**当有了8400个**预测框的信息**，每张图片也有标注的**目标框的信息。**
-
+最后8400个预测框中，其中有400个框，所对应锚框的大小，为32\*32。同样的原理，中间的分支，最后有1600个预测框，所对应锚框的大小，为16\*16。最下面的分支，最后有6400个预测框，所对应锚框的大小，为8\*8。当有了8400个预测框的信息，每张图片也有标注的目标框的信息。
 
 
-这时的锚框，**就相当于桥梁。**这时需要做的，就是将8400个锚框，和图片上所有的目标框进行关联，挑选出**正样本锚框。**而相应的，**正样本锚框**所对应的位置，就可以将**正样本预测框**，挑选出来。
 
-这里采用的关联方式，就是**标签分配。**
+这时的锚框，就相当于桥梁。这时需要做的，就是将8400个锚框，和图片上所有的目标框进行关联，挑选出正样本锚框。而相应的，正样本锚框所对应的位置，就可以将正样本预测框，挑选出来。这里采用的关联方式，就是标签分配。
 
-**（3）标签分配**
+#### 标签分配
 
 当有了8400个Anchor锚框后，这里的每一个锚框，都对应85*8400特征向量中的预测框信息。
 
-不过需要知道，这些预测框只有**少部分是正样本，绝大多数是负样本。**
+这些预测框只有**少部分是正样本，绝大多数是负样本。**
 
 **那么到底哪些是正样本呢？**
 
 这里需要利用锚框和实际目标框的关系，挑选出**一部分适合的正样本锚框。**
 
-比如第3、10、15个锚框是正样本锚框，则对应到网络输出的8400个预测框中，第3、10、15个预测框，就是相应的**正样本预测框。**
+比如第3、10、15个锚框是正样本锚框，则对应到网络输出的8400个预测框中，第3、10、15个预测框，就是相应的**正样本预测框。**训练过程中，在锚框的基础上，不断的预测，然后不断的迭代，从而更新网络参数，让网络预测的越来越准。
 
-训练过程中，在锚框的基础上，不断的预测，然后不断的迭代，从而更新网络参数，让网络预测的越来越准。
-
-那么在Yolox中，是**如何挑选正样本锚框的呢？**
-
-这里就涉及到两个关键点：**初步筛选**、**SimOTA。**
+那么在Yolox中，是如何挑选正样本锚框的呢？
 
 **① 初步筛选**
 
@@ -1316,3 +1234,9 @@ Decoupled Head③输出特征信息，并进行**Concate，得到80\*80\*85特�
 **规则：寻找anchor_box中心点，落在groundtruth_boxes矩形范围的所有anchors。**
 
 比如在get_in_boxes_info的代码中，通过groundtruth的[x_center,y_center，w，h]，计算出每张图片的每个groundtruth的左上角、右下角坐标。
+
+
+
+
+
+[深入浅出Yolo系列之Yolox核心基础完整讲解 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/397993315)
