@@ -750,6 +750,12 @@ Yolov5s网络最小，速度最快，AP精度也最低。但如果检测的以�
 
 
 
+
+
+![quicker_d52e935b-94ae-4c77-b7b2-d2bd508eb31f.png](https://s2.loli.net/2022/05/09/kCZgA5jshbKy7lv.png)
+
+
+
 ## 改进
 
 ### 输入端
@@ -956,6 +962,7 @@ Yolov5中，网络的不断加深，也在不断**增加网络特征提取**和*
 
 
 
+# code
 
 
 
@@ -970,15 +977,8 @@ Yolov5中，网络的不断加深，也在不断**增加网络特征提取**和*
 
 
 
-网络结构主要由以下几部分组成：
 
-Backbone: New CSP-Darknet53
-Neck: SPPF, New CSP-PAN
-Head: YOLOv3 Head
 
-YOLOv5针对不同大小（n, s, m, l, x）的网络整体架构都是一样的，只不过会在每个子模块中采用不同的深度和宽度，分别应对yaml文件中的depth_multiple和width_multiple参数。还需要注意一点，官方除了n, s, m, l, x版本外还有n6, s6, m6, l6, x6，区别在于后者是针对更大分辨率的图片比如1280x1280，当然结构上也有些差异，**后者会下采样64倍，采用4个预测特征层，而前者只会下采样到32倍且采用3个预测特征层**。本博文只讨论前者。
-
-![quicker_d52e935b-94ae-4c77-b7b2-d2bd508eb31f.png](https://s2.loli.net/2022/05/09/kCZgA5jshbKy7lv.png)
 
 
 
@@ -1015,16 +1015,11 @@ YOLOv5针对不同大小（n, s, m, l, x）的网络整体架构都是一样的�
 - **Augment HSV(Hue, Saturation, Value)**，随机调整色度，饱和度以及明度。
 - **Random horizontal flip**，随机水平翻转
 
-## 训练策略
 
-在YOLOv5源码中使用到了很多训练的策略，这里简单总结几个我注意到的点，还有些没注意到的请大家自己看下源码：
 
-- Multi-scale training(0.5~1.5x)，多尺度训练，假设设置输入图片的大小为640 × 640，训练时采用尺寸是在0.5 × 640 ∼ 1.5 × 640之间随机取值，注意取值时取得都是32的整数倍（因为网络会最大下采样32倍）。
-- AutoAnchor(For training custom data)，训练自己数据集时可以根据自己数据集里的目标进行重新聚类生成Anchors模板。
-- Warmup and Cosine LR scheduler，训练前先进行Warmup热身，然后在采用Cosine学习率下降策略。
-- EMA(Exponential Moving Average)，可以理解为给训练的参数加了一个动量，让它更新过程更加平滑。
-- Mixed precision，混合精度训练，能够减少显存的占用并且加快训练速度，前提是GPU硬件支持。
-- Evolve hyper-parameters，超参数优化，没有炼丹经验的人勿碰，保持默认就好。
+
+
+
 
 ![quicker_696f7eaa-9fc9-4263-ae6a-59a9b40f18c9.png](https://s2.loli.net/2022/05/09/UhNwK1bSXdei8RA.png)
 
