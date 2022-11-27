@@ -3,22 +3,29 @@
 
 ![](https://upload-images.jianshu.io/upload_images/18339009-a16ddde40bfc6f50.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+
+
+```
 ubuntu安装 Docker 的时候需在管理员的账号下操作。
-```wget -qO- https://get.docker.com/ | sh```
+wget -qO- https://get.docker.com/ | sh
 安装完成之后，以 sudo 启动 Docker 服务。
-``` sudo service docker start```
+sudo service docker start
+```
 
 ### 容器生命周期管理
 
 #### 创建一个新的容器并运行一个命令：run
+
 https://www.runoob.com/docker/docker-run-command.html
 
-```docker run -d(后台运行不阻塞shell） -p 80:80（指定容器端口映射，内部：外部） <mirror name>:<version>```
+```
+docker run -d(后台运行不阻塞shell） -p 80:80（指定容器端口映射，内部：外部） <mirror name>:<version>
 
-```sudo docker run -it 76c152fbfd03 /bin/bash```
+sudo docker run -it  image_id /bin/bash
+```
 
 >- -d：后台运行容器
->- -h: 指定容器的hostname；
+>- -h: 指定容器exi的hostname；
 > - -p：主机端口号:容器端口号，容器内外端口映射
 > -  --name name：指定容器名称
 > -  -v <外部 dir>:< 内部 dir>：目录映射1
@@ -32,6 +39,7 @@ https://www.runoob.com/docker/docker-run-command.html
 >
 
 #### 启动/停止/重启容器：start/stop/restart
+
 https://www.runoob.com/docker/docker-start-stop-restart-command.html
 #### 杀掉容器：kill
 https://www.runoob.com/docker/docker-kill-command.html
@@ -41,9 +49,10 @@ https://www.runoob.com/docker/docker-kill-command.html
 #### 删除容器：rm
 https://www.runoob.com/docker/docker-rm-command.html
 
-```docker rm -f container_id```
-
+```
+docker rm -f container_id
 如果容器还在运行，则会删除失败，应先结束掉容器：
+```
 
 
 
@@ -60,7 +69,9 @@ https://www.runoob.com/docker/docker-create-command.html
 #### 进入容器：exec
 https://www.runoob.com/docker/docker-exec-command.html
 
-```docker exec -it container_id bash```
+```
+docker exec -it container_id bash
+```
 
 
 
@@ -69,7 +80,10 @@ https://www.runoob.com/docker/docker-exec-command.html
 #### 查看正在运行的容器：ps
 https://www.runoob.com/docker/docker-ps-command.html
 
-```docker ps```
+```
+docker ps
+
+```
 
 #### inspect
 https://www.runoob.com/docker/docker-inspect-command.html
@@ -93,7 +107,11 @@ https://www.runoob.com/docker/docker-port-command.html
 #### 从容器创建一个新的镜像：commit
 https://www.runoob.com/docker/docker-commit-command.html
 
-```docker commit container_id  mirror_name```我们修改过后的容器保存成镜像，重新运行，它可以保持这个变化
+```
+docker commit container_id  mirror_name
+```
+
+我们修改过后的容器保存成镜像，重新运行，它可以保持这个变化
 
 >-a :提交的镜像作者；
 -c :使用Dockerfile指令来创建镜像；
@@ -133,7 +151,13 @@ https://www.runoob.com/docker/docker-login-command.html
 #### 拉取或者更新镜像：pull
 https://www.runoob.com/docker/docker-pull-command.html
 
-```docker pull nginx（等效于nginx:latest）```
+```
+docker pull nginx（等效于nginx:latest）
+
+
+```
+
+
 
 #### push
 https://www.runoob.com/docker/docker-push-command.html
@@ -153,24 +177,32 @@ https://www.runoob.com/docker/docker-search-command.html
 #### 查看镜像列表：images
 https://www.runoob.com/docker/docker-images-command.html
 
-```docker images ```
+```
+docker images
+```
+
 #### 删除镜像：rmi
 https://www.runoob.com/docker/docker-rmi-command.html
 
-```docker rmi mirror_name```
+```
+docker rmi mirror_name
+```
+
 #### tag
 https://www.runoob.com/docker/docker-tag-command.html
 
 有时需要对临时版本，或者节点版本做一个标记保留，打TAG标签非常好用，并不会额外占用空间
 
 ```
-docker tag registry.cn-shanghai.aliyuncs.com/test/pytorch:myversion my_tmp_version:0.1
+docker tag registry.cn-shanghai.aliyuncs.com/test/pytorch:myversion 
 ```
 
 #### 使用Dockerfile构建镜像：build
 https://www.runoob.com/docker/docker-build-command.html
 
-```docker build -t mirror_name 存放Dockerfile的文件夹```
+```
+docker build -t mirror_name 存放Dockerfile的文件夹
+```
 
 注意一般文件名命名为Dockerfile 无后缀名，如果命名为其他名字，构建时需要额外指定文件名
 
@@ -227,7 +259,22 @@ registry.~~~是你在阿里云容器仓库开通的镜像仓库的公网地址�
 
 #### Dockerfile
 
-  ```
+```bash
+FROM             # 基础镜像，一切从这里开始构建  centos
+MAINTAINER        # 镜像是谁写的， 姓名+邮箱
+RUN             # 镜像构建的时候需要运行的命令
+ADD             # 步骤，tomcat镜像，这个tomcat压缩包！添加内容 添加同目录
+WORKDIR         # 镜像的工作目录
+VOLUME             # 挂载的目录
+EXPOSE             # 暴露端口配置  和我们的-p一样的
+CMD             # 指定这个容器启动的时候要运行的命令，只有最后一个会生效，可被替代。
+ENTRYPOINT         # 指定这个容器启动的时候要运行的命令，可以追加命令
+ONBUILD         # 当构建一个被继承 DockerFile 这个时候就会运行ONBUILD的指令，触发指令。
+COPY             # 类似ADD，将我们文件拷贝到镜像中
+ENV             # 构建的时候设置环境变量
+```
+
+  ```bash
 ## 从天池基础镜像构建(from的base img 根据自己的需要更换，建议使用天池open list镜像链接：https://tianchi.aliyun.com/forum/postDetail?postId=67720)
 FROM registry.cn-shanghai.aliyuncs.com/tcc-public/pytorch:1.4-cuda10.1-py3
 
