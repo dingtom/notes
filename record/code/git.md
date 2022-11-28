@@ -8,16 +8,15 @@
 
 ![](https://i.loli.net/2021/06/23/fPtkTSNQoch6sd1.png)
 
-##### 工作区（Working Directory） 
+工作区（Working Directory） 
 
-  就是你在电脑里能看到的目录，比如我的learngit文件夹就是一个**工作区**： 
+  - 就是你在电脑里能看到的目录，比如我的learngit文件夹就是一个**工作区**： 
 
-##### 版本库（Repository） 
+版本库（Repository） 
 
-  工作区有一个隐藏目录.git，这个不算工作区，而是Git的**版本库**。 
-
-  Git的版本库里存了很多东西，其中最重要的就是称为**stage（或者叫index）的暂存区**，
-还有Git为我们自动创建的**第一个分支master，以及指向master的一个指针叫HEAD** 
+  - 工作区有一个隐藏目录.git，这个不算工作区，而是Git的**版本库**。 
+  - Git的版本库里存了很多东西，其中最重要的就是称为**stage（或者叫index）的暂存区**，
+    还有Git为我们自动创建的**第一个分支master，以及指向master的一个指针叫HEAD** 
 
 
 
@@ -29,7 +28,7 @@
 
 Linux
 
-```  js
+```  shell
 sudo apt-get install git
 ```
 
@@ -46,20 +45,20 @@ Windows
 
 # 查看配置信息
 
-```js
+```shell
 git config --list --global
 git config -e [--global]  # 编辑Git配置文件
 ```
 
-##  自报家门
+# 自报家门
 
-```js
+```shell
  git config --global user.name "dingtom" 
  git config --global user.email "2524370217@qq.com" 
 ```
 
 # 创建一个版本库 
-```js
+```shell
 git init xx
 # 第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区
 git add xx/ git add .
@@ -68,7 +67,7 @@ git commit -m "xx"
 ```
 
 # 提交
-```js
+```shell
 # 提交工作区自上次commit之后的变化，直接到仓库区
 git commit -a  
 # 使用一次新的commit，替代上一次提交， 如果代码没有任何新变化，则用来改写上一次commit的提交信息
@@ -78,7 +77,7 @@ git commit --amend [file1] [file2] ...
 ```
 
 # 工作区的状态
-```js
+```shell
 git status
 # 告诉你有文件被修改过，
 
@@ -87,7 +86,7 @@ git diff
 ```
 
 # 在版本的历史之间穿梭
-```js
+```shell
 git log
 # 可以查看提交历史，以便确定要回退到哪个版本。
 # 退出查看按q
@@ -114,7 +113,7 @@ git checkout 版本号 文件名
 
 # 让工作区的文件恢复为暂存区
 
-```js
+```shell
 git checkout -- xx
 // --很重要，没有--，就变成了“切换到另一个分支”的命令
 
@@ -126,7 +125,7 @@ git checkout . && git clean -df
 
 **当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改, 让暂存区恢复成和HEAD的一样**
 
-```js
+```shell
 1.git reset HEAD -- 文件名
 # 就回到了场景1，用HEAD时，表示最新的版本。
 
@@ -140,7 +139,7 @@ git checkout . && git clean -df
 
 # 删除文件
 
-```js
+```shell
 # 删错了，因为版本库里还有   
 git checkout -- filename 
 
@@ -155,36 +154,37 @@ git rm --cached
 
 
 #  本地仓库推送到远程仓库
-```js
-1.创建SSH Key：   
+```shell
+#创建SSH Key：   
 ssh-keygen -t rsa -C "2524370217@qq.com"
-// 在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。   
+##在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。   
 
-2.登陆GitHub，打开“Account settings”，“SSH Keys”页面：
-然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘id_rsa.pub文件的内容：   
-首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：  
-在本地关联的就是我的远程库：
+#登陆GitHub，打开“Account settings”，“SSH Keys”页面：
+#然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘id_rsa.pub文件的内容：   
+#首先，登陆GitHub，然后，在右上角找到“Create a new repo”按钮，创建一个新的仓库：  
+
+#在本地关联的就是我的远程库：
 git remote add origin git@github.com:git名/库名.git   
 
-3.把本地库的master分支内容推送到远程库上：
-git push -u origin master
+#把本地库的master分支内容推送到远程库上：
+git push -u origin "master"
 
-由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
+#由于远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令。
 
-从现在起，只要本地作了提交，同步到远程仓库通过命令：
+#从现在起，只要本地作了提交，同步到远程仓库通过命令：
 git push  
 ```
 
 当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。      
 
-```js
+```shell
 # 取消本地目录下关联的远程库：
 git remote remove origin
 
 # 查看远程库的信息，
 git remote -v
 
-推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上
+#推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上
 git push origin master       
 新分支推送到远程
 git push -u origin dev        
@@ -207,7 +207,7 @@ git branch --set-upstream-to=origin/dev dev
 
 # 分支管理
 
-```js
+```shell
 查看分支：
 git branch    
 创建分支：
@@ -242,7 +242,7 @@ git push origin --delete [branchname]
 
 等以后恢复现场后继续工作
 
-```js
+```shell
 git stash
 # 查看刚才的工作现场
 git stash list
@@ -261,7 +261,7 @@ git stash apply stash@{0} 
 
 把本地未push的分叉提交历史整理成直线；
 
-```js
+```shell
 git rebase -i commit_id    
 ```
 
@@ -272,7 +272,7 @@ git rebase -i commit_id
 
 
 # 打标签
-```js
+```shell
 切换到需要打标签的分支上
 git tag <name>
 
@@ -306,7 +306,7 @@ git push origin :refs/tags/v0.9
 要看看是否真的从远程库删除了标签，可以登陆GitHub查看。
 ```
 # 忽略文件
-```js
+```shell
 touch .gitignore
 所有配置文件可以直接在线浏览：https://github.com/github/gitignore
 
@@ -315,7 +315,7 @@ touch .gitignore
 
 ## 忽略已经提交到github的文件
 
-```js
+```shell
 方法一：
 1.先把项目备份，以防万一。
 2.git rm --cached app.iml 
@@ -335,19 +335,19 @@ touch .gitignore
 
 文件被.gitignore忽略了：可以用-f强制添加到Git：
 
-```js
+```shell
 git add -f App.class
 ```
 
 或者你发现，可能是.gitignore写得有问题，需要找出来到底哪个规则写错了，可以用git check-ignore命令检查：
-```js
+```shell
 git check-ignore -v App.class 
 
 .gitignore:3:*.class App.class
 ```
 Git会告诉我们，.gitignore的第3行规则忽略了该文件，于是我们就可以知道应该修订哪个规则。
 
-```js
+```shell
 glob模式
 所谓的 glob 模式是指 shell 所使用的简化了的正则表达式，匹配规则如下：
 "*"：星号匹配零个或多个任意字符
@@ -367,7 +367,7 @@ tmp/*.txt：只忽略tmp目录下的.txt文件
 # 命令简写
 很多人都用co表示checkout，ci表示commit，br表示branch：
 
-```js
+```shell
 git config --global alias.co checkout
 git config --global alias.ci commit
 git config --global alias.br branch

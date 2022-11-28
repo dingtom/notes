@@ -2,33 +2,60 @@ Docker、Java、Scala、Hadoop、 Hbase、Spark。
 集群共有5台机器，主机名分别为 h01、h02、h03、h04、h05。其中 h01 为 master，其他的为 slave。
 JDK 1.8、Scala 2.11.6、Hadoop 3.2.1、Hbase 2.1.3、Spark 2.4.0
 
+```
 # Ubuntu 安装 Docker
+
 ## 在 Ubuntu 下安装 Docker 的时候需在管理员的账号下操作。
-```wget -qO- https://get.docker.com/ | sh```
+
+​```wget -qO- https://get.docker.com/ | sh```
+
 ## 以 sudo 启动 Docker 服务。
-```sudo service docker start```
+
+​```sudo service docker start```
+
 ## 显示 Docker 中所有正在运行的容器
-```sudo docker ps``` 
+
+​```sudo docker ps``` 
 现在的 Docker 网络能够提供 DNS 解析功能，使用如下命令为接下来的 Hadoop 集群单独构建一个虚拟的网络。
-```sudo docker network create --driver=bridge hadoop```
-以上命令创建了一个名为 Hadoop 的虚拟桥接网络，该虚拟网络内部提供了自动的DNS解析服务。## 查看 Docker 中的网络
-```sudo docker network ls```
+​```sudo docker network create --driver=bridge hadoop```
+以上命令创建了一个名为 Hadoop 的虚拟桥接网络，该虚拟网络内部提供了自动的DNS解析服务。
+
+## 查看 Docker 中的网络
+
+​```sudo docker network ls```
 可以看到刚刚创建的名为 hadoop 的虚拟桥接网络。
+
 ## 查找 ubuntu 容器
-```sudo docker search ubuntu```
+
+​```sudo docker search ubuntu```
+
 ## 下载 ubuntu 16.04 版本的镜像文件
-```sudo docker pull ubuntu:16.04```
+
+​```sudo docker pull ubuntu:16.04```
+
 ## 根据镜像启动一个容器
-```sudo docker run -it ubuntu:16.04 /bin/bash```
+
+​```sudo docker run -it ubuntu:16.04 /bin/bash```
 可以看出 shell 已经是容器的 shell 了
+
 ## 退出容器
-``` exit```
+
+​``` exit```
+
 ## 查看本机上所有的容器
-```sudo docker ps -a```
+
+​```sudo docker ps -a```
+
 ## 启动容器
-```sudo docker start fab4da838c2f```
+
+​```sudo docker start fab4da838c2f```
+
 ## 关闭容器
-```sudo docker stop  fab4da838c2f```
+
+​```sudo docker stop  fab4da838c2f
+```
+
+
 
 
 # 安装 Java 与 Scala
@@ -39,12 +66,15 @@ JDK 1.8、Scala 2.11.6、Hadoop 3.2.1、Hbase 2.1.3、Spark 2.4.0
 ## 进入 Ubuntu 容器
 ```sudo docker exec -it fab4da838c2f /bin/bash```
 ## 修改 apt 源
-备份源
-```cp /etc/apt/sources.list /etc/apt/sources_init.list```
-先删除旧源文件
-```rm /etc/apt/sources.list```
-这个时候没有 vim 工具，使用 echo 命令将源写入新文件
+
+
 ```
+备份源
+cp /etc/apt/sources.list /etc/apt/sources_init.list
+先删除旧源文件
+rm /etc/apt/sources.list
+这个时候没有 vim 工具，使用 echo 命令将源写入新文件
+
 echo "deb http://mirrors.aliyun.com/ubuntu/ xenial main
 deb-src http://mirrors.aliyun.com/ubuntu/ xenial main
 deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main
@@ -58,10 +88,11 @@ deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main
 deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
 deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe"
 > /etc/apt/sources.list
-```
-## 更新源
-``` apt update```
 
+
+更新源
+apt update
+```
 ## 安装 jdk 1.8
 ```apt install openjdk-8-jdk```
 测试
@@ -73,34 +104,42 @@ deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe"
 ```scala```
 
 ## 安装 Vim 与 网络工具包
+```
 安装 vim，用来编辑文件
-```apt install vim```
+apt install vim
 安装 net-tools
-```apt install net-tools```
+apt install net-tools
+```
+
+
 
 ## 安装 SSH
+```
 安装 SSH，并配置免密登录，由于后面的容器之间是由一个镜像启动的，所以在当前容器里配置 SSH 自身免密登录就 OK 了。
 
 安装 SSH
-```apt-get install openssh-server```
+apt-get install openssh-server
 安装 SSH 的客户端
-```apt-get install openssh-client```
+apt-get install openssh-client
 进入当前用户的用户根目录
-```cd ~```
+cd ~
 生成密钥，一直回车就行
-``` ssh-keygen -t rsa -P ""```
-生成的密钥在当前用户根目录下的 .ssh 文件夹中以 . 开头的文件与文件夹 ls 是看不懂的，需要``` ls -al``` 才能查看。
+ssh-keygen -t rsa -P ""
+生成的密钥在当前用户根目录下的 .ssh 文件夹中以 . 开头的文件与文件夹 ls 是看不懂的，需要ls -al才能查看。
 
 将公钥追加到 authorized_keys 文件中
-``` cat .ssh/id_rsa.pub >> .ssh/authorized_keys```
+cat .ssh/id_rsa.pub >> .ssh/authorized_keys
 启动 SSH 服务
-``` service ssh start```
+service ssh start
 免密登录自己
-``` ssh 127.0.0.1```
+ssh 127.0.0.1
 修改 .bashrc 文件，启动 shell 的时候，自动启动 SSH 服务
-``` vim ~/.bashrc```
+vim ~/.bashrc
 添加一行
-```service ssh start```
+service ssh start
+```
+
+
 
 # 安装 Hadoop
 ## 下载 Hadoop 

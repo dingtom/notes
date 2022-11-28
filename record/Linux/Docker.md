@@ -1,4 +1,83 @@
+# Docekr安装torch
 
+```shell
+#安装 SSH，并配置免密登录，由于后面的容器之间是由一个镜像启动的，所以在当前容器里配置 SSH 自身免密登录就 OK 了。
+
+#安装 SSH
+apt-get install openssh-server
+#安装 SSH 的客户端
+#apt-get install openssh-client
+进入当前用户的用户根目录
+cd ~
+#生成密钥，一直回车就行
+ssh-keygen -t rsa -P ""
+#生成的密钥在当前用户根目录下的 .ssh 文件夹中以 . 开头的文件与文件夹 ls 是看不懂的，需要ls -al才能查看。
+
+#将公钥追加到 authorized_keys 文件中
+cat .ssh/id_rsa.pub >> .ssh/authorized_keys
+#启动 SSH 服务
+service ssh start
+#免密登录自己
+ssh 127.0.0.1
+#修改 .bashrc 文件，启动 shell 的时候，自动启动 SSH 服务
+vim ~/.bashrc
+#添加一行
+service ssh start
+```
+
+
+
+```shell
+docker pull ubuntu:16.04
+docker run -it docker:16.04 
+apt install net-tools        # ifconfig 
+apt install iputils-ping
+apt install vim
+exit
+
+docker start -i 2e01fd26138f
+ping
+exit
+
+docker cp J:\软件\linux\Anaconda3-5.3.1-Linux-x86_64.sh 2e01fd26138f:\home\
+docker cp 680b957:/home/datawhale_nlp/ J:/NEW/
+#要不安装anaconda报错
+apt-get install bzip2  
+bash Anaconda3-5.3.1-Linux-x86_64.sh
+
+apt-get install vim
+vim ~/.bashrc
+ //追加
+export PATH=/home/lq/anaconda3/bin:$PATH    
+source ~/.bashrc  
+
+conda create -n tomding
+source activate tomding
+
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+conda config --set show_channel_urls yes
+
+#删除清华源改回默认源
+conda config --remove-key channels
+
+pip install tensorflow==2.0.0 -i https://pypi.tuna.tsinghua.edu.cn/simple
+conda install tensorflow
+conda install pytorch torchvision torchaudio cpuonly -c pytorch
+
+conda install ipython
+conda install jupyter
+
+exit
+docker commit 2e01fd26138f ubuntu:test
+
+docker run -it ubuntu:test
+
+docker save ubuntu:test > J:my_docker.tar 
+docker load < J:my_docker.tar
+```
+
+# Docker
 
 
 ![](https://upload-images.jianshu.io/upload_images/18339009-a16ddde40bfc6f50.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -40,11 +119,21 @@ sudo docker run -it  image_id /bin/bash
 
 #### 启动/停止/重启容器：start/stop/restart
 
-https://www.runoob.com/docker/docker-start-stop-restart-command.html
-#### 杀掉容器：kill
-https://www.runoob.com/docker/docker-kill-command.html
+```
+docker start myrunoob
 
-快速停止容器
+
+PubkeyAuthentication yes 
+AuthorizedKeysFile .ssh/authorized_keys 
+PermitRootLogin yes 
+
+
+```
+
+#### 杀掉容器：kill
+```
+docker kill -s KILL mynginx
+```
 
 #### 删除容器：rm
 https://www.runoob.com/docker/docker-rm-command.html
@@ -53,8 +142,6 @@ https://www.runoob.com/docker/docker-rm-command.html
 docker rm -f container_id
 如果容器还在运行，则会删除失败，应先结束掉容器：
 ```
-
-
 
 #### 暂停/恢复容器中进程：pause/unpause
 https://www.runoob.com/docker/docker-pause-unpause-command.html
@@ -72,8 +159,6 @@ https://www.runoob.com/docker/docker-exec-command.html
 ```
 docker exec -it container_id bash
 ```
-
-
 
 ### 容器操作
 
@@ -142,7 +227,9 @@ OPTIONS说明：
   
 
 #### diff
-https://www.runoob.com/docker/docker-diff-command.html
+https://www.runoob.com/docker/docker-diff-
+
+command.html
 
 ### 镜像仓库
 
@@ -304,7 +391,9 @@ PTIONS 说明：
  docker save -o my_ubuntu_v3.tar runoob/ubuntu:v3
 ```
 
-```docker save mirror_name > name.tar```
+```
+docker save mirror_name > name.tar
+```
 
 #### 从tar加载镜像：load
 OPTIONS 说明：
@@ -312,7 +401,9 @@ OPTIONS 说明：
 - **--input , -i :** 指定导入的文件，代替 STDIN。
 - **--quiet , -q :** 精简输出信息。
 
-```docker load <  name.tar```
+```
+docker load <  name.tar
+```
 
 #### import
 https://www.runoob.com/docker/docker-import-command.html
