@@ -1,0 +1,643 @@
+<!doctype html><html lang=zh-cn data-theme=dark><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: dark)"><meta name=generator content="Hugo 0.107.0"><link rel="shortcut icon" type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="ml-keras"><meta itemprop=description content="Love and Peace"><meta itemprop=datePublished zgotmplz><meta itemprop=dateModified zgotmplz><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=keywords content="Hugo,NexT,主题,简单,强大"><meta property="og:type" content="article"><meta property="og:title" content="ml-keras"><meta property="og:description" content="Love and Peace"><meta property="og:image" content="/imgs/hugo_next_avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="/post/ml-keras/"><meta property="og:site_name" content="Tomding's Blog"><meta property="og:locale" content="zh-CN"><meta property="article:author" content="Tomding"><meta property="article:published_time" content="2022-12-01 19:59:47 +0800 CST"><meta property="article:modified_time" content="2022-12-01 19:59:47 +0800 CST"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.0ca97083b39f4eda7430d39b99194aa738d8f8db4090f00bc7e814013df699cb.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"ml-keras","permalink":"/post/ml-keras/","title":"ml-keras","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>ml-keras - Tomding's Blog</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Tomding's Blog</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Just do it!</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>首页</a></li><li class="menu-item menu-item-about"><a href=/about.html class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>74</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#自己定义在tensorboard中显示acc和loss>自己定义在tensorboard中显示acc和loss</a></li></ul></li></ul></li></ul><ul><li><ul><li><ul><li></li></ul></li></ul></li></ul><ul><li><ul><li><a href=#模型子类化>模型子类化</a></li><li><a href=#自定义层>自定义层</a></li></ul></li></ul><ul><li><ul><li><ul><li></li></ul></li></ul></li></ul><ul><li><ul><li><ul><li><a href=#二维卷积>二维卷积：</a></li></ul></li></ul></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=Tomding src=/imgs/img-lazy-loading.gif data-src=/imgs/hugo_next_avatar.png><p class=site-author-name itemprop=name>Tomding</p><div class=site-description itemprop=description>Love and Peace</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>74</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>6</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/ title="Github → https://github.com/" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span>
+<span class=links-of-social-item><a href=https://www.zhihu.com/hot title="知乎 → https://www.zhihu.com/hot" rel=noopener class=hvr-icon-pulse target=_blank><i class="fa fa-book fa-fw hvr-icon"></i>知乎</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt=共享知识></a></div><div class="links-of-blogroll site-overview-item animated"><div class=links-of-blogroll-title><i class="fa fa-globe fa-fw"></i>友情链接</div><ul class=links-of-blogroll-list><li class=links-of-blogroll-item><a href=https://gitee.com/hugo-next/hugo-theme-next title=https://gitee.com/hugo-next/hugo-theme-next target=_blank>Hugo-NexT</a></li><li class=links-of-blogroll-item><a href=https://lisenhui.cn title=https://lisenhui.cn target=_blank>凡梦星尘空间站</a></li></ul></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
+<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=2022-06-01T15:59:41+08:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=269220></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=576></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2022-12-01T20:06:32+08:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
+<span>0%</span></div></div><div class=reading-progress-bar></div><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=/post/ml-keras/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=name content="Tomding"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="Tomding"><meta itemprop=description content="Love and Peace"></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="ml-keras"><meta itemprop=description content="tensorboard writer=tf.summary.FileWriter('/path/to/logs', tf.get_default_graph()) writer.close() 在上面程序的8、9行中，创建一个writer，将tensorboard summary写入文件夹/path/to/logs， 然后运行上"></span><header class=post-header><h1 class=post-title itemprop="name headline">ml-keras
+<a href=https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/post/ml-keras.md rel="noopener external nofollow noreferrer" target=_blank class="exturl post-edit-link" title=编辑><i class="fa fa-pen-nib"></i></a></h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2022-12-01 19:59:47 +0800 CST" itemprop="dateCreated datePublished" datetime="2022-12-01 19:59:47 +0800 CST">2022-12-01</time></span>
+<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/ml itemprop=url rel=index><span itemprop=name>ml</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="far fa-file-word"></i></span>
+<span class=post-meta-item-text>字数：</span><span>7137</span></span>
+<span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="far fa-clock"></i></span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>15分钟</span></span>
+<span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
+<span class=post-meta-item-text>浏览：</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/post/ml-keras/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><h1 id=tensorboard>tensorboard</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>writer=tf.summary.FileWriter(&#39;/path/to/logs&#39;, tf.get_default_graph())
+</span></span><span style=display:flex><span>writer.close()
+</span></span></code></pre></div><p>在上面程序的8、9行中，创建一个writer，将tensorboard summary写入文件夹/path/to/logs，
+然后运行上面的程序，在程序定义的日志文件夹/path/to/logs目录下，生成了一个新的日志文件events.out.tfevents.1524711020.bdi-172，
+tensorboard –logdir /path/to/logs</p><p><a href=https://blog.csdn.net/fendouaini/article/details/80344591 title=https://blog.csdn.net/fendouaini/article/details/80344591 rel="noopener external nofollow noreferrer" target=_blank class=exturl>https://blog.csdn.net/fendouaini/article/details/80344591
+<i class="fa fa-external-link-alt"></i></a>
+<a href=https://blog.csdn.net/fendouaini/article/details/80368770 title=https://blog.csdn.net/fendouaini/article/details/80368770 rel="noopener external nofollow noreferrer" target=_blank class=exturl>https://blog.csdn.net/fendouaini/article/details/80368770
+<i class="fa fa-external-link-alt"></i></a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>cb.append(keras.callbacks.TensorBoard(
+</span></span><span style=display:flex><span>log_dir=os.path.join(logs_path, &#39;TensorBoard&#39;),
+</span></span><span style=display:flex><span>histogram_freq=0, 
+</span></span><span style=display:flex><span>write_graph=True, 
+</span></span><span style=display:flex><span>write_grads=False, 
+</span></span><span style=display:flex><span>write_images=False,
+</span></span><span style=display:flex><span>embeddings_freq=0, 
+</span></span><span style=display:flex><span>embeddings_layer_names=None, 
+</span></span><span style=display:flex><span>embeddings_metadata=None, 
+</span></span><span style=display:flex><span>embeddings_data=None, 
+</span></span><span style=display:flex><span>update_freq=&#39;epoch&#39;))
+</span></span></code></pre></div><blockquote><p>该类在keras.callbacks模块中。它的参数列表如下：</p></blockquote><ul><li>log_dir: 用来保存被 TensorBoard 分析的日志文件的文件名。</li><li>histogram_freq:<strong>对于模型中各个层计算激活值和模型权重直方图的频率（训练轮数中</strong>。 该参数用于设置tensorboard面板中的histograms和distributions面板如果设置成 0 ，直方图不会被计算。对于直方图可视化的验证数据（或分离数据）一定要明确的指出。</li><li>write_graph: 是否在 TensorBoard 中可视化图。 如果 write_graph 被设置为 True。</li><li>write_grads: 是否在 TensorBoard 中可视化梯度值直方图。 histogram_freq 必须要大于 0 。
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-ee7a2081f8077b9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></li><li>batch_size: 用以直方图计算的传入神经元网络输入批的大小。</li><li>write_images: 是否在 TensorBoard 中将模型权重以图片可视化，如果设置为True，日志文件会变得非常大。
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-f48bcc99078e89e7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></li><li>embeddings_freq: 被选中的嵌入层会被保存的频率（在训练轮中）。</li><li>embeddings_layer_names: 一个列表，会被监测层的名字。 如果是 None 或空列表，那么所有的嵌入层都会被监测。</li><li>embeddings_metadata: 一个字典，对应层的名字到保存有这个嵌入层元数据文件的名字。 查看 详情 关于元数据的数据格式。 以防同样的元数据被用于所用的嵌入层，字符串可以被传入。</li><li>embeddings_data: 要嵌入在 embeddings_layer_names 指定的层的数据。 Numpy 数组（如果模型有单个输入）或 Numpy 数组列表（如果模型有多个输入）。 Learn ore about embeddings。</li><li>update_freq: &lsquo;batch&rsquo; 或 &rsquo;epoch&rsquo; 或 整数。当使用 &lsquo;batch&rsquo; 时，在每个 batch 之后将损失和评估值写入到 TensorBoard 中。同样的情况应用到 &rsquo;epoch&rsquo; 中。如果使用整数，例如 10000，这个回调会在每 10000 个样本之后将损失和评估值写入到 TensorBoard 中。注意，频繁地写入到 TensorBoard 会减缓你的训练。</li></ul><h4 id=自己定义在tensorboard中显示acc和loss>自己定义在tensorboard中显示acc和loss</h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>import tensorflow as tf
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>from keras.models import Sequential  # 采用贯序模型
+</span></span><span style=display:flex><span>from keras.layers import Input, Dense, Dropout, Activation,Conv2D,MaxPool2D,Flatten
+</span></span><span style=display:flex><span>from keras.optimizers import SGD
+</span></span><span style=display:flex><span>from keras.datasets import mnist
+</span></span><span style=display:flex><span>from keras.utils import to_categorical
+</span></span><span style=display:flex><span>from keras.callbacks import TensorBoard
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>def create_model():
+</span></span><span style=display:flex><span>    model = Sequential()
+</span></span><span style=display:flex><span>    model.add(Conv2D(32, (5,5), activation=&#39;relu&#39;, input_shape=[28, 28, 1])) 
+</span></span><span style=display:flex><span>    model.add(Conv2D(64, (5,5), activation=&#39;relu&#39;))                          
+</span></span><span style=display:flex><span>    model.add(MaxPool2D(pool_size=(2,2)))                                    #池化层
+</span></span><span style=display:flex><span>    model.add(Flatten())                                                     #平铺层
+</span></span><span style=display:flex><span>    model.add(Dropout(0.5))
+</span></span><span style=display:flex><span>    model.add(Dense(128, activation=&#39;relu&#39;))
+</span></span><span style=display:flex><span>    model.add(Dropout(0.5))
+</span></span><span style=display:flex><span>    model.add(Dense(10, activation=&#39;softmax&#39;))
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>    return model
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>def compile_model(model):
+</span></span><span style=display:flex><span>    model.compile(loss=&#39;categorical_crossentropy&#39;, optimizer=&#34;adam&#34;,metrics=[&#39;acc&#39;]) 
+</span></span><span style=display:flex><span>    return model
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>def train_model(model,x_train,y_train,x_val,y_val,batch_size=128,epochs=10):
+</span></span><span style=display:flex><span>    train_loss = tf.placeholder(tf.float32, [],name=&#39;train_loss&#39;) 
+</span></span><span style=display:flex><span>    train_acc = tf.placeholder(tf.float32, [],name=&#39;train_acc&#39;) 
+</span></span><span style=display:flex><span>    val_loss = tf.placeholder(tf.float32, [],name=&#39;val_loss&#39;) 
+</span></span><span style=display:flex><span>    val_acc = tf.placeholder(tf.float32, [],name=&#39;val_acc&#39;) 
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    #可视化训练集、验证集的loss、acc、四个指标，均是标量scalers
+</span></span><span style=display:flex><span>    tf.summary.scalar(&#34;train_loss&#34;, train_loss) 
+</span></span><span style=display:flex><span>    tf.summary.scalar(&#34;train_acc&#34;, train_acc)
+</span></span><span style=display:flex><span>    tf.summary.scalar(&#34;val_loss&#34;, val_loss)
+</span></span><span style=display:flex><span>    tf.summary.scalar(&#34;val_acc&#34;, val_acc)
+</span></span><span style=display:flex><span>  
+</span></span><span style=display:flex><span>    merge=tf.summary.merge_all()
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>    batches=int(len(x_train)/batch_size)  #没一个epoch要训练多少次才能训练完样本
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>    with tf.Session() as sess:
+</span></span><span style=display:flex><span>        logdir = &#39;./logs&#39;
+</span></span><span style=display:flex><span>        writer = tf.summary.FileWriter(logdir, sess.graph) 
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>        for epoch in range(epochs): #用keras的train_on_batch方法进行训练 
+</span></span><span style=display:flex><span>            print(F&#34;正在训练第 {epoch+1} 个 epoch&#34;)
+</span></span><span style=display:flex><span>            for i in range(batches):
+</span></span><span style=display:flex><span>                #每次训练128组数据
+</span></span><span style=display:flex><span>                train_loss_,train_acc_ = model.train_on_batch(x_train[i*128:(i+1)*128:1,...],y_train[i*128:(i+1)*128:1,...]) 
+</span></span><span style=display:flex><span>            #验证集只需要每一个epoch完成之后再验证即可
+</span></span><span style=display:flex><span>            val_loss_,val_acc_ = model.test_on_batch(x_val,y_val) 
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>            summary=sess.run(merge,feed_dict={train_loss:train_loss_,train_acc:train_acc_,val_loss:val_loss_,val_acc:val_acc_})
+</span></span><span style=display:flex><span>            writer.add_summary(summary,global_step=epoch)
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>if __name__==&#34;__main__&#34;:
+</span></span><span style=display:flex><span>    (x_train,y_train),(x_test,y_test) = mnist.load_data()  #数据我已经下载好了
+</span></span><span style=display:flex><span>    print(np.shape(x_train),np.shape(y_train),np.shape(x_test),np.shape(y_test))  #(60000, 28, 28) (60000,) (10000, 28, 28) (10000,)
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>    x_train=np.expand_dims(x_train,axis=3)
+</span></span><span style=display:flex><span>    x_test=np.expand_dims(x_test,axis=3)
+</span></span><span style=display:flex><span>    y_train=to_categorical(y_train,num_classes=10)
+</span></span><span style=display:flex><span>    y_test=to_categorical(y_test,num_classes=10)
+</span></span><span style=display:flex><span>    print(np.shape(x_train),np.shape(y_train),np.shape(x_test),np.shape(y_test)) #(60000, 28, 28, 1) (60000, 10) (10000, 28, 28, 1) (10000, 10)
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>    x_train_=x_train[1:50000:1,...]    #重新将训练数据分成训练集50000组
+</span></span><span style=display:flex><span>    x_val_=x_train[50000:60000:1,...]  #重新将训练数据分成测试集10000组
+</span></span><span style=display:flex><span>    y_train_=y_train[1:50000:1,...]
+</span></span><span style=display:flex><span>    y_val_=y_train[50000:60000:1,...]
+</span></span><span style=display:flex><span>    print(np.shape(x_train_),np.shape(y_train_),np.shape(x_val_),np.shape(y_val_),np.shape(x_test),np.shape(y_test))
+</span></span><span style=display:flex><span>    #(49999, 28, 28, 1) (49999, 10) (10000, 28, 28, 1) (10000, 10) (10000, 28, 28, 1) (10000, 10)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    model=create_model()       #创建模型      
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>    model=compile_model(model) #编译模型
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>    train_model(model,x_train_,y_train_,x_val_,y_val_)
+</span></span></code></pre></div><p>#
+<a href=https://keras-zh.readthedocs.io/visualization/ title=可视化 rel="noopener external nofollow noreferrer" target=_blank class=exturl>可视化
+<i class="fa fa-external-link-alt"></i></a>
+模型可视化</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>from keras.utils import plot_model
+</span></span><span style=display:flex><span>keras.utils.plot_model(model, to_file=&#39;model.png&#39;, show_shapes=&#39;Ture&#39;, dpi=200)
+</span></span></code></pre></div><p>训练历史可视化</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import matplotlib.pyplot as plt
+</span></span><span style=display:flex><span>history = model.fit(x, y, validation_split=0.25, epochs=50, batch_size=16, verbose=1)
+</span></span><span style=display:flex><span># 绘制训练 &amp; 验证的准确率值
+</span></span><span style=display:flex><span>plt.plot(history.history[&#39;acc&#39;])
+</span></span></code></pre></div><h1 id=学习率调整>学习率调整</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import keras.backend as K
+</span></span><span style=display:flex><span>from keras.callbacks import LearningRateScheduler
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>def lr_scheduler(epoch):
+</span></span><span style=display:flex><span>    initial_lrate = 0.1
+</span></span><span style=display:flex><span>    drop = 0.5
+</span></span><span style=display:flex><span>    epochs_drop = 10.0
+</span></span><span style=display:flex><span>    lrate = initial_lrate * math.pow(drop, math.floor((1+e )/epochs_drop))
+</span></span><span style=display:flex><span>    return lrate
+</span></span><span style=display:flex><span>-------------------------------------------------------------------------
+</span></span><span style=display:flex><span>    # 每隔2个epoch，学习率减小为原来的1/10
+</span></span><span style=display:flex><span>    if epoch % 2 == 0 and epoch != 0:
+</span></span><span style=display:flex><span>        lr = K.get_value(model.optimizer.lr)
+</span></span><span style=display:flex><span>        K.set_value(model.optimizer.lr, lr * 0.1)
+</span></span><span style=display:flex><span>        print(&#34;lr changed to {}&#34;.format(lr * 0.1))
+</span></span><span style=display:flex><span>    return K.get_value(model.optimizer.lr)
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>reduce_lr = keras.callbacks.LearningRateScheduler(lr_scheduler)
+</span></span><span style=display:flex><span>model.fit(train_x, train_y, batch_size=32, epochs=300, callbacks=[reduce_lr])
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>from keras.callbacks import ReduceLROnPlateau
+</span></span><span style=display:flex><span>reduce_lr = ReduceLROnPlateau(monitor=&#39;val_loss&#39;, patience=2, mode=&#39;auto&#39;)
+</span></span><span style=display:flex><span>model.fit(train_x, train_y, batch_size=32, epochs=300, validation_split=0.1, callbacks=[reduce_lr])
+</span></span></code></pre></div><blockquote><p>keras.callbacks.ReduceLROnPlateau(monitor=&lsquo;val_loss&rsquo;, factor=0.1, patience=10, verbose=0,, min_delta=0.0001,mode=&lsquo;auto&rsquo;, epsilon=0.0001, cooldown=0, min_lr=0)
+monitor：被监测的量
+factor：每次减少学习率的因子，学习率将以lr = lr*factor的形式被减少
+patience：当patience个epoch过去而模型性能不提升时，学习率减少的动作会被触发
+min_delta: 增大或减小的阈值。
+mode：‘auto’，‘min’，‘max’之一，在min模式下，如果检测值触发学习率减少。在max模式下，当检测值不再上升则触发学习率减少。
+epsilon：阈值，用来确定是否进入检测值的“平原区”
+cooldown：学习率减少后，会经过cooldown个epoch才重新进行正常操作会经过cooldown个epoch才会重新计算被监控的指标没有提高(或者减少)的轮次(即patience).设置这个参数是因为减少学习率时, 模型的损失函数可能不在最优解附近,而训练至最优解附近需要一定轮次, 如果不设置则会导致学习率在远离最优解时接连衰减导致训练陷入僵局
+min_lr：学习率的下限</p></blockquote><h1 id=tfkeraslayers中网络配置>tf.keras.layers中网络配置：</h1><ul><li><p>activation：设置层的激活函数。此参数由内置函数的名称指定，或指定为可调用对象。默认情况下，系统不会应用任何激活函数。</p></li><li><p>kernel_initializer 和 bias_initializer：创建层权重（核和偏差）的初始化方案。此参数是一个名称或可调用对象，默认为 &ldquo;Glorot uniform&rdquo; 初始化器。</p></li></ul><blockquote><p>random_uniform：初始化权重为（-0.05，0.05）之间的均匀随机的微小数值。换句话说，给定区间里的任何值都可能作为权重。
+random_normal：根据高斯分布初始化权重，平均值为0，标准差为0.05。如果你不熟悉高斯分布，可以回想一下对称钟形曲线。
+zero：所有权重初始化为0。</p></blockquote><ul><li><p>kernel_regularizer 和 bias_regularizer：应用层权重（核和偏差）的正则化方案，例如 L1 或 L2 正则化。默认情况下，系统不会应用正则化函数。</p></li><li><p>我们也可以得到网络的变量、权重矩阵、偏置等
+<code>print(layer.variables) # 包含了权重和偏置</code>
+<code>print(layer.kernel, layer.bias) # 也可以分别取出权重和偏置</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>layers.Dense(32, activation=&#39;sigmoid&#39;)
+</span></span><span style=display:flex><span>layers.Dense(32, activation=tf.sigmoid)
+</span></span><span style=display:flex><span>layers.Dense(32, kernel_initializer=&#39;orthogonal&#39;)
+</span></span><span style=display:flex><span>layers.Dense(32, kernel_initializer=tf.keras.initializers.glorot_normal)
+</span></span><span style=display:flex><span>layers.Dense(32, kernel_regularizer=tf.keras.regularizers.l2(0.01))
+</span></span><span style=display:flex><span>layers.Dense(32, kernel_regularizer=tf.keras.regularizers.l1(0.01))
+</span></span></code></pre></div></li></ul><h1 id=metric评估>metric评估</h1><ul><li>1)accuracy
+如我们有6个样本，其真实标签y_true为[0, 1, 3, 3, 4, 2]，但被一个模型预测为了[0, 1, 3, 4, 4, 4]，即y_pred=[0, 1, 3, 4, 4, 4]，那么该模型的accuracy=4/6=66.67%。</li><li>2)binary_accuracy
+<strong>它适用于2分类的情况</strong>。从上图中可以看到binary_accuracy的计算除了y_true和y_pred外，还有一个threshold参数，该参数默认为0.5。比如有6个样本，其y_true为[0, 0, 0, 1, 1, 0]，y_pred为[0.2, 0.3, 0.6, 0.7, 0.8, 0.1].具体计算方法为：1）将y_pred中的每个预测值和threshold对比，大于threshold的设为1，小于等于threshold的设为0，得到y_pred_new=[0, 0, 1, 1, 1, 0]；2）将y_true和y_pred_new代入到2.1中计算得到最终的binary_accuracy=5/6=87.5%。</li><li>3)categorical_accuracy
+**针对的是y_true为onehot标签，y_pred为向量的情况。**比如有4个样本，其y_true为[[0, 0, 1], [0, 1, 0], [0, 1, 0], [1, 0, 0]]，y_pred为[[0.1, 0.6, 0.3], [0.2, 0.7, 0.1], [0.3, 0.6, 0.1], [0.9, 0, 0.1]]。具体计算方法为：1）将y_true转为非onehot的形式，即y_true_new=[2, 1, 1, 0]；2）根据y_pred中的每个样本预测的分数得到y_pred_new=[1, 1, 1, 0]；3）将y_true_new和y_pred_new代入到2.1中计算得到最终的categorical_accuracy=75%。</li><li>4)sparse_categorical_accuracy
+**和categorical_accuracy功能一样，只是其y_true为非onehot的形式。**比如有4个样本，其y_true为[2， 1， 1， 0]，y_pred为[[0.1, 0.6, 0.3], [0.2, 0.7, 0.1], [0.3, 0.6, 0.1], [0.9, 0, 0.1]]。具体计算方法为：1）根据y_pred中的每个样本预测的分数得到y_pred_new=[1, 1, 1, 0]；2）将y_true和y_pred_new代入到2.1中计算得到最终的categorical_accuracy=75%。</li><li>5)top_k_categorical_accuracy
+**在categorical_accuracy的基础上加上top_k。**categorical_accuracy要求样本在真值类别上的预测分数是在所有类别上预测分数的最大值，才算预测对，而top_k_categorical_accuracy只要求样本在真值类别上的预测分数排在其在所有类别上的预测分数的前k名就行。比如有4个样本，其y_true为[[0, 0, 1], [0, 1, 0], [0, 1, 0], [1, 0, 0]]，y_pred为[[0.3, 0.6, 0.1], [0.5, 0.4, 0.1], [0.3, 0.6, 0.1], [0.9, 0, 0.1]]。具体计算方法为：1）将y_true转为非onehot的形式，即y_true_new=[2, 1, 1, 0]；2）计算y_pred的top_k的label，比如k=2时，y_pred_new = [[0, 1], [0, 1], [0, 1], [0, 2]]；3）根据每个样本的真实标签是否在预测标签的top_k内来统计准确率，上述4个样本为例，2不在[0, 1]内，1在[0, 1]内，1在[0, 1]内，0在[0, 2]内，4个样本总共预测对了3个，因此k=2时top_k_categorical_accuracy=75%。说明一下，Keras中计算top_k_categorical_accuracy时默认的k值为5。</li><li>6)sparse_top_k_categorical_accuracy
+**和top_k_categorical_accuracy功能一样，只是其y_true为非onehot的形式。**比如有4个样本，其y_true为[2， 1， 1， 0]，y_pred为[[0.3, 0.6, 0.1], [0.5, 0.4, 0.1], [0.3, 0.6, 0.1], [0.9, 0, 0.1]]。计算步骤如下：1）计算y_pred的top_k的label，比如k=2时，y_pred_new = [[0, 1], [0, 1], [0, 1], [0, 2]]；2）根据每个样本的真实标签是否在预测标签的top_k内来统计准确率，上述4个样本为例，2不在[0, 1]内，1在[0, 1]内，1在[0, 1]内，0在[0, 2]内，4个样本总共预测对了3个，因此k=2时top_k_categorical_accuracy=75%。</li></ul><h5 id=rocauc>ROC,AUC</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import tensorflow as tf
+</span></span><span style=display:flex><span>from sklearn.metrics import roc_auc_score
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def auroc(y_true, y_pred):
+</span></span><span style=display:flex><span>    return tf.py_func(roc_auc_score, (y_true, y_pred), tf.double)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># Build Model...
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>model.compile(loss=&#39;categorical_crossentropy&#39;, optimizer=&#39;adam&#39;,metrics=[&#39;accuracy&#39;, auroc])
+</span></span><span style=display:flex><span>--------------------------------------------------------------------------------
+</span></span><span style=display:flex><span>class RocAucEvaluation(Callback):
+</span></span><span style=display:flex><span>    def __init__(self, validation_data=(), interval=1):
+</span></span><span style=display:flex><span>        super(Callback, self).__init__()
+</span></span><span style=display:flex><span>        self.interval = interval
+</span></span><span style=display:flex><span>        self.x_val,self.y_val = validation_data
+</span></span><span style=display:flex><span>    def on_epoch_end(self, epoch, log={}):
+</span></span><span style=display:flex><span>        if epoch % self.interval == 0:
+</span></span><span style=display:flex><span>            y_pred = self.model.predict_proba(self.x_val, verbose=0)
+</span></span><span style=display:flex><span>            score = roc_auc_score(self.y_val, y_pred)
+</span></span><span style=display:flex><span>            print(&#39;\n ROC_AUC - epoch:%d - score:%.6f \n&#39; % (epoch+1, score))
+</span></span><span style=display:flex><span>x_train, x_val, y_train, y_val = train_test_split(x_train_nn, y_train_nn, train_size=0.9, random_state=233)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>RocAuc = RocAucEvaluation(validation_data=(y_train,y_label), interval=1)
+</span></span><span style=display:flex><span>hist = model.fit(x_train, x_label, batch_size=batch_size, epochs=epochs, validation_data=(y_train, y_label), callbacks=[RocAuc], verbose=2)
+</span></span></code></pre></div><h1 id=训练>训练</h1><p>对<code>.fit</code>的调用在这里做出两个主要假设：
+我们的整个训练集可以放入RAM
+没有数据增强（即不需要Keras生成器）</p><p>真实世界的数据集通常太大而无法放入内存中
+它们也往往具有挑战性，要求我们执行数据增强以避免过拟合并增加我们的模型的泛化能力
+在这些情况下，我们需要利用Keras的<code>.fit_generator</code>函数：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span># initialize the number of epochs and batch size
+</span></span><span style=display:flex><span>EPOCHS = 100
+</span></span><span style=display:flex><span>BS = 32
+</span></span><span style=display:flex><span># construct the training image generator for data augmentation
+</span></span><span style=display:flex><span>aug = ImageDataGenerator(rotation_range=20, zoom_range=0.15,
+</span></span><span style=display:flex><span>	width_shift_range=0.2, height_shift_range=0.2, shear_range=0.15,
+</span></span><span style=display:flex><span>	horizontal_flip=True, fill_mode=&#34;nearest&#34;)
+</span></span><span style=display:flex><span># train the network
+</span></span><span style=display:flex><span>H = model.fit_generator(aug.flow(trainX, trainY, batch_size=BS),
+</span></span><span style=display:flex><span>	validation_data=(testX, testY), steps_per_epoch=len(trainX) // BS,
+</span></span><span style=display:flex><span>	epochs=EPOCHS)
+</span></span></code></pre></div><p>对于寻求对Keras模型进行精细控制（ finest-grained control）的深度学习实践者，您可能希望使用<code>.train_on_batch</code>例如数据迭代过程非常复杂并且需要自定义代码。</p><h1 id=模型评估>模型评估</h1><p>print(model.evaluate(x_test,y_test))</p><p>y = model.predict_classes(x_test)
+print(accuracy_score(y_test,y))</p><h1 id=构建高级模型>构建高级模型</h1><ul><li><h3 id=模型子类化>模型子类化</h3></li></ul><p>通过对 tf.keras.Model 进行子类化并定义您自己的前向传播来构建完全可自定义的模型。在 <strong>init</strong> 方法中创建层并将它们设置为类实例的属性。在 call 方法中定义前向传播</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyModel</span>(tf<span style=color:#f92672>.</span>keras<span style=color:#f92672>.</span>Model):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __init__(self, num_classes<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>):
+</span></span><span style=display:flex><span>        super(MyModel, self)<span style=color:#f92672>.</span>__init__(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;my_model&#39;</span>)
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>num_classes <span style=color:#f92672>=</span> num_classes
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>layer1 <span style=color:#f92672>=</span> layers<span style=color:#f92672>.</span>Dense(<span style=color:#ae81ff>32</span>, activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;relu&#39;</span>)
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>layer2 <span style=color:#f92672>=</span> layers<span style=color:#f92672>.</span>Dense(num_classes, activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;softmax&#39;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>call</span>(self, inputs):
+</span></span><span style=display:flex><span>        h1 <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>layer1(inputs)
+</span></span><span style=display:flex><span>        out <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>layer2(h1)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> out
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>compute_output_shape</span>(self, input_shape):
+</span></span><span style=display:flex><span>        shape <span style=color:#f92672>=</span> tf<span style=color:#f92672>.</span>TensorShape(input_shape)<span style=color:#f92672>.</span>as_list()
+</span></span><span style=display:flex><span>        shape[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>num_classes
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> tf<span style=color:#f92672>.</span>TensorShape(shape)
+</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> MyModel(num_classes<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>)
+</span></span></code></pre></div><ul><li><h3 id=自定义层>自定义层</h3></li></ul><p>通过对 tf.keras.layers.Layer 进行子类化并实现以下方法来创建自定义层：</p><ul><li>__init__()函数，你可以在其中执行所有与输入无关的初始化</li><li>build： 可以获得输入张量的形状， 创建层的权重。使用 add_weight 方法添加权重。</li><li>call： 构建网络结构， 定义前向传播。</li><li>compute_output_shape：指定在给定输入形状的情况下如何计算层的输出形状。
+或者，可以通过实现 get_config 方法和 from_config 类方法序列化层。</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MyLayer</span>(layers<span style=color:#f92672>.</span>Layer):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __init__(self, output_dim, <span style=color:#f92672>**</span>kwargs):
+</span></span><span style=display:flex><span>        super(MyLayer, self)<span style=color:#f92672>.</span>__init__(<span style=color:#f92672>**</span>kwargs)
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>output_dim <span style=color:#f92672>=</span> output_dim
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>build</span>(self, input_shape):
+</span></span><span style=display:flex><span>        shape <span style=color:#f92672>=</span> tf<span style=color:#f92672>.</span>TensorShape((input_shape[<span style=color:#ae81ff>1</span>], self<span style=color:#f92672>.</span>output_dim))
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>kernel <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>add_weight(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;kernel1&#39;</span>, shape<span style=color:#f92672>=</span>shape,
+</span></span><span style=display:flex><span>                                   initializer<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;uniform&#39;</span>, trainable<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>        super(MyLayer, self)<span style=color:#f92672>.</span>build(input_shape)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>call</span>(self, inputs):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> tf<span style=color:#f92672>.</span>matmul(inputs, self<span style=color:#f92672>.</span>kernel)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>compute_output_shape</span>(self, input_shape):
+</span></span><span style=display:flex><span>        shape <span style=color:#f92672>=</span> tf<span style=color:#f92672>.</span>TensorShape(input_shape)<span style=color:#f92672>.</span>as_list()
+</span></span><span style=display:flex><span>        shape[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>output_dim
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> tf<span style=color:#f92672>.</span>TensorShape(shape)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_config</span>(self):
+</span></span><span style=display:flex><span>        base_config <span style=color:#f92672>=</span> super(MyLayer, self)<span style=color:#f92672>.</span>get_config()
+</span></span><span style=display:flex><span>        base_config[<span style=color:#e6db74>&#39;output_dim&#39;</span>] <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>output_dim
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> base_config
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@classmethod</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>from_config</span>(cls, config):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> cls(<span style=color:#f92672>**</span>config)
+</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> tf<span style=color:#f92672>.</span>keras<span style=color:#f92672>.</span>Sequential([
+</span></span><span style=display:flex><span>    MyLayer(<span style=color:#ae81ff>10</span>),
+</span></span><span style=display:flex><span>    layers<span style=color:#f92672>.</span>Activation(<span style=color:#e6db74>&#39;softmax&#39;</span>)])
+</span></span></code></pre></div><hr><h1 id=损失函数>损失函数</h1><blockquote><p>• mean_ squared_ error 或mse 。
+• mean_absolute_error 或mae 。
+• mean_ absolute_percentage_error 或mape 。
+• mean_squared_logarithmic_error 或msle 。
+• squared_hinge 。
+• hinge 。
+• binary_ crossentropy 。
+• categorical_ crossentropy 。
+• sparse_ categorical_ crossentrop 。
+• kullback_lei bier_ divergence 。
+• poisson 。
+• cosine_proximity 。</p></blockquote><p><strong>注意</strong>：当使用categorical_crossentropy 作为目标函数时，标签应该为多类模式，即one-hot 形式编码的向量，而不是单个数值。用户可以使用工具中的to_ categorical 函数完成该转换.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>from keras.utils.np_utils import to_categorical
+</span></span><span style=display:flex><span>int_labels= [1,2,3]
+</span></span><span style=display:flex><span>categorical_labels=to_categorical(int_labels, num classes=None)
+</span></span><span style=display:flex><span>print(categorical_labels)
+</span></span></code></pre></div><hr><h1 id=优化器函数>优化器函数</h1><p>选定了整个深度网络的损失函数，紧接着需要考虑的就是优化器的选择。因为有了训练目标，剩下最重要的就是达成该目标的方法</p><hr><h1 id=保存和恢复>保存和恢复</h1><h5 id=权重保存>权重保存</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>model.save_weights(&#39;./model.h5&#39;)
+</span></span><span style=display:flex><span>model.load_weights(&#39;./model.h5&#39;)
+</span></span></code></pre></div><h5 id=保存网络结构>保存网络结构</h5><p>这样导出的模型并未包含训练好的参数</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 序列化成json</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> json
+</span></span><span style=display:flex><span><span style=color:#66d9ef>with</span> open(<span style=color:#e6db74>&#39;model_struct.json&#39;</span>, <span style=color:#e6db74>&#39;w&#39;</span>) <span style=color:#66d9ef>as</span> ff:
+</span></span><span style=display:flex><span>    json_config <span style=color:#f92672>=</span> am<span style=color:#f92672>.</span>model<span style=color:#f92672>.</span>to_json()
+</span></span><span style=display:flex><span>    ff<span style=color:#f92672>.</span>write(json_string)  <span style=color:#75715e># 保存模型信息</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>with</span> open(<span style=color:#e6db74>&#39;model_struct.json&#39;</span>, <span style=color:#e6db74>&#39;r&#39;</span>) <span style=color:#66d9ef>as</span> ff:
+</span></span><span style=display:flex><span>   json_config <span style=color:#f92672>=</span> ff<span style=color:#f92672>.</span>read()
+</span></span><span style=display:flex><span>reinitialized_model <span style=color:#f92672>=</span> keras<span style=color:#f92672>.</span>models<span style=color:#f92672>.</span>model_from_json(json_config)
+</span></span><span style=display:flex><span>new_prediction <span style=color:#f92672>=</span> reinitialized_model<span style=color:#f92672>.</span>predict(x_test)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 其他形式</span>
+</span></span><span style=display:flex><span>config <span style=color:#f92672>=</span> model<span style=color:#f92672>.</span>get_config()
+</span></span><span style=display:flex><span>reinitialized_model <span style=color:#f92672>=</span> keras<span style=color:#f92672>.</span>Model<span style=color:#f92672>.</span>from_config(config)
+</span></span><span style=display:flex><span>new_prediction <span style=color:#f92672>=</span> reinitialized_model<span style=color:#f92672>.</span>predict(x_test)
+</span></span><span style=display:flex><span><span style=color:#75715e># 保持为yaml格式  #需要提前安装pyyaml</span>
+</span></span><span style=display:flex><span>yaml_str <span style=color:#f92672>=</span> model<span style=color:#f92672>.</span>to_yaml()
+</span></span><span style=display:flex><span>print(yaml_str)
+</span></span><span style=display:flex><span>fresh_model <span style=color:#f92672>=</span> tf<span style=color:#f92672>.</span>keras<span style=color:#f92672>.</span>models<span style=color:#f92672>.</span>model_from_yaml(yaml_str)
+</span></span></code></pre></div><h5 id=保存整个模型>保存整个模型</h5><p>内容包括：架构;权重（在训练期间学到的）;训练配置（你传递给编译的），如果有的话;优化器及其状态（如果有的话）（这使您可以从中断的地方重新启动训练）</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>model.save(&#39;all_model.h5&#39;)
+</span></span><span style=display:flex><span>new_model = keras.models.load_model(&#39;the_save_model.h5&#39;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>new_prediction = new_model.predict(x_test)
+</span></span><span style=display:flex><span>np.testing.assert_allclose(predictions, new_prediction, atol=1e-6) # 预测结果一样
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 保存为SavedModel文件  
+</span></span><span style=display:flex><span>keras.experimental.export_saved_model(model, &#39;saved_model&#39;)
+</span></span><span style=display:flex><span>new_model = keras.experimental.load_from_saved_model(&#39;saved_model&#39;)
+</span></span></code></pre></div><h5 id=checkpoint>checkpoint</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>checkpoint_path = os.path.join(os.path.join(logs_path, &#39;Checkpoint&#39;), &#39;weights-improvement-{epoch:02d}-{loss:.2f}.hdf5&#39;)
+</span></span><span style=display:flex><span>cb.append(keras.callbacks.ModelCheckpoint(checkpoint_path, monitor=&#39;loss&#39;, verbose=0, save_best_only=True, save_weights_only=False, mode=&#39;auto&#39;))
+</span></span><span style=display:flex><span># 恢复至最近的checkpoint
+</span></span><span style=display:flex><span>latest=tf.train.latest_checkpoint(checkpoint_dir)
+</span></span><span style=display:flex><span>model = create_model()
+</span></span><span style=display:flex><span>model.load_weights(latest)
+</span></span></code></pre></div><h1 id=模型集成>模型集成</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
+</span></span><span style=display:flex><span>from sklearn.ensemble import VotingClassifier
+</span></span><span style=display:flex><span>from sklearn.metrics import accuracy_score
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def mlp_model():
+</span></span><span style=display:flex><span>    model = keras.Sequential([
+</span></span><span style=display:flex><span>    layers.Dense(64, activation=&#39;relu&#39;, input_shape=(784,)),
+</span></span><span style=display:flex><span>    layers.Dropout(0.2),
+</span></span><span style=display:flex><span>    layers.Dense(64, activation=&#39;relu&#39;),
+</span></span><span style=display:flex><span>    layers.Dropout(0.2),
+</span></span><span style=display:flex><span>    layers.Dense(64, activation=&#39;relu&#39;),
+</span></span><span style=display:flex><span>    layers.Dropout(0.2),
+</span></span><span style=display:flex><span>    layers.Dense(10, activation=&#39;softmax&#39;)
+</span></span><span style=display:flex><span>    ])
+</span></span><span style=display:flex><span>    model.compile(optimizer=keras.optimizers.SGD(),
+</span></span><span style=display:flex><span>             loss=keras.losses.SparseCategoricalCrossentropy(),
+</span></span><span style=display:flex><span>             metrics=[&#39;accuracy&#39;])
+</span></span><span style=display:flex><span>    return model
+</span></span><span style=display:flex><span># 下面是使用投票的方法进行模型集成
+</span></span><span style=display:flex><span>model1 = KerasClassifier(build_fn=mlp_model, epochs=100, verbose=0)
+</span></span><span style=display:flex><span>model2 = KerasClassifier(build_fn=mlp_model, epochs=100, verbose=0)
+</span></span><span style=display:flex><span>model3 = KerasClassifier(build_fn=mlp_model, epochs=100, verbose=0)
+</span></span><span style=display:flex><span>ensemble_clf = VotingClassifier(estimators=[(&#39;model1&#39;, model1), (&#39;model2&#39;, model2), (&#39;model3&#39;, model3)], voting=&#39;soft&#39;)
+</span></span><span style=display:flex><span>ensemble_clf.fit(x_train, y_train)
+</span></span><span style=display:flex><span>y_pred = ensemble_clf.predict(x_test)
+</span></span><span style=display:flex><span>print(&#39;acc: &#39;, accuracy_score(y_pred, y_test))
+</span></span></code></pre></div><h1 id=mlp样例>MLP样例</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import tensorflow as tf
+</span></span><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>from tensorflow import keras
+</span></span><span style=display:flex><span>from tensorflow.keras import layers
+</span></span><span style=display:flex><span>print(tf.__version__)
+</span></span><span style=display:flex><span>print(tf.keras.__version__)
+</span></span><span style=display:flex><span># 生成数据
+</span></span><span style=display:flex><span>train_x = np.random.random((1000, 72))
+</span></span><span style=display:flex><span>train_y = np.random.random((1000, 10))
+</span></span><span style=display:flex><span>val_x = np.random.random((200, 72))
+</span></span><span style=display:flex><span>val_y = np.random.random((200, 10))
+</span></span><span style=display:flex><span>test_x = np.random.random((1000, 72))
+</span></span><span style=display:flex><span>test_y = np.random.random((1000, 10))
+</span></span><span style=display:flex><span>dataset = tf.data.Dataset.from_tensor_slices((train_x, train_y))
+</span></span><span style=display:flex><span>dataset = dataset.batch(32).repeat()
+</span></span><span style=display:flex><span>val_dataset = tf.data.Dataset.from_tensor_slices((val_x, val_y))
+</span></span><span style=display:flex><span>val_dataset = val_dataset.batch(32).repeat()
+</span></span><span style=display:flex><span>test_data = tf.data.Dataset.from_tensor_slices((test_x, test_y))
+</span></span><span style=display:flex><span>test_data = test_data.batch(32).repeat()
+</span></span><span style=display:flex><span># 模型堆叠
+</span></span><span style=display:flex><span>model = tf.keras.Sequential([
+</span></span><span style=display:flex><span>    layers.Dense(32, activation=&#39;relu&#39;, input_shape=(72,)),
+</span></span><span style=display:flex><span>    layers.BatchNormalization(),  
+</span></span><span style=display:flex><span>    layers.Dropout(0.2),
+</span></span><span style=display:flex><span>    layers.Dense(32, activation=&#39;relu&#39;),
+</span></span><span style=display:flex><span>    layers.BatchNormalization(),
+</span></span><span style=display:flex><span>    layers.Dropout(0.2),
+</span></span><span style=display:flex><span>    layers.Dense(10, activation=&#39;softmax&#39;)])
+</span></span><span style=display:flex><span>model.compile(optimizer=keras.optimizers.SGD(0.1),
+</span></span><span style=display:flex><span>             loss=tf.keras.losses.categorical_crossentropy,
+</span></span><span style=display:flex><span>             metrics=[tf.keras.metrics.categorical_accuracy])
+</span></span><span style=display:flex><span>model.summary()
+</span></span><span style=display:flex><span># 网络图
+</span></span><span style=display:flex><span># !sudo apt-get install graphvizf
+</span></span><span style=display:flex><span># keras.utils.plot_model(model, &#39;model_info.png&#39;, show_shapes=True)
+</span></span><span style=display:flex><span>history = model.fit(train_data, epochs=10, steps_per_epoch=30)
+</span></span><span style=display:flex><span># 画出学习曲线
+</span></span><span style=display:flex><span># print(history.history.keys())
+</span></span><span style=display:flex><span>plt.plot(history.history[&#39;categorical_accuracy&#39;])
+</span></span><span style=display:flex><span>plt.plot(history.history[&#39;loss&#39;])
+</span></span><span style=display:flex><span>plt.legend([&#39;categorical_accuracy&#39;, &#39;loss&#39;], loc=&#39;upper left&#39;)
+</span></span><span style=display:flex><span>plt.show()
+</span></span><span style=display:flex><span># 评估与预测
+</span></span><span style=display:flex><span>result = model.predict(test_data, steps=30)
+</span></span><span style=display:flex><span>print(result)
+</span></span><span style=display:flex><span>loss, accuracy = model.evaluate(test_data, steps=30)
+</span></span><span style=display:flex><span>print(&#39;test loss:&#39;, loss)
+</span></span><span style=display:flex><span>print(&#39;test accuracy:&#39;, accuracy)
+</span></span></code></pre></div><h1 id=多输入与多输出网络>多输入与多输出网络</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span># 载入输入数据
+</span></span><span style=display:flex><span>title_data = np.random.randint(num_words, size=(1280, 10))
+</span></span><span style=display:flex><span>body_data = np.random.randint(num_words, size=(1280, 100))
+</span></span><span style=display:flex><span>tag_data = np.random.randint(2, size=(1280, num_tags)).astype(&#39;float32&#39;)
+</span></span><span style=display:flex><span># 标签
+</span></span><span style=display:flex><span>priority_label = np.random.random(size=(1280, 1))
+</span></span><span style=display:flex><span>department_label = np.random.randint(2, size=(1280, num_departments))
+</span></span><span style=display:flex><span># 超参
+</span></span><span style=display:flex><span>num_words = 2000
+</span></span><span style=display:flex><span>num_tags = 12
+</span></span><span style=display:flex><span>num_departments = 4
+</span></span><span style=display:flex><span># 输入
+</span></span><span style=display:flex><span>title_input = keras.Input(shape=(None,), name=&#39;title&#39;)
+</span></span><span style=display:flex><span>body_input = keras.Input(shape=(None,), name=&#39;body&#39;)
+</span></span><span style=display:flex><span>tag_input = keras.Input(shape=(num_tags,), name=&#39;tag&#39;)
+</span></span><span style=display:flex><span># 嵌入层
+</span></span><span style=display:flex><span>title_feat = layers.Embedding(num_words, 64)(title_input)
+</span></span><span style=display:flex><span>body_feat = layers.Embedding(num_words, 64)(body_input)
+</span></span><span style=display:flex><span># 特征提取层
+</span></span><span style=display:flex><span>title_feat = layers.Embedding(num_words, 64)(title_input)
+</span></span><span style=display:flex><span>body_feat = layers.LSTM(32)(body_feat)
+</span></span><span style=display:flex><span>features = layers.concatenate([title_feat,body_feat, tag_input])
+</span></span><span style=display:flex><span># 分类层
+</span></span><span style=display:flex><span>priority_pred = layers.Dense(1, activation=&#39;sigmoid&#39;, name=&#39;priority&#39;)(features)
+</span></span><span style=display:flex><span>department_pred = layers.Dense(num_departments, activation=&#39;softmax&#39;, name=&#39;department&#39;)(features)
+</span></span><span style=display:flex><span># 构建模型
+</span></span><span style=display:flex><span>model = keras.Model(inputs=[body_input, title_input, tag_input], outputs=[priority_pred, department_pred])
+</span></span><span style=display:flex><span>model.summary()
+</span></span><span style=display:flex><span>keras.utils.plot_model(model, &#39;multi_model.png&#39;, show_shapes=True)
+</span></span><span style=display:flex><span>model.compile(optimizer=keras.optimizers.RMSprop(1e-3),
+</span></span><span style=display:flex><span>             loss={&#39;priority&#39;: &#39;binary_crossentropy&#39;, &#39;department&#39;: &#39;categorical_crossentropy&#39;},
+</span></span><span style=display:flex><span>             loss_weights=[1., 0.2])
+</span></span><span style=display:flex><span># 训练
+</span></span><span style=display:flex><span>history = model.fit(
+</span></span><span style=display:flex><span>    {&#39;title&#39;: title_data, &#39;body&#39;:body_data, &#39;tag&#39;:tag_data},
+</span></span><span style=display:flex><span>    {&#39;priority&#39;:priority_label, &#39;department&#39;:department_label},
+</span></span><span style=display:flex><span>    batch_size=32,
+</span></span><span style=display:flex><span>    epochs=5)
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-b1fd2d5f2ce1181a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><p>layers.Conv2D<code>((filters,kernel_size,strides=(1, 1),padding='valid',data_format=None,dilation_rate=(1,1),activation=None,use_bias=True,kernel_initializer='glorot_uniform',bias_initializer='zeros',kernel_regularizer=None,bias_regularizer=None,activity_regularizer=None,kernel_constraint=None,bias_constraint=None,**kwargs)</code></p><p>layers.MaxPooling2D<code>(pool_size=(2, 2),strides=None,padding='valid',data_format=None,**kwargs)</code></p><h1 id=小型残差网络>小型残差网络</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>inputs = keras.Input(shape=(32,32,3), name=&#39;img&#39;)
+</span></span><span style=display:flex><span>h1 = layers.Conv2D(32, 3, activation=&#39;relu&#39;)(inputs)
+</span></span><span style=display:flex><span>h1 = layers.Conv2D(64, 3, activation=&#39;relu&#39;)(h1)
+</span></span><span style=display:flex><span>block1_out = layers.MaxPooling2D(3)(h1)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>h2 = layers.Conv2D(64, 3, activation=&#39;relu&#39;, padding=&#39;same&#39;)(block1_out)
+</span></span><span style=display:flex><span>h2 = layers.Conv2D(64, 3, activation=&#39;relu&#39;, padding=&#39;same&#39;)(h2)
+</span></span><span style=display:flex><span>block2_out = layers.add([h2, block1_out])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>h3 = layers.Conv2D(64, 3, activation=&#39;relu&#39;, padding=&#39;same&#39;)(block2_out)
+</span></span><span style=display:flex><span>h3 = layers.Conv2D(64, 3, activation=&#39;relu&#39;, padding=&#39;same&#39;)(h3)
+</span></span><span style=display:flex><span>block3_out = layers.add([h3, block2_out])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>h4 = layers.Conv2D(64, 3, activation=&#39;relu&#39;)(block3_out)
+</span></span><span style=display:flex><span>h4 = layers.GlobalMaxPool2D()(h4)
+</span></span><span style=display:flex><span>h4 = layers.Dense(256, activation=&#39;relu&#39;)(h4)
+</span></span><span style=display:flex><span>h4 = layers.Dropout(0.5)(h4)
+</span></span><span style=display:flex><span>outputs = layers.Dense(10, activation=&#39;softmax&#39;)(h4)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>model = keras.Model(inputs, outputs, name=&#39;small resnet&#39;)
+</span></span><span style=display:flex><span>model.summary()
+</span></span><span style=display:flex><span>keras.utils.plot_model(model, &#39;small_resnet_model.png&#39;, show_shapes=True)
+</span></span><span style=display:flex><span>(x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
+</span></span><span style=display:flex><span>x_train = x_train.astype(&#39;float32&#39;) / 255
+</span></span><span style=display:flex><span>x_test = y_train.astype(&#39;float32&#39;) / 255
+</span></span><span style=display:flex><span>y_train = keras.utils.to_categorical(y_train, 10)
+</span></span><span style=display:flex><span>y_test = keras.utils.to_categorical(y_test, 10)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>model.compile(optimizer=keras.optimizers.RMSprop(1e-3),
+</span></span><span style=display:flex><span>             loss=&#39;categorical_crossentropy&#39;,
+</span></span><span style=display:flex><span>             metrics=[&#39;acc&#39;])
+</span></span><span style=display:flex><span>model.fit(x_train, y_train,
+</span></span><span style=display:flex><span>         batch_size=64,
+</span></span><span style=display:flex><span>         epochs=1,
+</span></span><span style=display:flex><span>         validation_split=0.2)
+</span></span><span style=display:flex><span>#model.predict(x_test, batch_size=32)
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-b6a89c81f65a069f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=image.png></p><h1 id=封装被sklearn调用>封装被sklearn调用</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>from keras.models import Sequential
+</span></span><span style=display:flex><span>from keras.layers import Dense
+</span></span><span style=display:flex><span>from keras.wrappers.scikit_learn import KerasClassifier
+</span></span><span style=display:flex><span>from sklearn.cross_validation import StratifiedKFold
+</span></span><span style=display:flex><span>from sklearn.cross_validation import cross_val_score
+</span></span><span style=display:flex><span>import numpy
+</span></span><span style=display:flex><span>import pandas
+</span></span><span style=display:flex><span># Function to create model, required for KerasClassifier
+</span></span><span style=display:flex><span>def create_model():
+</span></span><span style=display:flex><span>    model = Sequential()
+</span></span><span style=display:flex><span>    model.add(Dense(12, input_dim=8, init=&#39;uniform&#39;, activation=&#39;relu&#39;)) 		model.add(Dense(8, init=&#39;uniform&#39;, activation=&#39;relu&#39;)) 
+</span></span><span style=display:flex><span>    model.add(Dense(1, init=&#39;uniform&#39;, activation=&#39;sigmoid&#39;))
+</span></span><span style=display:flex><span>    model.compile(loss=&#39;binary_crossentropy&#39;, optimizer=&#39;adam&#39;, metrics=			[&#39;accuracy&#39;]) return model
+</span></span><span style=display:flex><span># fix random seed for reproducibility
+</span></span><span style=display:flex><span>seed = 7
+</span></span><span style=display:flex><span>numpy.random.seed(seed)
+</span></span><span style=display:flex><span># load pima indians dataset
+</span></span><span style=display:flex><span>dataset = numpy.loadtxt(&#34;pima-indians-diabetes.csv&#34;, delimiter=&#34;,&#34;)
+</span></span><span style=display:flex><span># split into input (X) and output (Y) variables
+</span></span><span style=display:flex><span>X = dataset[:,0:8]
+</span></span><span style=display:flex><span>Y = dataset[:,8]
+</span></span><span style=display:flex><span># Keras的KerasClassifier和KerasRegressor两个类接受build_fn参数，传入编译好的模型。我们加入nb_epoch=150和batch_size=10这两个参数这两个参数会传入模型的fit()方法。
+</span></span><span style=display:flex><span>model = KerasClassifier(build_fn=create_model, nb_epoch=150, batch_size=10)
+</span></span><span style=display:flex><span># 用scikit-learn的StratifiedKFold类进行10折交叉验证，测试模型在未知数据的性能，并使用cross_val_score()函数检测模型，打印结果。
+</span></span><span style=display:flex><span># StratifiedKFold用法类似Kfold，但是他是分层采样，确保训练集，测试集中各类别样本的比例与原始数据集中相同
+</span></span><span style=display:flex><span>kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=seed)
+</span></span><span style=display:flex><span>results = cross_val_score(model, X, Y, cv=kfold, , verbose=0, cv=5, n_jobs=-1, scoring=make_scorer(mean_absolute_error))
+</span></span><span style=display:flex><span>print(&#34;Results: %.2f%% (%.2f%%)&#34; % (results.mean()*100, results.std()*100))
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span># 使用网格搜索调整深度学习模型的参数
+</span></span><span style=display:flex><span>model = KerasClassifier(build_fn=create_model)
+</span></span><span style=display:flex><span>param_grid = {&#39;optimizers&#39;: [&#39;rmsprop&#39;, &#39;adam&#39;],
+</span></span><span style=display:flex><span>        &#39;kernel_initializer&#39;: [&#39;glorot_uniform&#39;, &#39;normal&#39;, &#39;uniform&#39;],
+</span></span><span style=display:flex><span>        &#39;use_bias&#39;: [&#39;True&#39;, &#39;False&#39;],
+</span></span><span style=display:flex><span>        &#39;epochs&#39;: np.array([50, 100, 150]),
+</span></span><span style=display:flex><span>        &#39;batch_size&#39;: np.array([5, 10, 20])}
+</span></span><span style=display:flex><span># GridSearchCV会对每组参数（2×3×3×3）进行训练，进行3折交叉检验。
+</span></span><span style=display:flex><span>grid = GridSearchCV(estimator=model, param_grid=param_grid)
+</span></span><span style=display:flex><span>grid_result = grid.fit(X, Y)
+</span></span><span style=display:flex><span># summarize results
+</span></span><span style=display:flex><span>print(&#34;Best: %f using %s&#34; % (grid_result.best_score_, grid_result.best_params_))
+</span></span><span style=display:flex><span>for params, mean_score, scores in grid_result.grid_scores_:
+</span></span><span style=display:flex><span>    print(&#34;%f (%f) with: %r&#34; % (scores.mean(), scores.std(), params))
+</span></span><span style=display:flex><span># Best: 0.751302 using {&#39;init&#39;: &#39;uniform&#39;, &#39;optimizer&#39;: &#39;rmsprop&#39;, &#39;nb_epoch&#39;: 150, &#39;batch_size&#39;: 5}
+</span></span><span style=display:flex><span>#0.653646 (0.031948) with: {&#39;init&#39;: &#39;glorot_uniform&#39;, &#39;optimizer&#39;: &#39;rmsprop&#39;, &#39;nb_epoch&#39;: 50, &#39;batch_size&#39;: 5}
+</span></span><span style=display:flex><span>#0.665365 (0.004872) with: {&#39;init&#39;: &#39;glorot_uniform&#39;, &#39;optimizer&#39;: &#39;adam&#39;, &#39;nb_epoch&#39;: 50, &#39;batch_size&#39;: 5}
+</span></span><span style=display:flex><span># 0.683594 (0.037603) with: {&#39;init&#39;: &#39;glorot_uniform&#39;, &#39;optimizer&#39;: &#39;rmsprop&#39;, &#39;nb_epoch&#39;: 100, &#39;batch_size&#39;: 5}
+</span></span></code></pre></div><h1 id=卷积httpskeras-zhreadthedocsiolayersconvolutional池化httpskeras-zhreadthedocsiolayerspooling><a href=https://keras-zh.readthedocs.io/layers/convolutional/ title=卷积 rel="noopener external nofollow noreferrer" target=_blank class=exturl>卷积
+<i class="fa fa-external-link-alt"></i>
+</a>、
+<a href=https://keras-zh.readthedocs.io/layers/pooling/ title=池化 rel="noopener external nofollow noreferrer" target=_blank class=exturl>池化
+<i class="fa fa-external-link-alt"></i></a></h1><h4 id=二维卷积>二维卷积：</h4><p><code>keras.layers.Conv2D(filters, kernel_size, strides=(1, 1), padding='valid', data_format=None, dilation_rate=(1, 1), activation=None, use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros', kernel_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, bias_constraint=None)</code>
+Conv2D输入：(samples, rows, cols, channels)
+kernel：尺寸(k, k)， 数量filters
+输出：（samples, new_rows, new_cols, filters)， new_rows=(rows-k+2padding)/strides+1
+备注：实际计算时，kernel维度为(k,k,channels)，会包含所有channels维度，因此若filters=1，即只有一个卷积核，则输出为(samples, new_rows,new_cols,1)
+####一维卷积：
+<code>keras.layers.Conv1D(filters, kernel_size, strides=1, padding='valid', data_format='channels_last', dilation_rate=1, activation=None, use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros', kernel_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, bias_constraint=None)</code>
+Conv1D输入：(batch_size, steps, input_dim)
+行向量代表单个时间步，单个时间步包含特征维度input_dim
+列向量代表单个特征维度，单个特征维度包含时间步长steps
+kernel：尺寸k， 数量filters
+输出：(batch_size, new_steps, filters)，new_steps=(steps-k+2padding)/strides+1
+备注：实际计算时，kernel维度为(k,input_dim)，会包含所有input_dim（这里的input_dim与Conv2D中的channels类似）
+####一维最大池化
+<code>keras.layers.MaxPooling1D(pool_size=2, strides=None, padding='valid', data_format='channels_last')</code>
+输入为 3D 张量，尺寸为： (batch_size, steps, features)
+输出为 3D 张量，尺寸为： (batch_size, downsampled_steps, features)
+Maxpooling1D(3,2))池化核大小为3，步长为2，(8-3＋1)/2=3,
+注意:若model.add(Maxpooling1D(2))，则池化核大小为2，步长也为2。</p><p>学习
+<a href=https://www.jianshu.com/p/3a8b310227e6 title=https://www.jianshu.com/p/3a8b310227e6 rel="noopener external nofollow noreferrer" target=_blank class=exturl>https://www.jianshu.com/p/3a8b310227e6
+<i class="fa fa-external-link-alt"></i></a></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>&#34;&#34;&#34;
+</span></span><span style=display:flex><span>训练
+</span></span><span style=display:flex><span>&#34;&#34;&#34;
+</span></span><span style=display:flex><span>from keras.datasets import mnist
+</span></span><span style=display:flex><span>from keras.utils import to_categorical
+</span></span><span style=display:flex><span>from keras.models import Sequential
+</span></span><span style=display:flex><span>from keras.layers import Conv2D, MaxPool2D, Flatten, Dropout, Dense
+</span></span><span style=display:flex><span>from keras.losses import categorical_crossentropy
+</span></span><span style=display:flex><span>from keras.optimizers import Adadelta
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>(x_train, y_train), (x_test, y_test) = mnist.load_data()
+</span></span><span style=display:flex><span># 将原始的特征矩阵做数据处理形成模型需要的数据
+</span></span><span style=display:flex><span>x_train = x_train.reshape(-1, 28, 28, 1)
+</span></span><span style=display:flex><span># 对数据进行归一化处理
+</span></span><span style=display:flex><span>x_train = x_train.astype(&#39;float32&#39;)
+</span></span><span style=display:flex><span>x_train /= 255
+</span></span><span style=display:flex><span># 对标签one-hot处理
+</span></span><span style=display:flex><span>y_train = to_categorical(y_train, 10)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x_test = x_test.reshape(-1, 28, 28, 1)
+</span></span><span style=display:flex><span>x_test = x_test.astype(&#39;float32&#39;)
+</span></span><span style=display:flex><span>x_test /= 255
+</span></span><span style=display:flex><span>y_test = to_categorical(y_test, 10)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>model = Sequential()
+</span></span><span style=display:flex><span>model.add(Conv2D(32, (5,5), activation=&#39;relu&#39;, input_shape=[28, 28, 1]))
+</span></span><span style=display:flex><span>model.add(Conv2D(64, (5,5), activation=&#39;relu&#39;))
+</span></span><span style=display:flex><span>model.add(MaxPool2D(pool_size=(2,2)))
+</span></span><span style=display:flex><span>model.add(Flatten())
+</span></span><span style=display:flex><span>model.add(Dropout(0.5))
+</span></span><span style=display:flex><span>model.add(Dense(128, activation=&#39;relu&#39;))
+</span></span><span style=display:flex><span>model.add(Dropout(0.5))
+</span></span><span style=display:flex><span>model.add(Dense(10, activation=&#39;softmax&#39;))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>model.compile(loss=categorical_crossentropy,
+</span></span><span style=display:flex><span>             optimizer=Adadelta(),
+</span></span><span style=display:flex><span>             metrics=[&#39;accuracy&#39;])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>batch_size = 100
+</span></span><span style=display:flex><span>epochs = 1
+</span></span><span style=display:flex><span>model.fit(x_train, y_train,
+</span></span><span style=display:flex><span>         batch_size=batch_size,
+</span></span><span style=display:flex><span>         epochs=epochs)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>&#34;&#34;&#34;
+</span></span><span style=display:flex><span>预测
+</span></span><span style=display:flex><span>&#34;&#34;&#34;
+</span></span><span style=display:flex><span># verbose：日志显示 fit 中默认为 1 
+</span></span><span style=display:flex><span># 0 为不在标准输出流输出日志信息 1 为输出进度条记录, ,2 为每个epoch输出一行记录
+</span></span><span style=display:flex><span># evaluate 中默认为0 
+</span></span><span style=display:flex><span># 0 为不在标准输出流输出日志信息  1 为输出进度条记录
+</span></span><span style=display:flex><span>loss, accuracy = model.evaluate(x_train, y_train, verbose=1)
+</span></span><span style=display:flex><span>print(&#39;train data loss:%.4f accuracy:%.4f&#39; %(loss, accuracy))
+</span></span><span style=display:flex><span>loss, accuracy = model.evaluate(x_test, y_test, verbose=1)
+</span></span><span style=display:flex><span>print(&#39;test data loss:%.4f accuracy:%.4f&#39; %(loss, accuracy))
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>&#34;&#34;&#34;
+</span></span><span style=display:flex><span>画出预测结果
+</span></span><span style=display:flex><span>&#34;&#34;&#34;
+</span></span><span style=display:flex><span>import math
+</span></span><span style=display:flex><span>import matplotlib.pyplot as plt
+</span></span><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>import random
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def draw(position, image, title, isTrue):
+</span></span><span style=display:flex><span>    # 设置子图位置
+</span></span><span style=display:flex><span>    plt.subplot(*position)
+</span></span><span style=display:flex><span>    plt.imshow(image.reshape(-1, 28), cmap=&#39;gray_r&#39;)
+</span></span><span style=display:flex><span>    plt.axis(&#39;off&#39;)
+</span></span><span style=display:flex><span>    if not isTrue:
+</span></span><span style=display:flex><span>        plt.title(title, color=&#39;red&#39;)
+</span></span><span style=display:flex><span>    else:
+</span></span><span style=display:flex><span>        plt.title(title)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>def show_result(batch_size, test_X, test_y):
+</span></span><span style=display:flex><span>    selected_index = random.sample(range(len(test_y)), k=batch_size)
+</span></span><span style=display:flex><span>    images = test_X[selected_index]
+</span></span><span style=display:flex><span>    labels = test_y[selected_index]
+</span></span><span style=display:flex><span>    predict_labels = model.predict(images)
+</span></span><span style=display:flex><span>    image_numbers = images.shape[0]
+</span></span><span style=display:flex><span>    row_number = math.ceil(image_numbers ** 0.5)
+</span></span><span style=display:flex><span>    column_number = row_number
+</span></span><span style=display:flex><span>    # 设置图片大小
+</span></span><span style=display:flex><span>    plt.figure(figsize=(row_number+8, column_number+8))
+</span></span><span style=display:flex><span>    for i in range(row_number):
+</span></span><span style=display:flex><span>        for j in range(column_number):
+</span></span><span style=display:flex><span>            index = i * column_number + j
+</span></span><span style=display:flex><span>            if index &lt; image_numbers:
+</span></span><span style=display:flex><span>                position = (row_number, column_number, index+1)
+</span></span><span style=display:flex><span>                image = images[index]
+</span></span><span style=display:flex><span>                actual = np.argmax(labels[index])
+</span></span><span style=display:flex><span>                predict = np.argmax(predict_labels[index])
+</span></span><span style=display:flex><span>                isTrue = actual==predict
+</span></span><span style=display:flex><span>                title = &#39;actual:%d\npredict:%d&#39; %(actual,predict)
+</span></span><span style=display:flex><span>                draw(position, image, title, isTrue)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>show_result(100, x_test, y_test)
+</span></span><span style=display:flex><span>plt.show()
+</span></span></code></pre></div></div><footer class=post-footer><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
+ml-keras</li><li class=post-copyright-author><strong>本文作者：</strong>
+Tomding</li><li class=post-copyright-link><strong>本文链接：</strong>
+<a id=post-cr-link href=/post/ml-keras/ title=ml-keras>/post/ml-keras/</a></li><li class=post-copyright-license><strong>版权声明：</strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class=followme><span>欢迎关注我的其它发布渠道</span><div class=social-list><div class=social-item><a target=_blank class=social-link href=/images/wechat_channel.jpg><span class=icon><i class="fab fa-weixin"></i></span>
+<span class=label>WeChat</span></a></div><div class=social-item><a target=_blank class=social-link href=/atom.xml><span class=icon><i class="fa fa-rss"></i></span>
+<span class=label>RSS</span></a></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/post/ml-jupyter-notebook/ rel=next title=ml-Jupyter-Notebook><i class="fa fa-chevron-left"></i> ml-Jupyter-Notebook</a></div><div class="post-nav-prev post-nav-item"><a href=/post/ml-keras-utils-plot_model%E6%8A%A5%E9%94%99/ rel=prev title=ml-keras-utils-plot_model报错>ml-keras-utils-plot_model报错
+<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
+<span itemprop=copyrightYear>2010 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span>
+<span class=author itemprop=copyrightHolder>Tomding</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":false,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.e34208af37d3db3a875e6fbad04c2f1c241185af925a9c6ebf79dd1ba2730cdd.js defer></script></body></html>

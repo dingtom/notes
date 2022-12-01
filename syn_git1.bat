@@ -1,5 +1,5 @@
 @echo off   % πÿ±’ªÿœ‘%
-
+hugo -D
 git pull origin master
 git add .
 git commit -m "auto commit"

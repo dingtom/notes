@@ -8,6 +8,8 @@ color 3
 echo 当前目录是：%cd%
 echo;
 
+hugo -D
+
 set /p declation=输入提交的commit信息:
 echo;
 
