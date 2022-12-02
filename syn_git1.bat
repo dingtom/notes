@@ -1,6 +1,6 @@
 @echo off   % ¹Ø±Õ»ØÏÔ%
 git pull origin master
-rm public -r
+rmdir /Q /S public
 hugo -D
 git add .
 git commit -m "auto commit"

@@ -22,7 +22,7 @@ echo 本地主分支拉取远程主分支：git pull origin master
 git pull origin master
 echo;
 
-rm public -r
+rmdir /Q /S public 
 hugo -D
 echo 开始添加变更：git add .
 git add .
