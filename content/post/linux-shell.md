@@ -7,38 +7,7 @@
         # 发表日期
         date: 2022-12-02T03:11:14+08:00
 
-        # 标签
-        #tags:
-        # 文章内容摘要
-        #description: "{{ .Name }}" 
-        # 最后修改日期
-        #lastmod: {{ .Date }}
-        # 文章内容关键字
-        #keywords: "{{replace .Name "-" ","}}"
-        # 原文作者
-        #author:
-        # 原文链接
-        #link:
-        # 图片链接，用在open graph和twitter卡片上
-        #imgs:
-        # 在首页展开内容
-        #expand: true
-        # 外部链接地址，访问时直接跳转
-        #extlink:
-        # 在当前页面关闭评论功能
-        #comment:
-        # enable: false
-        # 关闭当前页面目录功能
-        # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-        #toc: false
-        # 绝对访问路径
-        #url: "{{ lower .Name }}.html"
-        # 开启文章置顶，数字越小越靠前
-        #weight: 1
-        #开启数学公式渲染，可选值： mathjax, katex
-        #math: mathjax
-        # 开启各种图渲染，如流程图、时序图、类图等
-        #mermaid: true
+
 --- 
 
 `#!/bin/bash` 
@@ -46,7 +15,7 @@
  `chmod +x ./test.sh` 使脚本具有执行权限 
 `./test.sh` 执行脚本 注意，一定要写成` ./test.sh` ，而不是`  test.sh` ，运行其它二进制的程序也一样，直接写 ` test.sh` ，linux 系统会去 PATH 里寻找有没有叫 test.sh的，而只有 /bin, /sbin, /usr/bin，/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 ` test.sh` 是会找不到命令的，要用 ` ./test.sh ` 告诉系统说，就在当前目录找。
 
-`/bin/sh test.sh` 这种方式运行的脚本，**不需要在第一行指定解释器信息，写了也没用。**
+`/bin/sh test.sh` 这种方式运行的脚本，`不需要在第一行指定解释器信息，写了也没用。`
 
 ######变量名和等号之间不能有空格，这可能和你熟悉的所有编程语言都不一样。同时，变量名的命名须遵循如下规则： 命名只能使用英文字母，数字和下划线，首个字符不能以数字开头。 中间不能有空格，可以使用下划线（_）。 不能使用标点符号。 不能使用bash里的关键字（可用help命令查看保留关键字）。
 

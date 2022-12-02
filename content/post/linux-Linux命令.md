@@ -7,38 +7,7 @@
         # 发表日期
         date: 2022-12-02T03:11:14+08:00
 
-        # 标签
-        #tags:
-        # 文章内容摘要
-        #description: "{{ .Name }}" 
-        # 最后修改日期
-        #lastmod: {{ .Date }}
-        # 文章内容关键字
-        #keywords: "{{replace .Name "-" ","}}"
-        # 原文作者
-        #author:
-        # 原文链接
-        #link:
-        # 图片链接，用在open graph和twitter卡片上
-        #imgs:
-        # 在首页展开内容
-        #expand: true
-        # 外部链接地址，访问时直接跳转
-        #extlink:
-        # 在当前页面关闭评论功能
-        #comment:
-        # enable: false
-        # 关闭当前页面目录功能
-        # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-        #toc: false
-        # 绝对访问路径
-        #url: "{{ lower .Name }}.html"
-        # 开启文章置顶，数字越小越靠前
-        #weight: 1
-        #开启数学公式渲染，可选值： mathjax, katex
-        #math: mathjax
-        # 开启各种图渲染，如流程图、时序图、类图等
-        #mermaid: true
+
 --- 
 
 ```Ctrl+c```       强制中断程序的执行
@@ -57,7 +26,7 @@
 ```Ctrl+u```：删除当前光标前面的文字
 
 ```Ctrl+k```	删除从光标所在位置到行末
-```Alt+Backspace```	向前删除一个**单词**
+```Alt+Backspace```	向前删除一个`单词`
 命令 --help  查看一些它的某个命令具体参数的作用
 man 命令   显示系统手册页中的内容
 
@@ -391,7 +360,7 @@ $ 匹配正则表达式的结束行
 ssh [选项] [参数]
 ```
 
-### **命令选项**
+### `命令选项`
 
 - -1：强制使用ssh协议版本1；
 - -2：强制使用ssh协议版本2；
@@ -437,7 +406,7 @@ ssh-copy-id rumenz@test.com
 - 反向代理（-R）：相当于 [frp](https://www.zhihu.com/search?q=frp&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra={"sourceType"%3A"article"%2C"sourceId"%3A"57630633"}) 或者 ngrok
 - socks5 代理（-D）：相当于 ss/ssr
 
-**正向代理：**
+`正向代理：`
 
 所谓“正向代理”就是在本地启动端口，把本地端口数据转发到远端。
 
@@ -464,7 +433,7 @@ Host_local$ ssh -L 0.0.0.0:Port_local:Host_remote:Port_remote  user@HostB
 两种用法的区别是，第一种用法本地到跳板机的数据是明文的，而第二种用法数据被 ssh 加密传输给 HostB 又转发给 Host_remote:Port_remote。
  
 
-**反向代理：**
+`反向代理：`
 
 所谓“反向代理”就是让远端启动端口，把远端端口数据转发到本地。
 
@@ -484,7 +453,7 @@ GatewayPorts yes
 
 那么通过在内网 Host_local 上运行 `ssh -R` 告诉 Host_remote，创建 Port_remote端口监听，把该端口所有数据转发给我（Host_local），我会再转发给同一个内网下的 HostB:PortB。
 
-同内网下的 Host_local/HostB 也可以是同一台机器，换句话说就是**内网 Host_local 把自己可以访问的端口暴露给了外网 Host_remote。**
+同内网下的 Host_local/HostB 也可以是同一台机器，换句话说就是`内网 Host_local 把自己可以访问的端口暴露给了外网 Host_remote。`
 
 ## 用户
 
@@ -688,7 +657,7 @@ ping baidu.com 测试网络的连通
 设定一些环境变量，env命令能看到当前系统中所有的环境变量。比如，下面设置的就是jdk的。
 ```export PATH=$PATH:/home/xjj/jdk/bin```
 ```source ```命令来让其立即生效
-set	显示当前 Shell 所有变量，包括**其内建环境变量，用户自定义变量及导出的环境变量。**
+set	显示当前 Shell 所有变量，包括`其内建环境变量，用户自定义变量及导出的环境变量。`
 env	显示与当前用户相关的环境变量，还可以让命令在指定环境中运行。
 export	显示从 Shell 中导出成环境变量的变量，也能通过它将自定义变量导出为环境变量。
 

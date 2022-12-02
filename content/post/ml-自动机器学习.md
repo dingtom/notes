@@ -7,38 +7,6 @@
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
     
-    # 标签
-    #tags:
-    # 文章内容摘要
-    #description: "{{ .Name }}" 
-    # 最后修改日期
-    #lastmod: {{ .Date }}
-    # 文章内容关键字
-    #keywords: "{{replace .Name "-" ","}}"
-    # 原文作者
-    #author:
-    # 原文链接
-    #link:
-    # 图片链接，用在open graph和twitter卡片上
-    #imgs:
-    # 在首页展开内容
-    #expand: true
-    # 外部链接地址，访问时直接跳转
-    #extlink:
-    # 在当前页面关闭评论功能
-    #comment:
-    # enable: false
-    # 关闭当前页面目录功能
-    # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-    #toc: false
-    # 绝对访问路径
-    #url: "{{ lower .Name }}.html"
-    # 开启文章置顶，数字越小越靠前
-    #weight: 1
-    #开启数学公式渲染，可选值： mathjax, katex
-    #math: mathjax
-    # 开启各种图渲染，如流程图、时序图、类图等
-    #mermaid: true
 --- 
 
  AutoKeras是一个开源的，基于 Keras 的新型 AutoML 库。AutoKeras 是一个用于自动化机器学习的开源软件库，提供自动搜索深度学习模型的架构和超参数的功能。AutoKeras 采用的架构搜索方法是一种结合了贝叶斯优化的神经架构搜索。它主要关注于降低架构搜索所需要的计算力，并提高搜索结果在各种任务上的性能。

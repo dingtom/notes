@@ -7,38 +7,6 @@
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
     
-    # 标签
-    #tags:
-    # 文章内容摘要
-    #description: "{{ .Name }}" 
-    # 最后修改日期
-    #lastmod: {{ .Date }}
-    # 文章内容关键字
-    #keywords: "{{replace .Name "-" ","}}"
-    # 原文作者
-    #author:
-    # 原文链接
-    #link:
-    # 图片链接，用在open graph和twitter卡片上
-    #imgs:
-    # 在首页展开内容
-    #expand: true
-    # 外部链接地址，访问时直接跳转
-    #extlink:
-    # 在当前页面关闭评论功能
-    #comment:
-    # enable: false
-    # 关闭当前页面目录功能
-    # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-    #toc: false
-    # 绝对访问路径
-    #url: "{{ lower .Name }}.html"
-    # 开启文章置顶，数字越小越靠前
-    #weight: 1
-    #开启数学公式渲染，可选值： mathjax, katex
-    #math: mathjax
-    # 开启各种图渲染，如流程图、时序图、类图等
-    #mermaid: true
 --- 
 
 # DeeplabV1
@@ -47,15 +15,15 @@
 论文下载地址：https://arxiv.org/abs/1412.7062
 参考源码：https://github.com/TheLegendAli/DeepLab-Context
 
-在论文的引言部分(INTRODUCTION)首先抛出了两个问题（针对语义分割任务）: **信号下采样导致分辨率降低**和**空间“不敏感”** 问题。
+在论文的引言部分(INTRODUCTION)首先抛出了两个问题（针对语义分割任务）: `信号下采样导致分辨率降低`和`空间“不敏感”` 问题。
 
 > There are two technical hurdles in the application of DCNNs to image labeling tasks: signal downsampling, and spatial ‘insensitivity’ (invariance).
 
-**对于第一个问题信号下采样，作者说主要是采用Maxpooling导致的，为了解决这个问题作者引入了'atrous'(with holes) algorithm（空洞卷积 / 膨胀卷积 / 扩张卷积）。**
+`对于第一个问题信号下采样，作者说主要是采用Maxpooling导致的，为了解决这个问题作者引入了'atrous'(with holes) algorithm（空洞卷积 / 膨胀卷积 / 扩张卷积）。`
 
 
 
-对于第二个问题空间“不敏感”，作者说分类器自身的问题（分类器本来就具备一定空间不变性），我个人认为其实还是Maxpooling导致的。**为了解决这个问题作者采用了fully-connected CRF(Conditional Random Field)方法，这个方法只在DeepLabV1-V2中使用到了，从V3之后就不去使用了**，而且这个方法挺耗时的。
+对于第二个问题空间“不敏感”，作者说分类器自身的问题（分类器本来就具备一定空间不变性），我个人认为其实还是Maxpooling导致的。`为了解决这个问题作者采用了fully-connected CRF(Conditional Random Field)方法，这个方法只在DeepLabV1-V2中使用到了，从V3之后就不去使用了`，而且这个方法挺耗时的。
 
 
 ## 优势
@@ -80,7 +48,7 @@
 
 
 
-通过分析发现虽然backbone是VGG-16但所使用Maxpool略有不同，**VGG论文中是kernel=2，stride=2，但在DeepLabV1中是kernel=3，stride=2，padding=1。**接着就是最后两个Maxpool层的stride全部设置成1了（这样下采样的倍率就从32变成了8）。最后三个3x3的卷积层采用了膨胀卷积，膨胀系数r=2。然后关于将全连接层卷积化过程中，对于第一个全连接层（FC1）在FCN网络中是直接转换成卷积核大小7x7，卷积核个数为4096的卷积层，但在DeepLabV1中作者说是对参数进行了下采样最终得到的是卷积核大小3x3，卷积核个数为1024的卷积层（这样不仅可以减少参数还可以减少计算量，详情可以看下论文中的Table2），对于第二个全连接层（FC2）卷积核个数也由4096采样成1024。
+通过分析发现虽然backbone是VGG-16但所使用Maxpool略有不同，`VGG论文中是kernel=2，stride=2，但在DeepLabV1中是kernel=3，stride=2，padding=1。`接着就是最后两个Maxpool层的stride全部设置成1了（这样下采样的倍率就从32变成了8）。最后三个3x3的卷积层采用了膨胀卷积，膨胀系数r=2。然后关于将全连接层卷积化过程中，对于第一个全连接层（FC1）在FCN网络中是直接转换成卷积核大小7x7，卷积核个数为4096的卷积层，但在DeepLabV1中作者说是对参数进行了下采样最终得到的是卷积核大小3x3，卷积核个数为1024的卷积层（这样不仅可以减少参数还可以减少计算量，详情可以看下论文中的Table2），对于第二个全连接层（FC2）卷积核个数也由4096采样成1024。
 
 > After converting the network to a fully convolutional one, the first fully connected layer has 4,096 filters of large 7 × 7 spatial size and becomes the computational bottleneck in our dense score map computation. We have addressed this practical problem by spatially subsampling (by simple decimation) the first FC layer to 4×4 (or 3×3) spatial size.
 
@@ -97,12 +65,12 @@
 
 ### MSc(Multi-Scale)
 
-其实在论文的4.3中还提到了Multi-Scale Prediction，即**融合多个特征层的输出**。关于MSc(Multi-Scale)的结构论文中是这么说的：
+其实在论文的4.3中还提到了Multi-Scale Prediction，即`融合多个特征层的输出`。关于MSc(Multi-Scale)的结构论文中是这么说的：
 
 > Specifically, we attach to the input image and the output of each of the first four max pooling layers a
 > two-layer MLP (first layer: 128 3x3 convolutional filters, second layer: 128 1x1 convolutional filters) whose feature map is concatenated to the main network’s last layer feature map. The aggregate feature map fed into the softmax layer is thus enhanced by 5 * 128 = 640 channels.
 
-即，**除了使用之前主分支上输出外，还融合了来自原图尺度以及前四个Maxpool层的输出**，更详细的结构参考下图。论文中说使用MSc大概能提升1.5个点，使用fully-connected CRF大概能提升4个点。但在源码中作者建议使用的是不带MSc的版本，以及看github上的一些开源实现都没有使用MSc。我个人猜测是因为这里的MSc不仅费时而且很吃显存。根据参考如下代码绘制了DeepLab-MSc-LargeFOV结构。
+即，`除了使用之前主分支上输出外，还融合了来自原图尺度以及前四个Maxpool层的输出`，更详细的结构参考下图。论文中说使用MSc大概能提升1.5个点，使用fully-connected CRF大概能提升4个点。但在源码中作者建议使用的是不带MSc的版本，以及看github上的一些开源实现都没有使用MSc。我个人猜测是因为这里的MSc不仅费时而且很吃显存。根据参考如下代码绘制了DeepLab-MSc-LargeFOV结构。
 
 
 ![quicker_17af5581-4e0c-4b6c-8225-0672a7d7f443.png](https://s2.loli.net/2022/05/06/cMTNPKo6tgI4jiV.png)
@@ -130,11 +98,11 @@
 
 > In order to overcome this hurdle and efficiently produce denser feature maps, we remove the downsampling operator from the last few max pooling layers of DCNNs and instead upsample the filters in subsequent convolutional layers, resulting in feature maps computed at a higher sampling rate. Filter upsampling amounts to inserting holes (‘trous’ in French) between nonzero filter taps.
 
-针对目标多尺度的问题，最容易想到的就是将图像缩放到多个尺度分别通过网络进行推理，最后将多个结果进行融合即可。这样做虽然有用但是计算量太大了。为了解决这个问题，DeepLab V2 中提出了**ASPP模块（atrous spatial pyramid pooling）**，具体结构后面会讲。
+针对目标多尺度的问题，最容易想到的就是将图像缩放到多个尺度分别通过网络进行推理，最后将多个结果进行融合即可。这样做虽然有用但是计算量太大了。为了解决这个问题，DeepLab V2 中提出了`ASPP模块（atrous spatial pyramid pooling）`，具体结构后面会讲。
 
 > A standard way to deal with this is to present to the DCNN rescaled versions of the same image and then aggregate the feature or score maps. We show that this approach indeed increases the performance of our system, but comes at the cost of computing feature responses at all DCNN layers for multiple scaled versions of the input image. Instead, motivated by spatial pyramid pooling, we propose a computationally efficient scheme of resampling a given feature layer at multiple rates prior to convolution. This amounts to probing the original image with multiple filters that have complementary effective fields of view, thus capturing objects as well as useful image context at multiple scales. Rather than actually resampling features, we efficiently implement this mapping using multiple parallel atrous convolutional layers with different sampling rates; we call the proposed technique “atrous spatial pyramid pooling” (ASPP).
 
-针对DCNNs不变性导致定位精度降低的问题，和DeepLab V1差不多还是通过CRFs解决，不过**这里用的是fully connected pairwise CRF，相比V1里的fully connected CRF要更高效点。**在DeepLab V2中CRF涨点就没有DeepLab V1猛了，在DeepLab V1中大概能提升4个点，在DeepLab V2中通过Table4可以看到大概只能提升1个多点了。
+针对DCNNs不变性导致定位精度降低的问题，和DeepLab V1差不多还是通过CRFs解决，不过`这里用的是fully connected pairwise CRF，相比V1里的fully connected CRF要更高效点。`在DeepLab V2中CRF涨点就没有DeepLab V1猛了，在DeepLab V1中大概能提升4个点，在DeepLab V2中通过Table4可以看到大概只能提升1个多点了。
 
 > Our work explores an alternative approach which we show to be highly effective. In particular, we boost our model’s ability to capture fine details by employing a fully-connected Conditional Random Field (CRF) [22]. CRFs have been broadly used in semantic segmentation to combine class scores computed by multi-way classifiers with the low-level information captured by the local interactions of pixels and edges [23], [24] or superpixels [25]. Even though works of increased sophistication have been proposed to model the hierarchical dependency [26], [27], [28] and/or high-order dependencies of segments [29], [30], [31], [32], [33], we use the fully connected pairwise CRF proposed by [22] for its efficient computation, and ability to capture fine edge details while also catering for long range dependencies.
 > 
@@ -151,7 +119,7 @@
 
 ## ASPP(atrous spatial pyramid pooling)
 
-个人觉得在DeepLab V2中值得讲的就这个ASPP模块了，其他的都算不上啥亮点。这个ASPP模块给我感觉就像是DeepLab V1中LargeFOV的升级版（加入了多尺度的特性）。下图是原论文中介绍ASPP的示意图，就是在backbone输出的Feature Map上并联四个分支，**每个分支的第一层都是使用的膨胀卷积，但不同的分支使用的膨胀系数不同（即每个分支的感受野不同，从而具有解决目标多尺度的问题）**。
+个人觉得在DeepLab V2中值得讲的就这个ASPP模块了，其他的都算不上啥亮点。这个ASPP模块给我感觉就像是DeepLab V1中LargeFOV的升级版（加入了多尺度的特性）。下图是原论文中介绍ASPP的示意图，就是在backbone输出的Feature Map上并联四个分支，`每个分支的第一层都是使用的膨胀卷积，但不同的分支使用的膨胀系数不同（即每个分支的感受野不同，从而具有解决目标多尺度的问题）`。
 
 ![quicker_14c7a5db-8895-4bde-a095-5b09d66acb84.png](https://s2.loli.net/2022/05/06/KZoJD3HWrTfNwA2.png)
 

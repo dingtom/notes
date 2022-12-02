@@ -7,38 +7,6 @@
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
     
-    # 标签
-    #tags:
-    # 文章内容摘要
-    #description: "{{ .Name }}" 
-    # 最后修改日期
-    #lastmod: {{ .Date }}
-    # 文章内容关键字
-    #keywords: "{{replace .Name "-" ","}}"
-    # 原文作者
-    #author:
-    # 原文链接
-    #link:
-    # 图片链接，用在open graph和twitter卡片上
-    #imgs:
-    # 在首页展开内容
-    #expand: true
-    # 外部链接地址，访问时直接跳转
-    #extlink:
-    # 在当前页面关闭评论功能
-    #comment:
-    # enable: false
-    # 关闭当前页面目录功能
-    # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-    #toc: false
-    # 绝对访问路径
-    #url: "{{ lower .Name }}.html"
-    # 开启文章置顶，数字越小越靠前
-    #weight: 1
-    #开启数学公式渲染，可选值： mathjax, katex
-    #math: mathjax
-    # 开启各种图渲染，如流程图、时序图、类图等
-    #mermaid: true
 --- 
 
 
@@ -198,7 +166,7 @@ python labelme2coco.py data_annotated data_dataset_coco --labels label.txt
 
 ### PASCAL VOC
 
-PASCAL VOC挑战赛主要包括以下几类：**图像分类(Object Classification)**，**目标检测(Object Detection)**，**目标分割(Object Segmentation)**，**行为识别(Action Classification)** 等。
+PASCAL VOC挑战赛主要包括以下几类：`图像分类(Object Classification)`，`目标检测(Object Detection)`，`目标分割(Object Segmentation)`，`行为识别(Action Classification)` 等。
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-10-14/2022-10-14_11-23-38-217.png)
 
@@ -434,27 +402,27 @@ mAP=(mAP.5:.05:.95) /10      （ start from 0.5 to 0.95 with a step size of 0.05
 
 
 
-高分辨率特征(较浅的卷积层)**感知域较**小，有利于feature map和原图进行对齐的，也就是我说的可以提供更多的位置信息。
+高分辨率特征(较浅的卷积层)`感知域较`小，有利于feature map和原图进行对齐的，也就是我说的可以提供更多的位置信息。
 
 
 
-低分辨率信息(深层的卷积层)由于**感知域较大**，能够学习到更加**抽象**一些的特征，可以提供更多的上下文信息，即强语义信息，这有利于像素的精确分类。
+低分辨率信息(深层的卷积层)由于`感知域较大`，能够学习到更加`抽象`一些的特征，可以提供更多的上下文信息，即强语义信息，这有利于像素的精确分类。
 
 
 
 
 
-**上采样**（意义在于将小尺寸的高维度feature map恢复回去）一般包括2种方式：
+`上采样`（意义在于将小尺寸的高维度feature map恢复回去）一般包括2种方式：
 
-**Resize**，如双线性插值直接对图像进行缩放（这种方法在原文中提到）
+`Resize`，如双线性插值直接对图像进行缩放（这种方法在原文中提到）
 
-**Deconvolution**（反卷积），也叫Transposed Convolution(转置卷积)，可以理解为卷积的逆向操作。
+`Deconvolution`（反卷积），也叫Transposed Convolution(转置卷积)，可以理解为卷积的逆向操作。
 
 # FCN
 
 
 
-FCN首先将一幅RGB图像输入到卷积神经网络后，经过多次卷积以及池化过程得到一系列的特征图，然后**利用反卷积层对最后一个卷积层得到的特征图进行上采样**，使得上采样后特征图与原图像的大小一样，从而实现对特征图上的每个像素值进行预测的同时保留其在原图像中的空间位置信息，最后对上采样特征图进行逐像素分类，逐个像素计算softmax分类损失。
+FCN首先将一幅RGB图像输入到卷积神经网络后，经过多次卷积以及池化过程得到一系列的特征图，然后`利用反卷积层对最后一个卷积层得到的特征图进行上采样`，使得上采样后特征图与原图像的大小一样，从而实现对特征图上的每个像素值进行预测的同时保留其在原图像中的空间位置信息，最后对上采样特征图进行逐像素分类，逐个像素计算softmax分类损失。
 
 主要特点：
 
@@ -472,41 +440,41 @@ FCN首先将一幅RGB图像输入到卷积神经网络后，经过多次卷积�
 
 经过全卷积后的结果进行反卷积，基本上就能实现语义分割了，但是得到的结果通常是比较粗糙的。
 
-图中，image是原图像，conv1,conv2..,conv5为卷积操作，pool1,pool2,..pool5为pool操作（pool就是使得图片变为原图的1/2），注意con6-7是最后的卷积层，最右边一列是upsample后的end to end结果。**必须说明的是图中nx是指对应的特征图上采样n倍（即变大n倍），并不是指有n个特征图，如32x upsampled 中的32x是图像只变大32倍，不是有32个上采样图像，又如2x conv7是指conv7的特征图变大2倍。**
+图中，image是原图像，conv1,conv2..,conv5为卷积操作，pool1,pool2,..pool5为pool操作（pool就是使得图片变为原图的1/2），注意con6-7是最后的卷积层，最右边一列是upsample后的end to end结果。`必须说明的是图中nx是指对应的特征图上采样n倍（即变大n倍），并不是指有n个特征图，如32x upsampled 中的32x是图像只变大32倍，不是有32个上采样图像，又如2x conv7是指conv7的特征图变大2倍。`
 
-**（1）FCN-32s过程**
+`（1）FCN-32s过程`
 
-只需要留意第一行，网络里面有5个pool，所以conv7的特征图是原始图像1/32，可以发现最左边image的是32x32（假设以倍数计），同时我们知道在FCN中的卷积是不会改变图像大小（或者只有少量像素的减少，特征图大小基本不会小很多）。看到pool1是16x16，pool2是8x8，pool3是4x4，pool4是2x2，pool5是1x1，所以conv7对应特征图大小为1x1，然后再经过32x upsampled prediction 图片变回32x32。FCN作者在这里增加一个卷积层，卷积后的大小为输入图像的**32**(2^5)倍，我们简单假设这个卷积核大小也为32，这样就是需要通过反馈训练32x32个权重变量即可让图像实现end to end，完成了一个32s的upsample。FCN作者称做后卷积，他也提及可以称为反卷积。事实上在源码中卷积核的大小为64，同时没有偏置bias。还有一点就是FCN论文中最后结果都是21×*，这里的21是指FCN使用的数据集分类，总共有21类。
+只需要留意第一行，网络里面有5个pool，所以conv7的特征图是原始图像1/32，可以发现最左边image的是32x32（假设以倍数计），同时我们知道在FCN中的卷积是不会改变图像大小（或者只有少量像素的减少，特征图大小基本不会小很多）。看到pool1是16x16，pool2是8x8，pool3是4x4，pool4是2x2，pool5是1x1，所以conv7对应特征图大小为1x1，然后再经过32x upsampled prediction 图片变回32x32。FCN作者在这里增加一个卷积层，卷积后的大小为输入图像的`32`(2^5)倍，我们简单假设这个卷积核大小也为32，这样就是需要通过反馈训练32x32个权重变量即可让图像实现end to end，完成了一个32s的upsample。FCN作者称做后卷积，他也提及可以称为反卷积。事实上在源码中卷积核的大小为64，同时没有偏置bias。还有一点就是FCN论文中最后结果都是21×*，这里的21是指FCN使用的数据集分类，总共有21类。
 
-**（2）FCN-16s过程**
+`（2）FCN-16s过程`
 
-现在我们把1,2两行一起看，忽略32x upsampled prediction，说明FCN-16s的upsample过程。FCN作者在conv7先进行一个2x conv7操作，其实这里也只是增加1个卷积层，这次卷积后特征图的大小为conv7的**2**倍，可以从pool5与2x conv7中看出来。此时2x conv7与pool4的大小是一样的，FCN作者提出对pool4与2x conv7进行一个fuse操作（**事实上就是将pool4与2x conv7相加，另一篇博客说是拼接，个人认为是拼接**）。fuse结果进行16x upsampled prediction，与FCN-32s一样，也是增加一个卷积层，卷积后的大小为输入图像的**16**(2^4)倍。我们知道pool4的大小是2x2，放大16倍，就是32x32，这样最后图像大小也变为原来的大小，至此完成了一个16s的upsample。现在我们可以知道，FCN中的upsample实际是通过增加卷积层，通过bp反馈的训练方法训练卷积层达到end to end，这时**卷积层的作用可以看作是pool的逆过程**。
+现在我们把1,2两行一起看，忽略32x upsampled prediction，说明FCN-16s的upsample过程。FCN作者在conv7先进行一个2x conv7操作，其实这里也只是增加1个卷积层，这次卷积后特征图的大小为conv7的`2`倍，可以从pool5与2x conv7中看出来。此时2x conv7与pool4的大小是一样的，FCN作者提出对pool4与2x conv7进行一个fuse操作（`事实上就是将pool4与2x conv7相加，另一篇博客说是拼接，个人认为是拼接`）。fuse结果进行16x upsampled prediction，与FCN-32s一样，也是增加一个卷积层，卷积后的大小为输入图像的`16`(2^4)倍。我们知道pool4的大小是2x2，放大16倍，就是32x32，这样最后图像大小也变为原来的大小，至此完成了一个16s的upsample。现在我们可以知道，FCN中的upsample实际是通过增加卷积层，通过bp反馈的训练方法训练卷积层达到end to end，这时`卷积层的作用可以看作是pool的逆过程`。
 
-**（3）FCN-8s过程**
+`（3）FCN-8s过程`
 
-这是我们看第1行与第3行，忽略32x upsampled prediction。conv7经过一次4x upsample，即使用一个卷积层，特征图输出大小为conv7的4倍，所得4x conv7的大小为4x4。然后pool4需要一次2x upsample，变成2x pool4，大小也为4x4。再把4x conv7，2x pool4与pool3进行fuse，得到求和后的特征图。最后增加一个卷积层，使得输出图片大小为pool3的8倍，也就是8x upsampled prediction的过程，得到一个end to end的图像。实验表明**FCN-8s优于FCN-16s，FCN-32s**。 我们可以发现，如果继续仿照FCN作者的步骤，我们可以对pool2，pool1实现同样的方法，可以有FCN-4s，FCN-2s，最后得到end to end的输出。这里作者给出了明确的结论，超过FCN-8s之后，结果并不能继续优化。
+这是我们看第1行与第3行，忽略32x upsampled prediction。conv7经过一次4x upsample，即使用一个卷积层，特征图输出大小为conv7的4倍，所得4x conv7的大小为4x4。然后pool4需要一次2x upsample，变成2x pool4，大小也为4x4。再把4x conv7，2x pool4与pool3进行fuse，得到求和后的特征图。最后增加一个卷积层，使得输出图片大小为pool3的8倍，也就是8x upsampled prediction的过程，得到一个end to end的图像。实验表明`FCN-8s优于FCN-16s，FCN-32s`。 我们可以发现，如果继续仿照FCN作者的步骤，我们可以对pool2，pool1实现同样的方法，可以有FCN-4s，FCN-2s，最后得到end to end的输出。这里作者给出了明确的结论，超过FCN-8s之后，结果并不能继续优化。
 
 ![quicker_56103cc9-bdb3-4cab-bb6a-c12d18d7965a.png](https://s2.loli.net/2022/04/01/GMbESzDXdZeiwaq.png)
 
-图中，image是原图像，conv1,conv2..,conv5为卷积操作，pool1,pool2,..pool5为pool操作（pool就是使得图片变为原图的1/2），注意con6-7是最后的卷积层，最右边一列是upsample后的end to end结果。**必须说明的是图中nx是指对应的特征图上采样n倍（即变大n倍），并不是指有n个特征图，如32x upsampled 中的32x是图像只变大32倍，不是有32个上采样图像，又如2x conv7是指conv7的特征图变大2倍。**
+图中，image是原图像，conv1,conv2..,conv5为卷积操作，pool1,pool2,..pool5为pool操作（pool就是使得图片变为原图的1/2），注意con6-7是最后的卷积层，最右边一列是upsample后的end to end结果。`必须说明的是图中nx是指对应的特征图上采样n倍（即变大n倍），并不是指有n个特征图，如32x upsampled 中的32x是图像只变大32倍，不是有32个上采样图像，又如2x conv7是指conv7的特征图变大2倍。`
 
-**（1）FCN-32s过程**
+`（1）FCN-32s过程`
 
-只需要留意第一行，网络里面有5个pool，所以conv7的特征图是原始图像1/32，可以发现最左边image的是32x32（假设以倍数计），同时我们知道在FCN中的卷积是不会改变图像大小（或者只有少量像素的减少，特征图大小基本不会小很多）。看到pool1是16x16，pool2是8x8，pool3是4x4，pool4是2x2，pool5是1x1，所以conv7对应特征图大小为1x1，然后再经过32x upsampled prediction 图片变回32x32。FCN作者在这里增加一个卷积层，卷积后的大小为输入图像的**32**(2^5)倍，我们简单假设这个卷积核大小也为32，这样就是需要通过反馈训练32x32个权重变量即可让图像实现end to end，完成了一个32s的upsample。FCN作者称做后卷积，他也提及可以称为反卷积。事实上在源码中卷积核的大小为64，同时没有偏置bias。还有一点就是FCN论文中最后结果都是21×*，这里的21是指FCN使用的数据集分类，总共有21类。
+只需要留意第一行，网络里面有5个pool，所以conv7的特征图是原始图像1/32，可以发现最左边image的是32x32（假设以倍数计），同时我们知道在FCN中的卷积是不会改变图像大小（或者只有少量像素的减少，特征图大小基本不会小很多）。看到pool1是16x16，pool2是8x8，pool3是4x4，pool4是2x2，pool5是1x1，所以conv7对应特征图大小为1x1，然后再经过32x upsampled prediction 图片变回32x32。FCN作者在这里增加一个卷积层，卷积后的大小为输入图像的`32`(2^5)倍，我们简单假设这个卷积核大小也为32，这样就是需要通过反馈训练32x32个权重变量即可让图像实现end to end，完成了一个32s的upsample。FCN作者称做后卷积，他也提及可以称为反卷积。事实上在源码中卷积核的大小为64，同时没有偏置bias。还有一点就是FCN论文中最后结果都是21×*，这里的21是指FCN使用的数据集分类，总共有21类。
 
-**（2）FCN-16s过程**
+`（2）FCN-16s过程`
 
-现在我们把1,2两行一起看，忽略32x upsampled prediction，说明FCN-16s的upsample过程。FCN作者在conv7先进行一个2x conv7操作，其实这里也只是增加1个卷积层，这次卷积后特征图的大小为conv7的**2**倍，可以从pool5与2x conv7中看出来。此时2x conv7与pool4的大小是一样的，FCN作者提出对pool4与2x conv7进行一个fuse操作（**事实上就是将pool4与2x conv7相加，另一篇博客说是拼接，个人认为是拼接**）。fuse结果进行16x upsampled prediction，与FCN-32s一样，也是增加一个卷积层，卷积后的大小为输入图像的**16**(2^4)倍。我们知道pool4的大小是2x2，放大16倍，就是32x32，这样最后图像大小也变为原来的大小，至此完成了一个16s的upsample。现在我们可以知道，FCN中的upsample实际是通过增加卷积层，通过bp反馈的训练方法训练卷积层达到end to end，这时**卷积层的作用可以看作是pool的逆过程**。
+现在我们把1,2两行一起看，忽略32x upsampled prediction，说明FCN-16s的upsample过程。FCN作者在conv7先进行一个2x conv7操作，其实这里也只是增加1个卷积层，这次卷积后特征图的大小为conv7的`2`倍，可以从pool5与2x conv7中看出来。此时2x conv7与pool4的大小是一样的，FCN作者提出对pool4与2x conv7进行一个fuse操作（`事实上就是将pool4与2x conv7相加，另一篇博客说是拼接，个人认为是拼接`）。fuse结果进行16x upsampled prediction，与FCN-32s一样，也是增加一个卷积层，卷积后的大小为输入图像的`16`(2^4)倍。我们知道pool4的大小是2x2，放大16倍，就是32x32，这样最后图像大小也变为原来的大小，至此完成了一个16s的upsample。现在我们可以知道，FCN中的upsample实际是通过增加卷积层，通过bp反馈的训练方法训练卷积层达到end to end，这时`卷积层的作用可以看作是pool的逆过程`。
 
-**（3）FCN-8s过程**
+`（3）FCN-8s过程`
 
-这是我们看第1行与第3行，忽略32x upsampled prediction。conv7经过一次4x upsample，即使用一个卷积层，特征图输出大小为conv7的4倍，所得4x conv7的大小为4x4。然后pool4需要一次2x upsample，变成2x pool4，大小也为4x4。再把4x conv7，2x pool4与pool3进行fuse，得到求和后的特征图。最后增加一个卷积层，使得输出图片大小为pool3的8倍，也就是8x upsampled prediction的过程，得到一个end to end的图像。实验表明**FCN-8s优于FCN-16s，FCN-32s**。 我们可以发现，如果继续仿照FCN作者的步骤，我们可以对pool2，pool1实现同样的方法，可以有FCN-4s，FCN-2s，最后得到end to end的输出。这里作者给出了明确的结论，超过FCN-8s之后，结果并不能继续优化。
+这是我们看第1行与第3行，忽略32x upsampled prediction。conv7经过一次4x upsample，即使用一个卷积层，特征图输出大小为conv7的4倍，所得4x conv7的大小为4x4。然后pool4需要一次2x upsample，变成2x pool4，大小也为4x4。再把4x conv7，2x pool4与pool3进行fuse，得到求和后的特征图。最后增加一个卷积层，使得输出图片大小为pool3的8倍，也就是8x upsampled prediction的过程，得到一个end to end的图像。实验表明`FCN-8s优于FCN-16s，FCN-32s`。 我们可以发现，如果继续仿照FCN作者的步骤，我们可以对pool2，pool1实现同样的方法，可以有FCN-4s，FCN-2s，最后得到end to end的输出。这里作者给出了明确的结论，超过FCN-8s之后，结果并不能继续优化。
 
-结合上述的FCN的全卷积与upsample，在upsample最后加上softmax，就可以对不同类别的大小概率进行估计，实现end to end。最后输出的图是一个概率估计，对应像素点的值越大，其像素为该类的结果也越大。**FCN的核心贡献在于提出使用卷积层通过学习让图片实现end to end分类。**
+结合上述的FCN的全卷积与upsample，在upsample最后加上softmax，就可以对不同类别的大小概率进行估计，实现end to end。最后输出的图是一个概率估计，对应像素点的值越大，其像素为该类的结果也越大。`FCN的核心贡献在于提出使用卷积层通过学习让图片实现end to end分类。`
 
 
 
-> **事实上，FCN有一些短处**，例如使用了较浅层的特征，因为fuse操作会加上较上层的pool特征值，导致高维特征不能很好得以使用，同时也因为使用较上层的pool特征值，导致FCN对图像大小变化有所要求，如果测试集的图像远大于或小于训练集的图像，FCN的效果就会变差。
+> `事实上，FCN有一些短处`，例如使用了较浅层的特征，因为fuse操作会加上较上层的pool特征值，导致高维特征不能很好得以使用，同时也因为使用较上层的pool特征值，导致FCN对图像大小变化有所要求，如果测试集的图像远大于或小于训练集的图像，FCN的效果就会变差。
 
 # SegNet
 
@@ -520,7 +488,7 @@ decoder网络：作用是将由encoder的到的低分辨率的feature maps 进�
 
 ![quicker_15980490-03ee-472c-8b84-902828eeac1f.png](https://s2.loli.net/2022/04/01/VN5MAh1e46WJUBK.png)
 
-Segnet的亮点：**decoder利用与之对应的encoder阶段中进行max-pooling时的pooling index 进行非线性上采样**，这样做的好处是上采样阶段就不需要进行学习。 上采样后得到的feature maps 是非常稀疏的，因此，需要进一步选择合适的卷积核进行卷积得到dense featuremaps 。
+Segnet的亮点：`decoder利用与之对应的encoder阶段中进行max-pooling时的pooling index 进行非线性上采样`，这样做的好处是上采样阶段就不需要进行学习。 上采样后得到的feature maps 是非常稀疏的，因此，需要进一步选择合适的卷积核进行卷积得到dense featuremaps 。
 
 ![quicker_70e69d53-897c-4edc-b1a3-da05921c3a62.png](https://s2.loli.net/2022/04/01/5u3fUAXbPiFWe1B.png)
 
@@ -542,14 +510,14 @@ Segnet的亮点：**decoder利用与之对应的encoder阶段中进行max-poolin
 
 
 
-**UNet的encoder下采样4次，一共下采样16倍，对称地，其decoder也相应上采样4次，将encoder得到的高级语义特征图恢复到原图片的分辨率。**
+`UNet的encoder下采样4次，一共下采样16倍，对称地，其decoder也相应上采样4次，将encoder得到的高级语义特征图恢复到原图片的分辨率。`
 
 
 
-它采用了与FCN不同的**特征融合**方式：
+它采用了与FCN不同的`特征融合`方式：
 
-1. FCN采用的是**逐点相加**，对应tensorflow的tf.add()函数
-2. U-Net采用的是**channel维度拼接融合**，对应tensorflow的tf.concat()函数
+1. FCN采用的是`逐点相加`，对应tensorflow的tf.add()函数
+2. U-Net采用的是`channel维度拼接融合`，对应tensorflow的tf.concat()函数
 
  Unet结构特点
 
@@ -562,7 +530,7 @@ Segnet的亮点：**decoder利用与之对应的encoder阶段中进行max-poolin
 >
 > 
 >
-> UNet结合了**低分辨率信息（提供物体类别识别依据）和高分辨率信息**（提供精准分割定位依据），完美适用于医学图像分割。
+> UNet结合了`低分辨率信息（提供物体类别识别依据）和高分辨率信息`（提供精准分割定位依据），完美适用于医学图像分割。
 
 #  DeepLab
 
@@ -570,7 +538,7 @@ Segnet的亮点：**decoder利用与之对应的encoder阶段中进行max-poolin
 
 ![quicker_4964e7e0-fcc8-4e8d-9159-998a8891536c.png](https://s2.loli.net/2022/04/01/V1MXwxTdqUYjEly.png)
 
-- Deeplabv1是由深度卷积网路和概率图模型级联而成的语义分割模型，由于深度卷积网路在重复最大池化和下采样的过程中会丢失很多的细节信息，所以采用**扩张卷积算法增加感受野以获得更多上下文信**息。考虑到深度卷积网路在图像标记任务中的空间不敏感性限制了它的定位精度，采用了**完全连接条件随机场（Conditional Random Field， CRF）来提高模型捕获细节的能力**。
+- Deeplabv1是由深度卷积网路和概率图模型级联而成的语义分割模型，由于深度卷积网路在重复最大池化和下采样的过程中会丢失很多的细节信息，所以采用`扩张卷积算法增加感受野以获得更多上下文信`息。考虑到深度卷积网路在图像标记任务中的空间不敏感性限制了它的定位精度，采用了`完全连接条件随机场（Conditional Random Field， CRF）来提高模型捕获细节的能力`。
 - Deeplabv2予以分割模型增加了ASPP（Atrous spatial pyramid pooling）结构，利用多个不同采样率的扩张卷积提取特征，再将特征融合以捕获不同大小的上下文信息。
 - Deeplabv3语义分割模型，在ASPP中加入了全局平均池化，同时在平行扩张卷积后添加批量归一化，有效地捕获了全局语义信息。
 - DeepLabV3+语义分割模型在Deeplabv3的基础上增加了编-解码模块和Xception主干网路，增加编解码模块主要是为了恢复原始的像素信息，使得分割的细节信息能够更好的保留，同时编码丰富的上下文信息。增加Xception主干网络是为了采用深度卷积进一步提高算法的精度和速度。在inception结构中，先对输入进行1\*1卷积，之后将通道分组，分别使用不同的3\*3卷积提取特征，最后将各组结果串联在一起作为输出。

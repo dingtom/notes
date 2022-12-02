@@ -7,38 +7,6 @@
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
     
-    # 标签
-    #tags:
-    # 文章内容摘要
-    #description: "{{ .Name }}" 
-    # 最后修改日期
-    #lastmod: {{ .Date }}
-    # 文章内容关键字
-    #keywords: "{{replace .Name "-" ","}}"
-    # 原文作者
-    #author:
-    # 原文链接
-    #link:
-    # 图片链接，用在open graph和twitter卡片上
-    #imgs:
-    # 在首页展开内容
-    #expand: true
-    # 外部链接地址，访问时直接跳转
-    #extlink:
-    # 在当前页面关闭评论功能
-    #comment:
-    # enable: false
-    # 关闭当前页面目录功能
-    # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-    #toc: false
-    # 绝对访问路径
-    #url: "{{ lower .Name }}.html"
-    # 开启文章置顶，数字越小越靠前
-    #weight: 1
-    #开启数学公式渲染，可选值： mathjax, katex
-    #math: mathjax
-    # 开启各种图渲染，如流程图、时序图、类图等
-    #mermaid: true
 --- 
 
 ![](https://upload-images.jianshu.io/upload_images/18339009-4c00b0451280e2f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -46,7 +14,7 @@
 ![](https://upload-images.jianshu.io/upload_images/18339009-3adce96cd54eb3f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## 卷积层
-**卷积提取底层特征减少神经网络中参数个数**
+`卷积提取底层特征减少神经网络中参数个数`
 
 ![](https://upload-images.jianshu.io/upload_images/18339009-9ff2bf3400efde22.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![左侧小矩阵的尺寸为过滤器的尺寸，而右侧单位矩阵的深度为过滤器的深度
@@ -57,16 +25,16 @@
 - 还可以通过设置过滤器移动步长调整结果矩阵的大小
 
 # 池化层
-**防止过拟合、下采样、降维、去除冗余信息、对特征进行压缩、简化网络复杂度、减小计算量、减小内存消耗**
-**实现非线性，扩大感知野**
-**实现不变性，（平移不变性、旋转不变性和尺度不变性）**
+`防止过拟合、下采样、降维、去除冗余信息、对特征进行压缩、简化网络复杂度、减小计算量、减小内存消耗`
+`实现非线性，扩大感知野`
+`实现不变性，（平移不变性、旋转不变性和尺度不变性）`
 
 ![池化函数使用某一位置的相邻输出的总体统计特征来代替网络在该位置的输出。](https://upload-images.jianshu.io/upload_images/18339009-8b04d457c6018029.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 
 
-**加速卷积运算**
+`加速卷积运算`
 im2col
 ![](https://upload-images.jianshu.io/upload_images/18339009-6e6de559a8775ac5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![](https://upload-images.jianshu.io/upload_images/18339009-2eec3ec53bdba4a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)

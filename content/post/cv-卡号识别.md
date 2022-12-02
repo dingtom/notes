@@ -7,38 +7,6 @@
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
     
-    # 标签
-    #tags:
-    # 文章内容摘要
-    #description: "{{ .Name }}" 
-    # 最后修改日期
-    #lastmod: {{ .Date }}
-    # 文章内容关键字
-    #keywords: "{{replace .Name "-" ","}}"
-    # 原文作者
-    #author:
-    # 原文链接
-    #link:
-    # 图片链接，用在open graph和twitter卡片上
-    #imgs:
-    # 在首页展开内容
-    #expand: true
-    # 外部链接地址，访问时直接跳转
-    #extlink:
-    # 在当前页面关闭评论功能
-    #comment:
-    # enable: false
-    # 关闭当前页面目录功能
-    # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-    #toc: false
-    # 绝对访问路径
-    #url: "{{ lower .Name }}.html"
-    # 开启文章置顶，数字越小越靠前
-    #weight: 1
-    #开启数学公式渲染，可选值： mathjax, katex
-    #math: mathjax
-    # 开启各种图渲染，如流程图、时序图、类图等
-    #mermaid: true
 --- 
 
 ```python
@@ -178,7 +146,7 @@ cv2.imwrite('7tophat.jpg', tophat) if args["save"] else cv_show('tophat', tophat
 # 要做到这一点，我们计算 最小/最大归一化 最后一步是将gradX转换   为 uint8   ，其范围为[0-255]
 gradX = cv2.Sobel(tophat, ddepth=cv2.CV_32F, dx=1, dy=0,  # ksize=-1相当于用3*3的
                   ksize=-1)
-# **Sobel边缘检测算法**比较简单，实际应用中效率**比canny边缘检测效率要高**，但是边缘**不如Canny检测的准确**，但是很多实际应用的场合，sobel边缘却是首选，Sobel算子是**高斯平滑与微分操作的结合体，所以其抗噪声能力很强，用途较多**。尤其是效率要求较高，而对细纹理不太关心的时候。
+# `Sobel边缘检测算法`比较简单，实际应用中效率`比canny边缘检测效率要高`，但是边缘`不如Canny检测的准确`，但是很多实际应用的场合，sobel边缘却是首选，Sobel算子是`高斯平滑与微分操作的结合体，所以其抗噪声能力很强，用途较多`。尤其是效率要求较高，而对细纹理不太关心的时候。
 
 gradX = np.absolute(gradX)
 (minVal, maxVal) = (np.min(gradX), np.max(gradX))

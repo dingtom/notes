@@ -7,38 +7,6 @@
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
     
-    # 标签
-    #tags:
-    # 文章内容摘要
-    #description: "{{ .Name }}" 
-    # 最后修改日期
-    #lastmod: {{ .Date }}
-    # 文章内容关键字
-    #keywords: "{{replace .Name "-" ","}}"
-    # 原文作者
-    #author:
-    # 原文链接
-    #link:
-    # 图片链接，用在open graph和twitter卡片上
-    #imgs:
-    # 在首页展开内容
-    #expand: true
-    # 外部链接地址，访问时直接跳转
-    #extlink:
-    # 在当前页面关闭评论功能
-    #comment:
-    # enable: false
-    # 关闭当前页面目录功能
-    # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-    #toc: false
-    # 绝对访问路径
-    #url: "{{ lower .Name }}.html"
-    # 开启文章置顶，数字越小越靠前
-    #weight: 1
-    #开启数学公式渲染，可选值： mathjax, katex
-    #math: mathjax
-    # 开启各种图渲染，如流程图、时序图、类图等
-    #mermaid: true
 --- 
 
 # TensorRT
@@ -51,7 +19,7 @@ TensorRT支持几乎所有主流深度学习框架，将python框架转换成C++
 - 动态张量显存：我们都知道，显存的开辟和释放是比较耗时的，通过调整一些策略可以减少模型中这些操作的次数，从而可以减少模型运行的时间
 - 多流执行：使用CUDA中的stream技术，最大化实现并行操作
 
-当然，**TensorRT主要缺点是与特定GPU绑定，在不同型号上转换出来的模型不能通用**(这一点笔者暂未去从实践证实)
+当然，`TensorRT主要缺点是与特定GPU绑定，在不同型号上转换出来的模型不能通用`(这一点笔者暂未去从实践证实)
 
 TensorRT官方在其[仓库](https://github.com/NVIDIA/TensorRT/tree/master/tools)提供了三个开源工具，之后有需要可以使用。
 
@@ -249,7 +217,7 @@ python detect.py --weights runs/train/exp3/half/best.engine --source D:/Desktop/
 
 实验结果如下表所示：
 
-|     **模型**     | **验证花费时间(s)** | **P** | **R** | **AP50** | **推理花费时间(s)** |
+|     `模型`     | `验证花费时间(s)` | `P` | `R` | `AP50` | `推理花费时间(s)` |
 | :--------------: | :-----------------: | :---: | :---: | :------: | :-----------------: |
 |     yolov5m      |       101.28        | 43.1% | 34.9% |  32.0%   |       157.51        |
 |       onnx       |       156.16        | 42.8% | 34.9% |  32.0%   |       158.97        |

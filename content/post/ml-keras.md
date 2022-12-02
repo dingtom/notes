@@ -7,38 +7,6 @@
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
     
-    # 标签
-    #tags:
-    # 文章内容摘要
-    #description: "{{ .Name }}" 
-    # 最后修改日期
-    #lastmod: {{ .Date }}
-    # 文章内容关键字
-    #keywords: "{{replace .Name "-" ","}}"
-    # 原文作者
-    #author:
-    # 原文链接
-    #link:
-    # 图片链接，用在open graph和twitter卡片上
-    #imgs:
-    # 在首页展开内容
-    #expand: true
-    # 外部链接地址，访问时直接跳转
-    #extlink:
-    # 在当前页面关闭评论功能
-    #comment:
-    # enable: false
-    # 关闭当前页面目录功能
-    # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-    #toc: false
-    # 绝对访问路径
-    #url: "{{ lower .Name }}.html"
-    # 开启文章置顶，数字越小越靠前
-    #weight: 1
-    #开启数学公式渲染，可选值： mathjax, katex
-    #math: mathjax
-    # 开启各种图渲染，如流程图、时序图、类图等
-    #mermaid: true
 --- 
 
 
@@ -69,7 +37,7 @@ update_freq='epoch'))
 ```
 >该类在keras.callbacks模块中。它的参数列表如下：  
 - log_dir: 用来保存被 TensorBoard 分析的日志文件的文件名。
-- histogram_freq:**对于模型中各个层计算激活值和模型权重直方图的频率（训练轮数中**。 该参数用于设置tensorboard面板中的histograms和distributions面板如果设置成 0 ，直方图不会被计算。对于直方图可视化的验证数据（或分离数据）一定要明确的指出。
+- histogram_freq:`对于模型中各个层计算激活值和模型权重直方图的频率（训练轮数中`。 该参数用于设置tensorboard面板中的histograms和distributions面板如果设置成 0 ，直方图不会被计算。对于直方图可视化的验证数据（或分离数据）一定要明确的指出。
 - write_graph: 是否在 TensorBoard 中可视化图。 如果 write_graph 被设置为 True。
 - write_grads: 是否在 TensorBoard 中可视化梯度值直方图。 histogram_freq 必须要大于 0 。
 ![](https://upload-images.jianshu.io/upload_images/18339009-ee7a2081f8077b9f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -252,15 +220,15 @@ zero：所有权重初始化为0。
 - 1)accuracy
 如我们有6个样本，其真实标签y_true为[0, 1, 3, 3, 4, 2]，但被一个模型预测为了[0, 1, 3, 4, 4, 4]，即y_pred=[0, 1, 3, 4, 4, 4]，那么该模型的accuracy=4/6=66.67%。
 - 2)binary_accuracy
-**它适用于2分类的情况**。从上图中可以看到binary_accuracy的计算除了y_true和y_pred外，还有一个threshold参数，该参数默认为0.5。比如有6个样本，其y_true为[0, 0, 0, 1, 1, 0]，y_pred为[0.2, 0.3, 0.6, 0.7, 0.8, 0.1].具体计算方法为：1）将y_pred中的每个预测值和threshold对比，大于threshold的设为1，小于等于threshold的设为0，得到y_pred_new=[0, 0, 1, 1, 1, 0]；2）将y_true和y_pred_new代入到2.1中计算得到最终的binary_accuracy=5/6=87.5%。
+`它适用于2分类的情况`。从上图中可以看到binary_accuracy的计算除了y_true和y_pred外，还有一个threshold参数，该参数默认为0.5。比如有6个样本，其y_true为[0, 0, 0, 1, 1, 0]，y_pred为[0.2, 0.3, 0.6, 0.7, 0.8, 0.1].具体计算方法为：1）将y_pred中的每个预测值和threshold对比，大于threshold的设为1，小于等于threshold的设为0，得到y_pred_new=[0, 0, 1, 1, 1, 0]；2）将y_true和y_pred_new代入到2.1中计算得到最终的binary_accuracy=5/6=87.5%。
 - 3)categorical_accuracy
-**针对的是y_true为onehot标签，y_pred为向量的情况。**比如有4个样本，其y_true为[[0, 0, 1], [0, 1, 0], [0, 1, 0], [1, 0, 0]]，y_pred为[[0.1, 0.6, 0.3], [0.2, 0.7, 0.1], [0.3, 0.6, 0.1], [0.9, 0, 0.1]]。具体计算方法为：1）将y_true转为非onehot的形式，即y_true_new=[2, 1, 1, 0]；2）根据y_pred中的每个样本预测的分数得到y_pred_new=[1, 1, 1, 0]；3）将y_true_new和y_pred_new代入到2.1中计算得到最终的categorical_accuracy=75%。
+`针对的是y_true为onehot标签，y_pred为向量的情况。`比如有4个样本，其y_true为[[0, 0, 1], [0, 1, 0], [0, 1, 0], [1, 0, 0]]，y_pred为[[0.1, 0.6, 0.3], [0.2, 0.7, 0.1], [0.3, 0.6, 0.1], [0.9, 0, 0.1]]。具体计算方法为：1）将y_true转为非onehot的形式，即y_true_new=[2, 1, 1, 0]；2）根据y_pred中的每个样本预测的分数得到y_pred_new=[1, 1, 1, 0]；3）将y_true_new和y_pred_new代入到2.1中计算得到最终的categorical_accuracy=75%。
 - 4)sparse_categorical_accuracy
-**和categorical_accuracy功能一样，只是其y_true为非onehot的形式。**比如有4个样本，其y_true为[2， 1， 1， 0]，y_pred为[[0.1, 0.6, 0.3], [0.2, 0.7, 0.1], [0.3, 0.6, 0.1], [0.9, 0, 0.1]]。具体计算方法为：1）根据y_pred中的每个样本预测的分数得到y_pred_new=[1, 1, 1, 0]；2）将y_true和y_pred_new代入到2.1中计算得到最终的categorical_accuracy=75%。
+`和categorical_accuracy功能一样，只是其y_true为非onehot的形式。`比如有4个样本，其y_true为[2， 1， 1， 0]，y_pred为[[0.1, 0.6, 0.3], [0.2, 0.7, 0.1], [0.3, 0.6, 0.1], [0.9, 0, 0.1]]。具体计算方法为：1）根据y_pred中的每个样本预测的分数得到y_pred_new=[1, 1, 1, 0]；2）将y_true和y_pred_new代入到2.1中计算得到最终的categorical_accuracy=75%。
 - 5)top_k_categorical_accuracy
-**在categorical_accuracy的基础上加上top_k。**categorical_accuracy要求样本在真值类别上的预测分数是在所有类别上预测分数的最大值，才算预测对，而top_k_categorical_accuracy只要求样本在真值类别上的预测分数排在其在所有类别上的预测分数的前k名就行。比如有4个样本，其y_true为[[0, 0, 1], [0, 1, 0], [0, 1, 0], [1, 0, 0]]，y_pred为[[0.3, 0.6, 0.1], [0.5, 0.4, 0.1], [0.3, 0.6, 0.1], [0.9, 0, 0.1]]。具体计算方法为：1）将y_true转为非onehot的形式，即y_true_new=[2, 1, 1, 0]；2）计算y_pred的top_k的label，比如k=2时，y_pred_new = [[0, 1], [0, 1], [0, 1], [0, 2]]；3）根据每个样本的真实标签是否在预测标签的top_k内来统计准确率，上述4个样本为例，2不在[0, 1]内，1在[0, 1]内，1在[0, 1]内，0在[0, 2]内，4个样本总共预测对了3个，因此k=2时top_k_categorical_accuracy=75%。说明一下，Keras中计算top_k_categorical_accuracy时默认的k值为5。
+`在categorical_accuracy的基础上加上top_k。`categorical_accuracy要求样本在真值类别上的预测分数是在所有类别上预测分数的最大值，才算预测对，而top_k_categorical_accuracy只要求样本在真值类别上的预测分数排在其在所有类别上的预测分数的前k名就行。比如有4个样本，其y_true为[[0, 0, 1], [0, 1, 0], [0, 1, 0], [1, 0, 0]]，y_pred为[[0.3, 0.6, 0.1], [0.5, 0.4, 0.1], [0.3, 0.6, 0.1], [0.9, 0, 0.1]]。具体计算方法为：1）将y_true转为非onehot的形式，即y_true_new=[2, 1, 1, 0]；2）计算y_pred的top_k的label，比如k=2时，y_pred_new = [[0, 1], [0, 1], [0, 1], [0, 2]]；3）根据每个样本的真实标签是否在预测标签的top_k内来统计准确率，上述4个样本为例，2不在[0, 1]内，1在[0, 1]内，1在[0, 1]内，0在[0, 2]内，4个样本总共预测对了3个，因此k=2时top_k_categorical_accuracy=75%。说明一下，Keras中计算top_k_categorical_accuracy时默认的k值为5。
 - 6)sparse_top_k_categorical_accuracy
-**和top_k_categorical_accuracy功能一样，只是其y_true为非onehot的形式。**比如有4个样本，其y_true为[2， 1， 1， 0]，y_pred为[[0.3, 0.6, 0.1], [0.5, 0.4, 0.1], [0.3, 0.6, 0.1], [0.9, 0, 0.1]]。计算步骤如下：1）计算y_pred的top_k的label，比如k=2时，y_pred_new = [[0, 1], [0, 1], [0, 1], [0, 2]]；2）根据每个样本的真实标签是否在预测标签的top_k内来统计准确率，上述4个样本为例，2不在[0, 1]内，1在[0, 1]内，1在[0, 1]内，0在[0, 2]内，4个样本总共预测对了3个，因此k=2时top_k_categorical_accuracy=75%。
+`和top_k_categorical_accuracy功能一样，只是其y_true为非onehot的形式。`比如有4个样本，其y_true为[2， 1， 1， 0]，y_pred为[[0.3, 0.6, 0.1], [0.5, 0.4, 0.1], [0.3, 0.6, 0.1], [0.9, 0, 0.1]]。计算步骤如下：1）计算y_pred的top_k的label，比如k=2时，y_pred_new = [[0, 1], [0, 1], [0, 1], [0, 2]]；2）根据每个样本的真实标签是否在预测标签的top_k内来统计准确率，上述4个样本为例，2不在[0, 1]内，1在[0, 1]内，1在[0, 1]内，0在[0, 2]内，4个样本总共预测对了3个，因此k=2时top_k_categorical_accuracy=75%。
 
 ##### ROC,AUC
 ```
@@ -364,8 +332,8 @@ model = MyModel(num_classes=10)
 
 ```python
 class MyLayer(layers.Layer):
-    def __init__(self, output_dim, **kwargs):
-        super(MyLayer, self).__init__(**kwargs)
+    def __init__(self, output_dim, `kwargs):
+        super(MyLayer, self).__init__(`kwargs)
         self.output_dim = output_dim
     def build(self, input_shape):
         shape = tf.TensorShape((input_shape[1], self.output_dim))
@@ -384,7 +352,7 @@ class MyLayer(layers.Layer):
         return base_config
     @classmethod
     def from_config(cls, config):
-        return cls(**config)
+        return cls(`config)
 model = tf.keras.Sequential([
     MyLayer(10),
     layers.Activation('softmax')])
@@ -407,7 +375,7 @@ model = tf.keras.Sequential([
 • poisson 。
 • cosine_proximity 。
 
-**注意**：当使用categorical_crossentropy 作为目标函数时，标签应该为多类模式，即one-hot 形式编码的向量，而不是单个数值。用户可以使用工具中的to_ categorical 函数完成该转换.
+`注意`：当使用categorical_crossentropy 作为目标函数时，标签应该为多类模式，即one-hot 形式编码的向量，而不是单个数值。用户可以使用工具中的to_ categorical 函数完成该转换.
 ```
 from keras.utils.np_utils import to_categorical
 int_labels= [1,2,3]
@@ -611,9 +579,9 @@ history = model.fit(
 ```
 ![](https://upload-images.jianshu.io/upload_images/18339009-b1fd2d5f2ce1181a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-layers.Conv2D```((filters,kernel_size,strides=(1, 1),padding='valid',data_format=None,dilation_rate=(1,1),activation=None,use_bias=True,kernel_initializer='glorot_uniform',bias_initializer='zeros',kernel_regularizer=None,bias_regularizer=None,activity_regularizer=None,kernel_constraint=None,bias_constraint=None,**kwargs)```
+layers.Conv2D```((filters,kernel_size,strides=(1, 1),padding='valid',data_format=None,dilation_rate=(1,1),activation=None,use_bias=True,kernel_initializer='glorot_uniform',bias_initializer='zeros',kernel_regularizer=None,bias_regularizer=None,activity_regularizer=None,kernel_constraint=None,bias_constraint=None,`kwargs)```
 
-layers.MaxPooling2D```(pool_size=(2, 2),strides=None,padding='valid',data_format=None,**kwargs)```
+layers.MaxPooling2D```(pool_size=(2, 2),strides=None,padding='valid',data_format=None,`kwargs)```
 
 # 小型残差网络
 ```
@@ -825,7 +793,7 @@ def show_result(batch_size, test_X, test_y):
     labels = test_y[selected_index]
     predict_labels = model.predict(images)
     image_numbers = images.shape[0]
-    row_number = math.ceil(image_numbers ** 0.5)
+    row_number = math.ceil(image_numbers ` 0.5)
     column_number = row_number
     # 设置图片大小
     plt.figure(figsize=(row_number+8, column_number+8))

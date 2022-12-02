@@ -7,38 +7,6 @@
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
     
-    # 标签
-    #tags:
-    # 文章内容摘要
-    #description: "{{ .Name }}" 
-    # 最后修改日期
-    #lastmod: {{ .Date }}
-    # 文章内容关键字
-    #keywords: "{{replace .Name "-" ","}}"
-    # 原文作者
-    #author:
-    # 原文链接
-    #link:
-    # 图片链接，用在open graph和twitter卡片上
-    #imgs:
-    # 在首页展开内容
-    #expand: true
-    # 外部链接地址，访问时直接跳转
-    #extlink:
-    # 在当前页面关闭评论功能
-    #comment:
-    # enable: false
-    # 关闭当前页面目录功能
-    # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-    #toc: false
-    # 绝对访问路径
-    #url: "{{ lower .Name }}.html"
-    # 开启文章置顶，数字越小越靠前
-    #weight: 1
-    #开启数学公式渲染，可选值： mathjax, katex
-    #math: mathjax
-    # 开启各种图渲染，如流程图、时序图、类图等
-    #mermaid: true
 --- 
 
 # 1.安装
@@ -159,9 +127,9 @@ print(z, out)
 如果.requires_grad=True但是你又不希望进行autograd的计算， 那么可以将变量包裹在 with torch.no_grad()中:
 ```
 print(x.requires_grad)
-print((x ** 2).requires_grad)
+print((x ` 2).requires_grad)
 with torch.no_grad():
-	print((x ** 2).requires_grad)
+	print((x ` 2).requires_grad)
 ```
 >True
 True
@@ -271,7 +239,7 @@ $ loss(x,y)=1/n\sum|x_i-y_i| $
 
 
 ### nn.NLLLoss:
-**用于多分类的负对数似然损失函数**
+`用于多分类的负对数似然损失函数`
 
 $ loss(x, class) = -x[class]$
 
@@ -318,7 +286,7 @@ $ loss(o,t)=-\frac{1}{n}\sum_iweights[i]* (t[i]* log(o[i])+(1-t[i])* log(1-o[i])
 optimizer = torch.optim.SGD(model.parameters(), lr=0.1, momentum=0.9)
 ```
 ### torch.optim.RMSprop
-除了以上的带有动量Momentum梯度下降法外，RMSprop（root mean square prop）也是一种可以加快梯度下降的算法，利用RMSprop算法，**可以减小某些维度梯度更新波动较大的情况**，使其梯度下降的速度变得更快
+除了以上的带有动量Momentum梯度下降法外，RMSprop（root mean square prop）也是一种可以加快梯度下降的算法，利用RMSprop算法，`可以减小某些维度梯度更新波动较大的情况`，使其梯度下降的速度变得更快
 ```
 # 我们的课程基本不会使用到RMSprop所以这里只给一个实例
 optimizer = torch.optim.RMSprop(model.parameters(), lr=0.01, alpha=0.99)
@@ -626,8 +594,8 @@ def main():
 
     train_dataset = datasets.MNIST('./data', train=True, download=True, transform=transform,)                                         
     test_dataset = datasets.MNIST('./data', train=False, transform=transform)
-    train_loader = torch.utils.data.DataLoader(train_dataset, **kwargs)
-    test_loader = torch.utils.data.DataLoader(test_dataset, **kwargs)
+    train_loader = torch.utils.data.DataLoader(train_dataset, `kwargs)
+    test_loader = torch.utils.data.DataLoader(test_dataset, `kwargs)
 
     device = torch.device("cuda" if use_cuda else "cpu")
     model = Net().to(device)

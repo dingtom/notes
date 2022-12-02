@@ -7,38 +7,6 @@
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
     
-    # 标签
-    #tags:
-    # 文章内容摘要
-    #description: "{{ .Name }}" 
-    # 最后修改日期
-    #lastmod: {{ .Date }}
-    # 文章内容关键字
-    #keywords: "{{replace .Name "-" ","}}"
-    # 原文作者
-    #author:
-    # 原文链接
-    #link:
-    # 图片链接，用在open graph和twitter卡片上
-    #imgs:
-    # 在首页展开内容
-    #expand: true
-    # 外部链接地址，访问时直接跳转
-    #extlink:
-    # 在当前页面关闭评论功能
-    #comment:
-    # enable: false
-    # 关闭当前页面目录功能
-    # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-    #toc: false
-    # 绝对访问路径
-    #url: "{{ lower .Name }}.html"
-    # 开启文章置顶，数字越小越靠前
-    #weight: 1
-    #开启数学公式渲染，可选值： mathjax, katex
-    #math: mathjax
-    # 开启各种图渲染，如流程图、时序图、类图等
-    #mermaid: true
 --- 
 
 
@@ -47,8 +15,8 @@ https://github.com/CyberZHG/keras-self-attention/blob/master/keras_self_attentio
 
 用Attention机制的原因是考虑到RNN（或者LSTM，GRU等）的计算限制为是顺序的，也就是说RNN相关算法只能从左向右依次计算或者从右向左依次计算，这种机制带来了两个问题：
 
-1.  时间片 *t* 的计算依赖 *t-1* 时刻的计算结果，这样**限制了模型的并行能力；**
-2.  顺序计算的过程中信息会丢失，尽管LSTM等门机制的结构一定程度上缓解了长期依赖的问题，**但是对于特别长期的依赖现象,LSTM依旧无能为力。**
+1.  时间片 *t* 的计算依赖 *t-1* 时刻的计算结果，这样`限制了模型的并行能力；`
+2.  顺序计算的过程中信息会丢失，尽管LSTM等门机制的结构一定程度上缓解了长期依赖的问题，`但是对于特别长期的依赖现象,LSTM依旧无能为力。`
 
 
 
@@ -125,7 +93,7 @@ https://github.com/CyberZHG/keras-self-attention/blob/master/keras_self_attentio
 
 在self-attention中，每个单词有3个不同的向量，它们分别是Query向量 $Q$，Key向量$K$和Value向量$V$。它们是通过3个不同的权值矩阵由嵌入向量$X$乘以三个不同的权值矩阵$W_Q,W_K,W_V$  得到，其中三个矩阵的尺寸也是相同的。
 
-**Attention的计算方法，整个过程可以分成7步：**
+`Attention的计算方法，整个过程可以分成7步：`
 1. 将输入单词转化成嵌入向量；
 2.  根据嵌入向量得到 三个向量$Q,K,V$ ；
 3.  为每个向量计算一个attention score：$Q*K$；
@@ -139,9 +107,9 @@ class AttentionLayer(Layer):
         # Input shape  3D tensor with shape: `(samples, steps, features)`.
         # Output shape 3D tensor with shape: `(samples, steps, output_dim)`.
 """
-    def __init__(self, output_dim, **kwargs):
+    def __init__(self, output_dim, `kwargs):
         self.output_dim = output_dim
-        super(AttentionLayer, self).__init__(**kwargs)
+        super(AttentionLayer, self).__init__(`kwargs)
     def build(self, input_shape):
         # 为该层创建一个可训练的权重
         #inputs.shape = (batch_size, time_steps, seq_len)
@@ -151,7 +119,7 @@ class AttentionLayer(Layer):
         WQ = K.dot(x, self.kernel[0])  # (None, input_shape[1]，input_shape[2])   (input_shape[2], output_dim)  (None, input_shape[1]，output_dim)
         WK = K.dot(x, self.kernel[1])  # (None, input_shape[1]，output_dim)
         WV = K.dot(x, self.kernel[2])  # (None, input_shape[1]，output_dim)
-        score = K.batch_dot(WQ, K.permute_dimensions(WK, [0, 2, 1])) / (input_shape[0]**0.5)  #  (None, input_shape[1], input_shape[1])
+        score = K.batch_dot(WQ, K.permute_dimensions(WK, [0, 2, 1])) / (input_shape[0]`0.5)  #  (None, input_shape[1], input_shape[1])
         alpha = K.softmax(score)  
         V = K.batch_dot(alpha, WV)  # (None, input_shape[1], input_shape[1])  (None, input_shape[1]，output_dim) (None, input_shape[1]，output_dim)
         return V
@@ -159,9 +127,9 @@ class AttentionLayer(Layer):
 
 
 # 总结
-优点：（1）虽然Transformer最终也没有逃脱传统学习的套路，Transformer也只是一个全连接（或者是一维卷积）加Attention的结合体。但是其设计已经足够有创新，因为其抛弃了在NLP中最根本的RNN或者CNN并且取得了非常不错的效果，算法的设计非常精彩，值得每个深度学习的相关人员仔细研究和品位。（2）Transformer的设计最大的带来性能提升的**关键是将任意两个单词的距离是1，**这对解决NLP中棘手的长期依赖问题是非常有效的。（3）Transformer不仅仅可以应用在NLP的机器翻译领域，甚至可以不局限于NLP领域，是非常有科研潜力的一个方向。（4）算法的并行性非常好，符合目前的硬件（主要指GPU）环境。
+优点：（1）虽然Transformer最终也没有逃脱传统学习的套路，Transformer也只是一个全连接（或者是一维卷积）加Attention的结合体。但是其设计已经足够有创新，因为其抛弃了在NLP中最根本的RNN或者CNN并且取得了非常不错的效果，算法的设计非常精彩，值得每个深度学习的相关人员仔细研究和品位。（2）Transformer的设计最大的带来性能提升的`关键是将任意两个单词的距离是1，`这对解决NLP中棘手的长期依赖问题是非常有效的。（3）Transformer不仅仅可以应用在NLP的机器翻译领域，甚至可以不局限于NLP领域，是非常有科研潜力的一个方向。（4）算法的并行性非常好，符合目前的硬件（主要指GPU）环境。
 
-缺点：（1）粗暴的抛弃RNN和CNN虽然非常炫技，但是它也使模型**丧失了捕捉局部特征的能力**，RNN + CNN + Transformer的结合可能会带来更好的效果。（2）**Transformer失去的位置信息其实在NLP中非常重要**，而论文中在特征向量中加入Position Embedding也只是一个权宜之计，并没有改变Transformer结构上的固有缺陷。+
+缺点：（1）粗暴的抛弃RNN和CNN虽然非常炫技，但是它也使模型`丧失了捕捉局部特征的能力`，RNN + CNN + Transformer的结合可能会带来更好的效果。（2）`Transformer失去的位置信息其实在NLP中非常重要`，而论文中在特征向量中加入Position Embedding也只是一个权宜之计，并没有改变Transformer结构上的固有缺陷。+
 
 
 给定一个在每个时间步产生隐藏状态$h_t$的模型，基于注意的模型计算一个“上下文”向量$c_t$作为状态序列h的加权平均值
@@ -194,9 +162,9 @@ class AttentionLayer(Layer):
     # Input shape  3D tensor with shape: `(samples, steps, hidden_size)`.
     # Output shape 2D tensor with shape: `(samples, hidden_size)`.
     """
-    def __init__(self, attention_size=None, **kwargs):
+    def __init__(self, attention_size=None, `kwargs):
         self.attention_size = attention_size
-        super(AttentionLayer, self).__init__(**kwargs)
+        super(AttentionLayer, self).__init__(`kwargs)
         
     def get_config(self):
         config = super().get_config()

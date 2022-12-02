@@ -7,52 +7,20 @@
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
     
-    # 标签
-    #tags:
-    # 文章内容摘要
-    #description: "{{ .Name }}" 
-    # 最后修改日期
-    #lastmod: {{ .Date }}
-    # 文章内容关键字
-    #keywords: "{{replace .Name "-" ","}}"
-    # 原文作者
-    #author:
-    # 原文链接
-    #link:
-    # 图片链接，用在open graph和twitter卡片上
-    #imgs:
-    # 在首页展开内容
-    #expand: true
-    # 外部链接地址，访问时直接跳转
-    #extlink:
-    # 在当前页面关闭评论功能
-    #comment:
-    # enable: false
-    # 关闭当前页面目录功能
-    # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-    #toc: false
-    # 绝对访问路径
-    #url: "{{ lower .Name }}.html"
-    # 开启文章置顶，数字越小越靠前
-    #weight: 1
-    #开启数学公式渲染，可选值： mathjax, katex
-    #math: mathjax
-    # 开启各种图渲染，如流程图、时序图、类图等
-    #mermaid: true
 --- 
 
 [中文手册](https://sklearn.apachecn.org/)
 [英文手册](https://scikit-learn.org/stable/user_guide.html)
 在Sklearn当中有三大模型：Transformer 转换器、Estimator 估计器、Pipeline 管道
 
-**估计器 (estimator)** 可以基于数据集对一些参数进行估计的对象都被称为估计器。
-**预测器 (predictor) **在估计器上做了一个延展，延展出预测的功能。
-**转换器 (transformer) **也是一种估计器，两者都带拟合功能，但估计器做完拟合来预测，而转换器做完拟合来转换。
+`估计器 (estimator)` 可以基于数据集对一些参数进行估计的对象都被称为估计器。
+`预测器 (predictor) `在估计器上做了一个延展，延展出预测的功能。
+`转换器 (transformer) `也是一种估计器，两者都带拟合功能，但估计器做完拟合来预测，而转换器做完拟合来转换。
 
 估计器都有 fit() 方法，预测器都有 predict() 和 score() （返回的是分类准确率）方法，言外之意不是每个预测器都有 predict_proba() 和 decision_function() （返回的是每个样例在每个类下的分数值）方法
 
-**管道将Transformer、Estimator 组合起来成为一个大模型。
-Transformer放在管道前几个模型中，而Estimator 只能放到管道的最后一个模型中。**
+`管道将Transformer、Estimator 组合起来成为一个大模型。
+Transformer放在管道前几个模型中，而Estimator 只能放到管道的最后一个模型中。`
 
 
 
@@ -76,7 +44,7 @@ Transformer放在管道前几个模型中，而Estimator 只能放到管道的�
 KFold交叉采样：将训练/测试数据集划分n_splits个互斥子集，每次只用其中一个子集当做测试集，剩下的（n_splits-1）作为训练集，进行n_splits次实验并得到n_splits个结果。
 注：对于不能均等分的数据集，前n_samples%n_spllits子集拥有n_samples//n_spllits+1个样本，其余子集都只有n_samples//n_spllits个样本。（例10行数据分3份，只有一份可分4行，其他均为3行）
 
-StratifiedKFold分层采样，用于交叉验证：与KFold最大的差异在于，**StratifiedKFold方法是根据标签中不同类别占比1：1来进行拆分数据的。**
+StratifiedKFold分层采样，用于交叉验证：与KFold最大的差异在于，`StratifiedKFold方法是根据标签中不同类别占比1：1来进行拆分数据的。`
 ### 流水线的 pipeline
 
 
@@ -158,7 +126,7 @@ StratifiedKFold分层采样，用于交叉验证：与KFold最大的差异在于
 - pre_dispatch：指定总共分发的并行任务数。当n_jobs大于1时，数据将在每个运行点进行复制，这可能导致OOM，而设置pre_dispatch参数，则可以预先划分总共的job数量，使数据最多被复制pre_dispatch次
 
 方法：
-- fit（X, y=None, groups=None, **fit_params）：与所有参数组合运行。
+- fit（X, y=None, groups=None, `fit_params）：与所有参数组合运行。
 - get_params（[deep]）：获取此分类器的参数。
 - inverse_transform（Xt）使用找到的最佳参数在分类器上调用inverse_transform。
 - predict（X）调用使用最佳找到的参数对估计量进行预测，X：可索引，长度为n_samples；
@@ -245,7 +213,7 @@ enc.fit([[0, 0, 3],
 ans = enc.transform([[0, 2, 3]]).toarray()
 print(ans) # 输出 [[ 1.  0.  0.  0.  1.  0.  0.  0.  1.]]
 ```
-注意到训练样本中第二个特征列没有类别 2，但是结果中依然将类别 2 给编码了出来，这就是自己指定维数的作用了（我们使用 3 位来表示第二个特征，自然包括了类别 2），第三列特征同样如此。这也告诫我们，**如果训练样本中有丢失的分类特征值，我们就必须显示地设置参数 n_values 了，这样防止编码出错。**
+注意到训练样本中第二个特征列没有类别 2，但是结果中依然将类别 2 给编码了出来，这就是自己指定维数的作用了（我们使用 3 位来表示第二个特征，自然包括了类别 2），第三列特征同样如此。这也告诫我们，`如果训练样本中有丢失的分类特征值，我们就必须显示地设置参数 n_values 了，这样防止编码出错。`
 ```
 from sklearn.preprocessing import  OneHotEncoder
 

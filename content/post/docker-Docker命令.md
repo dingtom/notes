@@ -1,44 +1,12 @@
 ---
         # 文章标题
-        title: "dcoker-Docker命令"
+        title: "docker-Docker命令"
         # 分类
         categories: 
-            - dcoker
+            - docker
         # 发表日期
         date: 2022-12-02T02:11:14+08:00
-    
-        # 标签
-        #tags:
-        # 文章内容摘要
-        #description: "{{ .Name }}" 
-        # 最后修改日期
-        #lastmod: {{ .Date }}
-        # 文章内容关键字
-        #keywords: "{{replace .Name "-" ","}}"
-        # 原文作者
-        #author:
-        # 原文链接
-        #link:
-        # 图片链接，用在open graph和twitter卡片上
-        #imgs:
-        # 在首页展开内容
-        #expand: true
-        # 外部链接地址，访问时直接跳转
-        #extlink:
-        # 在当前页面关闭评论功能
-        #comment:
-        # enable: false
-        # 关闭当前页面目录功能
-        # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-        #toc: false
-        # 绝对访问路径
-        #url: "{{ lower .Name }}.html"
-        # 开启文章置顶，数字越小越靠前
-        #weight: 1
-        #开启数学公式渲染，可选值： mathjax, katex
-        #math: mathjax
-        # 开启各种图渲染，如流程图、时序图、类图等
-        #mermaid: true
+
 ---
 
 # Docekr安装torch
@@ -156,7 +124,7 @@ sudo docker run -it  image_id /bin/bash
 > -  --link：将另一个容器映射到本容器，进行通信
 > -  --restart=always：因某种错误而停止运行时，能够自动重启
 >- --rm`：这个参数是说容器退出后随之将其删除`
->- /bin/bash`：放在镜像名后的是 **命令**，这里我们希望有个交互式 Shell，因此用的是 `bash。
+>- /bin/bash`：放在镜像名后的是 `命令`，这里我们希望有个交互式 Shell，因此用的是 `bash。
 >
 >
 
@@ -245,7 +213,7 @@ docker commit container_id  mirror_name
 -c :使用Dockerfile指令来创建镜像；
 -m :提交时的说明文字；
 -p :在commit时，将容器暂停。
-注意：通过commint的形式保存现场为一个新的镜像虽然也能直观的达到构建新镜像的目的，但是实际操作中，并不推荐这种形式，因为1.commit操作不仅会把有用的修改保存下来，对一些无关的修改也会保存下来（每一个命令行操作都会生成存储如ls操作）就会导致镜像比较臃肿；2.因为commit操作属于黑箱操作，后续如果有什么问题维护起来会比较麻烦。**建议commit仅作为保留现场的手段，然后通过修改dockerfile构建镜像。**
+注意：通过commint的形式保存现场为一个新的镜像虽然也能直观的达到构建新镜像的目的，但是实际操作中，并不推荐这种形式，因为1.commit操作不仅会把有用的修改保存下来，对一些无关的修改也会保存下来（每一个命令行操作都会生成存储如ls操作）就会导致镜像比较臃肿；2.因为commit操作属于黑箱操作，后续如果有什么问题维护起来会比较麻烦。`建议commit仅作为保留现场的手段，然后通过修改dockerfile构建镜像。`
 
 #### cp
 https://www.runoob.com/docker/docker-cp-command.html
@@ -265,7 +233,7 @@ docker cp /www/runoob 96f7f14e99ab:/www
 
 OPTIONS说明：
 
-- **-L :**保持源目标中的链接
+- `-L :`保持源目标中的链接
 
   
 
@@ -343,49 +311,49 @@ docker build -f ./dockerfile -t registry.cn-shanghai.aliyuncs.com/target:test .
 registry.~~~是你在阿里云容器仓库开通的镜像仓库的公网地址，用自己仓库地址替换。地址后面的：1.0为自己指定的版本号，用于区分每次build的镜像。最后的.是构建镜像的路径，不可以省掉
 ```
 
-- **--build-arg=[] :**设置镜像创建时的变量；
+- `--build-arg=[] :`设置镜像创建时的变量；
 
-- **--cpu-shares :**设置 cpu 使用权重；
+- `--cpu-shares :`设置 cpu 使用权重；
 
-- **--cpu-period :**限制 CPU CFS周期；
+- `--cpu-period :`限制 CPU CFS周期；
 
-- **--cpu-quota :**限制 CPU CFS配额；
+- `--cpu-quota :`限制 CPU CFS配额；
 
-- **--cpuset-cpus :**指定使用的CPU id；
+- `--cpuset-cpus :`指定使用的CPU id；
 
-- **--cpuset-mems :**指定使用的内存 id；
+- `--cpuset-mems :`指定使用的内存 id；
 
-- **--disable-content-trust :**忽略校验，默认开启；
+- `--disable-content-trust :`忽略校验，默认开启；
 
-- **-f :**指定要使用的Dockerfile路径；
+- `-f :`指定要使用的Dockerfile路径；
 
-- **--force-rm :**设置镜像过程中删除中间容器；
+- `--force-rm :`设置镜像过程中删除中间容器；
 
-- **--isolation :**使用容器隔离技术；
+- `--isolation :`使用容器隔离技术；
 
-- **--label=[] :**设置镜像使用的元数据；
+- `--label=[] :`设置镜像使用的元数据；
 
-- **-m :**设置内存最大值；
+- `-m :`设置内存最大值；
 
-- **--memory-swap :**设置Swap的最大值为内存+swap，"-1"表示不限swap；
+- `--memory-swap :`设置Swap的最大值为内存+swap，"-1"表示不限swap；
 
-- **--no-cache :**创建镜像的过程不使用缓存；
+- `--no-cache :`创建镜像的过程不使用缓存；
 
-- **--pull :**尝试去更新镜像的新版本；
+- `--pull :`尝试去更新镜像的新版本；
 
-- **--quiet, -q :**安静模式，成功后只输出镜像 ID；
+- `--quiet, -q :`安静模式，成功后只输出镜像 ID；
 
-- **--rm :**设置镜像成功后删除中间容器；
+- `--rm :`设置镜像成功后删除中间容器；
 
-- **--shm-size :**设置/dev/shm的大小，默认值是64M；
+- `--shm-size :`设置/dev/shm的大小，默认值是64M；
 
-- **--ulimit :**Ulimit配置。
+- `--ulimit :`Ulimit配置。
 
-- **--squash :**将 Dockerfile 中所有的操作压缩为一层。
+- `--squash :`将 Dockerfile 中所有的操作压缩为一层。
 
-- **--tag, -t:** 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。
+- `--tag, -t:` 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。
 
-- **--network:** 默认 default。在构建期间设置RUN指令的网络模式
+- `--network:` 默认 default。在构建期间设置RUN指令的网络模式
 
 #### Dockerfile
 
@@ -428,7 +396,7 @@ https://www.runoob.com/docker/docker-history-command.html
 #### 镜像保存为tar：save
 PTIONS 说明：
 
-- **-o :**输出到的文件。
+- `-o :`输出到的文件。
 
 ```
  docker save -o my_ubuntu_v3.tar runoob/ubuntu:v3
@@ -441,8 +409,8 @@ docker save mirror_name > name.tar
 #### 从tar加载镜像：load
 OPTIONS 说明：
 
-- **--input , -i :** 指定导入的文件，代替 STDIN。
-- **--quiet , -q :** 精简输出信息。
+- `--input , -i :` 指定导入的文件，代替 STDIN。
+- `--quiet , -q :` 精简输出信息。
 
 ```
 docker load <  name.tar
@@ -488,4 +456,4 @@ sudo systemctl restart docker
 
 Windows 10
 
-setting->Docker Engine->   **https://docker.mirrors.ustc.edu.cn/**
+setting->Docker Engine->   `https://docker.mirrors.ustc.edu.cn/`

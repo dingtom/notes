@@ -1,3 +1,14 @@
+---
+        # 文章标题
+        title: "dcoker-Docker安装Hadoop"
+        # 分类
+        categories: 
+            - docker
+        # 发表日期
+        date: 2022-12-02T03:11:14+08:00
+
+---
+
 Docker、Java、Scala、Hadoop、 Hbase、Spark。
 集群共有5台机器，主机名分别为 h01、h02、h03、h04、h05。其中 h01 为 master，其他的为 slave。
 JDK 1.8、Scala 2.11.6、Hadoop 3.2.1、Hbase 2.1.3、Spark 2.4.0

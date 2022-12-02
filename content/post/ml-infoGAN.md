@@ -7,38 +7,6 @@
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
     
-    # 标签
-    #tags:
-    # 文章内容摘要
-    #description: "{{ .Name }}" 
-    # 最后修改日期
-    #lastmod: {{ .Date }}
-    # 文章内容关键字
-    #keywords: "{{replace .Name "-" ","}}"
-    # 原文作者
-    #author:
-    # 原文链接
-    #link:
-    # 图片链接，用在open graph和twitter卡片上
-    #imgs:
-    # 在首页展开内容
-    #expand: true
-    # 外部链接地址，访问时直接跳转
-    #extlink:
-    # 在当前页面关闭评论功能
-    #comment:
-    # enable: false
-    # 关闭当前页面目录功能
-    # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-    #toc: false
-    # 绝对访问路径
-    #url: "{{ lower .Name }}.html"
-    # 开启文章置顶，数字越小越靠前
-    #weight: 1
-    #开启数学公式渲染，可选值： mathjax, katex
-    #math: mathjax
-    # 开启各种图渲染，如流程图、时序图、类图等
-    #mermaid: true
 --- 
 
 ![](https://upload-images.jianshu.io/upload_images/18339009-c52910e7276a8366.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -51,7 +19,7 @@
 
 
 但是，会注意到，其实，无论怎么改，大家在半监督的GAN上的挖掘都是停留在D上。而忽视了G（当然也是G上不太好做文章的原因）。
-一般来说，G的输入只有z 。GAN的训练方式，是将一个随机变量，通过博弈的方式，让z在G上具有意义。也就是使得没有特定信息的变量z，在通过G的映射之后，变得具有某种含义。这种含义使得z的变化会影响到G的生成效果。**InfoGAN的操作，就是尝试添加其他的输入，使得这参数也具有意义。**
+一般来说，G的输入只有z 。GAN的训练方式，是将一个随机变量，通过博弈的方式，让z在G上具有意义。也就是使得没有特定信息的变量z，在通过G的映射之后，变得具有某种含义。这种含义使得z的变化会影响到G的生成效果。`InfoGAN的操作，就是尝试添加其他的输入，使得这参数也具有意义。`
 
 既然要让输入的噪声向量z带有一定的语义信息，那就人为的为它添加上一些限制，于是作者把G的输入看成两部分：
 >- 一部分就是噪声z，可以将它看成是不可压缩的噪声向量。
@@ -73,15 +41,15 @@ c) 联合熵，两个事件间的不确定度
 ![](https://upload-images.jianshu.io/upload_images/18339009-fe115bd12a450bba?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 e) 交叉熵，衡量两个分布的差异程度
 ![](https://upload-images.jianshu.io/upload_images/18339009-a6aacccf52b9dd32?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-f) 相对熵，KL散度，**交叉熵和KL散度成正相关**
+f) 相对熵，KL散度，`交叉熵和KL散度成正相关`
 ![](https://upload-images.jianshu.io/upload_images/18339009-a17da3d3cfadf61c?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-g) 互信息，**已知一个变量后，另一个变量减小了多少不确定度**，本文重点
+g) 互信息，`已知一个变量后，另一个变量减小了多少不确定度`，本文重点
 ![](https://upload-images.jianshu.io/upload_images/18339009-6c0343ee44831390?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 互信息式中，$H$表示计算熵值，所以$I(X;Y)$是两个熵值的差。$H(X|Y)$衡量的是“给定随机变量的情况下，随机变量$X$的不确定性”。从公式中可以看出，若$X$和$Y$是独立的，此时$H(X)=H(X|Y)$，得到$I(X;Y)=0$，为最小值。若$X$和$Y$有非常强的关联时，即已知$Y$时，$X$没有不确定性，则$H(X|Y)=0$, $I(X;Y)$达到最大值。所以为了让$G(z,c)$和$c$之间产生尽量明确的语义信息，必须要让它们二者的互信息足够的大，所以我们对GAN的损失函数添加一个正则项，就可以改写为：
 ![](https://upload-images.jianshu.io/upload_images/18339009-beeea3a7453c419b.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-**注意$I(c;G(z,c))$属于G的损失函数的一部分，所以这里为负号，即让该项越大越好，使得G的损失函数变小。**其中 $\lambda$ 为平衡两个损失函数的权重。但是，在计算$I(c;G(z,c))$的过程中，需要知道后验概率分布$P(c|x)$ ，而这个分布在实际中是很难获取的，因此作者在解决这个问题时采用了变分推理的思想，引入变分分布 $Q(c|x)$来逼近$P(c|x)$
+`注意$I(c;G(z,c))$属于G的损失函数的一部分，所以这里为负号，即让该项越大越好，使得G的损失函数变小。`其中 $\lambda$ 为平衡两个损失函数的权重。但是，在计算$I(c;G(z,c))$的过程中，需要知道后验概率分布$P(c|x)$ ，而这个分布在实际中是很难获取的，因此作者在解决这个问题时采用了变分推理的思想，引入变分分布 $Q(c|x)$来逼近$P(c|x)$
 ![](https://upload-images.jianshu.io/upload_images/18339009-2d9b41b807e6289d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![](https://upload-images.jianshu.io/upload_images/18339009-baedccfee0e1666b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![](https://upload-images.jianshu.io/upload_images/18339009-a45877a383af6f8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -95,12 +63,12 @@ g) 互信息，**已知一个变量后，另一个变量减小了多少不确�
 >1.G的输入不仅仅是噪声向量z了，而是z和具有语意信息的浅变量c进行拼接后的向量输入给G。
 2.D的输出在原先的基础上添加了一个新的输出分支Q，Q和D共享全部分卷积层，然后各自通过不同的全连接层输出不同的内容：Q的输出对应于$X_{fake}$的c的概率分布，D则仍然判别真伪。
 
-**InfoGAN的训练流程**
+`InfoGAN的训练流程`
 
 假设batch_size=m，数据集为MNIST，则根据作者的方法，不可压缩噪声向量的长度为62，离散潜变量的个数为1，取值范围为[0, 9]，代表0-9共10个数字，连续浅变量的个数为2，代表了生成数字的倾斜程度和笔划粗细，最好服从[-2, 2]上的均匀分布，因为这样能够显式的通过改变其在[-2,2]上的数值观察到生成数据相应的变化，便于实验，所以此时输入变量的长度为62+10+2=74。
 
 则在每一个epoch中：
->**先训练判别器k（比如3）次：**
+>`先训练判别器k（比如3）次：`
 1\. 从噪声分布（比如高斯分布）中随机采样出m个噪声向量：
 ![](https://upload-images.jianshu.io/upload_images/18339009-c5d01fc306415848.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 2.从真实样本x中随机采样出m个样本：
@@ -109,9 +77,9 @@ g) 互信息，**已知一个变量后，另一个变量减小了多少不确�
 4.用梯度下降法使损失函数fake_loss： $logD(z^{(i)})$与0之间的二分类交叉熵减小。
 5\. 所以判别器的总损失函数d_loss:
 ![](https://upload-images.jianshu.io/upload_images/18339009-42dd10e627a85885.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-即让d_loss减小。注意**在训练判别器的时候生成器中的所有参数要固定住，即不参加训练。**
+即让d_loss减小。注意`在训练判别器的时候生成器中的所有参数要固定住，即不参加训练。`
 >---
->**再训练生成器1次：**
+>`再训练生成器1次：`
 1\. 从噪声分布中随机采样出m个噪声向量：
 ![](https://upload-images.jianshu.io/upload_images/18339009-cb79ec1d72bccb5c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 2\. 从离散随机分布中随机采样m个长度为10、one-hot编码格式的向量：
@@ -125,7 +93,7 @@ g) 互信息，**已知一个变量后，另一个变量减小了多少不确�
 
 直到所有epoch执行完毕，训练结束。
 
-**（四）总结**
+`（四）总结`
 
 1.G的输入不再是一个单一的噪声向量，而是噪声向量与潜变量的拼接。
 2.对于潜变量来说，G和D组成的大网络就好比是一个AutoEncoder，不同之处只是将信息编码在了图像中，而非向量，最后通过D解码还原回。

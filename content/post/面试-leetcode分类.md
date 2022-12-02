@@ -7,38 +7,6 @@
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
     
-    # 标签
-    #tags:
-    # 文章内容摘要
-    #description: "{{ .Name }}" 
-    # 最后修改日期
-    #lastmod: {{ .Date }}
-    # 文章内容关键字
-    #keywords: "{{replace .Name "-" ","}}"
-    # 原文作者
-    #author:
-    # 原文链接
-    #link:
-    # 图片链接，用在open graph和twitter卡片上
-    #imgs:
-    # 在首页展开内容
-    #expand: true
-    # 外部链接地址，访问时直接跳转
-    #extlink:
-    # 在当前页面关闭评论功能
-    #comment:
-    # enable: false
-    # 关闭当前页面目录功能
-    # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-    #toc: false
-    # 绝对访问路径
-    #url: "{{ lower .Name }}.html"
-    # 开启文章置顶，数字越小越靠前
-    #weight: 1
-    #开启数学公式渲染，可选值： mathjax, katex
-    #math: mathjax
-    # 开启各种图渲染，如流程图、时序图、类图等
-    #mermaid: true
 --- 
 
 - 
@@ -230,7 +198,7 @@
 
   从左到右遍历元素，构造单调递减栈（从栈顶到栈底递减）：一个元素右侧第一个比它小的元素就是将其「弹出单调递减栈」时即将插入的元素。如果该元素没有被弹出栈，则说明右侧不存在比当前元素小的元素。
 
-查找 **「比当前元素大的元素」** 就用 **单调递增栈**，查找 **「比当前元素小的元素」** 就用 **单调递减栈**。
+查找 `「比当前元素大的元素」` 就用 `单调递增栈`，查找 `「比当前元素小的元素」` 就用 `单调递减栈`。
 
 
 
@@ -277,7 +245,7 @@
   - [378. 有序矩阵中第K小的元素](https://link.zhihu.com/?target=ems/kth-smallest-element-in-a-sorted-matrix/)
 - [更多优先队列题目](https://github.com/itcharge/LeetCode-Py/blob/main/Contents/04.Queue/03.Priority-Queue/10.Priority-Queue-List.md)
 
-## **动态规划**
+## `动态规划`
 
 - [124. 二叉树中的最大路径和](https://link.zhihu.com/?target=ems/binary-tree-maximum-path-sum/)
   - [128. 最长连续序列](https://link.zhihu.com/?target=ems/longest-consecutive-sequence/)
@@ -287,14 +255,14 @@
   - [322. 零钱兑换](https://link.zhihu.com/?target=ems/coin-change/)
   - [329. 矩阵中的最长递增路径](https://link.zhihu.com/?target=ems/longest-increasing-path-in-a-matrix/)
   
-## **图论**
+## `图论`
 
 - [127. 单词接龙](https://link.zhihu.com/?target=ems/word-ladder/)
   - [200. 岛屿的个数](https://link.zhihu.com/?target=ems/number-of-islands/)
   - [207. 课程表](https://link.zhihu.com/?target=ems/course-schedule/)
   - [210. 课程表 II](https://link.zhihu.com/?target=ems/course-schedule-ii/)
   
-## **数学 & 位运算**
+## `数学 & 位运算`
 
 - [136. 只出现一次的数字](https://link.zhihu.com/?target=ems/single-number/)
   - [149. 直线上最多的点数](https://link.zhihu.com/?target=ems/max-points-on-a-line/)
@@ -306,7 +274,7 @@
   - [268. 缺失数字](https://link.zhihu.com/?target=ems/missing-number/)
   - [326. 3的幂](https://link.zhihu.com/?target=ems/power-of-three/)
   
-## **字符串**
+## `字符串`
 
 - [125. 验证回文串](https://link.zhihu.com/?target=ems/valid-palindrome/)
   - [131. 分割回文串](https://link.zhihu.com/?target=ems/palindrome-partitioning/)
@@ -319,23 +287,23 @@
   - [344. 反转字符串](https://link.zhihu.com/?target=ems/reverse-string/)
   
 
-## **树**
+## `树`
 
 - [230. 二叉搜索树中第K小的元素](https://link.zhihu.com/?target=ems/kth-smallest-element-in-a-bst/)
   - [236. 二叉树的最近公共祖先](https://link.zhihu.com/?target=ems/lowest-common-ancestor-of-a-binary-tree/)
   - [297. 二叉树的序列化与反序列化](https://link.zhihu.com/?target=ems/serialize-and-deserialize-binary-tree/)
   
-## **线段树**
+## `线段树`
 
 - [218. 天际线问题](https://link.zhihu.com/?target=ems/the-skyline-problem/)
 
-## **哈希 / Map**
+## `哈希 / Map`
 
 - [171. Excel表列序号](https://link.zhihu.com/?target=ems/excel-sheet-column-number/)
   - [454. 四数相加 II](https://link.zhihu.com/?target=ems/4sum-ii/)
   - [380. 常数时间插入、删除和获取随机元素](https://link.zhihu.com/?target=ems/insert-delete-getrandom-o1/)
 
-## **模拟**
+## `模拟`
 
 - [134. 加油站](https://link.zhihu.com/?target=ems/gas-station/)
 - [146. LRU缓存机制](https://link.zhihu.com/?target=ems/lru-cache/)
