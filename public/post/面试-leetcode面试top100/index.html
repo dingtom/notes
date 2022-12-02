@@ -1,0 +1,651 @@
+<!doctype html><html lang=zh-cn data-theme=dark><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: dark)"><meta name=generator content="Hugo 0.107.0"><link rel="shortcut icon" type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="面试-leetcode面试top100"><meta itemprop=description content="Love and Peace"><meta itemprop=datePublished zgotmplz><meta itemprop=dateModified zgotmplz><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=keywords content="Hugo,NexT,主题,简单,强大"><meta property="og:type" content="article"><meta property="og:title" content="面试-leetcode面试top100"><meta property="og:description" content="Love and Peace"><meta property="og:image" content="/imgs/hugo_next_avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="/post/%E9%9D%A2%E8%AF%95-leetcode%E9%9D%A2%E8%AF%95top100/"><meta property="og:site_name" content="Tomding's Blog"><meta property="og:locale" content="zh-CN"><meta property="article:author" content="Tomding"><meta property="article:published_time" content="2022-12-01 19:59:47 +0800 CST"><meta property="article:modified_time" content="2022-12-01 19:59:47 +0800 CST"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.0ca97083b39f4eda7430d39b99194aa738d8f8db4090f00bc7e814013df699cb.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"%E9%9D%A2%E8%AF%95-leetcode%E9%9D%A2%E8%AF%95top100","permalink":"/post/%E9%9D%A2%E8%AF%95-leetcode%E9%9D%A2%E8%AF%95top100/","title":"面试-leetcode面试top100","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>面试-leetcode面试top100 - Tomding's Blog</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Tomding's Blog</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Just do it!</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>首页</a></li><li class="menu-item menu-item-about"><a href=/about.html class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>74</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><a href=#134-加油站httpslinkzhihucomtargethttps3aleetcode-cncomproblemsgas-station><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/gas-station/">134. 加油站</a></a></li><li><a href=#146-lru缓存机制httpslinkzhihucomtargethttps3aleetcode-cncomproblemslru-cache><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/lru-cache/">146. LRU缓存机制</a></a></li><li><a href=#202-快乐数httpslinkzhihucomtargethttps3aleetcode-cncomproblemshappy-number><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/happy-number/">202. 快乐数</a></a></li><li><a href=#289-生命游戏httpslinkzhihucomtargethttps3aleetcode-cncomproblemsgame-of-life><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/game-of-life/">289. 生命游戏</a></a></li><li><a href=#371-两整数之和httpslinkzhihucomtargethttps3aleetcode-cncomproblemssum-of-two-integers><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/sum-of-two-integers/">371. 两整数之和</a></a></li><li><a href=#412-fizz-buzzhttpslinkzhihucomtargethttps3aleetcode-cncomproblemsfizz-buzz><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/fizz-buzz/">412. Fizz Buzz</a></a></li></ul><ul><li><a href=#376-摆动序列httpsleetcode-cncomproblemswiggle-subsequence><a href=https://leetcode-cn.com/problems/wiggle-subsequence/>376. 摆动序列</a></a></li></ul><ul><li><a href=#24-反转链表httpsleetcode-cncomproblemsfan-zhuan-lian-biao-lcof><a href=https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/>24. 反转链表</a></a><ul><li><a href=#递归>递归</a></li><li><a href=#双指针>双指针</a></li></ul></li></ul><ul><li><a href=#179-最大数httpslinkzhihucomtargethttps3aleetcode-cncomproblemslargest-number><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/largest-number/">179. 最大数</a></a></li><li><a href=#324-摆动排序-iihttpslinkzhihucomtargethttps3aleetcode-cncomproblemswiggle-sort-ii><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/wiggle-sort-ii/">324. 摆动排序 II</a></a></li><li><a href=#376-摆动序列httpsleetcode-cncomproblemswiggle-subsequence-1><a href=https://leetcode-cn.com/problems/wiggle-subsequence/>376. 摆动序列</a></a></li></ul><ul><li><a href=#剑指-offer-10--ii-青蛙跳台阶问题httpsleetcode-cncomproblemsqing-wa-tiao-tai-jie-wen-ti-lcof><a href=https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/>剑指 Offer 10- II. 青蛙跳台阶问题</a></a></li><li><a href=#62-不同路径httpsleetcode-cncomproblemsunique-paths><a href=https://leetcode-cn.com/problems/unique-paths/>62. 不同路径</a></a></li><li><a href=#64-最小路径和httpsleetcode-cncomproblemsminimum-path-sum><a href=https://leetcode-cn.com/problems/minimum-path-sum/>64. 最小路径和</a></a></li></ul><ul><li><a href=#125-验证回文串httpslinkzhihucomtargethttps3aleetcode-cncomproblemsvalid-palindrome>【125. 验证回文串](<a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/valid-palindrome/">https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/valid-palindrome/</a>)</a></li><li><a href=#131-分割回文串httpslinkzhihucomtargethttps3aleetcode-cncomproblemspalindrome-partitioning><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/palindrome-partitioning/">131. 分割回文串</a></a></li><li><a href=#139-单词拆分httpslinkzhihucomtargethttps3aleetcode-cncomproblemsword-break><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/word-break/">139. 单词拆分</a></a></li><li><a href=#140-单词拆分-iihttpslinkzhihucomtargethttps3aleetcode-cncomproblemsword-break-ii><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/word-break-ii/">140. 单词拆分 II</a></a></li><li><a href=#208-实现-trie-前缀树httpslinkzhihucomtargethttps3aleetcode-cncomproblemsimplement-trie-prefix-tree><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/implement-trie-prefix-tree/">208. 实现 Trie (前缀树)</a></a></li><li><a href=#212-单词搜索-iihttpslinkzhihucomtargethttps3aleetcode-cncomproblemsword-search-ii><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/word-search-ii/">212. 单词搜索 II</a></a></li><li><a href=#242-有效的字母异位词httpslinkzhihucomtargethttps3aleetcode-cncomproblemsvalid-anagram><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/valid-anagram/">242. 有效的字母异位词</a></a></li><li><a href=#387-字符串中的第一个唯一字符httpslinkzhihucomtargethttps3aleetcode-cncomproblemsfirst-unique-character-in-a-string><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/first-unique-character-in-a-string/">387. 字符串中的第一个唯一字符</a></a></li><li><a href=#344-反转字符串httpslinkzhihucomtargethttps3aleetcode-cncomproblemsreverse-string><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/reverse-string/">344. 反转字符串</a></a></li><li><a href=#3无重复字符的最长子串长度httpsleetcode-cncomproblemslongest-substring-without-repeating-characters><a href=https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/>3.无重复字符的最长子串长度</a></a></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=Tomding src=/imgs/img-lazy-loading.gif data-src=/imgs/hugo_next_avatar.png><p class=site-author-name itemprop=name>Tomding</p><div class=site-description itemprop=description>Love and Peace</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>74</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>6</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>0</span>
+<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/ title="Github → https://github.com/" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span>
+<span class=links-of-social-item><a href=https://www.zhihu.com/hot title="知乎 → https://www.zhihu.com/hot" rel=noopener class=hvr-icon-pulse target=_blank><i class="fa fa-book fa-fw hvr-icon"></i>知乎</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt=共享知识></a></div><div class="links-of-blogroll site-overview-item animated"><div class=links-of-blogroll-title><i class="fa fa-globe fa-fw"></i>友情链接</div><ul class=links-of-blogroll-list><li class=links-of-blogroll-item><a href=https://gitee.com/hugo-next/hugo-theme-next title=https://gitee.com/hugo-next/hugo-theme-next target=_blank>Hugo-NexT</a></li><li class=links-of-blogroll-item><a href=https://lisenhui.cn title=https://lisenhui.cn target=_blank>凡梦星尘空间站</a></li></ul></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
+<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=2022-12-01T19:59:47+08:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=276975></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=591></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2022-12-03T01:34:29+08:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
+<span>0%</span></div></div><div class=reading-progress-bar></div><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=/post/%E9%9D%A2%E8%AF%95-leetcode%E9%9D%A2%E8%AF%95top100/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=name content="Tomding"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="Tomding"><meta itemprop=description content="Love and Peace"></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="面试-leetcode面试top100"><meta itemprop=description content="汇总 (10 封私信) 互联网公司最常见的面试算法题有哪些？ - 知乎 (zhihu.com) 模拟 134. 加油站 在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。 你有一辆油箱容量"></span><header class=post-header><h1 class=post-title itemprop="name headline">面试-leetcode面试top100
+<a href=https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/post/%e9%9d%a2%e8%af%95-leetcode%e9%9d%a2%e8%af%95top100.md rel="noopener external nofollow noreferrer" target=_blank class="exturl post-edit-link" title=编辑><i class="fa fa-pen-nib"></i></a></h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2022-12-01 19:59:47 +0800 CST" itemprop="dateCreated datePublished" datetime="2022-12-01 19:59:47 +0800 CST">2022-12-01</time></span>
+<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E9%9D%A2%E8%AF%95 itemprop=url rel=index><span itemprop=name>面试</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="far fa-file-word"></i></span>
+<span class=post-meta-item-text>字数：</span><span>8738</span></span>
+<span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="far fa-clock"></i></span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>18分钟</span></span>
+<span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
+<span class=post-meta-item-text>浏览：</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/post/%E9%9D%A2%E8%AF%95-leetcode%E9%9D%A2%E8%AF%95top100/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><h1 id=汇总>汇总</h1><p><a href=https://www.zhihu.com/question/24964987/answer/586425979 title="(10 封私信) 互联网公司最常见的面试算法题有哪些？ - 知乎 (zhihu.com)" rel="noopener external nofollow noreferrer" target=_blank class=exturl>(10 封私信) 互联网公司最常见的面试算法题有哪些？ - 知乎 (zhihu.com)
+<i class="fa fa-external-link-alt"></i></a></p><h1 id=模拟>模拟</h1><h2 id=134-加油站httpslinkzhihucomtargethttps3aleetcode-cncomproblemsgas-station><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/gas-station/" title="134. 加油站" rel="noopener external nofollow noreferrer" target=_blank class=exturl>134. 加油站
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。
+你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其中的一个加油站出发，开始时油箱为空。
+如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1。</p></blockquote><p>如果 sum(gas) &lt; sum(cost) ，那么不可能环行一圈，这种情况下答案是 -1 。
+对于加油站 i ，如果 gas[i] - cost[i] &lt; 0 ，则不可能从这个加油站出发，因为在前往 i + 1 的过程中，汽油就不够了。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>canCompleteCircuit</span>(self, gas, cost):
+</span></span><span style=display:flex><span>        n <span style=color:#f92672>=</span> len(gas)
+</span></span><span style=display:flex><span>        total_residue_tank, next_residue_tank <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        starting_station <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(n):
+</span></span><span style=display:flex><span>            total_residue_tank <span style=color:#f92672>+=</span> gas[i] <span style=color:#f92672>-</span> cost[i]  <span style=color:#75715e># 所有加的油减去所有的消耗，最后剩下的油</span>
+</span></span><span style=display:flex><span>            next_residue_tank <span style=color:#f92672>+=</span> gas[i] <span style=color:#f92672>-</span> cost[i]  <span style=color:#75715e># 到达下一站后油箱里的油</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e># 能否到达下一站</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> next_residue_tank <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 不能到达下一站以下一站为起点</span>
+</span></span><span style=display:flex><span>                starting_station <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 此时油箱里的油为空</span>
+</span></span><span style=display:flex><span>                next_residue_tank <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> starting_station <span style=color:#66d9ef>if</span> total_residue_tank <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>else</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+</span></span></code></pre></div><h2 id=146-lru缓存机制httpslinkzhihucomtargethttps3aleetcode-cncomproblemslru-cache><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/lru-cache/" title="146. LRU缓存机制" rel="noopener external nofollow noreferrer" target=_blank class=exturl>146. LRU缓存机制
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>设计和实现一个  LRU (最近最少使用) 缓存机制。它应该支持以下操作： 获取数据 get 和 写入数据 put 。
+获取数据 get(key) - 如果关键字 (key) 存在于缓存中，则获取关键字的值（总是正数），否则返回 -1。
+写入数据 put(key, value) - 如果关键字已经存在，则变更其数据值；如果关键字不存在，则插入该组「关键字/值」。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。</p></blockquote><p>实现一个可以存储 key-value 形式数据的数据结构，并且可以记录最近访问的 key 值。首先想到的就是用字典来存储 key-value 结构，这样对于查找操作时间复杂度就是 O(1)O(1)。</p><p>但是因为字典本身是无序的，所以我们还需要一个类似于队列的结构来记录访问的先后顺序，这个队列需要支持如下几种操作：</p><p>在末尾加入一项
+去除最前端一项
+将队列中某一项移到末尾</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 双向链表</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ListNode</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __init__(self, key<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>, value<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>):
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>key <span style=color:#f92672>=</span> key
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>value <span style=color:#f92672>=</span> value
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>nex <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>pre <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>LRUCache</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __init__(self, capacity: int):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>capacity <span style=color:#f92672>=</span> capacity
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>hashmap <span style=color:#f92672>=</span> {}
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 新建两个节点 head 和 tail</span>
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>head <span style=color:#f92672>=</span> ListNode()
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>tail <span style=color:#f92672>=</span> ListNode()
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 初始化链表为 head &lt;-&gt; tail</span>
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>head<span style=color:#f92672>.</span>nex <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>tail
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>tail<span style=color:#f92672>.</span>pre  <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>head
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 因为get与put操作都可能需要将双向链表中的某个节点移到末尾，所以定义一个方法</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>move_to_end</span>(self, key):
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        node <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>hashmap[key]
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 先将哈希表key指向的节点node拎出来</span>
+</span></span><span style=display:flex><span>        node<span style=color:#f92672>.</span>pre<span style=color:#f92672>.</span>nex <span style=color:#f92672>=</span> node<span style=color:#f92672>.</span>nex
+</span></span><span style=display:flex><span>        node<span style=color:#f92672>.</span>nex<span style=color:#f92672>.</span>pre <span style=color:#f92672>=</span> node<span style=color:#f92672>.</span>pre
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 之后将node插入到尾节点前</span>
+</span></span><span style=display:flex><span>        node<span style=color:#f92672>.</span>pre <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>tail<span style=color:#f92672>.</span>pre
+</span></span><span style=display:flex><span>        node<span style=color:#f92672>.</span>nex <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>tail
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>tail<span style=color:#f92672>.</span>pre<span style=color:#f92672>.</span>nex <span style=color:#f92672>=</span> node
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>tail<span style=color:#f92672>.</span>pre <span style=color:#f92672>=</span> node
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get</span>(self, key: int) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> key <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>hashmap:
+</span></span><span style=display:flex><span>            <span style=color:#75715e># 如果已经在链表中了久把它移到末尾（变成最新访问的）</span>
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>move_to_end(key)
+</span></span><span style=display:flex><span>        node <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>hashmap<span style=color:#f92672>.</span>get(key, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> node <span style=color:#66d9ef>if</span> node <span style=color:#f92672>==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#66d9ef>else</span> node<span style=color:#f92672>.</span>value
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>put</span>(self, key: int, value: int) <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> key <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>hashmap:
+</span></span><span style=display:flex><span>            <span style=color:#75715e># 如果key本身已经在哈希表中了就不需要在链表中加入新的节点</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e># 但是需要更新字典该值对应节点的value</span>
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>hashmap[key]<span style=color:#f92672>.</span>value <span style=color:#f92672>=</span> value
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>move_to_end(key)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> len(self<span style=color:#f92672>.</span>hashmap) <span style=color:#f92672>==</span> self<span style=color:#f92672>.</span>capacity:
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 去掉哈希表对应项</span>
+</span></span><span style=display:flex><span>                self<span style=color:#f92672>.</span>hashmap<span style=color:#f92672>.</span>pop(self<span style=color:#f92672>.</span>head<span style=color:#f92672>.</span>nex<span style=color:#f92672>.</span>key)
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 去掉最久没有被访问过的节点，即头节点之后的节点</span>
+</span></span><span style=display:flex><span>                self<span style=color:#f92672>.</span>head<span style=color:#f92672>.</span>nex <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>head<span style=color:#f92672>.</span>nex<span style=color:#f92672>.</span>nex
+</span></span><span style=display:flex><span>                self<span style=color:#f92672>.</span>head<span style=color:#f92672>.</span>nex<span style=color:#f92672>.</span>pre <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>head
+</span></span><span style=display:flex><span>            <span style=color:#75715e># 如果不在的话就插入到尾节点前</span>
+</span></span><span style=display:flex><span>            new <span style=color:#f92672>=</span> ListNode(key, value)
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>hashmap[key] <span style=color:#f92672>=</span> new
+</span></span><span style=display:flex><span>            new<span style=color:#f92672>.</span>pre <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>tail<span style=color:#f92672>.</span>pre
+</span></span><span style=display:flex><span>            new<span style=color:#f92672>.</span>nex <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>tail
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>tail<span style=color:#f92672>.</span>pre<span style=color:#f92672>.</span>nex <span style=color:#f92672>=</span> new
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>tail<span style=color:#f92672>.</span>pre <span style=color:#f92672>=</span> new
+</span></span><span style=display:flex><span><span style=color:#75715e># Your LRUCache object will be instantiated and called as such:</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># obj = LRUCache(capacity)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># param_1 = obj.get(key)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># obj.put(key,value)</span>
+</span></span></code></pre></div><h2 id=202-快乐数httpslinkzhihucomtargethttps3aleetcode-cncomproblemshappy-number><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/happy-number/" title="202. 快乐数" rel="noopener external nofollow noreferrer" target=_blank class=exturl>202. 快乐数
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和，然后重复这个过程直到这个数变为 1，也可能是 无限循环 但始终变不到 1。如果 可以变为  1，那么这个数就是快乐数。</p></blockquote><p>最终会得到 1。
+最终会进入循环。
+值会越来越大，最后接近无穷大。</p><table><thead><tr><th style=text-align:center>Digits</th><th style=text-align:center>Largest</th><th style=text-align:center>Next</th></tr></thead><tbody><tr><td style=text-align:center>1</td><td style=text-align:center>9</td><td style=text-align:center>81</td></tr><tr><td style=text-align:center>2</td><td style=text-align:center>99</td><td style=text-align:center>162</td></tr><tr><td style=text-align:center>3</td><td style=text-align:center>999</td><td style=text-align:center>243</td></tr><tr><td style=text-align:center>4</td><td style=text-align:center>9999</td><td style=text-align:center>324</td></tr><tr><td style=text-align:center>13</td><td style=text-align:center>9999999999999</td><td style=text-align:center>1053</td></tr></tbody></table><p>对于 3 位数的数字，它不可能大于 243。这意味着它要么被困在243 以下的循环内，要么跌到 1。4 位或 4 位以上的数字在每一步都会丢失一位，直到降到 3 位为止。所以我们知道，最坏的情况下，算法可能会在 243 以下的所有数字上循环，然后回到它已经到过的一个循环或者回到 11。但它不会无限期地进行下去，所以我们排除第三种选择。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 检测单链表是否有环，用快慢指针</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_next</span>(self, num):
+</span></span><span style=display:flex><span>        all_squre_sum <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> num <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>            num, digit <span style=color:#f92672>=</span> divmod(num, <span style=color:#ae81ff>10</span>)
+</span></span><span style=display:flex><span>            all_squre_sum <span style=color:#f92672>+=</span> digit <span style=color:#960050;background-color:#1e0010>`</span> <span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> all_squre_sum
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>isHappy</span>(self, n: int) <span style=color:#f92672>-&gt;</span> bool:
+</span></span><span style=display:flex><span>        slow_index <span style=color:#f92672>=</span> n
+</span></span><span style=display:flex><span>        fast_index <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>get_next(n)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> fast_index <span style=color:#f92672>!=</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>and</span> slow_index <span style=color:#f92672>!=</span> fast_index: 
+</span></span><span style=display:flex><span>            slow_index <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>get_next(slow_index)
+</span></span><span style=display:flex><span>            fast_index <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>get_next(self<span style=color:#f92672>.</span>get_next(fast_index))
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> fast_index <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>
+</span></span></code></pre></div><h2 id=289-生命游戏httpslinkzhihucomtargethttps3aleetcode-cncomproblemsgame-of-life><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/game-of-life/" title="289. 生命游戏" rel="noopener external nofollow noreferrer" target=_blank class=exturl>289. 生命游戏
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>给定一个包含 m × n 个格子的面板，每一个格子都可以看成是一个细胞。每个细胞都具有一个初始状态：1即为活细胞（live），或 0 即为死细胞（dead）。每个细胞与其八个相邻位置（水平，垂直，对角线）的细胞都遵循以下四条生存定律：
+1.如果活细胞周围八个位置的活细胞数少于两个，则该位置活细胞死亡；
+2.如果活细胞周围八个位置有两个或三个活细胞，则该位置活细胞仍然存活；
+3.如果活细胞周围八个位置有超过三个活细胞，则该位置活细胞死亡；
+4.如果死细胞周围正好有三个活细胞，则该位置死细胞复活；</p></blockquote><blockquote><p>根据当前状态，写一个函数来计算面板上所有细胞的下一个（一次更新后的）状态。下一个状态是通过将上述规则同时应用于当前状态下的每个细胞所形成的，其中细胞的出生和死亡是同时发生的。</p></blockquote><p>如果你直接根据规则更新原始数组，那么就做不到题目中说的 同步 更新。<code>假设你直接将更新后的细胞状态填入原始数组，那么当前轮次其他细胞状态的更新就会引用到当前轮已更新细胞的状态，但实际上每一轮更新需要依赖上一轮细胞的状态，是不能用这一轮的细胞状态来更新的。</code></p><p><code>拓展一些复合状态使其包含之前的状态。</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>gameOfLife</span>(self, board: List[List[int]]) <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>        neighbors <span style=color:#f92672>=</span> [(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>), 
+</span></span><span style=display:flex><span>                     (<span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>), 
+</span></span><span style=display:flex><span>                     (<span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>), (<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>)]
+</span></span><span style=display:flex><span>        rows, cols <span style=color:#f92672>=</span> len(board), len(board[<span style=color:#ae81ff>0</span>])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 遍历面板每一个格子里的细胞,根据周围细胞改变联合状态</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> r <span style=color:#f92672>in</span> range(rows):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> c <span style=color:#f92672>in</span> range(cols):
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 对于每一个细胞统计其八个相邻位置里的活细胞数量</span>
+</span></span><span style=display:flex><span>                live_neighbor <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> neighbors:
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>if</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> r<span style=color:#f92672>+</span>i[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>&lt;</span> rows <span style=color:#f92672>and</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&lt;=</span> c<span style=color:#f92672>+</span>i[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>&lt;</span> cols <span style=color:#f92672>and</span> abs(board[r<span style=color:#f92672>+</span>i[<span style=color:#ae81ff>0</span>]][c<span style=color:#f92672>+</span>i[<span style=color:#ae81ff>1</span>]]) <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>:
+</span></span><span style=display:flex><span>                        <span style=color:#75715e># abs() 因为后面会把1改成-1</span>
+</span></span><span style=display:flex><span>                        live_neighbor <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 规则 2 不造成状态变化</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 规则 1 或规则 3  活细胞，周围活的少于两个多于三个，死</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> board[r][c] <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>and</span> (live_neighbor <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>3</span> <span style=color:#f92672>or</span> live_neighbor <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>2</span>):
+</span></span><span style=display:flex><span>                    board[r][c] <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 规则 4 死细胞，周围活的为2或3，活</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> board[r][c] <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>and</span> live_neighbor <span style=color:#f92672>==</span> <span style=color:#ae81ff>3</span>:
+</span></span><span style=display:flex><span>                    board[r][c] <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>                    <span style=color:#75715e># # 遍历面板每一个格子里的细胞</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 遍历 board 得到一次更新后的状态</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> r <span style=color:#f92672>in</span> range(rows):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> c <span style=color:#f92672>in</span> range(cols):
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> board[r][c] <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>                    board[r][c] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>                    board[r][c] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span></code></pre></div><h2 id=371-两整数之和httpslinkzhihucomtargethttps3aleetcode-cncomproblemssum-of-two-integers><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/sum-of-two-integers/" title="371. 两整数之和" rel="noopener external nofollow noreferrer" target=_blank class=exturl>371. 两整数之和
+<i class="fa fa-external-link-alt"></i></a></h2><p><code>正数的补码就是原码，而负数的补码=原码符号位不变，其他位按位取反后+1。</code></p><blockquote><p>不使用运算符 + 和 - ，计算两整数 a 、b 之和。</p></blockquote><p>异或的一个重要特性是无进位加法。我们来看一个例子：</p><blockquote><p>a = 5 = 0101
+b = 4 = 0100
+a ^ b 如下：
+0 1 0 1
+0 1 0 0
+0 0 0 1
+a ^ b 得到了一个无进位加法结果，如果要得到 a + b 的最终值，我们还要找到进位的数，把这二者相加。
+在位运算中，我们可以使用与操作获得进位：
+a = 5 = 0101
+b = 4 = 0100
+a & b 如下：
+0 1 0 1
+0 1 0 0
+0 1 0 0
+由计算结果可见，0100 并不是我们想要的进位，1 + 1 所获得的进位应该要放置在它的更高位，即左侧位上，因此我们还要把 0100 左移一位，才是我们所要的进位结果。</p></blockquote><p>总结一下：</p><blockquote><ol><li>a + b 的问题拆分为 (a 和 b 的无进位结果) + (a 和 b 的进位结果)</li><li>无进位加法使用异或运算计算得出</li><li>进位结果使用与运算和移位运算计算得出</li><li>循环此过程，直到进位为 0</li></ol></blockquote><hr><p>在 Python 中，整数不是 32 位的，也就是说你一直循环左移并不会存在溢出的现象，这就需要我们手动对 Python 中的整数进行处理，手动模拟 32 位 INT 整型。</p><blockquote><p>a=-2 ; b=3
+a=1 1 1 0<br>b=0 0 1 1</p><ol><li>将输入数字转化成无符号整数
+a &= 0xF # a = a & 0b1111 = 1110
+b &= 0xF # b = 0011</li><li>计算无符号整数相加并的到结果</li></ol></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>while</span> b:
+</span></span><span style=display:flex><span>    carry <span style=color:#f92672>=</span> a <span style=color:#f92672>&amp;</span> b
+</span></span><span style=display:flex><span>    a <span style=color:#f92672>^=</span> b
+</span></span><span style=display:flex><span>    b <span style=color:#f92672>=</span> carry <span style=color:#f92672>&lt;&lt;</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xF</span> <span style=color:#75715e># 模拟溢出操作</span>
+</span></span></code></pre></div><blockquote><p>过程为</p></blockquote><table><thead><tr><th style=text-align:center></th><th style=text-align:center>0</th><th style=text-align:center>1</th><th style=text-align:center>2</th><th style=text-align:center>3</th></tr></thead><tbody><tr><td style=text-align:center>carry</td><td style=text-align:center></td><td style=text-align:center>0010</td><td style=text-align:center>0100</td><td style=text-align:center>1000</td></tr><tr><td style=text-align:center>a</td><td style=text-align:center>1110</td><td style=text-align:center>1101</td><td style=text-align:center>1001</td><td style=text-align:center>0001</td></tr><tr><td style=text-align:center>b</td><td style=text-align:center>0011</td><td style=text-align:center>0100</td><td style=text-align:center>1000</td><td style=text-align:center>0000</td></tr></tbody></table><blockquote><p>最后结果为 1 是没有问题的
+但是对于 -2 + -2 , 最后结果为 1110 + 1110 = 1100 (12) 会出现问题</p><ol start=3><li>讲结果根据范围判定,映射为有符号整型
+首先有符号整数的值域应该为 [-8, 7] 对于初步运算的结果,当结果小于8直接返回就可.
+对于大于 7 的结果, 可知符号位必为1. 现在的问题转化为, 如何通过位运算把负数转换出来.
+假设python用的是 8bit 有符号整数,当前结果为0000 1100, 对应8bit有符号整数为12, 但结果应该为-4对应8bit有符号整数为1111 1100
+通过两步转换可以得到:
+1.结果 与 0b1111 异或
+2.对异或结果按位取反
+<code>~(a ^ 0xF)</code></li></ol></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 异或  - -&gt; 无进位加法</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 与，向左移动一位 - - &gt; 进位</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>getSum</span>(self, a: int, b: int) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 截取后32位为无符号整数</span>
+</span></span><span style=display:flex><span>        a <span style=color:#f92672>&amp;=</span> <span style=color:#ae81ff>0xFFFFFFFF</span>
+</span></span><span style=display:flex><span>        b <span style=color:#f92672>&amp;=</span> <span style=color:#ae81ff>0xFFFFFFFF</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 无符号整数加法</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> b:
+</span></span><span style=display:flex><span>            <span style=color:#75715e># 模拟进位</span>
+</span></span><span style=display:flex><span>            carry <span style=color:#f92672>=</span> (a <span style=color:#f92672>&amp;</span> b) <span style=color:#f92672>&lt;&lt;</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e># 模模拟相加</span>
+</span></span><span style=display:flex><span>            a <span style=color:#f92672>^=</span> b
+</span></span><span style=display:flex><span>            b <span style=color:#f92672>=</span> carry <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFFFFFFFF</span>  <span style=color:#75715e># 模拟溢出操作</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 结果映射为有符号整数 </span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> a <span style=color:#66d9ef>if</span> a <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0x80000000</span> <span style=color:#66d9ef>else</span> <span style=color:#f92672>~</span>(a <span style=color:#f92672>^</span> <span style=color:#ae81ff>0xFFFFFFFF</span>)
+</span></span></code></pre></div><h2 id=412-fizz-buzzhttpslinkzhihucomtargethttps3aleetcode-cncomproblemsfizz-buzz><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/fizz-buzz/" title="412. Fizz Buzz" rel="noopener external nofollow noreferrer" target=_blank class=exturl>412. Fizz Buzz
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>写一个程序，输出从 1 到 n 数字的字符串表示。</p><ol><li>如果 n 是3的倍数，输出“Fizz”；</li><li>如果 n 是5的倍数，输出“Buzz”；
+3.如果 n 同时是3和5的倍数，输出 “FizzBuzz”。</li></ol></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fizzBuzz</span>(self, n: int) <span style=color:#f92672>-&gt;</span> List[str]:
+</span></span><span style=display:flex><span>        result_list <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 映射关系放在散列表,可以对散列表添加/删除映射关系 </span>
+</span></span><span style=display:flex><span>        key_value <span style=color:#f92672>=</span> {<span style=color:#ae81ff>3</span>: <span style=color:#e6db74>&#39;Fizz&#39;</span>, <span style=color:#ae81ff>5</span>: <span style=color:#e6db74>&#39;Buzz&#39;</span>}
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, n<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span>            result <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> k <span style=color:#f92672>in</span> key_value:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> i <span style=color:#f92672>%</span> k <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>                    result <span style=color:#f92672>+=</span> key_value[k]
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> result:
+</span></span><span style=display:flex><span>                result <span style=color:#f92672>+=</span> str(i)
+</span></span><span style=display:flex><span>            result_list<span style=color:#f92672>.</span>append(result)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> result_list
+</span></span></code></pre></div><h1 id=数组>数组</h1><h2 id=376-摆动序列httpsleetcode-cncomproblemswiggle-subsequence><a href=https://leetcode-cn.com/problems/wiggle-subsequence/ title="376. 摆动序列" rel="noopener external nofollow noreferrer" target=_blank class=exturl>376. 摆动序列
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><ul><li>如果连续数字之间的差严格地在正数和负数之间交替，则数字序列称为摆动序列。第一个差（如果存在的话）可能是正数或负数。少于两个元素的序列也是摆动序列。</li><li>例如， [1,7,4,9,2,5] 是一个摆动序列，因为差值 (6,-3,5,-7,3) 是正负交替出现的。相反, [1,4,7,2,5] 和 [1,7,4,5,5] 不是摆动序列，第一个序列是因为它的前两个差值都是正数，第二个序列是因为它的最后一个差值为零。</li><li>给定一个整数序列，返回作为摆动序列的最长子序列的长度。 通过从原始序列中<code>删除一些（也可以不删除）元素来获得子序列，剩下的元素保持其原始顺序。</code></li></ul></blockquote><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-f574f7bc028536ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>wiggleMaxLength</span>(self, nums: List[int]) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> len(nums) <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>2</span>: <span style=color:#66d9ef>return</span> len(nums)
+</span></span><span style=display:flex><span>        up, down <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, len(nums)):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> nums[i] <span style=color:#f92672>&gt;</span> nums[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
+</span></span><span style=display:flex><span>                up <span style=color:#f92672>=</span> down<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>  <span style=color:#75715e># 找升序，在降序的基础上加1</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>elif</span> nums[i] <span style=color:#f92672>&lt;</span> nums[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
+</span></span><span style=display:flex><span>                down <span style=color:#f92672>=</span> up<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>  <span style=color:#75715e># 找降序，在升序的基础上加1</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>:  <span style=color:#75715e># 如果等于剔除该元素</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> max(up, down)
+</span></span></code></pre></div><h1 id=二分查找>二分查找</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 返回 x 在 arr 中的索引，如果不存在返回 -1</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>binarySearch</span>(arr, l, r, x):
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 基本判断</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> r <span style=color:#f92672>&gt;=</span> l:
+</span></span><span style=display:flex><span>        mid <span style=color:#f92672>=</span> int(l <span style=color:#f92672>+</span> (r <span style=color:#f92672>-</span> l)<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 元素整好的中间位置</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> arr[mid] <span style=color:#f92672>==</span> x:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> mid
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 元素小于中间位置的元素，只需要再比较左边的元素</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>elif</span> arr[mid] <span style=color:#f92672>&gt;</span> x:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> binarySearch(arr, l, mid<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, x)
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 元素大于中间位置的元素，只需要再比较右边的元素</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> binarySearch(arr, mid<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>, r, x)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 不存在</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 测试数组</span>
+</span></span><span style=display:flex><span>arr <span style=color:#f92672>=</span> [<span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>40</span>]
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 函数调用</span>
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> binarySearch(arr, <span style=color:#ae81ff>0</span>, len(arr)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, x)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> result <span style=color:#f92672>!=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>:
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;元素在数组中的索引为 </span><span style=color:#e6db74>%d</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>%</span> result)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;元素不在数组中&#34;</span>)
+</span></span></code></pre></div><h1 id=链表>链表</h1><h2 id=24-反转链表httpsleetcode-cncomproblemsfan-zhuan-lian-biao-lcof><a href=https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/ title="24. 反转链表" rel="noopener external nofollow noreferrer" target=_blank class=exturl>24. 反转链表
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。</p></blockquote><h3 id=递归>递归</h3><blockquote><ol><li>定义递归函数功能，返回反转后头节点</li><li>寻找结束条件，若是节点为零或者1直接返回</li><li>寻找等价关系，reverse(head) = reverse(head.next);head.next.next=head;head.next=None
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-3dac4084ec28a89d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></li></ol></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Definition for singly-linked list.</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ListNode</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __init__(self, x):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>val <span style=color:#f92672>=</span> x
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>next <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span> <span style=color:#75715e># 如果链表是1-&gt;2-&gt;3，</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>reverseList</span>(self, head: ListNode) <span style=color:#f92672>-&gt;</span> ListNode:
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 递归终止条件是当前为空，或者下一个节点为空</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> head <span style=color:#f92672>or</span> <span style=color:#f92672>not</span> head<span style=color:#f92672>.</span>next:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> head
+</span></span><span style=display:flex><span>       <span style=color:#75715e>#   head=1, head.next=2, 此时下一层返回的new_head是3</span>
+</span></span><span style=display:flex><span>        new_head <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>reverseList(head<span style=color:#f92672>.</span>next)  <span style=color:#75715e># new_head指向3</span>
+</span></span><span style=display:flex><span>        head<span style=color:#f92672>.</span>next<span style=color:#f92672>.</span>next <span style=color:#f92672>=</span> head  <span style=color:#75715e># 把2指向1</span>
+</span></span><span style=display:flex><span>        head<span style=color:#f92672>.</span>next <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>  <span style=color:#75715e># 把1指向None</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> new_head
+</span></span></code></pre></div><h3 id=双指针>双指针</h3><p>next -head -pre -head</p><blockquote><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-05aa21c87f811971.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Definition for singly-linked list.</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ListNode</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __init__(self, x):
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>val <span style=color:#f92672>=</span> x
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>next <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>reverseList</span>(self, head: ListNode) <span style=color:#f92672>-&gt;</span> ListNode:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> head <span style=color:#f92672>or</span> <span style=color:#f92672>not</span> head<span style=color:#f92672>.</span>next:
+</span></span><span style=display:flex><span>             <span style=color:#66d9ef>return</span> head
+</span></span><span style=display:flex><span>        pre_index <span style=color:#f92672>=</span> next_index <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> head:  
+</span></span><span style=display:flex><span>        <span style=color:#75715e># head指向当前节点，一次循环后的下个节点是否为空？为空返回空节点的上一个节点</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e># head-&gt;1-&gt;2-&gt;3-&gt;4-&gt;5  head指向当前节点</span>
+</span></span><span style=display:flex><span>            next_index <span style=color:#f92672>=</span> head<span style=color:#f92672>.</span>next  <span style=color:#75715e># next 的指向</span>
+</span></span><span style=display:flex><span>            head<span style=color:#f92672>.</span>next <span style=color:#f92672>=</span> pre_index   <span style=color:#75715e># head 的指向</span>
+</span></span><span style=display:flex><span>            pre_index <span style=color:#f92672>=</span> head       <span style=color:#75715e>#  pre 的指向</span>
+</span></span><span style=display:flex><span>            head <span style=color:#f92672>=</span> next_index      <span style=color:#75715e># head 的指向</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> pre_index
+</span></span></code></pre></div><h1 id=找出环的入口点>找出环的入口点：</h1><blockquote><p>从上面的分析知道，当fast和slow相遇时，slow还没有走完链表
+假设fast已经在环内循环了n(1&lt;= n)圈
+环长r
+假设slow走了s步，则fast走了2s步
+$2<em>s = s + n * r $
+$ s = n</em>r $
+如果假设整个链表的长度是L
+入口和相遇点的距离是x
+起点到入口点的距离是a
+$a + x = s = n * r$
+$ L = a +r$
+$a + x = (n - 1) * r + r = (n - 1) * r + (L - a) $
+$a = (n - 1) * r + (L -a -x) $
+$a = n * r + x$</p></blockquote><p>从起点到入口的距离a,相遇点到入口的距离x相等。
+因此我们就可以分别用一个指针（ptr1, prt2），同时从起点、相遇点出发，每一次操作走一步，直到ptr1 == ptr2，此时的位置也就是入口点！</p><h1 id=堆栈>堆栈</h1><h1 id=哈希队列>哈希、队列</h1><h1 id=树线段树>树、线段树</h1><h1 id=排序二分检索滑动窗口>排序、二分检索、滑动窗口</h1><p><code>排序</code></p><p>假设（不是一般性），某一对整数 a 和 b ，我们的比较结果是 a 应该在 b 前面，这意味着 $a⌢b>b⌢a $，其中$ ⌢$ 表示连接。</p><p>如果排序结果是错的，说明存在一个 c ， b 在 c 前面且 c 在 a的前面。这产生了矛盾，因为 $a⌢b>b⌢a $和$b⌢c>c⌢b $意味着$ a⌢c>c⌢a$ 。
+换言之，我们的自定义比较方法保证了传递性，所以这样子排序是对的。</p><ul><li><h2 id=179-最大数httpslinkzhihucomtargethttps3aleetcode-cncomproblemslargest-number><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/largest-number/" title="179. 最大数" rel="noopener external nofollow noreferrer" target=_blank class=exturl>179. 最大数
+<i class="fa fa-external-link-alt"></i></a></h2></li></ul><blockquote><p>给定一组非负整数 nums，重新排列它们每位数字的顺序使之组成一个最大的整数。
+注意：输出结果可能非常大，所以你需要返回一个字符串而不是整数。</p></blockquote><blockquote><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-72b3b70a8a94fa31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-58a77e87f7373ef0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>sort_rule</span>(str):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> __lt__(self, y):
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> self<span style=color:#f92672>+</span>y <span style=color:#f92672>&gt;</span> self<span style=color:#f92672>+</span>x
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>largestNumber</span>(self, nums: List[int]) <span style=color:#f92672>-&gt;</span> str:
+</span></span><span style=display:flex><span>        sorted_nums <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(sorted(map(str, nums), key<span style=color:#f92672>=</span>sort_rule))
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#39;0&#39;</span> <span style=color:#66d9ef>if</span> sorted_nums[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;0&#39;</span> <span style=color:#66d9ef>else</span> sorted_nums
+</span></span></code></pre></div><ul><li><h2 id=324-摆动排序-iihttpslinkzhihucomtargethttps3aleetcode-cncomproblemswiggle-sort-ii><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/wiggle-sort-ii/" title="324. 摆动排序 II" rel="noopener external nofollow noreferrer" target=_blank class=exturl>324. 摆动排序 II
+<i class="fa fa-external-link-alt"></i></a></h2></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>wiggleSort</span>(self, nums: List[int]) <span style=color:#f92672>-&gt;</span> <span style=color:#66d9ef>None</span>:
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;&#34;&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        Do not return anything, modify nums in-place instead.
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;&#34;&#34;</span>
+</span></span><span style=display:flex><span>        s <span style=color:#f92672>=</span> len(nums)<span style=color:#f92672>-</span>len(nums)<span style=color:#f92672>//</span><span style=color:#ae81ff>2</span>
+</span></span><span style=display:flex><span>        nums[<span style=color:#ae81ff>0</span>::<span style=color:#ae81ff>2</span>], nums[<span style=color:#ae81ff>1</span>::<span style=color:#ae81ff>2</span>] <span style=color:#f92672>=</span> sorted(nums)[:s][::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>], sorted(nums)[s:][::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span><span style=color:#75715e># [::-1]防止连续的数连续的放进去</span>
+</span></span></code></pre></div><h2 id=376-摆动序列httpsleetcode-cncomproblemswiggle-subsequence-1><a href=https://leetcode-cn.com/problems/wiggle-subsequence/ title="376. 摆动序列" rel="noopener external nofollow noreferrer" target=_blank class=exturl>376. 摆动序列
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>如果连续数字之间的差严格地在正数和负数之间交替，则数字序列称为摆动序列。第一个差（如果存在的话）可能是正数或负数。少于两个元素的序列也是摆动序列。
+例如， [1,7,4,9,2,5] 是一个摆动序列，因为差值 (6,-3,5,-7,3) 是正负交替出现的。相反, [1,4,7,2,5] 和 [1,7,4,5,5] 不是摆动序列，第一个序列是因为它的前两个差值都是正数，第二个序列是因为它的最后一个差值为零。
+给定一个整数序列，返回作为摆动序列的最长子序列的长度。 通过从原始序列中删除一些（也可以不删除）元素来获得子序列，剩下的元素保持其原始顺序。</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>wiggleMaxLength</span>(self, nums: List[int]) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> len(nums) <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>2</span>: <span style=color:#66d9ef>return</span> len(nums)
+</span></span><span style=display:flex><span>        up, down <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, len(nums)):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> nums[i] <span style=color:#f92672>&gt;</span> nums[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
+</span></span><span style=display:flex><span>                up <span style=color:#f92672>=</span> down<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>  <span style=color:#75715e># 直到遇到一个升序，才在降序的基础上加1</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>elif</span> nums[i] <span style=color:#f92672>&lt;</span> nums[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]:
+</span></span><span style=display:flex><span>                down <span style=color:#f92672>=</span> up<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>:  <span style=color:#75715e># 如果等于剔除该元素</span>
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>continue</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> max(up, down)
+</span></span></code></pre></div><h1 id=动态规划>动态规划</h1><p><code>案例一、简单的一维 DP</code></p><h2 id=剑指-offer-10--ii-青蛙跳台阶问题httpsleetcode-cncomproblemsqing-wa-tiao-tai-jie-wen-ti-lcof><a href=https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/ title="剑指 Offer 10- II. 青蛙跳台阶问题" rel="noopener external nofollow noreferrer" target=_blank class=exturl>剑指 Offer 10- II. 青蛙跳台阶问题
+<i class="fa fa-external-link-alt"></i></a></h2><p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。</p><blockquote><p>#####(1)定义数组元素的含义
+跳上一个 i 级的台阶总共有 dp[i] 种跳法
+#####(2)找出数组元素间的关系式
+目的是要求 dp[n]，动态规划的题，就是把一个规模比较大的问题分成几个规模比较小的问题，然后由小的问题推导出大的问题。
+所有可能的跳法的，所以有 dp[n] = dp[n-1] + dp[n-2]。
+#####(3)找出初始条件
+数组是不允许下标为负数的，所以对于 0、1、2，我们必须要直接给出它的数值，相当于初始值，显然，dp[0] = 1，dp[1] = 1, dp[2] = 2。</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>numWays</span>(self, n: int) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        dp <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>]<span style=color:#f92672>*</span>(n<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 初始条件dp[0] = 1，dp[1] = 1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>2</span>, n<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>):
+</span></span><span style=display:flex><span>            dp[i] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>]
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> dp[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>%</span> <span style=color:#ae81ff>1000000007</span> 
+</span></span></code></pre></div><p><code>案例二：二维数组的 DP</code></p><h2 id=62-不同路径httpsleetcode-cncomproblemsunique-paths><a href=https://leetcode-cn.com/problems/unique-paths/ title="62. 不同路径" rel="noopener external nofollow noreferrer" target=_blank class=exturl>62. 不同路径
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
+机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。问总共有多少条不同的路径？
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-da4eab5a346c6cb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p></blockquote><blockquote><p><code>步骤一、定义数组元素的含义</code>
+dp[i] [j]的含义为：当机器人从左上角走到(i, j) 这个位置时，一共有 dp[i] [j] 种路径。数组是从下标为 0 开始算起的，所以 右下角的位置是 (m-1, n - 1)dp[m-1] [n-1] 就是我们要的答案了。
+注意，这个网格相当于一个二维数组，所以 dp[m-1] [n-1] 就是我们要找的答案。
+<code>步骤二：找出关系数组元素间的关系式</code>
+由于机器人可以向下走或者向右走，所以有两种方式到达
+一种是从 (i-1, j) 这个位置走一步到达
+一种是从(i, j - 1) 这个位置走一步到达
+因为是计算所有可能的步骤，所以是把所有可能走的路径都加起来，所以关系式是 dp[i] [j] = dp[i-1] [j] + dp[i] [j-1]。
+<code>步骤三、找出初始值</code>
+初始值如下：dp[0] [0….n-1] = 1; 相当于最上面一行，机器人只能一直往左走
+dp[0…m-1] [0] = 1; 相当于最左面一列，机器人只能一直往下走</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>uniquePaths</span>(self, m: int, n: int) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        dp <span style=color:#f92672>=</span> [[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>*</span>n <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(m)]  <span style=color:#75715e># m行n列</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 初始值dp[0] [0….n-1] = 1; dp[0…m-1] [0] = 1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, m):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, n):
+</span></span><span style=display:flex><span>                dp[i][j] <span style=color:#f92672>=</span> dp[i][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j]
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> dp[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 优化</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>uniquePaths</span>(self, m: int, n: int) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        cur <span style=color:#f92672>=</span> [<span style=color:#ae81ff>1</span>] <span style=color:#f92672>*</span> n
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, m):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, n):
+</span></span><span style=display:flex><span>                cur[j] <span style=color:#f92672>+=</span> cur[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> cur[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+</span></span></code></pre></div><h2 id=64-最小路径和httpsleetcode-cncomproblemsminimum-path-sum><a href=https://leetcode-cn.com/problems/minimum-path-sum/ title="64. 最小路径和" rel="noopener external nofollow noreferrer" target=_blank class=exturl>64. 最小路径和
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
+说明：每次只能向下或者向右移动一步。
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-a691fdff2244be63.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+输入：grid = [[1,3,1],[1,5,1],[4,2,1]]
+输出：7
+解释：因为路径 1→3→1→1→1 的总和最小。</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>minPathSum</span>(self, grid: List[List[int]]) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        m, n <span style=color:#f92672>=</span> len(grid), len(grid[<span style=color:#ae81ff>0</span>])
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 设置初始状态</span>
+</span></span><span style=display:flex><span>        dp <span style=color:#f92672>=</span> [[grid[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>]]<span style=color:#f92672>*</span>n <span style=color:#66d9ef>for</span> _ <span style=color:#f92672>in</span> range(m)]
+</span></span><span style=display:flex><span>       <span style=color:#75715e># 转移方程</span>
+</span></span><span style=display:flex><span>       <span style=color:#75715e># 第一行、第一列不同</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, m):
+</span></span><span style=display:flex><span>            dp[i][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>]<span style=color:#f92672>+</span>grid[i][<span style=color:#ae81ff>0</span>]
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, n):
+</span></span><span style=display:flex><span>            dp[<span style=color:#ae81ff>0</span>][j] <span style=color:#f92672>=</span> dp[<span style=color:#ae81ff>0</span>][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>+</span>grid[<span style=color:#ae81ff>0</span>][j]
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, m):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>1</span>, n):
+</span></span><span style=display:flex><span>                dp[i][j] <span style=color:#f92672>+=</span> min(dp[i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][j], dp[i][j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> dp[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>][<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+</span></span></code></pre></div><p>优化</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>minPathSum</span>(self, grid: List[List[int]]) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        m <span style=color:#f92672>=</span> len(grid)
+</span></span><span style=display:flex><span>        n <span style=color:#f92672>=</span> len(grid[<span style=color:#ae81ff>0</span>])
+</span></span><span style=display:flex><span>        dp <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>]<span style=color:#f92672>*</span>n
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(m):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(n):
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> i<span style=color:#f92672>==</span><span style=color:#ae81ff>0</span>:
+</span></span><span style=display:flex><span>                    <span style=color:#75715e># 第一行初始化</span>
+</span></span><span style=display:flex><span>                    dp[j] <span style=color:#f92672>=</span> dp[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> grid[i][j]
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>                    dp[j] <span style=color:#f92672>=</span> min(dp[j], dp[j<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]) <span style=color:#f92672>+</span> grid[i][j]
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> dp[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+</span></span></code></pre></div><h1 id=图论>图论</h1><h1 id=数学位运算>数学、位运算</h1><h1 id=字符串>字符串</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>string<span style=color:#f92672>.</span>capitalize() 第一个字符大写
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>count(str, beg<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>, end<span style=color:#f92672>=</span>len(string)) 返回 str 在 string 里面出现的次数<span style=color:#960050;background-color:#1e0010>，</span>beg <span style=color:#960050;background-color:#1e0010>、</span> end 指定范围
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>endswith(obj, beg<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>, end<span style=color:#f92672>=</span>len(string)) 检查字符串是否以 obj 结束
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>find(str, beg<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>, end<span style=color:#f92672>=</span>len(string)) 返回str开始的索引值<span style=color:#960050;background-color:#1e0010>，</span>否则返回<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>index(str, beg<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>, end<span style=color:#f92672>=</span>len(string)) 跟find()方法一样<span style=color:#960050;background-color:#1e0010>，</span>只不过如果str不在 string中会报一个异常<span style=color:#f92672>.</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>isalnum() string 至少有一个字符并且所有字符都是字母或数字则返回 <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>isalpha()  string 至少有一个字符并且所有字符都是字母则返回 <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>isdecimal()  string 只包含十进制数字则返回 <span style=color:#66d9ef>True</span> 
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>isdigit()  string 只包含数字则返回 <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>islower() string 都是小写<span style=color:#960050;background-color:#1e0010>，</span>则返回 <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>isnumeric()  string 中只包含数字字符<span style=color:#960050;background-color:#1e0010>，</span>则返回 Tru
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>isspace()  string 中只包含空格<span style=color:#960050;background-color:#1e0010>，</span>则返回 <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>istitle()  string 是标题化的(见 title())则返回 <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>isupper() string 都是大写<span style=color:#960050;background-color:#1e0010>，</span>则返回 <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>join(seq) 以 string 作为分隔符<span style=color:#960050;background-color:#1e0010>，</span>将 seq 中所有的元素(的字符串表示)合并为一个新的字符串
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>lower() 转换 string 中所有大写字符为小写<span style=color:#f92672>.</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>lstrip() 截掉 string 左边的空格
+</span></span><span style=display:flex><span>max(str) 返回字符串 str 中最大的字母<span style=color:#960050;background-color:#1e0010>。</span>
+</span></span><span style=display:flex><span>min(str) 返回字符串 str 中最小的字母<span style=color:#960050;background-color:#1e0010>。</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>replace(str1, str2, num<span style=color:#f92672>=</span>string<span style=color:#f92672>.</span>count(str1)) 把 string 中的 str1 替换成 str2,替换不超过 num 次<span style=color:#f92672>.</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>split(str<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>, num<span style=color:#f92672>=</span>string<span style=color:#f92672>.</span>count(str)) 以 str 为分隔符切片 string<span style=color:#960050;background-color:#1e0010>，</span>仅分隔 num<span style=color:#f92672>+</span> 个子字符串
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>startswith(obj, beg<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>,end<span style=color:#f92672>=</span>len(string)) 检查字符串是否是以 obj 开头<span style=color:#960050;background-color:#1e0010>，</span>是则返回 <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>strip([obj]) 在 string 上执行 lstrip()和 rstrip()
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>swapcase() 翻转 string 中的大小写
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>title() 返回<span style=color:#e6db74>&#34;标题化&#34;</span>的 string,就是说所有单词都是以大写开始<span style=color:#960050;background-color:#1e0010>，</span>其余字母均为小写(见 istitle())
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>translate(str, <span style=color:#66d9ef>del</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>) 根据 str 给出的表(包含 <span style=color:#ae81ff>256</span> 个字符)转换 string 的字符,要过滤掉的字符放到 <span style=color:#66d9ef>del</span> 参数中
+</span></span><span style=display:flex><span>string<span style=color:#f92672>.</span>upper() 转换 string 中的小写字母为大写
+</span></span></code></pre></div><h2 id=125-验证回文串httpslinkzhihucomtargethttps3aleetcode-cncomproblemsvalid-palindrome>【125. 验证回文串](
+<a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/valid-palindrome/" title="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/valid-palindrome/" rel="noopener external nofollow noreferrer" target=_blank class=exturl>https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/valid-palindrome/
+<i class="fa fa-external-link-alt"></i>
+</a>)</h2><blockquote><p>给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
+说明：本题中，我们将空字符串定义为有效的回文串。
+输入: &ldquo;A man, a plan, a canal: Panama&rdquo;
+输出: true</p></blockquote><ul><li><p>逆字符串</p><p>去除非文字，全转成小写，和自身逆对比</p></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>isPalindrome</span>(self, s: str) <span style=color:#f92672>-&gt;</span> bool:
+</span></span><span style=display:flex><span>        alnum <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;&#39;</span><span style=color:#f92672>.</span>join(w<span style=color:#f92672>.</span>lower() <span style=color:#66d9ef>for</span> w <span style=color:#f92672>in</span> s <span style=color:#66d9ef>if</span> w<span style=color:#f92672>.</span>isalnum())
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> alnum <span style=color:#f92672>==</span> alnum[::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]
+</span></span></code></pre></div><ul><li>使用双指针。初始时，左右指针分别指向两侧，随后我们不断地将这两个指针相向移动，每次移动一步，并判断这两个指针指向的字符是否相同。当这两个指针相遇时，就说明是回文串。</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>isPalindrome</span>(self, s: str) <span style=color:#f92672>-&gt;</span> bool:
+</span></span><span style=display:flex><span>        pre <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        nex <span style=color:#f92672>=</span> len(s) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> pre <span style=color:#f92672>&lt;</span> nex:
+</span></span><span style=display:flex><span>            <span style=color:#75715e># 找到下一个字母或数字</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>while</span> pre <span style=color:#f92672>&lt;</span> nex <span style=color:#f92672>and</span> <span style=color:#f92672>not</span> s[pre]<span style=color:#f92672>.</span>isalnum():  <span style=color:#75715e># 忽略非字母数字</span>
+</span></span><span style=display:flex><span>                pre <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>while</span> pre <span style=color:#f92672>&lt;</span> nex <span style=color:#f92672>and</span>  <span style=color:#f92672>not</span> s[nex]<span style=color:#f92672>.</span>isalnum():  <span style=color:#75715e># 忽略非字母或数字</span>
+</span></span><span style=display:flex><span>                nex <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e># 判断</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> pre <span style=color:#f92672>&lt;</span> nex:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> s[pre]<span style=color:#f92672>.</span>lower() <span style=color:#f92672>!=</span> s[nex]<span style=color:#f92672>.</span>lower():  <span style=color:#75715e># 忽略大小写</span>
+</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
+</span></span><span style=display:flex><span>                pre <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>                nex <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>
+</span></span></code></pre></div><h2 id=131-分割回文串httpslinkzhihucomtargethttps3aleetcode-cncomproblemspalindrome-partitioning><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/palindrome-partitioning/" title="131. 分割回文串" rel="noopener external nofollow noreferrer" target=_blank class=exturl>131. 分割回文串
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>给定一个字符串 s，将 s 分割成一些子串，使每个子串都是回文串。
+返回 s 所有可能的分割方案。
+示例:
+输入: &ldquo;aab&rdquo;
+输出:
+[ [&ldquo;aa&rdquo;,&ldquo;b&rdquo;], [&ldquo;a&rdquo;,&ldquo;a&rdquo;,&ldquo;b&rdquo;] ]</p></blockquote><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-9f5d4cbf37e76e7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h2 id=139-单词拆分httpslinkzhihucomtargethttps3aleetcode-cncomproblemsword-break><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/word-break/" title="139. 单词拆分" rel="noopener external nofollow noreferrer" target=_blank class=exturl>139. 单词拆分
+<i class="fa fa-external-link-alt"></i></a></h2><h2 id=140-单词拆分-iihttpslinkzhihucomtargethttps3aleetcode-cncomproblemsword-break-ii><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/word-break-ii/" title="140. 单词拆分 II" rel="noopener external nofollow noreferrer" target=_blank class=exturl>140. 单词拆分 II
+<i class="fa fa-external-link-alt"></i></a></h2><h2 id=208-实现-trie-前缀树httpslinkzhihucomtargethttps3aleetcode-cncomproblemsimplement-trie-prefix-tree><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/implement-trie-prefix-tree/" title="208. 实现 Trie (前缀树)" rel="noopener external nofollow noreferrer" target=_blank class=exturl>208. 实现 Trie (前缀树)
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>实现一个 Trie (前缀树)，包含 insert, search, 和 startsWith 这三个操作。</p></blockquote><p>Trie 是一颗非典型的多叉树模型
+一般的多叉树的结点是这样的：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>struct TreeNode {
+</span></span><span style=display:flex><span>    VALUETYPE value;    <span style=color:#f92672>//</span>结点值
+</span></span><span style=display:flex><span>    TreeNode<span style=color:#f92672>*</span> children[NUM];    <span style=color:#f92672>//</span>指向孩子结点
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><p>而 Trie 的结点是这样的(假设只包含&rsquo;a&rsquo;~&lsquo;z&rsquo;中的字符)：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>struct TrieNode {
+</span></span><span style=display:flex><span>    bool isEnd; <span style=color:#f92672>//</span>该结点是否是一个串的结束
+</span></span><span style=display:flex><span>    TrieNode<span style=color:#f92672>*</span> next[<span style=color:#ae81ff>26</span>]; <span style=color:#f92672>//</span>字母映射表
+</span></span><span style=display:flex><span>};
+</span></span></code></pre></div><p>这时字母映射表next 的妙用就体现了，TrieNode* next[26]中保存了对当前结点而言下一个可能出现的所有字符的链接，因此我们可以通过一个父结点来预知它所有子结点的值：</p><blockquote><p>示例:
+Trie trie = new Trie();
+trie.insert(&ldquo;apple&rdquo;);
+trie.search(&ldquo;apple&rdquo;); // 返回 true
+trie.search(&ldquo;app&rdquo;); // 返回 false
+trie.startsWith(&ldquo;app&rdquo;); // 返回 true
+trie.insert(&ldquo;app&rdquo;);<br>trie.search(&ldquo;app&rdquo;); // 返回 true</p></blockquote><blockquote><p>说明:
+你可以假设所有的输入都是由小写字母 a-z 构成的。
+保证所有输入均为非空字符串。</p></blockquote><h2 id=212-单词搜索-iihttpslinkzhihucomtargethttps3aleetcode-cncomproblemsword-search-ii><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/word-search-ii/" title="212. 单词搜索 II" rel="noopener external nofollow noreferrer" target=_blank class=exturl>212. 单词搜索 II
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>给定一个二维网格 board 和一个字典中的单词列表 words，找出所有同时在二维网格和字典中出现的单词。
+单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。</p></blockquote><blockquote><p>输入:
+words = [&ldquo;oath&rdquo;,&ldquo;pea&rdquo;,&ldquo;eat&rdquo;,&ldquo;rain&rdquo;]
+board =
+[ [<code>'o'</code>,<code>'a'</code>,&lsquo;a&rsquo;,&rsquo;n&rsquo;],
+[&rsquo;e&rsquo;, <code>'t'</code>, <code>'a'</code>, <code>'e'</code>],
+[&lsquo;i&rsquo;, <code>'h'</code>, &lsquo;k&rsquo;, &lsquo;r&rsquo;],
+[&lsquo;i&rsquo;, &lsquo;f&rsquo;, &rsquo;l&rsquo;, &lsquo;v&rsquo;] ]
+输出: [&ldquo;eat&rdquo;,&ldquo;oath&rdquo;]</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback></code></pre></div><h2 id=242-有效的字母异位词httpslinkzhihucomtargethttps3aleetcode-cncomproblemsvalid-anagram><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/valid-anagram/" title="242. 有效的字母异位词" rel="noopener external nofollow noreferrer" target=_blank class=exturl>242. 有效的字母异位词
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
+输入: s = &ldquo;anagram&rdquo;, t = &ldquo;nagaram&rdquo;
+输出: true</p></blockquote><p>逐个去除b里的a中字符</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>isAnagram</span>(self, s: str, t: str) <span style=color:#f92672>-&gt;</span> bool:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> len(s) <span style=color:#f92672>!=</span> len(t):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
+</span></span><span style=display:flex><span>        s <span style=color:#f92672>=</span> list(s)
+</span></span><span style=display:flex><span>        t <span style=color:#f92672>=</span> list(t)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> s:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>try</span>:
+</span></span><span style=display:flex><span>                t<span style=color:#f92672>.</span>remove(i)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>ValueError</span> <span style=color:#66d9ef>as</span> e:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>
+</span></span></code></pre></div><p>第一次循环哈希表记录，第二次循环删去哈希表记录，最后统计哈希表每个值是否都为0</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>isAnagram</span>(self, s: str, t: str) <span style=color:#f92672>-&gt;</span> bool:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> len(s) <span style=color:#f92672>!=</span> len(t):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
+</span></span><span style=display:flex><span>        word_count <span style=color:#f92672>=</span> {}
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 建立哈希表</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> s:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> i <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> word_count:
+</span></span><span style=display:flex><span>                word_count[i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>                word_count[i] <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 清空哈希表</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> t:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> i <span style=color:#f92672>in</span> word_count:
+</span></span><span style=display:flex><span>                word_count[i] <span style=color:#f92672>-=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># all([]) ture any([]) false</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#f92672>not</span> any(list(word_count<span style=color:#f92672>.</span>values()))  
+</span></span></code></pre></div><h2 id=387-字符串中的第一个唯一字符httpslinkzhihucomtargethttps3aleetcode-cncomproblemsfirst-unique-character-in-a-string><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/first-unique-character-in-a-string/" title="387. 字符串中的第一个唯一字符" rel="noopener external nofollow noreferrer" target=_blank class=exturl>387. 字符串中的第一个唯一字符
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。</p></blockquote><p>哈希表记录每个字符出现次数</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>firstUniqChar</span>(self, s: str) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        <span style=color:#75715e>#  count = collections.Counter(s)</span>
+</span></span><span style=display:flex><span>        word_count <span style=color:#f92672>=</span> {}
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 建立哈希表</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> s:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> i <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> word_count:
+</span></span><span style=display:flex><span>                word_count[i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>                word_count[i] <span style=color:#f92672>+=</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>         <span style=color:#75715e># 根据哈希表判断出现次数</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> index, word <span style=color:#f92672>in</span> enumerate(s):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> word_count[word]  <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> index
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+</span></span></code></pre></div><h2 id=344-反转字符串httpslinkzhihucomtargethttps3aleetcode-cncomproblemsreverse-string><a href="https://link.zhihu.com/?target=https%3A//leetcode-cn.com/problems/reverse-string/" title="344. 反转字符串" rel="noopener external nofollow noreferrer" target=_blank class=exturl>344. 反转字符串
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># s[:]=s[::-1]</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 双指针</span>
+</span></span><span style=display:flex><span> l,r<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>,len(s)<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> l<span style=color:#f92672>&lt;</span>r:
+</span></span><span style=display:flex><span>            s[l],s[r]<span style=color:#f92672>=</span>s[r],s[l]
+</span></span><span style=display:flex><span>            l<span style=color:#f92672>+=</span><span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            r<span style=color:#f92672>-=</span><span style=color:#ae81ff>1</span>
+</span></span></code></pre></div><h2 id=3无重复字符的最长子串长度httpsleetcode-cncomproblemslongest-substring-without-repeating-characters><a href=https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/ title=3.无重复字符的最长子串长度 rel="noopener external nofollow noreferrer" target=_blank class=exturl>3.无重复字符的最长子串长度
+<i class="fa fa-external-link-alt"></i></a></h2><blockquote><p>示例 1:
+输入: s = &ldquo;abcabcbb&rdquo;
+输出: 3
+解释: 因为无重复字符的最长子串是 &ldquo;abc&rdquo;，所以其长度为 3。</p></blockquote><p>使用数组作为滑动窗口</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>Solution</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>lengthOfLongestSubstring</span>(self, s: str) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> s: <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        substr <span style=color:#f92672>=</span> []
+</span></span><span style=display:flex><span>        max_len <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> word <span style=color:#f92672>in</span> s:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> word <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> substr:
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 扩展窗口</span>
+</span></span><span style=display:flex><span>                substr<span style=color:#f92672>.</span>append(word)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 从窗口中移除重复字符及之前的字符串部分</span>
+</span></span><span style=display:flex><span>                substr <span style=color:#f92672>=</span> substr[substr<span style=color:#f92672>.</span>index(word)<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>:]
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 扩展窗口</span>
+</span></span><span style=display:flex><span>                substr<span style=color:#f92672>.</span>append(word)
+</span></span><span style=display:flex><span>            max_len <span style=color:#f92672>=</span> max(max_len, len(substr))
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> max_len
+</span></span></code></pre></div><p>法1中容器的伸缩涉及内存分配,所以方法2换成位置指针省掉了内存分配</p><p>直观的滑动窗口方法需要维护数组的增删，实际上比较耗时。使用双指针（索引），记录滑动窗口起始和结束的索引值，可以减除数组增删操作，提高效率，使用指针位移以及从原数组中截取，代替原来的窗口元素增删操作</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>lengthOfLongestSubstring</span>(self, s: str) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 字符串为空则返回零</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> s: <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>        max_len <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>   
+</span></span><span style=display:flex><span>        left_index, right_index <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>  <span style=color:#75715e># 双指针</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> word <span style=color:#f92672>in</span> s:
+</span></span><span style=display:flex><span>            <span style=color:#75715e># 如果字符不在滑动窗口中，则直接扩展窗口</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> word <span style=color:#f92672>not</span> <span style=color:#f92672>in</span> s[left_index:right_index]:
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 右指针右移一位</span>
+</span></span><span style=display:flex><span>                right_index <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 左指针右移 word在substr中的索引 位</span>
+</span></span><span style=display:flex><span>                left_index <span style=color:#f92672>+=</span> s[left_index:right_index]<span style=color:#f92672>.</span>index(word) <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e># 右指针右移一位</span>
+</span></span><span style=display:flex><span>                right_index <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>            max_len <span style=color:#f92672>=</span> max(right_index <span style=color:#f92672>-</span> left_index, max_len)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> max_len 
+</span></span></code></pre></div><p><code>Hash（字典），滑动窗口，双指针</code>
+使用字典记录任意字符最近的索引值，<code>字典查询时间复杂度为O(1)，相比数组查询，效率更高</code>
+该算法的难点在于理解word_index[word] > ignore_end_index如果不大于说明word已经被丢弃；大于说明word未被丢弃需要，更新ignore_end_index</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>lengthOfLongestSubstring</span>(self, s: str) <span style=color:#f92672>-&gt;</span> int:
+</span></span><span style=display:flex><span>        ignore_end_index <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>          <span style=color:#75715e># 指向子串左边一个字符，即丢弃的子串的尾部， 初始值为 -1，还没有开始移动</span>
+</span></span><span style=display:flex><span>        max_len <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>          <span style=color:#75715e># 记录最大的长度</span>
+</span></span><span style=display:flex><span>        word_index <span style=color:#f92672>=</span> {}          <span style=color:#75715e># 滑动窗口，任意字符最后出现位置的索引</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> index, word <span style=color:#f92672>in</span> enumerate(s): 
+</span></span><span style=display:flex><span>             <span style=color:#75715e># 如果 word出现过 且  最近一次出现的索引大于ignore_end，意味着需要丢弃这个词前面的部分</span>
+</span></span><span style=display:flex><span>            <span style=color:#75715e># 如果不大于说明word已经被丢弃；大于说明word未被丢弃需要，更新ignore_end_index                   </span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> word <span style=color:#f92672>in</span> word_index <span style=color:#f92672>and</span> word_index[word] <span style=color:#f92672>&gt;</span> ignore_end_index:  
+</span></span><span style=display:flex><span>                ignore_end_index <span style=color:#f92672>=</span> word_index[word]  <span style=color:#75715e># 新的子串开始</span>
+</span></span><span style=display:flex><span>                word_index[word] <span style=color:#f92672>=</span> index  <span style=color:#75715e># 更新word的索引</span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>:
+</span></span><span style=display:flex><span>                <span style=color:#75715e># word未出现过</span>
+</span></span><span style=display:flex><span>                word_index[word] <span style=color:#f92672>=</span> index  <span style=color:#75715e># 子串变长</span>
+</span></span><span style=display:flex><span>                max_len <span style=color:#f92672>=</span> max(max_len, index <span style=color:#f92672>-</span> ignore_end_index)   <span style=color:#75715e># 更新最大长度</span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> max_len
+</span></span></code></pre></div></div><footer class=post-footer><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
+面试-leetcode面试top100</li><li class=post-copyright-author><strong>本文作者：</strong>
+Tomding</li><li class=post-copyright-link><strong>本文链接：</strong>
+<a id=post-cr-link href=/post/%E9%9D%A2%E8%AF%95-leetcode%E9%9D%A2%E8%AF%95top100/ title=面试-leetcode面试top100>/post/%E9%9D%A2%E8%AF%95-leetcode%E9%9D%A2%E8%AF%95top100/</a></li><li class=post-copyright-license><strong>版权声明：</strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class=followme><span>欢迎关注我的其它发布渠道</span><div class=social-list><div class=social-item><a target=_blank class=social-link href=/images/wechat_channel.jpg><span class=icon><i class="fab fa-weixin"></i></span>
+<span class=label>WeChat</span></a></div><div class=social-item><a target=_blank class=social-link href=/atom.xml><span class=icon><i class="fa fa-rss"></i></span>
+<span class=label>RSS</span></a></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/post/%E9%9D%A2%E8%AF%95-leetcode%E5%88%86%E7%B1%BB/ rel=next title=面试-leetcode分类><i class="fa fa-chevron-left"></i> 面试-leetcode分类</a></div><div class="post-nav-prev post-nav-item"><a href=/post/%E9%9D%A2%E8%AF%95-ml/ rel=prev title=面试-ML>面试-ML
+<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
+<span itemprop=copyrightYear>2010 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span>
+<span class=author itemprop=copyrightHolder>Tomding</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":false,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.e34208af37d3db3a875e6fbad04c2f1c241185af925a9c6ebf79dd1ba2730cdd.js defer></script></body></html>
