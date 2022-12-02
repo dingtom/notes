@@ -1,12 +1,12 @@
 ---
         # 文章标题
-        title: "dcoker-Docker"
+        title: "dcoker-Docker命令"
         # 分类
         categories: 
             - dcoker
         # 发表日期
         date: 2022-12-02T02:11:14+08:00
-
+    
         # 标签
         #tags:
         # 文章内容摘要
@@ -39,7 +39,7 @@
         #math: mathjax
         # 开启各种图渲染，如流程图、时序图、类图等
         #mermaid: true
---- 
+---
 
 # Docekr安装torch
 
