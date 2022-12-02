@@ -160,14 +160,14 @@ if __name__=='__main__':
 
         post_date = time.strftime("%Y-%m-%dT%H:%M:%S+08:00", time.gmtime())
 
-        insert_str = insert_str.replace('title_name', name).replace('categories_name', category).replace('post_date', post_date)
+        insert = insert_str.replace('title_name', name).replace('categories_name', category).replace('post_date', post_date)
 
         if not os.path.exists(post_path):
             os.makedirs(post_path)
         with open(os.path.join(draft_path, filename), 'r', encoding='utf-8') as f:
             content = f.read()
         with open(os.path.join(post_path, filename),'w',encoding='utf-8') as f:
-            f.write(insert_str + content)
+            f.write(insert + content)
             count = count + 1
     print('post {} file, please commit changes'.format(count))
     os.system('hugo serve')

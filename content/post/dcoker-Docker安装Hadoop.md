@@ -1,11 +1,11 @@
 ---
         # 文章标题
-        title: "dcoker-Docker"
+        title: "dcoker-Docker安装Hadoop"
         # 分类
         categories: 
             - dcoker
         # 发表日期
-        date: 2022-12-02T02:58:52+08:00
+        date: 2022-12-02T03:11:14+08:00
 
         # 标签
         #tags:
