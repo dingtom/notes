@@ -106,47 +106,47 @@ if __name__=='__main__':
     post_path = 'content/post'
 
     insert_str = """---
-            # 文章标题
-            title: "title_name"
-            # 分类
-            categories: 
-                - categories_name
-            # 发表日期
-            date: post_date+08:00
+        # 文章标题
+        title: "title_name"
+        # 分类
+        categories: 
+            - categories_name
+        # 发表日期
+        date: post_date
 
-            # 标签
-            #tags:
-            # 文章内容摘要
-            #description: "{{ .Name }}" 
-            # 最后修改日期
-            #lastmod: {{ .Date }}
-            # 文章内容关键字
-            #keywords: "{{replace .Name "-" ","}}"
-            # 原文作者
-            #author:
-            # 原文链接
-            #link:
-            # 图片链接，用在open graph和twitter卡片上
-            #imgs:
-            # 在首页展开内容
-            #expand: true
-            # 外部链接地址，访问时直接跳转
-            #extlink:
-            # 在当前页面关闭评论功能
-            #comment:
-            # enable: false
-            # 关闭当前页面目录功能
-            # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
-            #toc: false
-            # 绝对访问路径
-            #url: "{{ lower .Name }}.html"
-            # 开启文章置顶，数字越小越靠前
-            #weight: 1
-            #开启数学公式渲染，可选值： mathjax, katex
-            #math: mathjax
-            # 开启各种图渲染，如流程图、时序图、类图等
-            #mermaid: true
-    --- \n\n"""
+        # 标签
+        #tags:
+        # 文章内容摘要
+        #description: "{{ .Name }}" 
+        # 最后修改日期
+        #lastmod: {{ .Date }}
+        # 文章内容关键字
+        #keywords: "{{replace .Name "-" ","}}"
+        # 原文作者
+        #author:
+        # 原文链接
+        #link:
+        # 图片链接，用在open graph和twitter卡片上
+        #imgs:
+        # 在首页展开内容
+        #expand: true
+        # 外部链接地址，访问时直接跳转
+        #extlink:
+        # 在当前页面关闭评论功能
+        #comment:
+        # enable: false
+        # 关闭当前页面目录功能
+        # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
+        #toc: false
+        # 绝对访问路径
+        #url: "{{ lower .Name }}.html"
+        # 开启文章置顶，数字越小越靠前
+        #weight: 1
+        #开启数学公式渲染，可选值： mathjax, katex
+        #math: mathjax
+        # 开启各种图渲染，如流程图、时序图、类图等
+        #mermaid: true
+--- \n\n"""
     
     f_list = []
     for root, subdir, files in os.walk(draft_path):
@@ -158,9 +158,9 @@ if __name__=='__main__':
         category = filename.split('-')[0]
         name = os.path.splitext(filename)[0]
 
-        post_date = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
+        post_date = time.strftime("%Y-%m-%dT%H:%M:%S+08:00", time.gmtime())
 
-        insert_str.replace('title_name', name).replace('categories_name', category).replace('post_date', post_date)
+        insert_str = insert_str.replace('title_name', name).replace('categories_name', category).replace('post_date', post_date)
 
         if not os.path.exists(post_path):
             os.makedirs(post_path)
@@ -170,4 +170,4 @@ if __name__=='__main__':
             f.write(insert_str + content)
             count = count + 1
     print('post {} file, please commit changes'.format(count))
-    os.system('hugo -D')
+    os.system('hugo serve')

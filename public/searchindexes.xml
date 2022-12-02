@@ -1,4 +1,435 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>cv-CNN</title><url>/post/cv-cnn/</url><categories><category>cv</category></categories><tags/><content type="html">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>dcoker-Docker</title><url>/post/dcoker-docker/</url><categories><category>dcoker</category></categories><tags/><content type="html"><![CDATA[Docekr安装torch #安装 SSH，并配置免密登录，由于后面的容器之间是由一个镜像启动的，所以在当前容器里配置 SSH 自身免密登录就 OK 了。 #安装 SSH apt-get install openssh-server #安装 SSH 的客户端 #apt-get install openssh-client 进入当前用户的用户根目录 cd ~ #生成密钥，一直回车就行 ssh-keygen -t rsa -P &#34;&#34; #生成的密钥在当前用户根目录下的 .ssh 文件夹中以 . 开头的文件与文件夹 ls 是看不懂的，需要ls -al才能查看。 #将公钥追加到 authorized_keys 文件中 cat .ssh/id_rsa.pub &gt;&gt; .ssh/authorized_keys #启动 SSH 服务 service ssh start #免密登录自己 ssh 127.0.0.1 #修改 .bashrc 文件，启动 shell 的时候，自动启动 SSH 服务 vim ~/.bashrc #添加一行 service ssh start docker pull ubuntu:16.04 docker run -it docker:16.04 apt install net-tools # ifconfig apt install iputils-ping apt install vim exit docker start -i 2e01fd26138f ping exit docker cp J:\软件\linux\Anaconda3-5.3.1-Linux-x86_64.sh 2e01fd26138f:\home\ docker cp 680b957:/home/datawhale_nlp/ J:/NEW/ #要不安装anaconda报错 apt-get install bzip2 bash Anaconda3-5.3.1-Linux-x86_64.sh apt-get install vim vim ~/.bashrc //追加 export PATH=/home/lq/anaconda3/bin:$PATH source ~/.bashrc conda create -n tomding source activate tomding conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ conda config --set show_channel_urls yes #删除清华源改回默认源 conda config --remove-key channels pip install tensorflow==2.0.0 -i https://pypi.tuna.tsinghua.edu.cn/simple conda install tensorflow conda install pytorch torchvision torchaudio cpuonly -c pytorch conda install ipython conda install jupyter exit docker commit 2e01fd26138f ubuntu:test docker run -it ubuntu:test docker save ubuntu:test &gt; J:my_docker.tar docker load &lt; J:my_docker.tar Docker ubuntu安装 Docker 的时候需在管理员的账号下操作。 wget -qO- https://get.docker.com/ | sh 安装完成之后，以 sudo 启动 Docker 服务。 sudo service docker start 容器生命周期管理 创建一个新的容器并运行一个命令：run https://www.runoob.com/docker/docker-run-command.html docker run -d(后台运行不阻塞shell） -p 80:80（指定容器端口映射，内部：外部） &lt;mirror name&gt;:&lt;version&gt; sudo docker run -it image_id /bin/bash -d：后台运行容器 -h: 指定容器exi的hostname； -p：主机端口号:容器端口号，容器内外端口映射 &ndash;name name：指定容器名称 -v &lt;外部 dir&gt;:&lt; 内部 dir&gt;：目录映射1 :：指定映像版本 -it：在容器启动后直接进入，-i：交互式操作，一个是 -t 终端 后面加/bin/bash &ndash;link：将另一个容器映射到本容器，进行通信 &ndash;restart=always：因某种错误而停止运行时，能够自动重启 &ndash;rm：这个参数是说容器退出后随之将其删除 /bin/bash：放在镜像名后的是 **命令**，这里我们希望有个交互式 Shell，因此用的是 bash。 启动/停止/重启容器：start/stop/restart docker start myrunoob PubkeyAuthentication yes AuthorizedKeysFile .ssh/authorized_keys PermitRootLogin yes 杀掉容器：kill docker kill -s KILL mynginx 删除容器：rm https://www.runoob.com/docker/docker-rm-command.html docker rm -f container_id 如果容器还在运行，则会删除失败，应先结束掉容器： 暂停/恢复容器中进程：pause/unpause https://www.runoob.com/docker/docker-pause-unpause-command.html 如果只是希望容器暂停工作一段时间，比如对容器的文件系统大打个快照，或者 docker host 需要使用 CPU，这是可以执行 docker pause 将其暂停。处于暂停状态的容器不会占用 CPU，直到通过 docker unpause 恢复运行。
+创建容器：create https://www.runoob.com/docker/docker-create-command.html 进入容器：exec https://www.runoob.com/docker/docker-exec-command.html docker exec -it container_id bash 容器操作 查看正在运行的容器：ps https://www.runoob.com/docker/docker-ps-command.html docker ps inspect https://www.runoob.com/docker/docker-inspect-command.html top https://www.runoob.com/docker/docker-top-command.html attach https://www.runoob.com/docker/docker-attach-command.html events https://www.runoob.com/docker/docker-events-command.html logs https://www.runoob.com/docker/docker-logs-command.html wait https://www.runoob.com/docker/docker-wait-command.html export https://www.runoob.com/docker/docker-export-command.html port https://www.runoob.com/docker/docker-port-command.html 容器rootfs命令 从容器创建一个新的镜像：commit https://www.runoob.com/docker/docker-commit-command.html docker commit container_id mirror_name 我们修改过后的容器保存成镜像，重新运行，它可以保持这个变化
+-a :提交的镜像作者； -c :使用Dockerfile指令来创建镜像； -m :提交时的说明文字； -p :在commit时，将容器暂停。 注意：通过commint的形式保存现场为一个新的镜像虽然也能直观的达到构建新镜像的目的，但是实际操作中，并不推荐这种形式，因为1.commit操作不仅会把有用的修改保存下来，对一些无关的修改也会保存下来（每一个命令行操作都会生成存储如ls操作）就会导致镜像比较臃肿；2.因为commit操作属于黑箱操作，后续如果有什么问题维护起来会比较麻烦。建议commit仅作为保留现场的手段，然后通过修改dockerfile构建镜像。
+cp https://www.runoob.com/docker/docker-cp-command.html docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH docker cp [OPTIONS] SRC_PATH CONTAINER:DEST_PATH 将主机/www/runoob目录拷贝到容器96f7f14e99ab的/www目录下。 docker cp /www/runoob 96f7f14e99ab:/www/ 将主机/www/runoob目录拷贝到容器96f7f14e99ab中，目录重命名为www。 docker cp /www/runoob 96f7f14e99ab:/www OPTIONS说明：
+**-L :**保持源目标中的链接 diff https://www.runoob.com/docker/docker-diff- command.html
+镜像仓库 login https://www.runoob.com/docker/docker-login-command.html 拉取或者更新镜像：pull https://www.runoob.com/docker/docker-pull-command.html docker pull nginx（等效于nginx:latest） push https://www.runoob.com/docker/docker-push-command.html 推送镜像到仓库 docker push registry.cn-shanghai.aliyuncs.com/test/pytorch:myversion search https://www.runoob.com/docker/docker-search-command.html 命令可以搜索 Docker Hub 中的镜像。
+本地镜像管理 查看镜像列表：images https://www.runoob.com/docker/docker-images-command.html docker images 删除镜像：rmi https://www.runoob.com/docker/docker-rmi-command.html docker rmi mirror_name tag https://www.runoob.com/docker/docker-tag-command.html 有时需要对临时版本，或者节点版本做一个标记保留，打TAG标签非常好用，并不会额外占用空间
+docker tag registry.cn-shanghai.aliyuncs.com/test/pytorch:myversion 使用Dockerfile构建镜像：build https://www.runoob.com/docker/docker-build-command.html docker build -t mirror_name 存放Dockerfile的文件夹 注意一般文件名命名为Dockerfile 无后缀名，如果命名为其他名字，构建时需要额外指定文件名
+如要指定dockerfile :
+docker build -f ./dockerfile -t registry.cn-shanghai.aliyuncs.com/target:test . registry.~~~是你在阿里云容器仓库开通的镜像仓库的公网地址，用自己仓库地址替换。地址后面的：1.0为自己指定的版本号，用于区分每次build的镜像。最后的.是构建镜像的路径，不可以省掉 **&ndash;build-arg=[] :**设置镜像创建时的变量；
+**&ndash;cpu-shares :**设置 cpu 使用权重；
+**&ndash;cpu-period :**限制 CPU CFS周期；
+**&ndash;cpu-quota :**限制 CPU CFS配额；
+**&ndash;cpuset-cpus :**指定使用的CPU id；
+**&ndash;cpuset-mems :**指定使用的内存 id；
+**&ndash;disable-content-trust :**忽略校验，默认开启；
+**-f :**指定要使用的Dockerfile路径；
+**&ndash;force-rm :**设置镜像过程中删除中间容器；
+**&ndash;isolation :**使用容器隔离技术；
+**&ndash;label=[] :**设置镜像使用的元数据；
+**-m :**设置内存最大值；
+**&ndash;memory-swap :**设置Swap的最大值为内存+swap，&quot;-1&quot;表示不限swap；
+**&ndash;no-cache :**创建镜像的过程不使用缓存；
+**&ndash;pull :**尝试去更新镜像的新版本；
+**&ndash;quiet, -q :**安静模式，成功后只输出镜像 ID；
+**&ndash;rm :**设置镜像成功后删除中间容器；
+**&ndash;shm-size :**设置/dev/shm的大小，默认值是64M；
+**&ndash;ulimit :**Ulimit配置。
+**&ndash;squash :**将 Dockerfile 中所有的操作压缩为一层。
+&ndash;tag, -t: 镜像的名字及标签，通常 name:tag 或者 name 格式；可以在一次构建中为一个镜像设置多个标签。
+&ndash;network: 默认 default。在构建期间设置RUN指令的网络模式
+Dockerfile FROM # 基础镜像，一切从这里开始构建 centos MAINTAINER # 镜像是谁写的， 姓名+邮箱 RUN # 镜像构建的时候需要运行的命令 ADD # 步骤，tomcat镜像，这个tomcat压缩包！添加内容 添加同目录 WORKDIR # 镜像的工作目录 VOLUME # 挂载的目录 EXPOSE # 暴露端口配置 和我们的-p一样的 CMD # 指定这个容器启动的时候要运行的命令，只有最后一个会生效，可被替代。 ENTRYPOINT # 指定这个容器启动的时候要运行的命令，可以追加命令 ONBUILD # 当构建一个被继承 DockerFile 这个时候就会运行ONBUILD的指令，触发指令。 COPY # 类似ADD，将我们文件拷贝到镜像中 ENV # 构建的时候设置环境变量 ## 从天池基础镜像构建(from的base img 根据自己的需要更换，建议使用天池open list镜像链接：https://tianchi.aliyun.com/forum/postDetail?postId=67720) FROM registry.cn-shanghai.aliyuncs.com/tcc-public/pytorch:1.4-cuda10.1-py3 ##安装依赖包,pip包请在requirements.txt添加 #RUN pip install --no-cache-dir -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple ## 把当前文件夹里的文件构建到镜像的//workspace目录下,并设置为默认工作目录 ADD math.py /workspace ADD run.sh /workspace WORKDIR /workspace ## 镜像启动后统一执行 sh run.sh CMD [&#34;sh&#34;, &#34;run.sh&#34;] history https://www.runoob.com/docker/docker-history-command.html 镜像保存为tar：save PTIONS 说明：
+**-o :**输出到的文件。 docker save -o my_ubuntu_v3.tar runoob/ubuntu:v3 docker save mirror_name &gt; name.tar 从tar加载镜像：load OPTIONS 说明：
+&ndash;input , -i : 指定导入的文件，代替 STDIN。 &ndash;quiet , -q : 精简输出信息。 docker load &lt; name.tar import https://www.runoob.com/docker/docker-import-command.html info|version info https://www.runoob.com/docker/docker-info-command.html version https://www.runoob.com/docker/docker-version-command.html 杂 如果你本地有gpu，请继续执行如下命令以支持gpu调用： # Add the package repositories distribution=$(. /etc/os-release;echo $ID$VERSION_ID) curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list sudo apt-get update &amp;&amp; sudo apt-get install -y nvidia-container-toolkit sudo systemctl restart docker 镜像加速 对于使用 systemd 的系统，请在 /etc/docker/daemon.json 中写入如下内容（如果文件不存在请新建该文件）：
+{&#34;registry-mirrors&#34;:[&#34;https://reg-mirror.qiniu.com/&#34;]} 之后重新启动服务：
+sudo systemctl daemon-reload sudo systemctl restart docker Windows 10
+setting-&gt;Docker Engine-&gt; https://docker.mirrors.ustc.edu.cn/ ]]></content></entry><entry><title>dcoker-Docker</title><url>/post/dcoker-docker%E5%AE%89%E8%A3%85hadoop/</url><categories><category>dcoker</category></categories><tags/><content type="html"><![CDATA[Docker、Java、Scala、Hadoop、 Hbase、Spark。 集群共有5台机器，主机名分别为 h01、h02、h03、h04、h05。其中 h01 为 master，其他的为 slave。 JDK 1.8、Scala 2.11.6、Hadoop 3.2.1、Hbase 2.1.3、Spark 2.4.0
+# Ubuntu 安装 Docker ## 在 Ubuntu 下安装 Docker 的时候需在管理员的账号下操作。 ​```wget -qO- https://get.docker.com/ | sh``` ## 以 sudo 启动 Docker 服务。 ​```sudo service docker start``` ## 显示 Docker 中所有正在运行的容器 ​```sudo docker ps``` 现在的 Docker 网络能够提供 DNS 解析功能，使用如下命令为接下来的 Hadoop 集群单独构建一个虚拟的网络。 ​```sudo docker network create --driver=bridge hadoop``` 以上命令创建了一个名为 Hadoop 的虚拟桥接网络，该虚拟网络内部提供了自动的DNS解析服务。 ## 查看 Docker 中的网络 ​```sudo docker network ls``` 可以看到刚刚创建的名为 hadoop 的虚拟桥接网络。 ## 查找 ubuntu 容器 ​```sudo docker search ubuntu``` ## 下载 ubuntu 16.04 版本的镜像文件 ​```sudo docker pull ubuntu:16.04``` ## 根据镜像启动一个容器 ​```sudo docker run -it ubuntu:16.04 /bin/bash``` 可以看出 shell 已经是容器的 shell 了 ## 退出容器 ​``` exit``` ## 查看本机上所有的容器 ​```sudo docker ps -a``` ## 启动容器 ​```sudo docker start fab4da838c2f``` ## 关闭容器 ​```sudo docker stop fab4da838c2f 安装 Java 与 Scala 在当前容器中将配置配好，导入出为镜像。以此镜像为基础创建五个容器，并赋予 hostname 进入 h01 容器，启动 Hadoop。
+进入 Ubuntu 容器 sudo docker exec -it fab4da838c2f /bin/bash
+修改 apt 源 备份源 cp /etc/apt/sources.list /etc/apt/sources_init.list 先删除旧源文件 rm /etc/apt/sources.list 这个时候没有 vim 工具，使用 echo 命令将源写入新文件 echo &#34;deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe&#34; &gt; /etc/apt/sources.list 更新源 apt update 安装 jdk 1.8 apt install openjdk-8-jdk 测试 java -version
+安装 Scala apt install scala 测试 scala
+安装 Vim 与 网络工具包 安装 vim，用来编辑文件 apt install vim 安装 net-tools apt install net-tools 安装 SSH 安装 SSH，并配置免密登录，由于后面的容器之间是由一个镜像启动的，所以在当前容器里配置 SSH 自身免密登录就 OK 了。 安装 SSH apt-get install openssh-server 安装 SSH 的客户端 apt-get install openssh-client 进入当前用户的用户根目录 cd ~ 生成密钥，一直回车就行 ssh-keygen -t rsa -P &#34;&#34; 生成的密钥在当前用户根目录下的 .ssh 文件夹中以 . 开头的文件与文件夹 ls 是看不懂的，需要ls -al才能查看。 将公钥追加到 authorized_keys 文件中 cat .ssh/id_rsa.pub &gt;&gt; .ssh/authorized_keys 启动 SSH 服务 service ssh start 免密登录自己 ssh 127.0.0.1 修改 .bashrc 文件，启动 shell 的时候，自动启动 SSH 服务 vim ~/.bashrc 添加一行 service ssh start 安装 Hadoop 下载 Hadoop wget http://mirrors.hust.edu.cn/apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz
+解压 到 /usr/local 目录下面并重命名文件夹 tar -zxvf hadoop-3.2.1.tar.gz -C /usr/local/ cd /usr/local/ mv hadoop-3.2.1 hadoop
+添加环境变量 vim /etc/profile 追加以下内容，JAVA_HOME 为 JDK 安装路径，使用 apt 安装就是这个，用 update-alternatives --config java 可查看
+#java export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 export JRE_HOME=${JAVA_HOME}/jre export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib export PATH=${JAVA_HOME}/bin:$PATH #hadoop export HADOOP_HOME=/usr/local/hadoop export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin export HADOOP_COMMON_HOME=$HADOOP_HOME export HADOOP_HDFS_HOME=$HADOOP_HOME export HADOOP_MAPRED_HOME=$HADOOP_HOME export HADOOP_YARN_HOME=$HADOOP_HOME export HADOOP_INSTALL=$HADOOP_HOME export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native export HADOOP_CONF_DIR=$HADOOP_HOME export HADOOP_LIBEXEC_DIR=$HADOOP_HOME/libexec export JAVA_LIBRARY_PATH=$HADOOP_HOME/lib/native:$JAVA_LIBRARY_PATH export HADOOP_CONF_DIR=$HADOOP_PREFIX/etc/hadoop export HDFS_DATANODE_USER=root export HDFS_DATANODE_SECURE_USER=root export HDFS_SECONDARYNAMENODE_USER=root export HDFS_NAMENODE_USER=root export YARN_RESOURCEMANAGER_USER=root export YARN_NODEMANAGER_USER=root 使环境变量生效 source /etc/profile
+修改配置文件 在目录 /usr/local/hadoop/etc/hadoop 下，修改 hadoop-env.sh 文件，在文件末尾添加以下信息 cd /usr/local/hadoop/etc/hadoop vim hadoop-env.sh
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 export HDFS_NAMENODE_USER=root export HDFS_DATANODE_USER=root export HDFS_SECONDARYNAMENODE_USER=root export YARN_RESOURCEMANAGER_USER=root export YARN_NODEMANAGER_USER=root 修改 core-site.xml，修改为 vim core-site.xml
+&lt;configuration&gt; &lt;property&gt; &lt;name&gt;fs.default.name&lt;/name&gt; &lt;value&gt;hdfs://h01:9000&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;hadoop.tmp.dir&lt;/name&gt; &lt;value&gt;/home/hadoop3/hadoop/tmp&lt;/value&gt; &lt;/property&gt; &lt;/configuration&gt; chmod 777 /home/hadoop3/hadoop/tmp 修改 hdfs-site.xml，修改为 vim hdfs-site.xml
+&lt;configuration&gt; &lt;property&gt; &lt;name&gt;dfs.replication&lt;/name&gt; &lt;value&gt;2&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt; &lt;value&gt;/home/hadoop3/hadoop/hdfs/name&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;dfs.namenode.data.dir&lt;/name&gt; &lt;value&gt;/home/hadoop3/hadoop/hdfs/data&lt;/value&gt; &lt;/property&gt; &lt;/configuration&gt; 修改 mapred-site.xml，修改为 vim mapred-site.xml
+&lt;configuration&gt; &lt;property&gt; &lt;name&gt;mapreduce.framework.name&lt;/name&gt; &lt;value&gt;yarn&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;mapreduce.application.classpath&lt;/name&gt; &lt;value&gt; /usr/local/hadoop/etc/hadoop, /usr/local/hadoop/share/hadoop/common/*, /usr/local/hadoop/share/hadoop/common/lib/*, /usr/local/hadoop/share/hadoop/hdfs/*, /usr/local/hadoop/share/hadoop/hdfs/lib/*, /usr/local/hadoop/share/hadoop/mapreduce/*, /usr/local/hadoop/share/hadoop/mapreduce/lib/*, /usr/local/hadoop/share/hadoop/yarn/*, /usr/local/hadoop/share/hadoop/yarn/lib/* &lt;/value&gt; &lt;/property&gt; &lt;/configuration&gt; 修改 yarn-site.xml，修改为 vim yarn-site.xml
+&lt;configuration&gt; &lt;property&gt; &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt; &lt;value&gt;h01&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt; &lt;value&gt;mapreduce_shuffle&lt;/value&gt; &lt;/property&gt; &lt;/configuration&gt; 修改 worker 为 vim workers
+h01 h02 h03 h04 h05 此时，hadoop已经配置好了
+在 Docker 中启动集群 将当前容器导出为镜像 exit sudo docker commit -m &quot;hadoop&quot; -a &quot;tomding&quot; fab4da838c2f newuhadoop 查看镜像 sudo docker images
+启动 5 个终端 启动 h01 做 master 节点，所以暴露了端口，以供访问 web 页面，&ndash;network hadoop 参数是将当前容器加入到名为 hadoop 的虚拟桥接网络中，此网站提供自动的 DNS 解析功能 sudo docker run -it --network hadoop -h &quot;h01&quot; --name &quot;h01&quot; -p 9870:9870 -p 8088:8088 newuhadoop /bin/bash sudo docker run -it --network hadoop -h &quot;h02&quot; --name &quot;h02&quot; newuhadoop /bin/bash sudo docker run -it --network hadoop -h &quot;h03&quot; --name &quot;h03&quot; newuhadoop /bin/bash sudo docker run -it --network hadoop -h &quot;h04&quot; --name &quot;h04&quot; newuhadoop /bin/bash sudo docker run -it --network hadoop -h &quot;h05&quot; --name &quot;h05&quot; newuhadoop /bin/bash
+在 h01 主机中，启动 Haddop 集群 先进行格式化操作，不格式化操作，hdfs会起不来 cd /usr/local/hadoop/bin ./hadoop namenode -format 进入 hadoop 的 sbin 目录 cd /usr/local/hadoop/sbin/ 启动 ./start-all.sh 查看分布式文件系统的状态 cd /usr/local/hadoop/bin ./hadoop dfsadmin -report
+运行内置WordCount例子 把license作为需要统计的文件 cd /usr/local/hadoop cat LICENSE.txt &gt; file1.txt 在 HDFS 中创建 input 文件夹 cd /usr/local/hadoop/bin ./hadoop fs -mkdir /input 上传 file1.txt 文件到 HDFS 中 ./hadoop fs -put ../file1.txt /input 查看 HDFS 中 input 文件夹里的内容 ./hadoop fs -ls /input 运作 wordcount 例子程序 ./hadoop jar ../share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.1.jar wordcount /input /output 查看 HDFS 中的 /output 文件夹的内容 ./hadoop fs -ls /output 查看 part-r-00000 文件的内容 ./hadoop fs -cat /output/part-r-00000 Hadoop 部分结束了
+安装 Hbase 在 Hadoop 集群的基础上安装 Hbase
+下载 Hbase 2.1.3 root@h01:~# wget http://archive.apache.org/dist/hbase/2.1.3/hbase-2.1.3-bin.tar.gz
+解压 到 /usr/local 目录下面 tar -zxvf hbase-2.1.3-bin.tar.gz -C /usr/local/
+修改环境变量文件 vim /etc/profile
+export HBASE_HOME=/usr/local/hbase-2.1.3 export PATH=$PATH:$HBASE_HOME/bin source /etc/profile 使用 ssh h02/3/4/5 进入其他四个容器，依次在 /etc/profile 文件后追加那两行环境变量
+在目录 /usr/local/hbase-2.1.3/conf 修改配置 cd /usr/local/hbase-2.1.3/conf 修改 hbase-env.sh，追加 vim hbase-env.sh
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 export HBASE_MANAGES_ZK=true 修改配置文件 修改 hbase-site.xml 为 vim hbase-site.xml
+&lt;configuration&gt; &lt;property&gt; &lt;name&gt;hbase.rootdir&lt;/name&gt; &lt;value&gt;hdfs://h01:9000/hbase&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;hbase.cluster.distributed&lt;/name&gt; &lt;value&gt;true&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;hbase.master&lt;/name&gt; &lt;value&gt;h01:60000&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt; &lt;value&gt;h01,h02,h03,h04,h05&lt;/value&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt; &lt;value&gt;/home/hadoop/zoodata&lt;/value&gt; &lt;/property&gt; &lt;/configuration&gt; 修改 regionservers 文件为 vim regionservers
+h01 h02 h03 h04 h05 使用 scp 命令将配置好的 Hbase 复制到其他 4 个容器中 scp -r /usr/local/hbase-2.1.3 root@h02:/usr/local/ scp -r /usr/local/hbase-2.1.3 root@h03:/usr/local/ scp -r /usr/local/hbase-2.1.3 root@h04:/usr/local/ scp -r /usr/local/hbase-2.1.3 root@h05:/usr/local/
+启动 Hbase cd /usr/local/hbase-2.1.3/bin ./start-hbase.sh 打开 Hbase 的 shell hbase shell
+安装 Spark 在 Hadoop 的基础上安装 Spark
+下载 Spark 2.4.0 wget https://archive.apache.org/dist/spark/spark-2.4.0/spark-2.4.0-bin-hadoop2.7.tgz
+解压 到 /usr/local 目录下面 tar -zxvf spark-2.4.0-bin-hadoop2.7.tgz -C /usr/local/ 修改文件夹的名字 cd /usr/local/ mv spark-2.4.0-bin-hadoop2.7 spark-2.4.0
+修改 环境变量 vim /etc/profile
+export SPARK_HOME=/usr/local/spark-2.4.0 export PATH=$PATH:$SPARK_HOME/bin source /etc/profile
+使用 ssh h02/3/4/5 可进入其他四个容器，依次在 /etc/profile 文件后追加那两行环境变量
+在目录 /usr/local/spark-2.4.0/conf 修改配置 cd /usr/local/spark-2.4.0/conf 修改文件名 mv spark-env.sh.template spark-env.sh 修改 spark-env.sh，追加 vim spark-env.sh
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 export HADOOP_HOME=/usr/local/hadoop export HADOOP_CONF_DIR=/usr/local/hadoop/etc/hadoop export SCALA_HOME=/usr/share/scala export SPARK_MASTER_HOST=h01 export SPARK_MASTER_IP=h01 export SPARK_WORKER_MEMORY=4g 修改文件名 mv slaves.template slaves 修改 slaves 如下 vim slaves
+h01 h02 h03 h04 h05 使用 scp 命令将配置好的 Hbase 复制到其他 4 个容器中 scp -r /usr/local/spark-2.4.0 root@h02:/usr/local/ scp -r /usr/local/spark-2.4.0 root@h03:/usr/local/ scp -r /usr/local/spark-2.4.0 root@h04:/usr/local/ scp -r /usr/local/spark-2.4.0 root@h05:/usr/local/
+启动 Spark cd /usr/local/spark-2.4.0/sbin ./start-all.sh 其他 3.1 HDFS 重格式化问题 参考 https://blog.csdn.net/gis_101/article/details/52821946 重新格式化意味着集群的数据会被全部删除，格式化前需考虑数据备份或转移问题； 先删除主节点（即namenode节点），Hadoop的临时存储目录tmp、namenode存储永久性元数据目录dfs/name、Hadoop系统日志文件目录log 中的内容 （注意是删除目录下的内容不是目录）； 删除所有数据节点(即datanode节点) ，Hadoop的临时存储目录tmp、namenode存储永久性元数据目录dfs/name、Hadoop系统日志文件目录log 中的内容；
+格式化一个新的分布式文件系统： cd /usr/local/hadoop/bin ./hadoop namenode -format
+注意事项
+Hadoop的临时存储目录tmp（即core-site.xml配置文件中的hadoop.tmp.dir属性，默认值是/tmp/hadoop-{user.name}）， 如果没有配置hadoop.tmp.dir属性，那么hadoop格式化时将会在/tmp目录下创建一个目录，例如在cloud用户下安装配置hadoop，那么Hadoop的临时存储目录就位于/tmp/hadoop-cloud目录下Hadoop的namenode元数据目录（即hdfs-site.xml配置文件中的dfs.namenode.name.dir属性，默认{hadoop.tmp.dir}/dfs/name）， 同样如果没有配置该属性，那么hadoop在格式化时将自行创建。必须注意的是在格式化前必须清楚所有子节点（即DataNode节点）dfs/name下的内容，否则在启动hadoop时子节点的守护进程会启动失败。这是由于，每一次format主节点namenode，dfs/name/current目录下的VERSION文件会产生新的clusterID、namespaceID。 但是如果子节点的dfs/name/current仍存在，hadoop格式化时就不会重建该目录，因此形成子节点的clusterID、namespaceID与主节点（即namenode节点）的clusterID、namespaceID不一致。最终导致hadoop启动失败。
+进入： sudo docker run -it --network hadoop -h &quot;h01&quot; --name &quot;h01&quot; -p 9870:9870 -p 8088:8088 master /bin/bash sudo docker run -it --network hadoop -h &quot;h02&quot; --name &quot;h02&quot; slave1 /bin/bash sudo docker run -it --network hadoop -h &quot;h03&quot; --name &quot;h03&quot; slave2 /bin/bash sudo docker run -it --network hadoop -h &quot;h04&quot; --name &quot;h04&quot; slave3 /bin/bash sudo docker run -it --network hadoop -h &quot;h05&quot; --name &quot;h05&quot; slave14 /bin/bash 退出： sudo docker commit -m &quot;master&quot; -a &quot;tomding&quot; h01 master sudo docker commit -m &quot;slave1&quot; -a &quot;tomding&quot; h02 slave1 sudo docker commit -m &quot;slave2&quot; -a &quot;tomding&quot; h03 slave2 sudo docker commit -m &quot;slave3&quot; -a &quot;tomding&quot; h04 slave3 sudo docker commit -m &quot;slave4&quot; -a &quot;tomding&quot; h05 slave4
+]]></content></entry><entry><title>dcoker-Docker</title><url>/post/linux-linux%E5%91%BD%E4%BB%A4/</url><categories><category>dcoker</category></categories><tags/><content type="html"><![CDATA[Ctrl+c 强制中断程序的执行 Ctrl+z	将程序挂起，fg/bg继续任务
+Ctrl+d	键盘输入结束或退出终端 Ctrl+s	中断控制台输出 ctrl+q 恢复控制台输出 ctrl+l 清屏
+ctrl+左右键 在单词之间跳转
+Ctrl+a	将光标移至输入行头，相当于Home键 Ctrl+e	将光标移至输入行末，相当于End键
+Ctrl+u：删除当前光标前面的文字
+Ctrl+k	删除从光标所在位置到行末 Alt+Backspace	向前删除一个单词 命令 &ndash;help 查看一些它的某个命令具体参数的作用 man 命令 显示系统手册页中的内容
+一行中运行多个命令。 Command 1 ; Command 2 首先运行Command1，然后运行Command2 Command 1 &amp;&amp; Command 2 当Command1运行成功并结束，然后运行Command2 Command 1 || Command 2 当Command1运行失败时才运行Command2
+文件 bin (binaries)存放二进制可执行文件 sbin (super user binaries)存放二进制可执行文件，只有root才能访问 etc (etcetera)存放系统配置文件 usr (unix shared resources)用于存放共享的系统资源 home 存放用户文件的根目录 root 超级用户目录 dev (devices)用于存放设备文件 lib (library)存放跟文件系统中的程序运行所需要的共享库及内核模块 mnt (mount)系统管理员安装临时文件系统的安装点 boot 存放用于系统引导时使用的各种文件 tmp (temporary)用于存放各种临时文件 var (variable)用于存放运行时需要改变数据的文件
+文件增删改查 mkdir 创建目录和父目录a,b,c,d mkdir -p a/b/c/d
+-p 建立多级目录 -m 在建立目录的时候给目录赋于权限值
+ls -a 这个选项能显示.开头的隐藏文件 -l 除文件名称外，亦将文件型态、权限、拥有者、文件大小等资讯详细列出 -t 将文件依建立时间之先后次序列出 -i 显示每个文件的inode号 -m 所有项目以逗号分隔，并填满整行行宽 -R 同时列出所有子目录层 -h 将列出文件的大小以人性化格式输出 &ndash;color=tty(2个-号)显示文件的时候以色彩提示 -full-time显示文件的详细访问时间 -lc查看文件状态修改时间
+rmdir 删除空目录
+-p 删除多级空目录
+cp 拷贝文件夹a到/tmp目录 cp -rvf a/ /tmp/
+-r 复制整个目录里的内容 -p 复制文件属性 -u 有差异才复制 -i 文件已存在询问 -v 在复制文件的时候显示进度 -f 在复制的时候如果碰到目的文件名有重复就将原先的删除
+mv 重命名 mv a.txt b.txt 移动文件a到/tmp目录，并重命名为b mv -vf a /tmp/b -i 如果目的地有相同文件名时会出现提示 -v 在搬移文件时显示进度，在移动多文件时非常有用 -u 当移动时只有源文件比目的文件新的时候才会移动 -f 强制覆盖已有的文件
+touch 创建文件 touch asd.txt 创建多个文件 touch love_{1..10}_shiyanlou.txt
+rm 删除机器上的所有文件 rm -rvf / -i 在删除文件之前需要手工确认 -v 在删除文件的时候显示信息 -r 删除目录 -f 忽略提示
+tr 删除、转换一段文本信息中的某些文字 -d	删除匹配的字符，注意不是全词匹配也不是按字符顺序匹配 -s	去除指定的在输入文本中连续并重复的字符 删除 &ldquo;hello shiyanlou&rdquo; 中所有的&rsquo;o&rsquo;,&rsquo;l&rsquo;,&lsquo;h&rsquo; echo 'hello shiyanlou' | tr -d 'olh' 将&quot;hello&quot; 中的ll,去重为一个l echo 'hello' | tr -s 'l' 将输入文本，全部转换为大写或小写输出 echo 'input some text here' | tr '[:lower:]' '[:upper:]' 上面的&rsquo;[:lower:]&rsquo; &lsquo;[:upper:]&lsquo;你也可以简单的写作&rsquo;[a-z]&rsquo; &lsquo;[A-Z]&rsquo;,当然反过来将大写变小写也是可以的
+jion 将两个文件中包含相同内容的那一行合并在一起。 -t	指定分隔符，默认为空格 -i	忽略大小写的差异 -1	指明第一个文件要用哪个字段来对比，默认对比第一个字段 -2	指明第二个文件要用哪个字段来对比，默认对比第一个字段 将/etc/passwd与/etc/group两个文件合并，指定以&rsquo;:&lsquo;作为分隔符, 分别比对第4和第3个字段 sudo join -t':' -1 4 /etc/passwd -2 3 /etc/group
+paste 在不对比数据的情况下，简单地将多个文件合并一起，以Tab隔开。 -d	指定合并的分隔符，默认为 Tab -s	不合并到一行，每个文件为一行
+paste -d '+' file1 file2 合并两个文件或两栏的内容，中间用&quot;+&ldquo;区分
+cat 第一个字节开始正向查看文件的内容 如果文件很大的话，cat命令的输出结果会疯狂在终端上输出，可以多次按ctrl+c终止。 -b 显示文件内容的时候显示行数 -n 显示文件内容包括空行 -s 将多个空行合并成一个空行输出
+tac 从最后一行开始反向查看一个文件的内容
+统计当前目录下文件的个数（不包括目录） ls -l | grep &quot;^-&quot; | wc -l 统计当前目录下文件的个数（包括子目录） ls -lR| grep &quot;^-&quot; | wc -l 查看某目录下文件夹(目录)的个数（包括子目录） ls -lR | grep &quot;^d&quot; | wc -l
+less 针对比较大的文件，我们就可以使用less命令打开某个文件。
+按n(N)向下(上)查找。
+more 查看文本文件命令
+用空格向下翻页，用b向上翻页
++行数直接从给定的行数开始显示 -s 将多个空行压缩成一个空行 -p 清除屏幕后再显示
+nano 文本编辑器 命令格式：nano [选项] [行号] 文件名
+head 查看文件头部
+-n &lt;行数&gt; 显示文件的最前指定的行 -c &lt;字节数&gt; 显示文件前N个字节数里的内容 -q 不输出文件头的内容 -v 输出文件头的内容
+tail 查看文件尾部
+-f 循环读取 -c &lt;字节数&gt; 显示文件前N个字节数里的内容 -q 不输出文件头的内容 -n &lt;行数&gt; 指定所显示的行数 -v 输出文件头的内容
+tail -f access.log
+ln 生成链接文件
+命令格式：ln [选项] 源文件 链接文件
+-f 删除已存在的目的文件 -i 如果碰到有重复名字的提示如何操作 -v 显示操作信息 -s 软链接选项
+ln -s redis-5.0.0 redis
+file 查看文件的类型
+stat 显示文件或文件系统状态
+命令格式：stat [选项] &lt;文件/目录&gt;
+-f:查看指定的文件系统
+stat可查看： 文件名 2. 文件尺寸 3. I节点号 4. 创建时间/访问时间/状态(属 主、组、权限)修改时间 5.权限 6.链接文件个数 7. 属主及属组等
+whereis 显示一个二进制文件、源码或man的位置
+which 显示一个二进制文件或可执行文件的完整路径
+find 最常用的命令，命令的路径是作为第一个参数的， 基本命令格式为 find [path][option] [action] 。 sudo find /etc -name sources.list
+find / -name file1 从 &lsquo;/&rsquo; 开始进入根文件系统搜索文件和目录 find / -user user1 搜索属于用户 &lsquo;user1&rsquo; 的文件和目录 find /usr/bin -type f -atime +100 搜索在过去100天内未被使用过的执行文件 find /usr/bin -type f -mtime -10 搜索在10天内被创建或者修改过的文件 find ~ -size +1500c 查找大于1500字节的文件 find ~ -size 1500c查找等于1500字节的文件 find ~ -size -1500c查找小于1500字节的文件 find ~ -size +512k查找大于512k字节的文件 find ~ -size -1G查找小于1G字节的文件 find ~ -size +10查找大于10块的文件 find / -empty查找文件/目录字节为0的文件(即空文件)
+grep 功能: 通过正则表达式查找文件中的关键字
+-i:忽略大小写 -c:打印匹配的行数 -C:打印出匹配的上下文(上N行,下N行)的多少行-l:列出匹配的文件名 -L:列出不匹配的文件名 -n：打印包含匹配项的行和行标 -w:仅匹配指定的单词而非关键字 -e:索引匹配字串 -r:递归查询 -v:不输出匹配的行 -A &lt;行号&gt;:显示所找的匹配字段，并显示下面指定的行数的信息 -B &lt;行号&gt;:显示所找的匹配字段，并显示上面指定的行数的信息
+grep -rn --color POST access.log查看nginx日志中的POST请求。 grep -rn --color Exception -A10 -B2 error.log看某个异常前后相关的内容 grep ^Aug /var/log/messages 在文件 &lsquo;/var/log/messages&rsquo;中查找以&quot;Aug&quot;开始的词汇
+正则表达式表示方法: \忽略正则表达式中特殊字符的原有含义 ^ 匹配正则表达式的开始行 $ 匹配正则表达式的结束行 &lt; 从匹配正则表达式的行开始 到匹配正则表达式的行结束 [ ] 单个字符；如[A] 即A符合要求 [ n - m ] 范围 ；如[A-H]即包含A至H都符合要求 . 所有的单个字符 * 所有字符，长度可以为0
+​	cat redis.conf | grep -v &quot;#&quot; | grep -v &quot;^$&quot; &gt; redis-6379.conf去除注释、空格，导出到文档中
+cut 打印每一行的某一字段
+-d “n”:定义分界符,即点位 -f 取第几位的字符 -c:仅显示行中指定范围的字符
+打印/etc/passwd文件中以:为分隔符的第 1 个字段和第 6 个字段分别表示用户名和其家目录： cut /etc/passwd -d ':' -f 1,6 前五个（包含第五个） cut /etc/passwd -c -5 前五个之后的（包含第五个） cut /etc/passwd -c 5-
+sort 排序 -r反转 -t参数用于指定字段的分隔符 -k 字段号用于指定对哪一个字段进行排序 -n 按照数字排序,默认情况下是以字典序排序的 cat /etc/passwd | sort -t':' -k 3 -n
+wc 计数工具 行数 wc -l /etc/passwd 单词数 wc -w /etc/passwd 字节数 wc -c /etc/passwd 字符数 wc -m /etc/passwd 最长行字节数，西文字符来说，一个字符就是一个字节，但对于中文字符一个汉字是大于 2 个字节的，具体数目是由字符编码决定的 wc -L /etc/passwd
+uniq -c:在数据行前出现的次数 -d:只打印重复的行,重复的行只显示一次 -f:忽略行首的几个字段 -i:忽略大小写 -s:忽略行首的几个字母 -u:只打印唯一的行
+用于过滤或者输出重复行。 因为uniq命令只能去连续重复的行，不是全文去重，所以要达到预期效果，我们先排序：
+history | cut -c 8- | cut -d ' ' -f 1 | sort | uniq 使用频率前三的命令 history |cut -c 8-|sort|uniq -dc|sort -rn -k1 |head -3
+下载 wget url
+sudo apt-get install axel
+axel -n 10 -o /tmp/ [http://testdownload.net/test.tar.gz](http://testdownload.net/test.tar.gz) -n 指定线程数 -o 指定另存为目录 -s 指定每秒的最大比特数 -q 静默模式
+系统 ssh ssh [选项] [参数] 命令选项 -1：强制使用ssh协议版本1； -2：强制使用ssh协议版本2； -4：强制使用IPv4地址； -6：强制使用IPv6地址； -A：开启认证代理连接转发功能； -a：关闭认证代理连接转发功能； -b：使用本机指定地址作为对应连接的源ip地址； -C：请求压缩所有数据； -F：指定ssh指令的配置文件； -f：后台执行ssh指令； -g：允许远程主机连接主机的转发端口； -i：指定身份文件； -l：指定连接远程服务器登录用户名； -N：不执行远程指令； -o：指定配置选项； -p：指定远程服务器上的端口； -q：静默模式； -X：开启X11转发功能； -x：关闭X11转发功能； -y：开启信任X11转发功能。 # 安装 OpenSSH Server sudo apt-get install openssh-server # SSH 默认连接到目标主机的 22 端口上-p 指定端口号为 23. ssh -p 23 rumenz@test.com # 远程执行命令 ssh rumenz@test.com &#34;ls -l&#34; # 生成SSH密钥和公钥 ssh-keygen -t rsa # 最后在`~/.ssh`目录下会生成`id_rsa`(秘钥),`id_rsa.pub`(公钥)两个文件 # 拷贝本机的公钥到服务器 ssh-copy-id rumenz@test.com # 输入远程用户的密码后，SSH公钥就会自动上传了．SSH公钥保存在远程Linux服务器的`~/.ssh/authorized_keys`文件中． 除了登陆外还有三种代理功能：
+正向代理（-L）：相当于 iptable 的 port forwarding 反向代理（-R）：相当于 frp 或者 ngrok socks5 代理（-D）：相当于 ss/ssr 正向代理：
+所谓“正向代理”就是在本地启动端口，把本地端口数据转发到远端。
+用法1：远程端口映射到其他机器
+Host_local 上启动一个 Port_local 端口，映射到 Host_remote:Port_remote 上，在 Host_local 上运行：
+Host_local$ ssh -L 0.0.0.0:Port_local:Host_remote:Port_remote user@Host_remote 这时访问 Host_local:Port_local 相当于访问 Host_remote:Port_remote（和 iptable 的 port-forwarding 类似）。
+用法2：本地端口通过跳板映射到其他机器
+Host_local 上启动一个 Port_local 端口，通过 HostB 转发到 Host_remote:Port_remote上，在 Host_local 上运行：
+Host_local$ ssh -L 0.0.0.0:Port_local:Host_remote:Port_remote user@HostB 这时访问 Host_local:Port_local 相当于访问 Host_remote:Port_remote。
+两种用法的区别是，第一种用法本地到跳板机的数据是明文的，而第二种用法数据被 ssh 加密传输给 HostB 又转发给 Host_remote:Port_remote。
+反向代理：
+所谓“反向代理”就是让远端启动端口，把远端端口数据转发到本地。
+Host_local 将自己可以访问的 HostB:PortB 暴露给外网服务器 Host_remote:Port_remote，在 Host_local 上运行：
+Host_local$ ssh -R Host_remote:Port_remote:HostB:PortB user@Host_remote 那么链接 Host_remote:Port_remote 就相当于链接 HostB:PortB。使用时需修改 Host_remote 的 /etc/ssh/sshd_config，添加：
+GatewayPorts yes 相当于内网穿透，比如 Host_local 和 HostB 是同一个内网下的两台可以互相访问的机器，Host_remote是外网跳板机，Host_remote不能访问 Host_local，但是 Host_local 可以访问 Host_remote。
+那么通过在内网 Host_local 上运行 ssh -R 告诉 Host_remote，创建 Port_remote端口监听，把该端口所有数据转发给我（Host_local），我会再转发给同一个内网下的 HostB:PortB。
+同内网下的 Host_local/HostB 也可以是同一台机器，换句话说就是内网 Host_local 把自己可以访问的端口暴露给了外网 Host_remote。
+用户 who am i 查看用户 输出的第一列表示打开当前伪终端的用户的用户名，第二列的 pts/0 中 pts 表示伪终端，所谓伪是相对于 /dev/tty 设备而言的，还记得上一节讲终端时的那七个使用 [Ctrl]+[Alt]+[F1]～[F7] 进行切换的 /dev/tty 设备么，这是“真终端”，伪终端就是当你在图形用户界面使用 /dev/tty7 时每打开一个终端就会产生一个伪终端，pts/0 后面那个数字就表示打开的伪终端序号，第三列则表示当前伪终端的启动时间。
+sudo passwd lilei 设置用户lilei的密码 sudo adduser lilei 创建新用户lilei，默认为新用户在 /home 目录下创建一个工作目录 su -l lilei 切换到lilei用户 sudo deluser lilei &ndash;remove-home 删除用户
+groups groups shiyanlou 其中冒号之前表示用户，后面表示该用户所属的用户组。这里可以看到 shiyanlou 用户属于 shiyanlou 用户组，每次新建用户如果不指定用户组的话，默认会自动创建一个与用户名相同的用户组 cat /etc/group | grep -E &quot;shiyanlou&quot; 查看自己属于哪些用户组 group_name:password:GID:user_list
+sudo usermod -G sudo lilei 将其它用户加入 sudo 用户组 以直接使用 root 用户为其它用户添加用户组，或者用其它已经在 sudo 用户组的用户使用 sudo 命令获取权限来执行该命令。
+文件权限操作 ls -l a.txt
+drwxr-xr-x 2 root root 4.0K 3月 23 2017 a.txt
+第1位：文件类型（d 目录，- 普通文件，l 链接文件） r 可读权限，w可写权限，x可执行权限（也可以用二进制表示 111 110 100 &ndash;&gt; 764） 第2-4位：所属用户权限，用u（user）表示 第5-7位：所属组权限，用g（group）表示 第8-10位：其他用户权限，用o（other）表示 第2-10位：表示所有的权限，用a（all）表示
+2是纯数字 ，表示 文件链接个数
+第一个“root” 表示文件的所有者
+第二个“root” 表示为文件的所在群组
+“4.0K”，表示为文件长度（大小）
+“3月 23 2017”，表示文件最后更新（修改）时间
+“etc” 表示文件的名称
+chown 改变文件的所属用户和所属组。
+-R 修改指定目录及其子目录
+chown -R xjj:xjj a修改a目录的用户和组为 xjj chown user1 file1 改变一个文件的所有人属性 chown -R user1 directory1 改变一个目录的所有人属性并同时改变改目录下所有文件的属性 chown user1:group1 file1 改变一个文件的所有人和群组属性
+chmod 改变文件的访问权限。
+u表示当前用户 user（用户） g表示同组用户group（用户组） o表示其他用户others（其他用户） a表示所有用户 + 和 - 分别表示增加和去掉相应的权限。 r表示可读 w表示可写 x表示可执行
+用数字来表示权限（r=4，w=2，x=1，-=0）, 7：表示可读可写可执行，4+2+1, 6：表示可读可写，4+2 -R 修改指定目录及其子目录
+chmod a+x a.sh 给a.sh文件增加执行权限（这个太常用了) chmod u+x file 给file的属主增加执行权限 chmod 751 file 给file的属主分配读、写、执行(7)的权限，给file的所在组分配读、执行(5)的权限，给其他用户分配执行(1)的权限 chmod u=rwx,g=rx,o=x file 上例的另一种形式 chmod =r file 为所有用户分配读权限 chmod 444 file 同上例 chmod a-wx,a+r file 同上例 chmod -R u+r directory 递归地给directory目录下所有文件和子目录的属主分配读的权限 chmod 4755 设置用ID，给属主分配读、写和执行权限，给组和其他用户分配读、执行的权限。
+####df(report file system disk space usage) 显示文件系统磁盘空间的使用情况
+-h 以人类可读的方式显示，KD，Mb，GB等
+du (estimate file space usage) 显示指定的目录及其子目录已使用的磁盘空间的总和
+-s显示指定目录的总和 -a 显示目录中所有文件的大小。 -h以人类可读的方式显示，Kb，Mb，G8等 -d参数指定查看目录的深度 # 只查看1级目录的信息 -d 0 ~ 查看文件大小 du -h file
+dd 转换和复制文件,也可以用在备份硬件的引导扇区、获取一定数量的随机数据或者空数据等任务中。
+dd默认从标准输入中读取，并写入到标准输出中，但可以用选项if（input file，输入文件）和of（output file，输出文件）改变。
+bs（block size）用于指定块大小（缺省单位为 Byte，也可为其指定如&rsquo;K&rsquo;，&lsquo;M&rsquo;，&lsquo;G&rsquo;等单位）， count用于指定块数量。 conv=ucase 将输出的英文字符转换为大写再写入文件
+输出到test文件 dd of=test bs=10 count=1 输出到标准输出 dd if=/dev/stdin of=/dev/stdout bs=10 count=1
+mount -o 操作选项 -t 文件系统类型 -w|&ndash;rw|&ndash;ro权限
+从/dev/zero设备创建一个容量为 256M 的空文件： dd if=/dev/zero of=virtual.img bs=1M count=256 格式化磁盘： sudo mkfs.ext4 virtual.img 挂载我们创建的虚拟磁盘镜像到/mnt目录： mount -o loop -t ext4 virtual.img /mnt
+卸载已挂载磁盘 sudo umount /mnt
+free 显示当前内存和交换空间的使用情况
+date 显示系统当前时间
+top 显示当前系统中耗费资源最多的进程 查看某个进程中的线程状态 top -H -p pid
+ps 较少单独使用，配参数根据需求，ps ef或者ps-aux
+-e 显示所有选程，环境变量 -f 全格式显示 -a 显示所有用户的所有进程（包括其它用户） -u 按用户名和启动时间的顺序来显示进程 -x 显示无控制终端的进程 -l ：较长，较详细地将PID的信息列出
+ps aux查看系统所有的进程数据 ps ax 查看不与terminal有关的所有进程 ps -lA 查看系统所有的进程数据 ps axjf 查看连同一部分进程树状态
+ps -ef | grep redis-查看redis服务
+kill kill -9 pid强制杀死一个进程
+pkill -f &ldquo;进程名&rdquo; kill -9 $(pidof 进程名关键字)
+ifconfig 网卡网络配置，常用于查看当前IP地址 ifconfig etho 192.168.12.22 修改系统IP（重品后失效）
+ping ping baidu.com 测试网络的连通
+hostname 查看主机名
+关机 sudo shutdown now sudo reboot now sudo shutdown -c 取消关机 sudo shutdown -r 重启 sudo shutdown -f　强行关闭应用程序 sudo shutdown -l　注销当前用户 sudo shutdown -t 设置关机倒计时 sudo shutdown -h hours:minutes 按预定时间关闭系统
+export 设定一些环境变量，env命令能看到当前系统中所有的环境变量。比如，下面设置的就是jdk的。 export PATH=$PATH:/home/xjj/jdk/bin source 命令来让其立即生效 set	显示当前 Shell 所有变量，包括其内建环境变量，用户自定义变量及导出的环境变量。 env	显示与当前用户相关的环境变量，还可以让命令在指定环境中运行。 export	显示从 Shell 中导出成环境变量的变量，也能通过它将自定义变量导出为环境变量。
+/etc/bashrc（有的 Linux 没有这个文件） 和 /etc/profile ，它们分别存放的是 shell 变量和环境变量。 unset 命令删除一个环境变量
+压、解缩 gzip 压缩文件成者文件夹 -d解压缩文件 gzip file1 压缩一个叫做 &lsquo;file1&rsquo;的文件 gzip -9 file1 最大程度压缩
+zip -r 参数表示递归打包包含子目录的全部内容，9 压缩级别最大1 最小, -q 参数表示为安静模式，即不向屏幕输出信息， -o，表示输出文件, -l 参数将 LF 转换为 CR+LF 来达到win/linux兼容。
+zip -r -9 -q -o -l shiyanlou.zip /home/shiyanlou/Desktop将目录 /home/shiyanlou/Desktop 打包成一个文件 zip file1.zip file1 创建一个zip格式的压缩包 zip -r file1.zip file1 file2 dir1 将几个文件和目录同时压缩成一个zip格式的压缩包
+unzip -q 使用安静模式 -d指定路径 -l 不解压只想查看压缩包的内容 -O（英文字母，大写 o）参数指定编码类型：(win默认会采用 GBK , Linux 默认 UTF-8 ) unzip -O GBK 中文压缩文件.zip
+unzip -q shiyanlou.zip -d ziptest将文件解压到指定目录：
+tar -P 保留绝对路径符 -j bzip2进行压缩 -z gzip进行压缩 -v压缩的过程中显示文件 -c 表示创建一个 tar 包文件 -f 用于指定创建的文件名，件名必须紧跟在 -f 参数之后 -p在其他主机还原时希望保留文件的属性 -h 备份链接指向的源文件而不是链接本身 -x解包一个文件 -C 指定保存路径 -t只查看不解包文件
+tar -jcv -f filename.tar.bz2 压缩 tar -jtv -f filename.tar.bz2 查询 tar -jxv -f filename.tar.bz2 -C dirname解压
+rar rar a file1.rar test_file 创建一个叫做 &lsquo;file1.rar&rsquo; 的包 rar a file1.rar file1 file2 dir1 同时压缩 &lsquo;file1&rsquo;, &lsquo;file2&rsquo; 以及目录 &lsquo;dir1&rsquo; rar x file1.rar 解压rar包
+VIM 修改文本 定位命令 替换和取消命令 删除命令 常用快捷键 alias alias a='find . -size +10M -type f -print0 | xargs -0 ls -Ssh | sort -z'
+关闭防火墙 systemctl stop firewalld.service
+禁止防火墙开机启动 systemctl disable firewalld.service
+关闭SELinux nano -w /etc/selinux/config 将SELINUX=enforcing改为SELINUX=disabled保存并退出:^x-&gt;y-&gt;回车
+计划任务 查看添加了哪些任务crontab -l 添加一个计划任务crontab -e 删除任务crontab -r 分 小时 天 月 星期 user-name command to be executed
+启动 rsyslog，以便我们可以通过日志中的信息来了解我们的任务是否真正的被执行了 sudo apt-get install -y rsyslog sudo service rsyslog start( Ubuntu 会默认自行启动不需要手动启动) sudo cron －f &amp;(实验环境中 crontab 也是不被默认启动的，同时不能在后台由 upstart 来管理，所以需要我们来启动它)
+每分钟我们会在/home/shiyanlou 目录下创建一个以当前的年月日时分秒为名字的空白文件 */1 * * * * touch /home/shiyanlou/$(date +\%Y\%m\%d\%H\%M\%S)
+“ % ” 在 crontab 文件中，有结束命令行、换行、重定向的作用，前面加 ” \ ” 符号转义，否则，“ % ” 符号将执行其结束命令行或者换行的作用，并且其后的内容会被做为标准输入发送给前面的命令。
+查看到执行任务命令之后在日志中的信息反馈 sudo tail -f /var/log/syslog
+有选择的执行命令 which cowsay&gt;/dev/null &amp;&amp; echo &quot;exist&quot; || echo &quot;not exist&quot; &amp;&amp;就是用来实现选择性执行的，它表示如果前面的命令执行结果（不是表示终端输出的内容，而是表示命令执行状态的结果）返回 0 则执行后面的，否则不执行，你可以从$?环境变量获取上一次命令的返回结果 ||在这里就是与&amp;&amp;相反的控制效果，当上一条命令执行结果为 ≠0($?≠0)时则执行它后面的命令 echo $?
+修改root密码 ubuntu中修改root账号的密码命令：sudo passwd root
+修改内核启动顺序 显示内核的启动顺序 grep menuentry /boot/grub/grub.cfg 修改内核配置文件 sudo vim /etc/default/grub GRUB_DEFAULT=0 改为 GRUB_DEFAULT=6或者改为GRUB_DEFAULT=”Ubuntu，Linux 4.4.0-21-generic“ 报错根据提示信息修改 更新 sudo update-grub 清除旧版本内核 查看当前使用内核版本号 uname -a 查看所有的版本 sudo dpkg --get-selections | grep linux 删除 sudo apt-get purge linux-headers-4.15.0-74 linux-headers-4.15.0-74-generic linux-image-4.15.0-74-generic linux-modules-4.15.0-74-generic linux-modules-extra-4.15.0-74-generic 标记deinstall的内核文件进行删除 sudo dpkg -P linux-image-4.4.0-138-generic 更新引导 sudo update-grub ]]></content></entry><entry><title>dcoker-Docker</title><url>/post/linux-shell/</url><categories><category>dcoker</category></categories><tags/><content type="html"><![CDATA[#!/bin/bash ! 是一个约定的标记，它告诉系统这个脚本需要什么解释器来执行，即使用哪一种 Shell。 chmod +x ./test.sh 使脚本具有执行权限 ./test.sh 执行脚本 注意，一定要写成 ./test.sh ，而不是 test.sh ，运行其它二进制的程序也一样，直接写 test.sh ，linux 系统会去 PATH 里寻找有没有叫 test.sh的，而只有 /bin, /sbin, /usr/bin，/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 test.sh 是会找不到命令的，要用 ./test.sh 告诉系统说，就在当前目录找。
+/bin/sh test.sh 这种方式运行的脚本，不需要在第一行指定解释器信息，写了也没用。
+######变量名和等号之间不能有空格，这可能和你熟悉的所有编程语言都不一样。同时，变量名的命名须遵循如下规则： 命名只能使用英文字母，数字和下划线，首个字符不能以数字开头。 中间不能有空格，可以使用下划线（_）。 不能使用标点符号。 不能使用bash里的关键字（可用help命令查看保留关键字）。
+#####除了显式地直接赋值，还可以用语句给变量赋值，如： for file in ls /etc`` 或 for file in $(ls /etc) 以上语句将 /etc 下目录的文件名循环出来。
+#####使用一个定义过的变量，只要在变量名前面加美元符号即可，如：
+your_name=&#34;qinjx&#34; echo $your_name echo ${your_name} 变量名外面的花括号是可选的，加不加都行，加花括号是为了帮助解释器识别变量的边界，比如下面这种情况：
+for skill in Ada Coffe Action Java; do echo &#34;I am good at ${skill}Script&#34; ;done 如果不给skill变量加花括号，写成echo &quot;I am good at $skillScript&quot;，解释器就会把$skillScript当成一个变量（其值为空），代码执行结果就不是我们期望的样子了。
+#####使用 readonly 命令可以将变量定义为只读变量，只读变量的值不能被改变。 readonly myUrl #修改的话执行时会报错
+#####使用 unset 命令可以删除变量。unset 命令不能删除只读变量。 unset variable_name 变量被删除后不能再次使用。
+#####单引号字符串的限制：单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的； 单引号字串中不能出现单独一个的单引号（对单引号使用转义符后也不行），但可成对出现，作为字符串拼接使用。
+#####双引号的优点： 双引号里可以有变量 双引号里可以出现转义字符
+your_name=&#39;runoob&#39; str=&#34;Hello, I know you are \&#34;$your_name\&#34;! \n&#34; echo -e $str #####拼接字符串
+your_name=&#34;runoob&#34; # 使用双引号拼接 greeting=&#34;hello, &#34;$your_name&#34; !&#34; greeting_1=&#34;hello, ${your_name} !&#34; echo $greeting $greeting_1 # 使用单引号拼接 greeting_2=&#39;hello, &#39;$your_name&#39; !&#39; greeting_3=&#39;hello, ${your_name} !&#39; echo $greeting_2 $greeting_3 输出结果为： hello, runoob ! hello, runoob ! hello, runoob ! hello, ${your_name} ! #获取字符串长度 string=&ldquo;abcd&rdquo; echo ${#string} #输出 4
+#提取子字符串 以下实例从字符串第 2 个字符开始截取 4 个字符： string=&ldquo;runoob is a great site&rdquo; echo ${string:1:4} # 输出 unoo
+#查找子字符串 查找字符 i 或 o 的位置(哪个字母先出现就计算哪个)： string=&ldquo;runoob is a great site&rdquo; echo expr index &ldquo;$string&rdquo; io`` # 输出 4
+#####定义数组 在 Shell 中，用括号来表示数组，数组元素用&quot;空格&quot;符号分割开。 例如： array_name=(value0 value1 value2 value3) 还可以单独定义数组的各个分量： array_name[0]=value0 array_name[n]=valuen 可以不使用连续的下标，而且下标的范围没有限制。
+#####读取数组元素值的一般格式是：
+valuen=${array_name[n]} 使用 @ 符号可以获取数组中的所有元素，例如： echo ${array_name[@]} #####获取数组的长度 获取数组长度的方法与获取字符串长度的方法相同，例如：
+length=${#array_name[@]} 或者 length=${#array_name[*]} #####遇到大段的代码需要临时注释起来，过一会儿又取消注释，怎么办呢？ 每一行加个#符号太费力了，可以把这一段要注释的代码用一对花括号括起来，定义成一个函数，没有地方调用这个函数，这块代码就不会执行，达到了和注释一样的效果。
+#####多行注释还可以使用以下格式：
+:&lt;&lt;EOF 注释内容... 注释内容... 注释内容... EOF #####Shell 传递参数
+echo &#34;Shell 传递参数实例！&#34; echo &#34;执行的文件名：$0&#34;;！！！！！！！！！！！！！！！！！！！！！！ echo &#34;第一个参数为：$1&#34;; echo &#34;第二个参数为：$2&#34;; echo &#34;第三个参数为：$3&#34;; 为脚本设置可执行权限，并执行脚本，输出结果如下所示： chmod +x test.sh ./test.sh 1 2 3 Shell 传递参数实例！ 执行的文件名：./test.sh 第一个参数为：1 第二个参数为：2 第三个参数为：3 $10 不能获取第十个参数，获取第十个参数需要${10}。当n&gt;=10时，需要使用${n}来获取参数。 #####另外，还有几个特殊字符用来处理
+$# 传递到脚本的参数个数 $* 以一个单字符串显示所有向脚本传递的参数。如&#34;$*&#34;用「&#34;」 括起来的情况、以&#34;$1 $2 … $n&#34;的形式输出所有参数。 $$ 脚本运行的当前进程ID号 $! 后台运行的最后一个进程的ID号 $@ 与$*相同，但是使用时加引号，并在引号中返回每个参数。如&#34;$@&#34;用「&#34;」括起来的情况 以&#34;$1&#34; &#34;$2&#34; … &#34;$n&#34; 的形式输出所有参数 $* 与 $@ 区别： 相同点：都是引用所有参数。 不同点：只有在双引号中体现出来。假设在脚本运行时写了三个参数 1、2、3，，则 &#34; * &#34; 等 价于 &#34;1 2 3&#34;（传递了一个参数），而 &#34;@&#34; 等价于 &#34;1&#34; &#34;2&#34; &#34;3&#34;（传递了三个参数）。 $- 显示Shell使用的当前选项，与[set命令] (https://www.runoob.com/linux/linux-comm-set.html)功能相同。 $? 显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。 #Shell 基本运算符 #####算术运算符
+条件表达式要放在方括号之间，并且要有空格，例如: [$a==$b] 是错误的，必须写成 [ $a == $b ]。表达式和运算符之间要有空格，例如 2+2 是不对的，必须写成 2 + 2， 这与我们熟悉的大多数编程语言不一样。完整的表达式要被 ` ` 包含，注意这个字符不是常用 的单引号，在 Esc 键下边。 加法	`expr $a + $b` 结果为 30。 减法	`expr $a - $b` 结果为 -10。 乘法	`expr $a \* $b` 结果为 200。! ! ! ! ! 除法	`expr $b / $a` 结果为 2。 取余	`expr $b % $a` 结果为 0。 赋值	a=$b 将把变量 b 的值赋给 a。 相等。用于比较两个数字，相同则返回 true。	[ $a == $b ] 返回 false。 不相等。用于比较两个数字，不相同则返回 true。	[ $a != $b ] 返回 true。 #####关系运算符,关系运算符只支持数字，不支持字符串，除非字符串的值是数字。
+-eq 检测两个数是否相等，相等返回 true。 [ $a -eq $b ] -ne	检测两个数是否不相等，不相等返回 true。	[ $a -ne $b ] -gt	检测左边的数是否大于右边的，如果是，则返回 true。 [ $a -gt $b ] -lt	检测左边的数是否小于右边的，如果是，则返回 true。 [ $a -lt $b ] -ge	检测左边的数是否大于等于右边的，如果是，则返回 true。	[ $a -ge $b ] -le	检测左边的数是否小于等于右边的，如果是，则返回 true。	[ $a -le $b ] #####布尔运算符
+!	非运算，表达式为 true 则返回 false，否则返回 true。 [ ! false ] -o	或运算，有一个表达式为 true 则返回 true。	[ $a -lt 20 -o $b -gt 100 ] -a	与运算，两个表达式都为 true 才返回 true。	[ $a -lt 20 -a $b -gt 100 ] #####逻辑运算符，表达式外有两个大括号! ! ! ! ! ! ! ! ! ! ! !
+&amp;&amp;	逻辑的 AND	[[ $a -lt 100 &amp;&amp; $b -gt 100 ]] !　！　！！　！！ ||	逻辑的 OR	[[ $a -lt 100 || $b -gt 100 ]] ##字符串运算符
+=	检测两个字符串是否相等，相等返回 true。	[ $a = $b ] !=	检测两个字符串是否相等，不相等返回 true。	[ $a != $b ] -z	检测字符串长度是否为0，为0返回 true。	[ -z $a ] -n	检测字符串长度是否为0，不为0返回 true。	[ -n &#34;$a&#34; ] $	检测字符串是否为空，不为空返回 true。	[ $a ] !!!!!!!!!!! ##文件测试运算符
+-b file	检测文件是否是块设备文件，如果是，则返回 true。	[ -b $file ] -c file	检测文件是否是字符设备文件，如果是，则返回 true。	[ -c $file ] -d file	检测文件是否是目录，如果是，则返回 true。	[ -d $file ] -f file	检测文件是否是普通文件（既不是目录，也不是设备文件），如果是，则返回 true。	[ -f $file ] -g file	检测文件是否设置了 SGID 位，如果是，则返回 true。	[ -g $file ] -k file	检测文件是否设置了粘着位(Sticky Bit)，如果是，则返回 true。	[ -k $file ] -p file	检测文件是否是有名管道，如果是，则返回 true。	[ -p $file ] -u file	检测文件是否设置了 SUID 位，如果是，则返回 true。	[ -u $file ] -r file	检测文件是否可读，如果是，则返回 true。	[ -r $file ] -w file	检测文件是否可写，如果是，则返回 true。	[ -w $file ] -x file	检测文件是否可执行，如果是，则返回 true。	[ -x $file ] -s file	检测文件是否为空（文件大小是否大于0），不为空返回 true。	[ -s $file ] -e file	检测文件（包括目录）是否存在，如果是，则返回 true。	[ -e $file ] -S: 判断某文件是否 socket。 -L: 检测文件是否存在并且是一个符号链接。 #echo命令 #####显示变量 read 命令从标准输入中读取一行,并把输入行的每个字段的值指定给 shell 变量
+read name echo &#34;$name It is a test&#34; [root@www ~]# sh test.sh OK #标准输入 OK It is a test #输出 #####显示换行 echo -e &ldquo;OK! \n&rdquo; # -e 开启转义 echo -e &ldquo;OK! \c&rdquo; # -e 开启转义 \c 不换行 echo -n &ldquo;haod&rdquo; #输出后不换行 #####显示结果定向至文件 echo &ldquo;It is a test&rdquo; &gt; myfile
+#####原样输出字符串，不进行转义或取变量(用单引号) echo '$name\&quot;'
+##显示命令执行结果 echo date #显示时间
+#printf 命令 接下来,我来用一个脚本来体现printf的强大功能：
+#!/bin/bash printf &#34;%-10s %-8s %-4s\n&#34; 姓名 性别 体重kg printf &#34;%-10s %-8s %-4.2f\n&#34; 郭靖 男 66.1234 printf &#34;%-10s %-8s %-4.2f\n&#34; 杨过 男 48.6543 printf &#34;%-10s %-8s %-4.2f\n&#34; 郭芙 女 47.9876 执行脚本，输出结果如下所示： 姓名 性别 体重kg 郭靖 男 66.12 杨过 男 48.65 郭芙 女 47.99 %s %c %d %f都是格式替代符
+%-10s 指一个宽度为10个字符（-表示左对齐，没有则表示右对齐），任何字符都会被显示在10个字符宽的字符内，如果不足则自动以空格填充，超过也会将内容全部显示出来。
+%-4.2f 指格式化为小数，其中.2指保留2位小数。
+#!/bin/bash # author:菜鸟教程 # url:www.runoob.com # format-string为双引号 printf &#34;%d %s\n&#34; 1 &#34;abc&#34; # 单引号与双引号效果一样 printf &#39;%d %s\n&#39; 1 &#34;abc&#34; # 没有引号也可以输出 printf %s abcdef # 格式只指定了一个参数，但多出的参数仍然会按照该格式输出，format-string 被重用 printf %s abc def printf &#34;%s\n&#34; abc def printf &#34;%s %s %s\n&#34; a b c d e f g h i j # 如果没有 arguments，那么 %s 用NULL代替，%d 用 0 代替 printf &#34;%s and %d \n&#34; 执行脚本，输出结果如下所示： 1 abc 1 abc abcdefabcdefabc def a b c d e f g h i j and 0 #####流程控制 if [ $int == $anwser ]; then echo &quot;right&quot;;else echo &quot;wrong&quot;;fi
+for var in item; do command; done item是数组不用写括号
+echo &#39;按下 &lt;CTRL-D&gt; 退出&#39; echo -n &#39;输入你最喜欢的名字: &#39; while read NAME do echo &#34;是的！$NAME 是一个好名字&#34; done #####while后的条件需要加括号 read 读取键盘输入 退出
+#!/bin/bash int=1 while([ $int -lt 5 ]) ! ! ! ! ! ! ! ! ! ! do echo $int let int++ done let 命令是 BASH 中用于计算的工具，用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量。 let int++ #case
+echo &#39;输入 1 到 4 之间的数字:&#39; echo &#39;你输入的数字为:&#39; read aNum case $aNum in 1) echo &#39;你选择了 1&#39; ;; 2) echo &#39;你选择了 2&#39; ;; 3) echo &#39;你选择了 3&#39; ;; 4) echo &#39;你选择了 4&#39; ;; *) echo &#39;你没有输入 1 到 4 之间的数字&#39; ;; esac case工作方式如上所示。取值后面必须为单词in，每一模式必须以右括号结束。取值可以为变量或常数。匹配发现取值符合某一模式后，其间所有命令开始执行直至 ;;。如果无一匹配模式，使用星号 * 捕获该值，再执行后面的命令。
+funWithReturn(){ echo &#34;这个函数会对输入的两个数字进行相加运算...&#34; echo &#34;输入第一个数字: &#34; read aNum echo &#34;输入第二个数字: &#34; read anotherNum echo &#34;两个数字分别为 $aNum 和 $anotherNum !&#34; return $(($aNum+$anotherNum)) } funWithReturn echo &#34;输入的两个数字之和为 $? !&#34; #####return返回的值需要两个括号 函数返回值在调用该函数后通过 $? 来获得。 #####输入/输出重定向 command &gt; file 将输出重定向到 file。 command &lt; file 将输入重定向到 file。 command &raquo; file 将输出以追加的方式重定向到 file。 n &gt; file 将文件描述符为 n 的文件重定向到 file。 n &raquo; file 将文件描述符为 n 的文件以追加的方式重定向到 file。 n &gt;&amp; m 将输出文件 m 和 n 合并。 n &lt;&amp; m 将输入文件 m 和 n 合并。 &laquo; tag 将开始标记 tag 和结束标记 tag 之间的内容作为输入。
+接着以上实例，我们需要统计 users 文件的行数,执行以下命令： $ wc -l users 2 users 也可以将输入重定向到 users 文件： $ wc -l &lt; users 2 注意：上面两个例子的结果不同：第一个例子，会输出文件名； 第二个不会，因为它仅仅知道从标准输入读取内容 #####重定向深入讲解 一般情况下，每个 Unix/Linux 命令运行时都会打开三个文件：
+标准输入文件(stdin)：stdin的文件描述符为0，Unix程序默认从stdin读取数据。 标准输出文件(stdout)：stdout 的文件描述符为1，Unix程序默认向stdout输出数据。 标准错误文件(stderr)：stderr的文件描述符为2，Unix程序会向stderr流中写入错误信息。 默认情况下，command &gt; file 将 stdout 重定向到 file，command &lt; file 将stdin 重定向到 file。
+如果希望 stderr 重定向到 file，可以这样写：
+command &lt; file1 &gt;file2 command 命令将 stdin 重定向到 file1，将 stdout 重定向到 file2。 #Here Document 它的基本的形式如下：
+command &laquo; delimiter document delimiter 它的作用是将两个 delimiter 之间的内容(document) 作为输入传递给 command。
+注意：
+结尾的delimiter 一定要顶格写，前面不能有任何字符，后面也不能有任何字符，包括空格和 tab 缩进。 开始的delimiter前后的空格会被忽略掉。
+wc -l &lt;&lt; EOF 欢迎来到 菜鸟教程 www.runoob.com EOF 3 # 输出结果为 3 行 #####/dev/null 文件 如果希望执行某个命令，但又不希望在屏幕上显示输出结果，那么可以将输出重定向到 /dev/null： command &gt; /dev/null /dev/null 是一个特殊的文件，写入到它的内容都会被丢弃；如果尝试从该文件读取内容，那么什么也读不到。但是 /dev/null 文件非常有用，将命令的输出重定向到它，会起到&quot;禁止输出&quot;的效果。
+常用脚本 找到./anaconda的pid并kill
+sp_pid=`ps -ef | grep ./anaconda | grep -v anaconda3/ | awk &#39;{print $2}&#39;` if [ -z &#34;$sp_pid&#34; ]; then echo &#34;[ not find sp-tomcat pid ]&#34; else echo &#34;find result: $sp_pid &#34; kill -9 $sp_pid fi ]]></content></entry><entry><title>dcoker-Docker</title><url>/post/linux-ssh%E7%99%BB%E5%BD%95%E6%8F%90%E9%86%92/</url><categories><category>dcoker</category></categories><tags/><content type="html"><![CDATA[sudo apt install heirloom-mailx sudo vim /etc/nail.rc
+set from=178@sina.cn //发信人邮箱 set smtp=smtps://smtp.sina.com //发信人邮箱的SMTP地址 set smtp-auth-user=178@sina.cn //发信人邮箱登陆账号 set smtp-auth-password=9f8f7149d10d0b1f //发信人邮箱的授权密码 set smtp-auth=login //认证方式 set ssl-verify=ignore //忽略证书警告 set nss-config-dir=/etc/pki/nssdb //证书所在目录 测试 echo &quot;send mail test&quot; | mail 2524@qq.com
+如何为root用户启用电子邮件警报 以root用户身份登录，然后将以下一行脚本添加到root用户“ .bashrc”文件中以实现此目的： vim /root/.bashrc echo 'ALERT - SSH root shell access found on '$HOSTNAME' on:' `date` `who` | mail -s &quot;Alert: SSH root shell access&quot; 2524@qq.com source .bashrc
+如何为特定用户启用电子邮件警报 vim /home/bob/.bashrc echo 'ALERT - '$USER' shell access found on '$HOSTNAME' on:' `date` `who` | mail -s &quot;Alert: User shell access&quot; 2524@qq.com
+如何为所有用户启用电子邮件警报 vim /etc/bashrc echo 'ALERT - '$USER' shell access found on '$HOSTNAME' on:' `date` `who` | mail -s &quot;Alert: User shell access&quot; 2524@qq.com
+]]></content></entry><entry><title>dcoker-Docker</title><url>/post/linux-ubuntu%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/</url><categories><category>dcoker</category></categories><tags/><content type="html"><![CDATA[分区大小 /boot：这个目录下存放的是Ubuntu的引导项，Ubuntu的启动从这里开始，这里我分配了500MB空间，之后我们的EasyBCD也是引用这个文件。
+swap：该目录是Ubuntu的系统交换区，只有在系统内存不足的情况下，操作系统才会调用这篇区域，我设置了32GB /：该目录是Linux的根目录，类似于windows的C盘，Ubuntu中安装的软件都存放在该目录下，我分配了30GB /home：该目录是个人目录，类似于windows的D、E、F盘，要多分一些空间，这里我把剩余空间全都给了它。 更新 更新显卡驱动 sudo ubuntu-drivers autoinstall
+deb 安装格式 sudo dpkg -i &lt;package.deb&gt;
+Ubuntu主机没有开启SSH服务，需要开启openssh-server：
+sudo apt-get install openssh-server
+去掉一些没用的插件 sudo apt-get remove libreoffice-common
+sudo apt-get remove unity-webapps-common
+sudo apt-get remove thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot sudo apt-get remove gnome-mines cheese transmission-common gnome-orca webbrowser-app gnome-sudoku landscape-client-ui-install sudo apt-get remove onboard deja-dup vmware tool 安装 cd vmware-tools-distrib sudo ./vmware-install.pl
+安装deb sudo apt-get install gdebi
+先把所有软件源和软件更新到最新 sudo apt-get update sudo apt-get upgrade ubuntu-安装pycharm 1）进入[PyCharm官网]点击DOWNLOAD( https://www.jetbrains.com/pycharm/download/#section=linux ) 2）解压文件。右键安装包，点击“Extract Here” 3 )把 pycharm-2019.1.1 文件夹放在Downloads根目录 4 )cd pycharm-2019.1.1/bin 5 )sh ./pycharm.sh 6 )出现Complete-Installation提示框
+anaconda及tensorflow 删除整个anaconda目录： 由于Anaconda的安装文件都包含在一个目录中，所以直接将该目录删除即可。到包含整个anaconda目录的文件夹下，删除整个Anaconda目录： rm -rf anaconda文件夹名 建议清理下.bashrc中的Anaconda路径： 1.到根目录下，打开终端并输入： sudo gedit ~/.bashrc
+2.在.bashrc文件末尾用#号注释掉之前添加的路径(或直接删除)： #export PATH=/home/lq/anaconda3/bin:$PATH 保存并关闭文件
+3.使其立即生效，在终端执行： source ~/.bashrc 4.关闭终端，然后再重启一个新的终端，这一步很重要，不然在原终端上还是绑定有anaconda
+安装anaconda bash Anaconda3-5.3.1-Linux-x86_64.sh
+naconda会自动将环境变量添加到PATH里面，如果后面你发现输出conda 提示没有该命令，那么你需要source ~/.bashrc 这样就是更新环境变量，就可以正常使用了。 如果发现这样还是没用，那么需要收到添加环境变量 sudo gedit ~/.bashrc，在最后面加上export PATH=/home/tomding/anaconda3/bin:$PATH
+保存退出后：source ~/.bashrc 再次输入conda list测试看看，应该就是没有问题啦！
+添加Jupyter conda install jupyter 启动 jupyter notebook
+安装tensorflow 1、创建虚拟环境：
+conda create -n tensorflow 2、激活虚拟环境：
+source activate tensorflow PS:如果要退出：输入
+source deactivate tensorflow 3、下面我们在虚拟环境里安装tensorflow:
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ conda config --set show_channel_urls yes //删除清华源改回默认源 conda config --remove-key channels 安装CPU版本： pip install tensorflow==2.0.0 -i https://pypi.tuna.tsinghua.edu.cn/simple 安装GPU版本： conda install tensorflow-gpu 美化 安装unity-tweak-tool
+sudo apt-get install unity-tweak-tool 主题: flatabulous-theme
+sudo add-apt-repository ppa:noobslab/themes sudo apt-get update sudo apt-get install flatabulous-theme 图标: paper-icon-theme
+sudo add-apt-repository ppa:snwh/pulp sudo apt-get update sudo apt-get install paper-icon-theme 字体: fonts-wqy-microhei
+sudo apt-get install fonts-wqy-microhei 终端 1、首先在终端里面用 gedit 打开配置文件（~/.bashrc），如： gedit ~/.bashrc
+2、在最后添加如下代码：
+export PS1=&#34;\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;32m\]10.185.25.224\[\033[00m\][\[\033[01;33m\]\t\[\033[00m\]]:\[\033[01;34m\]\w\[\033[00m\]\n$ &#34; 或者
+export PS1=&#34;\[\033[01;31m\]\u\[\033[00m\]@\[\033[01;32m\]\h\[\033[00m\][\[\033[01;33m\]\t\[\033[00m\]]:\[\033[01;34m\]\w\[\033[00m\]\n$ &#34; 安装oh-my-zsh终端:
+sudo apt-get install zsh sudo apt-get install git sudo wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc chrome https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb sudo dpkg -i google-chrome*; sudo apt-get -f install 卸载
+sudo apt-get autoremove google-chrome-stable VMware 下载VMware for Linux链接 sudo chmod +x ./VMware-Workstation-Full-12.5.7-5813279.x86_64.bundle sudo ./VMware-Workstation-Full-12.5.7-5813279.x86_64.bundle VY1DU-2VXDH-08DVQ-PXZQZ-P2KV8
+安装jdk： 1.官网下载JDK　地址: http://www.oracle.com/technetwork/articles/javase/index-jsp-138363.html 选择相应的 .gz包下载
+解压缩,放到指定目录(以jdk-8u202-linux-x64.gz为例)创建目录: sudo mkdir /usr/lib/jvm 加压缩到该目录: sudo tar -zxvf jdk-8u202-linux-x64.tar.gz -C /usr/lib/jvm 3.修改环境变量:　sudo vim ~/.bashrc 文件的末尾追加下面内容: #set oracle jdk environment export JAVA_HOME=/usr/lib/jvm/jdk1.7.0_60 ## 这里要注意目录要换成自己解压的jdk 目录 export JRE_HOME=${JAVA_HOME}/jre export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib export PATH=${JAVA_HOME}/bin:$PATH 使环境变量马上生效
+source ~/.bashrc
+两个屏幕设置分屏 查看已连接的屏幕 xrandr 设置 xrandr --output VGA1 --right-of DP2 --auto ok
+修改网卡名称 查看网卡的名称 ifconfig
+sudo vi /etc/default/grub 修改参数GRUB_CMDLINE_LINUX=&ldquo;net.ifnames=0 biosdevname=0&rdquo; 使之生效 update-grub
+sudo vi /etc/network/interfaces
+增加两行eth0为想要修改的名字
+auto eth0 iface eth0 inet dhcp 重启
+虚拟机扩容 原文地址：https://blog.csdn.net/weixin_39510813/article/details/78387334?fps=1&amp;locationNum=7
+这里是我的Ubuntu系统下现在的空间大小：
+一旦达到97%左右，系统会警告磁盘空间不足，在我的台式机上我已经扩展过了，今天扩展我的笔记本上的虚拟机，以此提供本篇博客的素材。
+准备 我们首先需要咋vm虚拟机上进行磁盘的扩展：
+在虚拟机Ubuntu系统处右键然后选择设置，选中磁盘，选择扩展磁盘容量，发现需要先关闭虚拟机，OK，先关闭虚拟机Ubuntu。
+设置磁盘大小后点击扩展：
+之后发现扩展成功，虚拟机vm提示从客户机操作系统内部对磁盘重新进行分区和扩展文件系统：
+开始 OK，我们对Windows磁盘进行分区等操作时一般会借助于一些软件进行磁盘分区的合并会拆分等，同样，我们本次在Ubuntu下也借助于该类型的软件帮助我们更好的实现磁盘的重新分区以及扩展文件系统，我们使用的软件是gparted，对于该软件这里不多做介绍，感兴趣的可以自行搜索。
+打开我的计算机Ubuntu，打开终端，输入sudo apt-get install gparted安装gparted，然后sudo gparted运行，结果如下：
+发现我们的为19G，交换分区大概1G，这就是我们之前的20G，在我们在vm为该Ubuntu扩容了磁盘到50G后，在最下面又出现了30G的未分配空间。
+大致说明一下，交换分区简单来说就是用于内存不足时作为虚拟内存来使用的，一般swap大小不要超过2G，我们这里设置为2G。
+OK，首先禁用交换分区然后删掉原来的扩展分区，这样我们的50G磁盘就只有主分区和未分配了：
+禁用——删除
+然后增加主分区大小到48G：
+接着再新建扩展分区：
+增加逻辑分区，也就是交换分区：
+大小默认即可，类型选择为逻辑分区，文件系统选择linux-swap。
+然后选择gparted的应用全部：
+结果如下：
+OK，扩展磁盘完成，我们df再看一下：
+但是我们新建的扩展分区和交换分区可能没有挂载到文件系统，先查看一下交换分区：
+发现交换分区为0，看来我们确实需要重新挂载或开启一下，我们的交换分区在dev/sda5：
+sudo swapon /dev/sda5
+然后查看一下，大小以字节为单位：
+看来是开启成功了。
+最后 交换分区的开启是暂时的，没有设置到开机启动项中，因为我们并不总是需要开启虚拟内存，平时1G的内存空间完全满足了。
+开机启动交换分区的办法 sudo vim /etc/fstab 最后一行添加 /dev/sda5 swap swap defaults 0 0
+内核安装 查看内核版本 uname -a
+修改软件源 备份源配置文件 sudo cp /etc/apt/sources.list /etc/apt/sources.list_bak
+用编辑器打开源配置文件 sudo vim /etc/apt/sources.list
+在文件最后面增加一行并保存
+deb http://security.ubuntu.com/ubuntu trusty-security main
+执行以下命令更新配置 sudo apt-get update
+安装新内核 搜索可下载内核
+sudo apt-cache search linux-image
+执行以下命令安装 sudo apt-get install linux-image-extra-3.16.0-43-generic
+执行以下命令查看是否安装成功 dpkg -l | grep 3.16.0-43-generic
+用编辑器打开 grub 配置文件 sudo vim /etc/default/grub
+找到
+GRUB_DEFAULT=0
+修改为：
+GRUB_DEFAULT=&quot;Advanced options for Ubuntu&gt;Ubuntu, with Linux 3.16.0-43-generic&quot;
+保存退出，然后执行以下命令更新 Grub 引导 sudo update-grub
+更新完成后重启系统 sudo reboot
+删除多余内核 1. 查看所有内核：
+dpkg --get-selections| grep linux
+将其他版本的内核删除，如(对deinstall的需要用dpkg卸载)： sudo apt-get remove linux-headers-4.15.0-33 sudo dpkg -P linux-image-4.8.0-36-generic
+安装samba服务器 sudo apt-get install samba samba-common 创建一个用于分享的samba目录。 sudo mkdir /home/zut_csi/tomding/share 给创建的这个目录设置权限 sudo chmod 777 /home/zut_csi/tomding/share 添加用户(下面的zut_csi是我的用户名，之后会需要设置samba的密码)。 sudo smbpasswd -a zut_csi 配置samba的配置文件。 sudo vim /etc/samba/smb.conf
+在配置文件smb.conf的最后添加下面的内容：
+[share] # win添加网络地址 \\10.36.34.100\share []为添加网络地址的文件目录 comment = share folder browseable = yes path = /home/zut_csi/tomding/share create mask = 0700 directory mask = 0700 valid users = zut_csi force user = zut_csi force group = zut_csi public = yes browseable = yes read only = no available = yes writable = yes security = share 重启samba服务器。 sudo service smbd restart
+]]></content></entry><entry><title>dcoker-Docker</title><url>/post/linux-vim/</url><categories><category>dcoker</category></categories><tags/><content type="html">搜索
+/</content></entry><entry><title>dcoker-Docker</title><url>/post/linux-windows-%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6ubuntu/</url><categories><category>dcoker</category></categories><tags/><content type="html"><![CDATA[使用Xshell连接Ubuntu Ubuntu主机没有开启SSH服务，需要开启openssh-server： sudo apt-get install openssh-server 使用 ps -e | grep ssh 如果只有ssh-agent表示还没启动，需要 /etc/init.d/ssh start 如果显示sshd则说明已启动成功。
+传输文件 sudo apt-get install -y lrzsz rz把Windows的文件上传到linux服务器上 sz下载
+Screen 解决ssh进行远程连接的时候，有时候如果不小心断了连接之后，正在进行的任务就会被杀死
+sudo apt install screen
+screen -S yourname -&gt; 新建一个叫yourname的session screen -ls -&gt; 列出当前所有的session screen -r yourname -&gt; 回到yourname这个session screen -d yourname -&gt; 远程detach某个session screen -d -r yourname -&gt; 结束当前session并回到yourname这个session screen -X -S yourname quit -&gt; 清除Detached会话 screen -wipe -&gt;清除Dead会话 ssh –p 3068 root@91.134.238.131 ssh.localhost.run ssh -R 80:localhost:8080 ssh.localhost.run 其中，ssh后接 -R即反向代理：相当于 frp 或者 ngrok
+第一个端口是外网访问localhost.run的端口，这里固定80就行
+第二个端口是自己内网的端口，根据自己的服务端口来设定，比如自己建立的wordpress网站端口为80就填80，Django一般是8090，flask是8080。
+ssh ssh tomding@192.168.1.104 -L 127.0.0.1:12345:127.0.0.1:1111
+ssh –p 22 root@91.134.238.131
+首先输入这个命令，user_name就是你的服务器的你的个人的用户名， server_ip就是你的服务器的独有ip
+127.0.0.1:12345为本地的地址 127.0.0.1:1111为服务器端的地址
+大白话理解就是咱们用ssh把本地的127.0.0.1:12345端口地址映射对应于服务器端的127.0.0.1:1111，在本地访问127.0.0.1:12345就相当于访问了127.0.0.1:1111
+scp传输文件 scp xrdp-installer-1.2.sh zut_csi@10.36.34.100:/home 出现Permission denied- sudo chmod 754 folderName
+zerotier downloads 管理 在线安装zerotier curl -s https://install.zerotier.com | sudo bash 查看安装zerotier版本 sudo zerotier-cli status 加入一个netWork sudo zerotier-cli join （networkid） 查看加入的网络的信息，比如network sudo zerotier-cli listnetworks
+退出加入的network网段 sudo zerotier-cli leave（networkid） 开机自启动 sudo systemctl enable zerotier-one.service 启动zerotier-one.service sudo systemctl start zerotier-one.service 加入网络 sudo zerotier-cli join （networkid）
+使用team viewer 安装下好的deb包 sudo dpkg -i teamviewer_13.1.8286_amd64.deb 缺少依赖 sudo apt install -f 安装下好的deb包 sudo dpkg -i teamviewer_13.1.8286_amd64.deb
+sudo /usr/local/sunlogin/bin/sunloginclient
+]]></content></entry><entry><title>dcoker-Docker</title><url>/post/linux-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/</url><categories><category>dcoker</category></categories><tags/><content type="html"><![CDATA[python import os, time while 1: timing = time.strftime(&#39;%H_%M&#39;, time.localtime(time.time())) # print(time.strftime(&#34;%Y-%m-%d %H:%M:%S&#34;, time.localtime()) ) if timing == &#39;12_00&#39;: print(&#34;开始运行脚本:&#34;) # runner.run(alltestnames) # 执行测试用例 print(&#34;运行完成退出&#34;) break else: time.sleep(5) print(timing) at at now+5 minutes at&gt; python /home/fnngj/test/fiele.py Ctrl+d 保存退出
+at-l 查看创建的任务
+atrm10 10 是任务的“编号”，atrm 用于删除已经创建的任务
+at 5:30pm
+at 17:30
+at 17:20 today
+at now+3 hours
+at now+180 minutes
+at 17:30 14.1.11
+at 17:30 1.11.14
+cron 安装 sudo apt-get install cron
+service cron start 启动服务 service cron stop 关闭服务 service cron restart 重启服务 service cron reload 重新载入配置 service cron status 查看crond状态
+crontab -e 编辑创建一个定时服务 crontab -l 查看当前用户的定时任务 crontab -r 删除当前用户的定时任务
+或者 sudo vim /etc/crontab
+cat /etc/crontab python脚本需要指定python 环境，不要有输出
+* * * * * zut_csi /home/zut_csi/anaconda3/envs/tomding/bin/python /home/zut_csi/tomding/pymail.py 2&gt;&amp;1 * * * * * zut_csi /home/zut_csi/tomding/auto_run.sh 2&gt;&amp;1 */1 * * * * zut_csi echo `date` &gt;&gt; /home/zut_csi/tomding/a.txt 2&gt;&amp;1 cat /tomding/a.txt
+开启日志
+系统默认是不打开cron日志的 sudo vim /etc/rsyslog.d/50-default.conf 找到cron.*，把前面的#去掉 sudo service rsyslog restart service cron restart cat /var/log/cron.log
+命令 每条cron命令空一格后加上2&gt;&amp;1取消执行完命令后发一封邮件
+* * * * * yourname /abs_path_to_send_ip_to_mailbox.py
+minute hour day month dayofweek command
+星号（*）可以用来代表所有有效的值。 整数间的短线（-）指定一个整数范围。譬如，1-4 用逗号（,）隔开的一系列值指定一个列表。譬如，3, 6, 正斜线（/）可以用来指定间隔频率。在范围后加上 / 意味着在范围内可以跳过 integer。譬如，0-59/2可以用来在分钟字段定义每两分钟。间隔频率值还可以和星号一起使用。例如，*/3 的值可以用在月份字段中表示每三个月运行一次任务。 开头为井号（#）的行是注释，不会被处理 30 7 * * * zut_csi pkill -f ...csi/anaconda3/lib/jupyter 04 0 * * * zut_csi cd ./anaconda3/lib;bash run.sh ]]></content></entry><entry><title>dcoker-Docker</title><url>/post/linux-%E5%BE%AE%E4%BF%A1%E6%8E%A8%E9%80%81ip%E5%9C%B0%E5%9D%80/</url><categories><category>dcoker</category></categories><tags/><content type="html"><![CDATA[为了使树莓派能够方便的移动到不同的地方，我们设置了动态IP, 而有时需要快速SSH链接树莓派，我们除了可以通过VNC远程桌面查看IP, 还可以通过开机获取IP，然后通过微信推送到我的手机。
+一.获取IP地址 之前的文章中已经提到在树莓派中获取IP可以使用下面方法：
+import socket, fcntl, struct def get_ip2(ifname): s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) return socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, struct.pack(&#39;256s&#39;, bytes(ifname[:15],&#39;utf-8&#39;)))[20:24]) ip = get_ip2(&#39;wlan0&#39;) 二.微信推送 A. Server酱 官网：https://sct.ftqq.com/apps
+可以通过几种微信和邮件的方式推送你想推送的消息，最方便的是通过企业微信的方式。先扫描微信登陆Server酱后就可以得到一个Sendkey, 我们需要这个Sendkey加入地址后，通过调用地址来向微信推送消息。
+进入消息通道，通过推荐的企业微信下面的说明可以看到使用流程
+a.设置企业微信 1.注册企业微信 自己可以在企业微信官网注册一个账号，填入电话号码和真实姓名姓名就可以了，可以在我的企业看到企业ID，这个ID后面需要用到。
+2.企业微信自建一个应用 在首页应用管理，创建应用，填写一些基本信息后就可以创建应用，得到AgentId， Secret两个数据
+b.设置消息通道 在企业ID，应用ID, 应用三个地方分别填上得到的数据，并保存。
+c.调用方法 在Server酱首页Sendkey, 可以看到调用方法，可以先在他们的页面测试一下是否可以在微信里面收到推送。
+我们这里采用PYTHON代码如下：
+import requests api = r&#39;https://sctapi.ftqq.com/YOURSENDKEY.send&#39; title = &#39;&#39;.join([&#39;IP:&#39;, ip]) content = &#39;&#39; data = { &#34;text&#34;:title, &#34;desp&#34;:content } req = requests.post(api,data = data) 三.关注微信插件 在企业微信首页微信插件页面填写一些信息，然后微信扫描二维码即可关注微信插件，然后我们就可以接受推送消息了。
+三.开机启动 命令sudo vim /etc/rc.local， 在 exit 0前面添加一行：
+su pi -c &quot;python3 代码的绝对地址 &amp;&quot;
+保存退出
+注意：由于开机时由于没有网络，得不到IP地址，代码会出错，所以我们需要等待片刻等链接网络后再去获取地址
+所以我加了一个循环：
+while True: try: ip = get_ip2(&#39;wlan0&#39;) except OSError: continue break 四.全部代码
+# encoding:utf-8 import requests import socket, fcntl, struct #获取IP地址 def get_ip2(ifname): s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) return socket.inet_ntoa(fcntl.ioctl(s.fileno(), 0x8915, struct.pack(&#39;256s&#39;, bytes(ifname[:15],&#39;utf-8&#39;)))[20:24]) #通过循环等待树莓派连上网络 while True: try: ip = get_ip2(&#39;wlan0&#39;) except OSError: continue break #调用server API推送IP地址到微信企业号 api = r&#39;https://sctapi.ftqq.com/SCT955TTzcEVqGbpPuOhzXlWfEPpVMM9.send&#39; title = &#39;&#39;.join([&#39;IP:&#39;, ip]) content = &#39;&#39; data = { &#34;text&#34;:title, &#34;desp&#34;:content } req = requests.post(api,data = data) ]]></content></entry><entry><title>dcoker-Docker</title><url>/post/linux-%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BAip%E5%8F%98%E6%9B%B4%E9%82%AE%E7%AE%B1%E6%8F%90%E9%86%92/</url><categories><category>dcoker</category></categories><tags/><content type="html"><![CDATA[import socket import smtplib from email.header import Header from email.mime.multipart import MIMEMultipart from email.mime.text import MIMEText from time import asctime def send_an_email(email_content): # email_content是一个字符串 mail_host = &#34;smtp.sina.com&#34; # 这个去邮箱找，这里用的sina邮箱 mail_user = &#39;17839906091@sina.cn&#39; mail_auth_code = &#39;9f8f7149d10d0b1f&#39; mail_sender = mail_user # 用mail_user 作为发送人 mail_receivers = [&#39;2524370217@qq.com&#39;] message = MIMEMultipart() message[&#39;From&#39;] = Header(mail_sender) # 寄件人 message[&#39;Subject&#39;] = Header(&#34;主题名字&#34;) message.attach(MIMEText(asctime(), &#39;plain&#39;, &#39;utf-8&#39;)) # message.attach(MIMEText(&#39;&lt;html&gt;&lt;h1&gt;你好&lt;h1&gt;&lt;/html&gt;&#39;, &#39;html&#39;, &#39;utf-8&#39;)) message.attach(MIMEText(email_content, &#39;plain&#39;, &#39;utf-8&#39;)) print(&#34;message is {}&#34;.format(message.as_string())) # debug用 smtpObj = smtplib.SMTP(mail_host) # smtpObj.set_debuglevel(1) # 同样是debug用的 smtpObj.login(mail_user, mail_auth_code) # 登陆 smtpObj.sendmail(mail_sender, mail_receivers, message.as_string()) # 真正发送邮件就是这里 def get_temp_ip(current_ip): # 失败时可尝试删除/var/tmp/ip.json temp_ip_json_path = &#34;/var/tmp/ip.json&#34; if not os.path.exists(temp_ip_json_path): print(&#34;No {}, dump it.&#34;.format(temp_ip_json_path)) with open(temp_ip_json_path, &#39;w&#39;) as jo: json.dump(current_ip, jo) return True, current_ip else: with open(temp_ip_json_path, &#39;r&#39;) as jo: origin_ip = json.load(jo) if origin_ip == current_ip: print(&#34;Current ip {} do not change, no need to send&#34;.format(current_ip)) return False, current_ip else: print(&#34;The ip updated from {} to {}, update it.&#34;.format(origin_ip, current_ip)) os.remove(temp_ip_json_path) with open(temp_ip_json_path, &#39;w&#39;) as jo: json.dump(current_ip, jo) return True, current_ip def get_ip(): hostname = socket.gethostname() addr_infos = socket.getaddrinfo(hostname, None) ips = set([addr_info[-1][0] for addr_info in addr_infos]) global_ips = [ip for ip in ips if ip.startswith(&#34;24&#34;)] whether_to_send, send_ip = get_temp_ip(global_ips) send_ip = json.dumps(send_ip) return whether_to_send, send_ip if __name__ == &#34;__main__&#34;: whether_to_send, global_ips = get_ip() if whether_to_send: send_an_email(global_ips) else: print(&#34;wait and no send&#34;) 还要给脚本添加上可执行权限：
+sudo chmod +x send_ip_to_mailbox.py 使用到linux的排程工具crond将任务排期自动执行，这里配置的是每隔1分钟执行一次ipv6地址检查。
+企业微信消息 import requests class SendWeiXinWork: def __init__(self): self.CORP_ID = &#34;ww1f8de63d33f2ea65&#34; # 企业号的标识 self.SECRET = &#34;0y3EgnN3AgjGawbH3dg-zv9im7yGZunNrcscNfxm4ag&#34; # 管理组凭证密钥 self.AGENT_ID = 1000002 # 应用ID self.token = self.get_token() def get_token(self): url = &#34;https://qyapi.weixin.qq.com/cgi-bin/gettoken&#34; data = { &#34;corpid&#34;: self.CORP_ID, &#34;corpsecret&#34;: self.SECRET } req = requests.get(url=url, params=data) res = req.json() if res[&#34;errmsg&#34;] == &#34;ok&#34;: return res[&#34;access_token&#34;] else: return res def send_message(self, to_user, content): url = &#34;https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=%s&#34; % self.token data = { &#34;touser&#34;: &#39;@all&#39;, # 发送个人就填用户账号 # &#34;toparty&#34;: to_user, # 发送组内成员就填部门ID &#34;msgtype&#34;: &#34;text&#34;, &#34;agentid&#34;: self.AGENT_ID, &#34;text&#34;: {&#34;content&#34;: content}, &#34;safe&#34;: &#34;0&#34; } req = requests.post(url=url, json=data) res = req.json() if res[&#34;errmsg&#34;] == &#34;ok&#34;: print(&#34;send message sucessed&#34;) else: print(res[&#34;errmsg&#34;]) selenium # 第一步：导入selenium from selenium import webdriver import time option = webdriver.ChromeOptions() option.add_argument(&#39;--user-data-dir=C:/Users/WENCHAO/AppData/Local/Google/Chrome/User Data1&#39;) # 第二步：打开谷歌浏览器 # driver = webdriver.Chrome(executable_path=&#34;./chromedriver.exe&#34;) driver = webdriver.Chrome(chrome_options=option) driver.maximize_window() # 屏幕最大化 # 第三步：打开百度 driver.get(&#34;https://www.google.com/&#34;) # 第四步：输入搜索关键字 element1 = driver.find_element_by_id(&#34;kw&#34;) element1.send_keys(&#34;hello selenium!&#34;) time.sleep(3) # 第五步： 点击搜索按钮 element2 = driver.find_element_by_id(&#34;su&#34;) element2.click() # 最后一步: 结束测试 driver.quit() ]]></content></entry><entry><title>cv-CNN</title><url>/post/cv-cnn/</url><categories><category>cv</category></categories><tags/><content type="html">
 卷积层 卷积提取底层特征减少神经网络中参数个数
 局部连接。⽐起全连接，局部连接会⼤⼤减少⽹络的参数。在⼆维图像中，局部像素的关联性很强， 设计局部连接保证了卷积⽹络对图像局部特征的强响应能⼒。+ 下采样。下采样能逐渐降低图像分辨率，实现了数据的降维，并使浅层的局部特征组合成为深层的特 征。下采样还能使计算资源耗费变少，加速模型训练，也能有效控制过拟合。 权值共享。参数共享也能减少整体参数量，增强了⽹络训练的效率。⼀个卷积核的参数权重被整张图 ⽚共享，不会因为图像内位置的不同⽽改变卷积核内的参数权重。 为了避免尺寸的变化可以在当前层的矩阵的边界加入全０填充（zero-padding）．否则中间的像素会多次进入卷积野而边上的进入次数少 还可以通过设置过滤器移动步长调整结果矩阵的大小 池化层 下采样。降维、扩大感知野、减小计算量 实现非线性 实现不变性，（平移不变性、旋转不变性和尺度不变性）
 卷积层输出矩阵大小 padding = “SAME”$n_{output}=[ n_{input} ]$
