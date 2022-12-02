@@ -1,3 +1,46 @@
+---
+            # 文章标题
+            title: "title_name"
+            # 分类
+            categories: 
+                - categories_name
+            # 发表日期
+            date: post_date+08:00
+
+            # 标签
+            #tags:
+            # 文章内容摘要
+            #description: "{{ .Name }}" 
+            # 最后修改日期
+            #lastmod: {{ .Date }}
+            # 文章内容关键字
+            #keywords: "{{replace .Name "-" ","}}"
+            # 原文作者
+            #author:
+            # 原文链接
+            #link:
+            # 图片链接，用在open graph和twitter卡片上
+            #imgs:
+            # 在首页展开内容
+            #expand: true
+            # 外部链接地址，访问时直接跳转
+            #extlink:
+            # 在当前页面关闭评论功能
+            #comment:
+            # enable: false
+            # 关闭当前页面目录功能
+            # 注意：正常情况下文章中有H2-H4标题会自动生成目录，无需额外配置
+            #toc: false
+            # 绝对访问路径
+            #url: "{{ lower .Name }}.html"
+            # 开启文章置顶，数字越小越靠前
+            #weight: 1
+            #开启数学公式渲染，可选值： mathjax, katex
+            #math: mathjax
+            # 开启各种图渲染，如流程图、时序图、类图等
+            #mermaid: true
+    --- 
+
 `#!/bin/bash` 
 ! 是一个约定的标记，它告诉系统这个脚本需要什么解释器来执行，即使用哪一种 Shell。
  `chmod +x ./test.sh` 使脚本具有执行权限 
@@ -424,3 +467,21 @@ EOF
 
 
 ![image.png](https://upload-images.jianshu.io/upload_images/18339009-ae38c3e76a5bcb42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+
+## 常用脚本
+
+找到./anaconda的pid并kill
+
+```
+sp_pid=`ps -ef | grep ./anaconda | grep -v anaconda3/ | awk '{print $2}'`
+if [ -z "$sp_pid" ];
+then
+ echo "[ not find sp-tomcat pid ]"
+else
+ echo "find result: $sp_pid "
+ kill -9 $sp_pid
+fi
+```
+
