@@ -30,11 +30,10 @@ Group Normalization（GN，2018年）
 我们将输入的 `feature map shape` 记为`[N, C, H, W]`，其中N表示batch size，即N个样本；C表示通道数；H、W分别表示特征图的高度、宽度。这几个方法主要的区别就是在：
 
 1. BN是在batch上，`对N、H、W做归一化`，而保留通道 C 的维度。BN对较小的batch size效果不好。BN适用于`固定深度的前向神经网络，如CNN`，不适用于RNN；
-
 2. LN在通道方向上，`对C、H、W归一化`，主要`对RNN效果明显`；
-
 3. IN在图像像素上，`对H、W做归一化，用在风格化迁移`；
 4.  GN将`channel分组，然后再做归一化`。
+5. SwitchableNorm是将BN、LN、IN结合，赋予权重，让网络自己去学习归一化层应该使用什么方法。
 
 ![图片](https://mmbiz.qpic.cn/mmbiz_jpg/vJe7ErxcLmiaBxLx7pBRq3BYgrqJ33Fl3f22GUFz9Cqd7dUvGrjaHKNZDoRdqcqRic3KEqQUT9TWASBsdYvcJEeA/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1)
 
