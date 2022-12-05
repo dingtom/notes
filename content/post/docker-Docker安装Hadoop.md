@@ -13,57 +13,56 @@ Docker、Java、Scala、Hadoop、 Hbase、Spark。
 集群共有5台机器，主机名分别为 h01、h02、h03、h04、h05。其中 h01 为 master，其他的为 slave。
 JDK 1.8、Scala 2.11.6、Hadoop 3.2.1、Hbase 2.1.3、Spark 2.4.0
 
-```
+```shell
 # Ubuntu 安装 Docker
 
 ## 在 Ubuntu 下安装 Docker 的时候需在管理员的账号下操作。
 
-​```wget -qO- https://get.docker.com/ | sh```
+wget -qO- https://get.docker.com/ | sh
 
 ## 以 sudo 启动 Docker 服务。
 
-​```sudo service docker start```
+sudo service docker start
 
 ## 显示 Docker 中所有正在运行的容器
 
-​```sudo docker ps``` 
+sudo docker ps
 现在的 Docker 网络能够提供 DNS 解析功能，使用如下命令为接下来的 Hadoop 集群单独构建一个虚拟的网络。
-​```sudo docker network create --driver=bridge hadoop```
+sudo docker network create --driver=bridge hadoop```
 以上命令创建了一个名为 Hadoop 的虚拟桥接网络，该虚拟网络内部提供了自动的DNS解析服务。
 
 ## 查看 Docker 中的网络
 
-​```sudo docker network ls```
+sudo docker network ls
 可以看到刚刚创建的名为 hadoop 的虚拟桥接网络。
 
 ## 查找 ubuntu 容器
 
-​```sudo docker search ubuntu```
+sudo docker search ubuntu
 
 ## 下载 ubuntu 16.04 版本的镜像文件
 
-​```sudo docker pull ubuntu:16.04```
+sudo docker pull ubuntu:16.04
 
 ## 根据镜像启动一个容器
 
-​```sudo docker run -it ubuntu:16.04 /bin/bash```
-可以看出 shell 已经是容器的 shell 了
+sudo docker run -it ubuntu:16.04 /bin/bash
 
 ## 退出容器
 
-​``` exit```
+exit
 
 ## 查看本机上所有的容器
 
-​```sudo docker ps -a```
+sudo docker ps -a
 
 ## 启动容器
 
-​```sudo docker start fab4da838c2f```
+sudo docker start fab4da838c2f
 
 ## 关闭容器
 
-​```sudo docker stop  fab4da838c2f
+sudo docker stop  fab4da838c2f
 ```
 
 
@@ -79,7 +78,7 @@ JDK 1.8、Scala 2.11.6、Hadoop 3.2.1、Hbase 2.1.3、Spark 2.4.0
 ## 修改 apt 源
 
 
-```
+```shell
 备份源
 cp /etc/apt/sources.list /etc/apt/sources_init.list
 先删除旧源文件

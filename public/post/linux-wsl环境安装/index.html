@@ -1,0 +1,180 @@
+<!doctype html><html lang=zh-cn data-theme=dark><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: dark)"><meta name=generator content="Hugo 0.107.0"><link rel="shortcut icon" type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="linux-wsl、深度学习环境安装"><meta itemprop=description content="Love and Peace"><meta itemprop=datePublished zgotmplz><meta itemprop=dateModified zgotmplz><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=keywords content="Hugo,NexT,主题,简单,强大"><meta property="og:type" content="article"><meta property="og:title" content="linux-wsl、深度学习环境安装"><meta property="og:description" content="Love and Peace"><meta property="og:image" content="/imgs/hugo_next_avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="/post/linux-wsl%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/"><meta property="og:site_name" content="Tomding's Blog"><meta property="og:locale" content="zh-CN"><meta property="article:author" content="Tomding"><meta property="article:published_time" content="2022-12-05 20:43:26 +0800 CST"><meta property="article:modified_time" content="2022-12-05 20:43:26 +0800 CST"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.0ca97083b39f4eda7430d39b99194aa738d8f8db4090f00bc7e814013df699cb.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"linux-wsl%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85","permalink":"/post/linux-wsl%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/","title":"linux-wsl、深度学习环境安装","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>linux-wsl、深度学习环境安装 - Tomding's Blog</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Tomding's Blog</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Just do it!</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>首页</a></li><li class="menu-item menu-item-about"><a href=/about.html class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>74</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><a href=#安装wsl的cuda驱动>安装WSL的CUDA驱动</a></li><li><a href=#设置cuda环境变量>设置cuda环境变量</a></li><li><a href=#安装cuda-toolkit>安装cuda-toolkit</a></li><li><a href=#安装cudnn>安装cudnn</a></li><li><a href=#安装anaconda>安装anaconda</a><ul><li><a href=#更换源>更换源</a></li><li><a href=#卸载conda>卸载conda</a></li></ul></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=Tomding src=/imgs/img-lazy-loading.gif data-src=/imgs/hugo_next_avatar.png><p class=site-author-name itemprop=name>Tomding</p><div class=site-description itemprop=description>Love and Peace</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>74</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>5</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>0</span>
+<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/ title="Github → https://github.com/" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span>
+<span class=links-of-social-item><a href=https://www.zhihu.com/hot title="知乎 → https://www.zhihu.com/hot" rel=noopener class=hvr-icon-pulse target=_blank><i class="fa fa-book fa-fw hvr-icon"></i>知乎</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt=共享知识></a></div><div class="links-of-blogroll site-overview-item animated"><div class=links-of-blogroll-title><i class="fa fa-globe fa-fw"></i>友情链接</div><ul class=links-of-blogroll-list><li class=links-of-blogroll-item><a href=https://gitee.com/hugo-next/hugo-theme-next title=https://gitee.com/hugo-next/hugo-theme-next target=_blank>Hugo-NexT</a></li><li class=links-of-blogroll-item><a href=https://lisenhui.cn title=https://lisenhui.cn target=_blank>凡梦星尘空间站</a></li></ul></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
+<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=2022-12-01T19:59:47+08:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=273427></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=584></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2022-12-05T20:43:26+08:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
+<span>0%</span></div></div><div class=reading-progress-bar></div><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=/post/linux-wsl%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=name content="Tomding"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="Tomding"><meta itemprop=description content="Love and Peace"></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="linux-wsl、深度学习环境安装"><meta itemprop=description content="wsl wsl -l #列出所有已安装虚拟机 wsl -l -o #列出网上可用的系统 wsl -t ubuntu #关闭ubuntu wsl --shutdown #关闭所有系统及虚拟机引擎 wsl -d ubuntu #启动ubuntu并进行终"></span><header class=post-header><h1 class=post-title itemprop="name headline">linux-wsl、深度学习环境安装
+<a href=https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/post/linux-wsl%e3%80%81%e7%8e%af%e5%a2%83%e5%ae%89%e8%a3%85.md rel="noopener external nofollow noreferrer" target=_blank class="exturl post-edit-link" title=编辑><i class="fa fa-pen-nib"></i></a></h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2022-12-05 20:43:26 +0800 CST" itemprop="dateCreated datePublished" datetime="2022-12-05 20:43:26 +0800 CST">2022-12-05</time></span>
+<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/linux itemprop=url rel=index><span itemprop=name>linux</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="far fa-file-word"></i></span>
+<span class=post-meta-item-text>字数：</span><span>860</span></span>
+<span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="far fa-clock"></i></span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>2分钟</span></span>
+<span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
+<span class=post-meta-item-text>浏览：</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/post/linux-wsl%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><h1 id=wsl>wsl</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=display:flex><span>wsl -l  
+</span></span><span style=display:flex><span><span style=color:#75715e>#列出所有已安装虚拟机</span>
+</span></span><span style=display:flex><span>wsl -l -o 
+</span></span><span style=display:flex><span><span style=color:#75715e>#列出网上可用的系统</span>
+</span></span><span style=display:flex><span>wsl -t ubuntu 
+</span></span><span style=display:flex><span><span style=color:#75715e>#关闭ubuntu</span>
+</span></span><span style=display:flex><span>wsl --shutdown 
+</span></span><span style=display:flex><span><span style=color:#75715e>#关闭所有系统及虚拟机引擎</span>
+</span></span><span style=display:flex><span>wsl -d ubuntu 
+</span></span><span style=display:flex><span><span style=color:#75715e>#启动ubuntu并进行终端</span>
+</span></span><span style=display:flex><span>wsl -u root 
+</span></span><span style=display:flex><span><span style=color:#75715e>#以root身份支行</span>
+</span></span><span style=display:flex><span>wsl --install 
+</span></span><span style=display:flex><span><span style=color:#75715e>#安装默认虚拟机(ubuntu)</span>
+</span></span><span style=display:flex><span>wsl 
+</span></span><span style=display:flex><span><span style=color:#75715e>#启动默认虚拟机并进入终端</span>
+</span></span><span style=display:flex><span>wsl -s 
+</span></span><span style=display:flex><span><span style=color:#75715e>#虚拟机名 进入虚拟机</span>
+</span></span><span style=display:flex><span>wsl --unregister ubuntu  
+</span></span><span style=display:flex><span><span style=color:#75715e>#卸载虚拟机</span>
+</span></span><span style=display:flex><span>wsl --set-default-version <span style=color:#ae81ff>2</span> 
+</span></span><span style=display:flex><span><span style=color:#75715e>#将wsl2设置为默认版本</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#换源</span>
+</span></span><span style=display:flex><span>sudo apt-key adv --fetch-keys http://mirrors.aliyun.com/nvidia-cuda/ubuntu1804/x86_64/7fa2af80.pub;
+</span></span><span style=display:flex><span>sudo sh -c <span style=color:#e6db74>&#39;echo &#34;deb http://mirrors.aliyun.com/nvidia-cuda/ubuntu1804/x86_64 /&#34; &gt; /etc/apt/sources.list.d/cuda.list&#39;</span>;
+</span></span><span style=display:flex><span>sudo apt update
+</span></span><span style=display:flex><span>sudo apt upgrade
+</span></span></code></pre></div><h2 id=安装wsl的cuda驱动>安装WSL的CUDA驱动</h2><p><a href=https://developer.nvidia.com/cuda/wsl title=https://developer.nvidia.com/cuda/wsl rel="noopener external nofollow noreferrer" target=_blank class=exturl>https://developer.nvidia.com/cuda/wsl
+<i class="fa fa-external-link-alt"></i></a></p><h2 id=设置cuda环境变量>设置cuda环境变量</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#在主目录下的~/.bashrc文件添加如下路径：</span>
+</span></span><span style=display:flex><span>sudo su -
+</span></span><span style=display:flex><span>vim ~/.bashrc
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#末尾添加并保存：</span>
+</span></span><span style=display:flex><span>export CUDA_HOME<span style=color:#f92672>=</span>/usr/local/cuda
+</span></span><span style=display:flex><span>export PATH<span style=color:#f92672>=</span>$PATH:$CUDA_HOME/bin
+</span></span><span style=display:flex><span>export LD_LIBRARY_PATH<span style=color:#f92672>=</span>/usr/local/cuda-10.1/lib64<span style=color:#e6db74>${</span>LD_LIBRARY_PATH:+:<span style=color:#e6db74>${</span>LD_LIBRARY_PATH<span style=color:#e6db74>}}</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 然后更新配置文件：</span>
+</span></span><span style=display:flex><span>source ~/.bashrc
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#如果提示缺少相应的依赖库，直接执行如下代码自动安装相应的依赖库</span>
+</span></span><span style=display:flex><span>sudo apt-get install freeglut3-dev build-essential libx11-dev libxmu-dev libxi-dev libgl1-mesa-glx libglu1-mesa libglu1-mesa-dev
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#查看cuda是否安装成功：</span>
+</span></span><span style=display:flex><span>nvcc -V
+</span></span></code></pre></div><h2 id=安装cuda-toolkit>安装cuda-toolkit</h2><p><a href="https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0" title=最新版CUDA rel="noopener external nofollow noreferrer" target=_blank class=exturl>最新版CUDA
+<i class="fa fa-external-link-alt"></i></a></p><p><a href=https://developer.nvidia.com/cuda-toolkit-archive title=CUDA历史版本(根据个人需要) rel="noopener external nofollow noreferrer" target=_blank class=exturl>CUDA历史版本(根据个人需要)
+<i class="fa fa-external-link-alt"></i></a></p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2022-12-05/2022-12-05_21-02-44-536.png alt></p><h2 id=安装cudnn>安装cudnn</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#cuda和cudnn对应版本</span>
+</span></span><span style=display:flex><span>https://developer.nvidia.com/cudnn
+</span></span><span style=display:flex><span><span style=color:#75715e>#cudnn_download</span>
+</span></span><span style=display:flex><span>https://developer.nvidia.com/rdp/cudnn-archive
+</span></span><span style=display:flex><span><span style=color:#75715e>#然后打开终端执行：</span>
+</span></span><span style=display:flex><span>tar -zxvf cudnn-10.2-linux-x64-v8.0.4.30.tgz
+</span></span><span style=display:flex><span>sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda-11.0/lib64/
+</span></span><span style=display:flex><span>sudo cp  cuda/include/cudnn.h /usr/local/cuda-11.0/include/
+</span></span><span style=display:flex><span><span style=color:#75715e>#为所有用户设置读取权限：</span>
+</span></span><span style=display:flex><span>sudo chmod a+r /usr/local/cuda-11.0/include/cudnn.h 
+</span></span><span style=display:flex><span>sudo chmod a+r /usr/local/cuda-11.0/lib64/libcudnn*
+</span></span></code></pre></div><h2 id=安装anaconda>安装anaconda</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/</span>
+</span></span><span style=display:flex><span>bash Anaconda3xxx<span style=color:#f92672>.</span>sh
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>sudo vim <span style=color:#f92672>~/.</span>bashrc
+</span></span><span style=display:flex><span>export PATH<span style=color:#f92672>=/</span>home<span style=color:#f92672>/</span>tomding<span style=color:#f92672>/</span>anaconda3<span style=color:#f92672>/</span>bin:<span style=color:#960050;background-color:#1e0010>$</span>PATH
+</span></span><span style=display:flex><span>source <span style=color:#f92672>~/.</span>bashrc 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#创建虚拟环境：</span>
+</span></span><span style=display:flex><span>conda create <span style=color:#f92672>-</span>n tf
+</span></span><span style=display:flex><span><span style=color:#75715e>#复制环境</span>
+</span></span><span style=display:flex><span>conda create <span style=color:#f92672>-</span>n tf_new <span style=color:#f92672>--</span>clone tf
+</span></span><span style=display:flex><span><span style=color:#75715e>#删除</span>
+</span></span><span style=display:flex><span>conda remove <span style=color:#f92672>-</span>n tf <span style=color:#f92672>--</span>all
+</span></span><span style=display:flex><span><span style=color:#75715e>#删除没有用的包</span>
+</span></span><span style=display:flex><span>conda clean <span style=color:#f92672>-</span>p    
+</span></span><span style=display:flex><span><span style=color:#75715e>#删除tar包  </span>
+</span></span><span style=display:flex><span>conda clean <span style=color:#f92672>-</span>t      
+</span></span><span style=display:flex><span><span style=color:#75715e>#激活虚拟环境：</span>
+</span></span><span style=display:flex><span>source activate tf
+</span></span><span style=display:flex><span><span style=color:#75715e>#如果要退出：输入</span>
+</span></span><span style=display:flex><span>source deactivate tf
+</span></span></code></pre></div><h3 id=更换源>更换源</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=display:flex><span>pip install  gensim  -i https://pypi.douban.com/simple
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 清华源</span>
+</span></span><span style=display:flex><span>conda config --add channels https://pypi.tuna.tsinghua.edu.cn/simple
+</span></span><span style=display:flex><span><span style=color:#75715e># 阿里源</span>
+</span></span><span style=display:flex><span>conda config --add channels https://mirrors.aliyun.com/pypi/simple/
+</span></span><span style=display:flex><span><span style=color:#75715e>#豆瓣源</span>
+</span></span><span style=display:flex><span>conda config --add channels http://pypi.douban.com/simple/ 
+</span></span><span style=display:flex><span><span style=color:#75715e>#中科大源</span>
+</span></span><span style=display:flex><span>conda config --add channels https://pypi.mirrors.ustc.edu.cn/simple/
+</span></span><span style=display:flex><span><span style=color:#75715e># 设置搜索时显示通道地址</span>
+</span></span><span style=display:flex><span>conda config --set show_channel_urls yes
+</span></span><span style=display:flex><span><span style=color:#75715e>#显示镜像源</span>
+</span></span><span style=display:flex><span>conda config --show-sources
+</span></span><span style=display:flex><span><span style=color:#75715e>#删除镜像源</span>
+</span></span><span style=display:flex><span>conda config --remove channels https://pypi.mirrors.ustc.edu.cn/simple/
+</span></span><span style=display:flex><span><span style=color:#75715e>#删除清华源改回默认源</span>
+</span></span><span style=display:flex><span>conda config --remove-key channels
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 或修改.condarc文件</span>
+</span></span><span style=display:flex><span>channels:
+</span></span><span style=display:flex><span>  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+</span></span><span style=display:flex><span>  - defaults
+</span></span><span style=display:flex><span>show_channel_urls: true
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># win pip永久提速</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#1. 打开cmd输入set命令查看用户目录USERPROFILE；</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#2. 目录中创建一个pip目录,建一个文件 pip.ini</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#3. 在 pip.ini 文件输入：</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>global<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>index-url <span style=color:#f92672>=</span> https://pypi.douban.com/simple
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>install<span style=color:#f92672>]</span>
+</span></span><span style=display:flex><span>trusted-host <span style=color:#f92672>=</span> pypi.douban.com
+</span></span><span style=display:flex><span><span style=color:#ae81ff>12345</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Linux pip永久提速</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#1. 打开terminal</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#2. 输入命令：</span>
+</span></span><span style=display:flex><span>cd home
+</span></span><span style=display:flex><span>mkdir .pip
+</span></span><span style=display:flex><span>vim .pip/pip.conf
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>[</span>global］
+</span></span><span style=display:flex><span>index-url <span style=color:#f92672>=</span> https://pypi.doubanio.com/simple/
+</span></span><span style=display:flex><span>timeout <span style=color:#f92672>=</span> <span style=color:#ae81ff>1000</span>
+</span></span><span style=display:flex><span>【install】
+</span></span><span style=display:flex><span>use-mirrors <span style=color:#f92672>=</span> true
+</span></span><span style=display:flex><span>mirrors <span style=color:#f92672>=</span> https://pypi.doubanio.com//
+</span></span><span style=display:flex><span><span style=color:#ae81ff>123456</span>
+</span></span></code></pre></div><h3 id=卸载conda>卸载conda</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=display:flex><span><span style=color:#75715e># 卸载</span>
+</span></span><span style=display:flex><span>rm -rf /home/txp/anaconda3
+</span></span><span style=display:flex><span><span style=color:#75715e># 打开终端并输入：</span>
+</span></span><span style=display:flex><span>sudo gedit ~/.bashrc
+</span></span><span style=display:flex><span><span style=color:#75715e>#在.bashrc文件末尾删除之前添加的路径：</span>
+</span></span><span style=display:flex><span>export PATH<span style=color:#f92672>=</span>/home/lq/anaconda3/bin:$PATH
+</span></span><span style=display:flex><span><span style=color:#75715e>#保存并关闭文件</span>
+</span></span><span style=display:flex><span>source ~/.bashrc
+</span></span><span style=display:flex><span><span style=color:#75715e>#关闭终端，然后再重启一个新的终端</span>
+</span></span></code></pre></div><h1 id=pytoch>pytoch</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># https://pytorch.org/</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> torch
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> torch<span style=color:#f92672>.</span>rand(<span style=color:#ae81ff>5</span>,<span style=color:#ae81ff>3</span>)
+</span></span><span style=display:flex><span>print(x, torch<span style=color:#f92672>.</span>cuda<span style=color:#f92672>.</span>is_available())
+</span></span></code></pre></div></div><footer class=post-footer><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
+linux-wsl、深度学习环境安装</li><li class=post-copyright-author><strong>本文作者：</strong>
+Tomding</li><li class=post-copyright-link><strong>本文链接：</strong>
+<a id=post-cr-link href=/post/linux-wsl%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/ title=linux-wsl、深度学习环境安装>/post/linux-wsl%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</a></li><li class=post-copyright-license><strong>版权声明：</strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class=followme><span>欢迎关注我的其它发布渠道</span><div class=social-list><div class=social-item><a target=_blank class=social-link href=/images/wechat_channel.jpg><span class=icon><i class="fab fa-weixin"></i></span>
+<span class=label>WeChat</span></a></div><div class=social-item><a target=_blank class=social-link href=/atom.xml><span class=icon><i class="fa fa-rss"></i></span>
+<span class=label>RSS</span></a></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/post/linux-wsl%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/ rel=next title=linux-wsl、深度学习环境安装><i class="fa fa-chevron-left"></i> linux-wsl、深度学习环境安装</a></div><div class="post-nav-prev post-nav-item"><a href=/post/cv-%E8%BD%A6%E9%81%93%E7%BA%BF%E6%A3%80%E6%B5%8B/ rel=prev title=cv-车道线检测>cv-车道线检测
+<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
+<span itemprop=copyrightYear>2010 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span>
+<span class=author itemprop=copyrightHolder>Tomding</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":false,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.e34208af37d3db3a875e6fbad04c2f1c241185af925a9c6ebf79dd1ba2730cdd.js defer></script></body></html>

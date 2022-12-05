@@ -7,8 +7,7 @@
         # 发表日期
         date: 2022-12-02T03:11:14+08:00
 
-
---- 
+---
 
 ## 分区大小
 
@@ -64,67 +63,16 @@ sudo apt-get install gdebi
  sudo apt-get upgrade 
 
 ## ubuntu-安装pycharm
-1）进入[PyCharm官网]点击DOWNLOAD([https://www.jetbrains.com/pycharm/download/#section=linux](https://www.jetbrains.com/pycharm/download/#section=linux)) 
+1）进入[PyCharm官网]点击DOWNLOAD
+
+([https://www.jetbrains.com/pycharm/download/#section=linux](https://www.jetbrains.com/pycharm/download/#section=linux)) 
 2）解压文件。右键安装包，点击“Extract Here” 
 3 )把 pycharm-2019.1.1 文件夹放在Downloads根目录
 4 )cd pycharm-2019.1.1/bin
 5 )sh ./pycharm.sh 
 6 )出现Complete-Installation提示框
 
-## anaconda及tensorflow
-### 删除整个anaconda目录：
 
-由于Anaconda的安装文件都包含在一个目录中，所以直接将该目录删除即可。到包含整个anaconda目录的文件夹下，删除整个Anaconda目录：
-``` rm -rf anaconda文件夹名```
-建议清理下.bashrc中的Anaconda路径：
-1.到根目录下，打开终端并输入：      
-``` sudo gedit ~/.bashrc```
-
-2.在.bashrc文件末尾用#号注释掉之前添加的路径(或直接删除)：       
-```#export PATH=/home/lq/anaconda3/bin:$PATH ```     
- 保存并关闭文件
-
-3.使其立即生效，在终端执行：    
-  ```source ~/.bashrc      ```
-4.关闭终端，然后再重启一个新的终端，这一步很重要，不然在原终端上还是绑定有anaconda
-
-### 安装anaconda
-```bash Anaconda3-5.3.1-Linux-x86_64.sh```
-
-naconda会自动将环境变量添加到PATH里面，如果后面你发现输出conda 提示没有该命令，那么你需要source ~/.bashrc 这样就是更新环境变量，就可以正常使用了。 如果发现这样还是没用，那么需要收到添加环境变量 sudo gedit ~/.bashrc，在最后面加上export PATH=/home/tomding/anaconda3/bin:$PATH
-
-保存退出后：source ~/.bashrc 再次输入conda list测试看看，应该就是没有问题啦！
-
-### 添加Jupyter
-
-conda install jupyter 启动 jupyter notebook
-
-### 安装tensorflow
-
-1、创建虚拟环境：
-
-```conda create -n tensorflow```
-2、激活虚拟环境：
-
-```source activate tensorflow```
-PS:如果要退出：输入
-
-```source deactivate tensorflow ```
-3、下面我们在虚拟环境里安装tensorflow:
-
-```
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
-conda config --set show_channel_urls yes
-
-//删除清华源改回默认源
-conda config --remove-key channels
-```
-
-安装CPU版本：
-```pip install tensorflow==2.0.0 -i https://pypi.tuna.tsinghua.edu.cn/simple```
-安装GPU版本：
-```conda install tensorflow-gpu ```
 
 
 ## 美化
@@ -182,7 +130,7 @@ cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
 
 
 
-chrome 
+## chrome 
 
  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
 
