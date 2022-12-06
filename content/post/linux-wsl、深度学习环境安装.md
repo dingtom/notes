@@ -33,7 +33,8 @@ wsl --unregister ubuntu
 wsl --set-default-version 2 
 #将wsl2设置为默认版本
 
-
+#进入Ubuntu
+ubuntu2004
 
 #换源
 sudo apt-key adv --fetch-keys http://mirrors.aliyun.com/nvidia-cuda/ubuntu1804/x86_64/7fa2af80.pub;
@@ -61,11 +62,29 @@ sudo apt upgrade
 AppData\Local\Microsoft\WindowsApps\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\ubuntu2004.exe
 重启一下pycharm就可以了。
 
+
+
 ### 文件传输
 
 ```bash
 mv /mnt/d/quicker/ /home/
 ```
+
+### 限制wsl2内存使用
+
+在`C:\Users\tinychen`中创建了一个`.wslconfig`文件
+
+```bash
+ [wsl2]
+ processors=8
+ memory=8GB
+ swap=8GB
+ localhostForwarding=true
+```
+
+重启wsl2才能生效。
+
+
 
 
 
@@ -197,10 +216,11 @@ show_channel_urls: true
 #3. 在 pip.ini 文件输入：
 
 [global]
-index-url = https://pypi.douban.com/simple
+	trusted-host = pypi.douban.com
+	index-url = https://pypi.douban.com/simple
 [install]
-trusted-host = pypi.douban.com
-12345
+	trusted-host = pypi.douban.com
+
 
 # Linux pip永久提速
 
@@ -208,15 +228,13 @@ trusted-host = pypi.douban.com
 #2. 输入命令：
 cd home
 mkdir .pip
-vim .pip/pip.conf
+sudo vim .pip/pip.conf
 
 [global］
-index-url = https://pypi.doubanio.com/simple/
-timeout = 1000
-【install】
-use-mirrors = true
-mirrors = https://pypi.doubanio.com//
-123456
+	index-url = https://pypi.douban.com/simple/
+	timeout = 6000
+[install]
+	trusted-host = pypi.douban.com
 ```
 
 ### 卸载conda
