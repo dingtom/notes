@@ -7,8 +7,7 @@
         # 发表日期
         date: 2022-12-02T03:11:14+08:00
 
-
---- 
+---
 
 ```Ctrl+c```       强制中断程序的执行
 ```Ctrl+z```	将程序挂起，```fg```/```bg```继续任务
@@ -431,7 +430,7 @@ Host_local$ ssh -L 0.0.0.0:Port_local:Host_remote:Port_remote  user@HostB
 这时访问 Host_local:Port_local 相当于访问 Host_remote:Port_remote。
 
 两种用法的区别是，第一种用法本地到跳板机的数据是明文的，而第二种用法数据被 ssh 加密传输给 HostB 又转发给 Host_remote:Port_remote。
- 
+
 
 `反向代理：`
 
@@ -699,7 +698,9 @@ unzip -O GBK 中文压缩文件.zip
 >-c 表示创建一个 tar 包文件
 >-f 用于指定创建的文件名，件名必须紧跟在 -f 参数之后
 >-p在其他主机还原时希望保留文件的属性
->-h 备份链接指向的源文件而不是链接本身
+>-h 备份链接指向的
+>
+>源文件而不是链接本身
 >-x解包一个文件
 >-C 指定保存路径
 >-t只查看不解包文件 

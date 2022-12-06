@@ -7,7 +7,7 @@
     date: 2022-12-05T20:43:26+08:00
 ---
 
-# wsl
+## wsl
 
 ```shell
 wsl -l  
@@ -33,6 +33,8 @@ wsl --unregister ubuntu
 wsl --set-default-version 2 
 #将wsl2设置为默认版本
 
+
+
 #换源
 sudo apt-key adv --fetch-keys http://mirrors.aliyun.com/nvidia-cuda/ubuntu1804/x86_64/7fa2af80.pub;
 sudo sh -c 'echo "deb http://mirrors.aliyun.com/nvidia-cuda/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda.list';
@@ -40,6 +42,32 @@ sudo apt update
 sudo apt upgrade
 
 ```
+
+### pycharm wsl解释器
+
+首先查看 pycham中是否已经有WSL，如果有WSL则直接选择所需的环境，如果没有，则需要找到 wsl.distributions.xml文件，加入
+
+```xml
+ <descriptor>
+           <id>ubuntu-2004</id>
+         <microsoft-id>ubuntu-2004</microsoft-id>
+         <executable-path>C:\Users\xxx\ubuntu2004.exe</executable-path>
+         <presentable-name>Ubuntu-20.04</presentable-name>
+        </descriptor>
+```
+
+我的位置是
+
+AppData\Local\Microsoft\WindowsApps\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\ubuntu2004.exe
+重启一下pycharm就可以了。
+
+### 文件传输
+
+```bash
+mv /mnt/d/quicker/ /home/
+```
+
+
 
 ## 安装CUDA驱动
 
@@ -76,6 +104,18 @@ https://developer.nvidia.com/cuda-toolkit-archive
 
 ![](https://gitee.com/tomding1995/picture/raw/master/2022-12-05/2022-12-05_21-02-44-536.png)
 
+### 卸载
+
+```bash
+#W: Failed to fetch file /var/cuda-repo-7-5-local/packages File not found
+#E: Some index files failed to download, they have been ignored , or old ones uesd installed.
+#如果出现这个问题，表明你的cuda7.5虽然卸载了，但是文件列表里面还有。再卸载了sudo dpkg -r cuda-repo-ubuntu1404-7-5-local之后，
+sudo dpkg –purge cuda-repo-ubuntu1404-7-5-local
+
+```
+
+
+
 ## 安装cudnn
 
 
@@ -87,11 +127,11 @@ https://developer.nvidia.com/cudnn
 https://developer.nvidia.com/rdp/cudnn-archive
 #然后打开终端执行：
 tar -zxvf cudnn-10.2-linux-x64-v8.0.4.30.tgz
-sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda-11.0/lib64/
-sudo cp  cuda/include/cudnn.h /usr/local/cuda-11.0/include/
+sudo cp -P cudnn-linux-x86_64-8.6.0.163_cuda11-archive/lib/libcudnn* /usr/local/cuda-11.6/lib64/
+sudo cp  cudnn-linux-x86_64-8.6.0.163_cuda11-archive/include/cudnn.h /usr/local/cuda-11.6/include/
 #为所有用户设置读取权限：
-sudo chmod a+r /usr/local/cuda-11.0/include/cudnn.h 
-sudo chmod a+r /usr/local/cuda-11.0/lib64/libcudnn*
+sudo chmod a+r /usr/local/cuda-11.6/include/cudnn.h 
+sudo chmod a+r /usr/local/cuda-11.6/lib64/libcudnn*
 ```
 
 ## 安装anaconda
@@ -103,7 +143,7 @@ sudo chmod a+r /usr/local/cuda-11.0/lib64/libcudnn*
 bash Anaconda3xxx.sh
 
 #创建虚拟环境：
-conda create -n tf
+conda create -n tf python==3.9
 #复制环境
 conda create -n tf_new --clone tf
 #删除
@@ -124,9 +164,14 @@ source deactivate tf
 pip install  gensim  -i https://pypi.douban.com/simple
 
 # 清华源
-conda config --add channels https://pypi.tuna.tsinghua.edu.cn/simple
-# 设置搜索时显示通道地址
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/;
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/;
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/;
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/;
 conda config --set show_channel_urls yes
+# 设置搜索时显示通道地址
+
+
 # 阿里源
 conda config --add channels https://mirrors.aliyun.com/pypi/simple/
 #豆瓣源
@@ -180,7 +225,7 @@ mirrors = https://pypi.doubanio.com//
 # 卸载
 rm -rf /home/txp/anaconda3
 # 打开终端并输入：
-sudo gedit ~/.bashrc
+sudo vim ~/.bashrc
 #在.bashrc文件末尾删除之前添加的路径：
 export PATH=/home/lq/anaconda3/bin:$PATH
 #保存并关闭文件
@@ -195,5 +240,8 @@ source ~/.bashrc
 import torch
 x = torch.rand(5,3)
 print(x, torch.cuda.is_available())
+
+
+# https://www.paddlepaddle.org.cn/install/quick
 ```
 

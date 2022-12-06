@@ -41,7 +41,3 @@ sudo apt-get --purge remove "*cublas*" "cuda*"
 # To remove NVIDIA Drivers:
 sudo apt-get --purge remove "*nvidia*"
 ```
-
-
-
-# 
