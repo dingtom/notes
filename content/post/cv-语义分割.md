@@ -233,9 +233,7 @@ MS COCO标注文件格式
 官网有给出一个关于标注文件的格式说明，可以通过以下链接查看：
 <https://cocodataset.org/#format-data>
 
-![](C:\Users\WENCHAO\AppData\Roaming\Typora\typora-user-images\1665884955753.png)
-
-
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-07/2022-12-07_23-39-56-649.png)
 
 
 
