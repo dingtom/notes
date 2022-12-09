@@ -22,53 +22,31 @@
 - 曝光
   曝光不准确(过度、不足)，严重时导致信息缺失
 
-MIPS
-
-Million Instructions executed Per Second,每秒执行百万条指令，用来计算同一秒内系统的处理能力，即每秒执行了多少百万条指令。
-DMIPS
-Dhrystone Million Instructions executed Per Second,主要用于测试整数计算能力。
-MFLOPS
-Million Floating-point Operations per Second主要用于测浮点计算能力。
-
-
-
-- 模型压缩
-
-知识蒸馏(teacher-student网络)
-
-light weight结构设计，例如MobileNet、 SqueezeNet
-
-模型量化(二值化网络，INT8量化)
-
-- 模型精简
-
-CNN剪枝(结构化剪枝、非结构化剪枝)
-低秩分解
-
-- 加速计算
-
-Op-level快速算法
-Layer-level快速算法FFT Conv2d等
-
-- 优化加速
-
-NAS（神经网络架构搜索）
-网络并行结构合并(tensorRT)
-
 
 
 ## 传统图像处理方法
 
 - 颜色信息
+
 - 高斯噪声过滤
+
 - Canny边缘检测
+
 - 霍夫变换检测直线
+
 - K Means聚类霍夫检测
+
 - 高斯概率模型进行消失点检测
+
 - 透视变换鸟瞰图
+
 - 曲线拟合
+
 - 车道线提取
+
 - 车道线曲率计算
+
+  ## 数据集
 
 ![](https://gitee.com/tomding1995/picture/raw/master/2022-12-02/2022-12-02_23-40-42-261.png)
 
@@ -87,4 +65,20 @@ NAS（神经网络架构搜索）
 ![](https://gitee.com/tomding1995/picture/raw/master/2022-12-02/2022-12-02_23-45-39-183.png)
 
 ![](https://gitee.com/tomding1995/picture/raw/master/2022-12-02/2022-12-02_23-46-06-842.png)
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_10-24-13-004.png)
+
+图片坐标系共线的点，在霍夫空间映射成相交的线，相交的点表示共的线
+
+dterlane：基于dter的车道线检测，对于dter系列的理解，我是：稀里糊涂的问，一本正经的答
+lanATT ：把yolo改来做车道线检测，性能不错，就是复杂了点
+LaneNet ：基于分割的算法，做车道线，后处理太繁项，导致缺乏实时性
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_10-10-01-254.png)
+
+Ultra fast ：将车道线检测转化为分类问题，简单、粗果、有效
+
+SCNN:
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_10-12-12-430.png)
 

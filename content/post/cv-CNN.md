@@ -6,14 +6,15 @@
         - cv
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
-    
---- 
+
+---
 
 ![](https://upload-images.jianshu.io/upload_images/18339009-4c00b0451280e2f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![](https://upload-images.jianshu.io/upload_images/18339009-3adce96cd54eb3f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-# 卷积层
+## 卷积层
+
 `卷积提取底层特征减少神经网络中参数个数`
 
 
@@ -35,7 +36,12 @@
 
 
 
-# 池化层
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_14-52-32-636.png)
+
+
+
+## 池化层
+
 `下采样。降维、扩大感知野、减小计算量`
 `实现非线性`
 `实现不变性，（平移不变性、旋转不变性和尺度不变性）`
@@ -47,27 +53,21 @@
 
 
 
-# 卷积层输出矩阵大小
+## 卷积层输出矩阵大小
 
-padding = “SAME”$n_{output}=[  n_{input}  ]$
-
-padding = “VALID”$n_{\text {output}}=\left[\frac{n_{\text {input}}- \text{kernel_size} +1}{s}\right]$
+$n_{\text {output}}=\left[\frac{n_{\text {input}}- \text{kernel_size} +2*padding}{stride} + 1\right]$
 
 
 
-
-
-池化层的输出大小公式也与卷积层一样，由于没有进行填充，所以p=0，可以简化为  $ \frac{n-  \text{kernel_size} }{s} +1 $
-
+池化层的输出大小公式也与卷积层一样
 
 
 
-
-# 改进点
+## 改进点
 
 ![](https://upload-images.jianshu.io/upload_images/18339009-acae173c2caeea35.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-# 3D 卷积
+## 3D 卷积
 
 实际上是对一个 3D 体积执行卷积。但通常而言，我们仍在深度学习中称之为 2D 卷积。这是在 3D 体积数据上的 2D 卷积。`过滤器深度与输入层深度一样。这个 3D 过滤器仅沿两个方向移动（图像的高和宽）。`这种操作的输出是一张 2D 图像（仅有一个通道）。
 
@@ -75,7 +75,7 @@ padding = “VALID”$n_{\text {output}}=\left[\frac{n_{\text {input}}- \text{ke
 
 3D 卷积可以描述 3D 空间中目标的空间关系。对某些应用（比如生物医学影像中的 3D 分割/重构）而言，这样的 3D 关系很重要，比如在 CT 和 MRI 中，血管之类的目标会在 3D 空间中蜿蜒曲折。
 
-# 1×1 卷积
+## 1×1 卷积
 
 ⾸发于NIN（Network in Network），后续也在GoogLeNet和ResNet等⽹络中使⽤。
 
@@ -87,7 +87,7 @@ padding = “VALID”$n_{\text {output}}=\left[\frac{n_{\text {input}}- \text{ke
 ![](https://upload-images.jianshu.io/upload_images/18339009-cc270f72d13957ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![](https://upload-images.jianshu.io/upload_images/18339009-95f1db364ebe56bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-# 两个3\*3代替一个5\*5
+## 两个3\*3代替一个5\*5
 
 两个3\*3卷积核和⼀个5\*5卷积核的感受野相同，但是`减少了参数量和计算量`，加快了模型训练。与此同时由于卷积核的增加，`模型的⾮线性表达能⼒⼤⼤增强`。
 
@@ -95,7 +95,7 @@ padding = “VALID”$n_{\text {output}}=\left[\frac{n_{\text {input}}- \text{ke
 
 过⼤卷积核也有使⽤的空间，在GAN，图像超分辨率，图像融合等领域依然有较多的应⽤
 
-# 　转置卷积（去卷积、棋盘效应）
+## 　转置卷积（去卷积、棋盘效应）
 
 `上采样生成高分辨率图像、将低维特征图映射到高维空间`
 
@@ -105,23 +105,25 @@ padding = “VALID”$n_{\text {output}}=\left[\frac{n_{\text {input}}- \text{ke
 
 我们一直都可以使用直接的卷积实现转置卷积。对于下图的例子，我们在一个 2×2 的输入（周围加了 2×2 的单位步长的零填充）上应用一个 3×3 核的转置卷积。上采样输出的大小是 4×4。
 
-# 多尺度卷积
+## 多尺度卷积
 
 ![](https://upload-images.jianshu.io/upload_images/18339009-9386a104067200fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-# 深度可分卷积
+## 深度可分卷积
 
 深度可分离卷积将传统的卷积分两步进行，分别是`depthwise和pointwise`。
 
-首先按照通道进行计算按位相乘的计算，深度可分离卷积中的卷积核都是单通道的，输出不能改变feature map的通道数，此时通道数不变；
+首先按照`通道进行计算按位相乘的计算`，深度可分离卷积中的卷积核都是单通道的，输出不能改变feature map的通道数，此时通道数不变；
 
-然后将得到将第一步的结果，使用1*1的卷积核进行传统的卷积运算，此时通道数可以进行改变。
+然后将得到将第一步的结果，使用`1*1的卷积核`进行传统的卷积运算，此时`通道数可以进行改变`。
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-11-23/2022-11-23_17-21-33-925.png)
 
+减少参数量、计算量
 
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_15-15-14-698.png)
 
-# 分组卷积
+## 分组卷积
 
 特征图局部链接
 ![传统](https://upload-images.jianshu.io/upload_images/18339009-f180d01ed3f2ddf9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -129,13 +131,15 @@ padding = “VALID”$n_{\text {output}}=\left[\frac{n_{\text {input}}- \text{ke
 ![参数量减少](https://upload-images.jianshu.io/upload_images/18339009-d02525a2f6f26516.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![Alexnet](https://upload-images.jianshu.io/upload_images/18339009-ee939e0c39d7e299.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-# 　混分组卷积
+混分组卷积
+
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-11-23/2022-11-23_17-14-56-805.png)
 
-# 　SE注意力机制
+SE注意力机制
+
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-11-23/2022-11-23_17-15-32-142.png)
 
-# 空洞卷积
+## 空洞卷积
 
 1. `扩大感受野`。神经元感受野的值越大表示其能接触到的原始图像范围就越大，也意味着它可能蕴含更为全局，`语义层次更高的特征`
 
@@ -180,7 +184,7 @@ padding = “VALID”$n_{\text {output}}=\left[\frac{n_{\text {input}}- \text{ke
 
 
 
-# 转置卷积
+## 转置卷积
 
 `转置卷积（Transposed Convolution）`它和空洞卷积的思路正好相反，是为上采样而生，也应用于语义分割当中，而且他的计算也和空洞卷积正好相反，`先对输入的feature map间隔补0，卷积核不变，然后使用标准的卷积进行计算，得到更大尺寸的feature map`。`转置卷积不是卷积的逆运算`
 
@@ -228,16 +232,69 @@ dilation：当使用到空洞卷积（膨胀卷积）时才会使用到的参数
 
 $$H_{in} = (H_{out}-1)\times s +dilation \times (k-1)-2p +out\_padding +1$$
 
-# Resnet
+Resnet
 
 ![](https://gitee.com/dingtom1995/picture/raw/master/2022-11-23/2022-11-23_17-16-46-897.png)
 
 
 
-# Addition / Concatenate
+## Addition / Concatenate
 
 Addition和Concatenate分支操作统称为shortcut，
 
 Addition是在ResNet中提出，两个相同维度的feature map相同位置点的值直接相加，得到新的相同维度feature map，`这个操作可以融合之前的特征，增加信息的表达，`
 
 Concatenate操作是在Inception中首次使用，被DenseNet发扬光大，和addition不同的是，它只要求两个feature map的HW相同，通道数可以不同，然后两个feature map在通道上直接拼接，得到一个更大的feature map，`它保留了一些原始的特征，增加了特征的数量，使得有效的信息流继续向后传递。`
+
+## VGG
+
+- 更深的网络有助于性能的提升，11层、13层、16层、19层
+
+- 更深的网络不好训练，容易过拟合
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_17-17-30-944.png)
+
+## GoogLeNet
+
+- 引入Inception结构（不同尺度卷积，再加一块）
+- 中间层辅助Loss单元
+- 最后的全连接替换为averagepooling
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_17-24-25-278.png)
+
+## ResNet
+
+明更深的网络在训练过程中的难度更大
+
+不再学习从 x 到 H(x) 的基本映射关系，而是学习这两者之间的差异，也就是「残差（residual）」。
+
+然后，为了计算 H(x)，我们只需要将这个残差加到输入上即可。假设残差为 F(x)=H(x)-x，那么现在我们的网络不会直接学习 H(x) 了，而是学习 F(x)+x。
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_17-29-44-640.png)
+ResNet 的每一个「模块（block）」都由一系列层和一个「捷径（shortcut）」连接组成，`这个「捷径」将该模块的输入和输出连接到`了一起`。然后在元素层面上执行「加法（add）」运算，`
+
+ResNet本质上就干了一件事：`降低数据中信息的冗余度`。具体说来，就是对非冗余信息采用了线性激活（通过skip connection获得无冗余的identity部分），然后对冗余信息采用了非线性激活（通过ReLU对identity之外的其余部分进行信息提取/过滤，提取出的有用信息即是残差）。其中，提取identity这一步，就是ResNet思想的核心。
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_18-02-16-982.png)
+
+## DenseNet
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_17-34-16-632.png)
+
+
+
+## SqueezeNet
+
+- 1\*1卷积替换3\*3卷积
+
+- 3*3卷积采用更少的channel数
+- 降采样后置
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_17-35-03-541.png)
+
+## MobileNet
+
+- 先深度可分离，再1乘1卷积。减少参数量
+- ReLU6，移动端部署精度没有那么高
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_17-37-42-315.png)
