@@ -1,4 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>linux-wsl、深度学习环境安装</title><url>/post/linux-wsl%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</url><categories><category>linux</category></categories><tags/><content type="html"><![CDATA[wsl wsl -l #列出所有已安装虚拟机 wsl -l -o #列出网上可用的系统 wsl -t ubuntu #关闭ubuntu wsl --shutdown #关闭所有系统及虚拟机引擎 wsl -d ubuntu #启动ubuntu并进行终端 wsl -u root #以root身份支行 wsl --install #安装默认虚拟机(ubuntu) wsl #启动默认虚拟机并进入终端 wsl -s #虚拟机名 进入虚拟机 wsl --unregister ubuntu #卸载虚拟机 wsl --set-default-version 2 #将wsl2设置为默认版本 #进入Ubuntu ubuntu2004 #换源 sudo apt-key adv --fetch-keys http://mirrors.aliyun.com/nvidia-cuda/ubuntu1804/x86_64/7fa2af80.pub; sudo sh -c &#39;echo &#34;deb http://mirrors.aliyun.com/nvidia-cuda/ubuntu1804/x86_64 /&#34; &gt; /etc/apt/sources.list.d/cuda.list&#39;; sudo apt update sudo apt upgrade pycharm wsl解释器 首先查看 pycham中是否已经有WSL，如果有WSL则直接选择所需的环境，如果没有，则需要找到 wsl.distributions.xml文件，加入
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><search><entry><title>cv-枝剪量化</title><url>/post/cv-%E6%9E%9D%E5%89%AA%E9%87%8F%E5%8C%96/</url><categories><category>cv</category></categories><tags/><content type="html">MIPS：Million Instructions executed Per Second,每秒执行百万条指令，用来计算同一秒内系统的处理能力，即每秒执行了多少百万条指令。 DMIPS：Dhrystone Million Instructions executed Per Second,主要用于测试整数计算能力。 MFLOPS：Million Floating-point Operations per Second主要用于测浮点计算能力。
+模型压缩 知识蒸馏(teacher-student网络)
+light weight结构设计，例如MobileNet、 SqueezeNet
+模型量化(二值化网络，INT8量化)
+模型精简 CNN剪枝(结构化剪枝、非结构化剪枝) 低秩分解
+加速计算 Op-level快速算法 Layer-level快速算法FFT Conv2d等
+优化加速 NAS（神经网络架构搜索） 网络并行结构合并(tensorRT)</content></entry><entry><title>linux-wsl、深度学习环境安装</title><url>/post/linux-wsl%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/</url><categories><category>linux</category></categories><tags/><content type="html"><![CDATA[wsl wsl -l #列出所有已安装虚拟机 wsl -l -o #列出网上可用的系统 wsl -t ubuntu #关闭ubuntu wsl --shutdown #关闭所有系统及虚拟机引擎 wsl -d ubuntu #启动ubuntu并进行终端 wsl -u root #以root身份支行 wsl --install #安装默认虚拟机(ubuntu) wsl #启动默认虚拟机并进入终端 wsl -s #虚拟机名 进入虚拟机 wsl --unregister ubuntu #卸载虚拟机 wsl --set-default-version 2 #将wsl2设置为默认版本 #进入Ubuntu ubuntu2004 #换源 sudo apt-key adv --fetch-keys http://mirrors.aliyun.com/nvidia-cuda/ubuntu1804/x86_64/7fa2af80.pub; sudo sh -c &#39;echo &#34;deb http://mirrors.aliyun.com/nvidia-cuda/ubuntu1804/x86_64 /&#34; &gt; /etc/apt/sources.list.d/cuda.list&#39;; sudo apt update sudo apt upgrade pycharm wsl解释器 首先查看 pycham中是否已经有WSL，如果有WSL则直接选择所需的环境，如果没有，则需要找到 wsl.distributions.xml文件，加入
 &lt;descriptor&gt; &lt;id&gt;ubuntu-2004&lt;/id&gt; &lt;microsoft-id&gt;ubuntu-2004&lt;/microsoft-id&gt; &lt;executable-path&gt;C:\Users\xxx\ubuntu2004.exe&lt;/executable-path&gt; &lt;presentable-name&gt;Ubuntu-20.04&lt;/presentable-name&gt; &lt;/descriptor&gt; 我的位置是
 AppData\Local\Microsoft\WindowsApps\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\ubuntu2004.exe 重启一下pycharm就可以了。
 文件传输 mv /mnt/d/quicker/ /home/ 限制wsl2内存使用 在C:\Users\tinychen中创建了一个.wslconfig文件
@@ -9,15 +15,20 @@ AppData\Local\Microsoft\WindowsApps\CanonicalGroupLimited.Ubuntu20.04onWindows_7
 几何畸变 分桶形畸变和枕形畸变等，由于相机镜头非标准小孔成像模型，故而产生畸变
 色差 标准颜色与摄像头获取颜色之间的差
 曝光 曝光不准确(过度、不足)，严重时导致信息缺失
-MIPS
-Million Instructions executed Per Second,每秒执行百万条指令，用来计算同一秒内系统的处理能力，即每秒执行了多少百万条指令。 DMIPS Dhrystone Million Instructions executed Per Second,主要用于测试整数计算能力。 MFLOPS Million Floating-point Operations per Second主要用于测浮点计算能力。
-模型压缩 知识蒸馏(teacher-student网络)
-light weight结构设计，例如MobileNet、 SqueezeNet
-模型量化(二值化网络，INT8量化)
-模型精简 CNN剪枝(结构化剪枝、非结构化剪枝) 低秩分解
-加速计算 Op-level快速算法 Layer-level快速算法FFT Conv2d等
-优化加速 NAS（神经网络架构搜索） 网络并行结构合并(tensorRT)
-传统图像处理方法 颜色信息 高斯噪声过滤 Canny边缘检测 霍夫变换检测直线 K Means聚类霍夫检测 高斯概率模型进行消失点检测 透视变换鸟瞰图 曲线拟合 车道线提取 车道线曲率计算 Distortion Correction</content></entry><entry><title>dcoker-Docker安装Hadoop</title><url>/post/docker-docker%E5%AE%89%E8%A3%85hadoop/</url><categories><category>docker</category></categories><tags/><content type="html"><![CDATA[Docker、Java、Scala、Hadoop、 Hbase、Spark。 集群共有5台机器，主机名分别为 h01、h02、h03、h04、h05。其中 h01 为 master，其他的为 slave。 JDK 1.8、Scala 2.11.6、Hadoop 3.2.1、Hbase 2.1.3、Spark 2.4.0
+传统图像处理方法 颜色信息
+高斯噪声过滤
+Canny边缘检测
+霍夫变换检测直线
+K Means聚类霍夫检测
+高斯概率模型进行消失点检测
+透视变换鸟瞰图
+曲线拟合
+车道线提取
+车道线曲率计算
+数据集 Distortion Correction 图片坐标系共线的点，在霍夫空间映射成相交的线，相交的点表示共的线
+dterlane：基于dter的车道线检测，对于dter系列的理解，我是：稀里糊涂的问，一本正经的答 lanATT ：把yolo改来做车道线检测，性能不错，就是复杂了点 LaneNet ：基于分割的算法，做车道线，后处理太繁项，导致缺乏实时性
+Ultra fast ：将车道线检测转化为分类问题，简单、粗果、有效
+SCNN:</content></entry><entry><title>dcoker-Docker安装Hadoop</title><url>/post/docker-docker%E5%AE%89%E8%A3%85hadoop/</url><categories><category>docker</category></categories><tags/><content type="html"><![CDATA[Docker、Java、Scala、Hadoop、 Hbase、Spark。 集群共有5台机器，主机名分别为 h01、h02、h03、h04、h05。其中 h01 为 master，其他的为 slave。 JDK 1.8、Scala 2.11.6、Hadoop 3.2.1、Hbase 2.1.3、Spark 2.4.0
 # Ubuntu 安装 Docker ## 在 Ubuntu 下安装 Docker 的时候需在管理员的账号下操作。 wget -qO- https://get.docker.com/ | sh ## 以 sudo 启动 Docker 服务。 sudo service docker start ## 显示 Docker 中所有正在运行的容器 sudo docker ps 现在的 Docker 网络能够提供 DNS 解析功能，使用如下命令为接下来的 Hadoop 集群单独构建一个虚拟的网络。 sudo docker network create --driver=bridge hadoop``` 以上命令创建了一个名为 Hadoop 的虚拟桥接网络，该虚拟网络内部提供了自动的DNS解析服务。 ## 查看 Docker 中的网络 sudo docker network ls 可以看到刚刚创建的名为 hadoop 的虚拟桥接网络。 ## 查找 ubuntu 容器 sudo docker search ubuntu ## 下载 ubuntu 16.04 版本的镜像文件 sudo docker pull ubuntu:16.04 ## 根据镜像启动一个容器 sudo docker run -it ubuntu:16.04 /bin/bash ## 退出容器 exit ## 查看本机上所有的容器 sudo docker ps -a ## 启动容器 sudo docker start fab4da838c2f ## 关闭容器 sudo docker stop fab4da838c2f 安装 Java 与 Scala 在当前容器中将配置配好，导入出为镜像。以此镜像为基础创建五个容器，并赋予 hostname 进入 h01 容器，启动 Hadoop。
 进入 Ubuntu 容器 sudo docker exec -it fab4da838c2f /bin/bash
 修改 apt 源 备份源 cp /etc/apt/sources.list /etc/apt/sources_init.list 先删除旧源文件 rm /etc/apt/sources.list 这个时候没有 vim 工具，使用 echo 命令将源写入新文件 echo &#34;deb http://mirrors.aliyun.com/ubuntu/ xenial main deb-src http://mirrors.aliyun.com/ubuntu/ xenial main deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main deb http://mirrors.aliyun.com/ubuntu/ xenial universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe deb http://mirrors.aliyun.com/ubuntu/ xenial-security main deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe&#34; &gt; /etc/apt/sources.list 更新源 apt update 安装 jdk 1.8 apt install openjdk-8-jdk 测试 java -version
@@ -406,9 +417,8 @@ sudo chmod +x send_ip_to_mailbox.py 使用到linux的排程工具crond将任务�
 企业微信消息 import requests class SendWeiXinWork: def __init__(self): self.CORP_ID = &#34;ww1f8de63d33f2ea65&#34; # 企业号的标识 self.SECRET = &#34;0y3EgnN3AgjGawbH3dg-zv9im7yGZunNrcscNfxm4ag&#34; # 管理组凭证密钥 self.AGENT_ID = 1000002 # 应用ID self.token = self.get_token() def get_token(self): url = &#34;https://qyapi.weixin.qq.com/cgi-bin/gettoken&#34; data = { &#34;corpid&#34;: self.CORP_ID, &#34;corpsecret&#34;: self.SECRET } req = requests.get(url=url, params=data) res = req.json() if res[&#34;errmsg&#34;] == &#34;ok&#34;: return res[&#34;access_token&#34;] else: return res def send_message(self, to_user, content): url = &#34;https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=%s&#34; % self.token data = { &#34;touser&#34;: &#39;@all&#39;, # 发送个人就填用户账号 # &#34;toparty&#34;: to_user, # 发送组内成员就填部门ID &#34;msgtype&#34;: &#34;text&#34;, &#34;agentid&#34;: self.AGENT_ID, &#34;text&#34;: {&#34;content&#34;: content}, &#34;safe&#34;: &#34;0&#34; } req = requests.post(url=url, json=data) res = req.json() if res[&#34;errmsg&#34;] == &#34;ok&#34;: print(&#34;send message sucessed&#34;) else: print(res[&#34;errmsg&#34;]) selenium # 第一步：导入selenium from selenium import webdriver import time option = webdriver.ChromeOptions() option.add_argument(&#39;--user-data-dir=C:/Users/WENCHAO/AppData/Local/Google/Chrome/User Data1&#39;) # 第二步：打开谷歌浏览器 # driver = webdriver.Chrome(executable_path=&#34;./chromedriver.exe&#34;) driver = webdriver.Chrome(chrome_options=option) driver.maximize_window() # 屏幕最大化 # 第三步：打开百度 driver.get(&#34;https://www.google.com/&#34;) # 第四步：输入搜索关键字 element1 = driver.find_element_by_id(&#34;kw&#34;) element1.send_keys(&#34;hello selenium!&#34;) time.sleep(3) # 第五步： 点击搜索按钮 element2 = driver.find_element_by_id(&#34;su&#34;) element2.click() # 最后一步: 结束测试 driver.quit() ]]></content></entry><entry><title>cv-CNN</title><url>/post/cv-cnn/</url><categories><category>cv</category></categories><tags/><content type="html">
 卷积层 卷积提取底层特征减少神经网络中参数个数
 局部连接。⽐起全连接，局部连接会⼤⼤减少⽹络的参数。在⼆维图像中，局部像素的关联性很强， 设计局部连接保证了卷积⽹络对图像局部特征的强响应能⼒。+ 下采样。下采样能逐渐降低图像分辨率，实现了数据的降维，并使浅层的局部特征组合成为深层的特 征。下采样还能使计算资源耗费变少，加速模型训练，也能有效控制过拟合。 权值共享。参数共享也能减少整体参数量，增强了⽹络训练的效率。⼀个卷积核的参数权重被整张图 ⽚共享，不会因为图像内位置的不同⽽改变卷积核内的参数权重。 为了避免尺寸的变化可以在当前层的矩阵的边界加入全０填充（zero-padding）．否则中间的像素会多次进入卷积野而边上的进入次数少 还可以通过设置过滤器移动步长调整结果矩阵的大小 池化层 下采样。降维、扩大感知野、减小计算量 实现非线性 实现不变性，（平移不变性、旋转不变性和尺度不变性）
-卷积层输出矩阵大小 padding = “SAME”$n_{output}=[ n_{input} ]$
-padding = “VALID”$n_{\text {output}}=\left[\frac{n_{\text {input}}- \text{kernel_size} +1}{s}\right]$
-池化层的输出大小公式也与卷积层一样，由于没有进行填充，所以p=0，可以简化为 $ \frac{n- \text{kernel_size} }{s} +1 $
+卷积层输出矩阵大小 $n_{\text {output}}=\left[\frac{n_{\text {input}}- \text{kernel_size} +2*padding}{stride} + 1\right]$
+池化层的输出大小公式也与卷积层一样
 改进点 3D 卷积 实际上是对一个 3D 体积执行卷积。但通常而言，我们仍在深度学习中称之为 2D 卷积。这是在 3D 体积数据上的 2D 卷积。过滤器深度与输入层深度一样。这个 3D 过滤器仅沿两个方向移动（图像的高和宽）。这种操作的输出是一张 2D 图像（仅有一个通道）。
 3D 卷积确实存在。这是 2D 卷积的泛化。其过滤器深度小于输入层深度（核大小&amp;lt;通道大小）。因此，3D 过滤器可以在所有三个方向（图像的高度、宽度、通道）上移动。在每个位置，逐元素的乘法和加法都会提供一个数值。因为过滤器是滑过一个 3D 空间，所以输出数值也按 3D 空间排布。也就是说输出是一个 3D 数据。
 3D 卷积可以描述 3D 空间中目标的空间关系。对某些应用（比如生物医学影像中的 3D 分割/重构）而言，这样的 3D 关系很重要，比如在 CT 和 MRI 中，血管之类的目标会在 3D 空间中蜿蜒曲折。
@@ -423,7 +433,10 @@ padding = “VALID”$n_{\text {output}}=\left[\frac{n_{\text {input}}- \text{ke
 多尺度卷积 深度可分卷积 深度可分离卷积将传统的卷积分两步进行，分别是depthwise和pointwise。
 首先按照通道进行计算按位相乘的计算，深度可分离卷积中的卷积核都是单通道的，输出不能改变feature map的通道数，此时通道数不变；
 然后将得到将第一步的结果，使用1*1的卷积核进行传统的卷积运算，此时通道数可以进行改变。
-分组卷积 特征图局部链接 通道局部链接 混分组卷积 SE注意力机制 空洞卷积 扩大感受野。神经元感受野的值越大表示其能接触到的原始图像范围就越大，也意味着它可能蕴含更为全局，语义层次更高的特征
+减少参数量、计算量
+分组卷积 特征图局部链接 通道局部链接 混分组卷积
+SE注意力机制
+空洞卷积 扩大感受野。神经元感受野的值越大表示其能接触到的原始图像范围就越大，也意味着它可能蕴含更为全局，语义层次更高的特征
 获取多尺度上下文信息。当多个带有不同dilation rate的空洞卷积核叠加时，不同的感受野会带来多尺度信息，这对于分割任务是非常重要的。
 可以降低计算量，不需要引入额外的参数，如上图空洞卷积示意图所示，实际卷积时只有带有红点的元素真正进行计算
 图像分割领域，图像输入到CN(典型的网络比如FCN)中有两个关键
@@ -443,9 +456,21 @@ a是普通的卷积过程(dilation rate = 1),卷积后的感受野为3 b是dilat
 首先在元素间填充s-1=0行、列0（等于0不用填充） 然后在特征图四周填充k-p-1=2行、列0 接着对卷积核参数进行上下、左右翻转 最后做正常卷积（填充0，步距1） $$H_{out} = \frac{H_{in}+2p-k}{s}+1$$
 $$H_{in} = (H_{out}-1)\times s +k-2p$$
 nn.ConvTranspose2d n_channels, out_channels, kernel_size, stride, padding、 output_padding：在计算得到的输出特征图的高、宽方向各填充几行或列0（注意，这里只是在上下以及左右的一侧one side填充，并不是两侧都填充，有兴趣自己做个实验看下），默认为0不使用。 groups：当使用到组卷积时才会用到的参数，默认为1即普通卷积。 bias：是否使用偏执bias，默认为True使用。 dilation：当使用到空洞卷积（膨胀卷积）时才会使用到的参数，默认为1即普通卷积。 $$H_{in} = (H_{out}-1)\times s +dilation \times (k-1)-2p +out_padding +1$$
-Resnet Addition / Concatenate Addition和Concatenate分支操作统称为shortcut，
+Resnet
+Addition / Concatenate Addition和Concatenate分支操作统称为shortcut，
 Addition是在ResNet中提出，两个相同维度的feature map相同位置点的值直接相加，得到新的相同维度feature map，这个操作可以融合之前的特征，增加信息的表达，
-Concatenate操作是在Inception中首次使用，被DenseNet发扬光大，和addition不同的是，它只要求两个feature map的HW相同，通道数可以不同，然后两个feature map在通道上直接拼接，得到一个更大的feature map，它保留了一些原始的特征，增加了特征的数量，使得有效的信息流继续向后传递。</content></entry><entry><title>cv-CTPN</title><url>/post/cv-ctpn/</url><categories><category>cv</category></categories><tags/><content type="html">CTPN算法 文本通常都是从左往右写的（水平），并且字之间的宽度都大致相同 固定宽度，来检测文本高度即可，但是如何应对变长序列呢？ 本质上还是RPN方法(可参考faster&amp;ndash;rcnn),可将检测到的框拼在一起！
+Concatenate操作是在Inception中首次使用，被DenseNet发扬光大，和addition不同的是，它只要求两个feature map的HW相同，通道数可以不同，然后两个feature map在通道上直接拼接，得到一个更大的feature map，它保留了一些原始的特征，增加了特征的数量，使得有效的信息流继续向后传递。
+VGG 更深的网络有助于性能的提升，11层、13层、16层、19层
+更深的网络不好训练，容易过拟合
+GoogLeNet 引入Inception结构（不同尺度卷积，再加一块） 中间层辅助Loss单元 最后的全连接替换为averagepooling ResNet 明更深的网络在训练过程中的难度更大
+不再学习从 x 到 H(x) 的基本映射关系，而是学习这两者之间的差异，也就是「残差（residual）」。
+然后，为了计算 H(x)，我们只需要将这个残差加到输入上即可。假设残差为 F(x)=H(x)-x，那么现在我们的网络不会直接学习 H(x) 了，而是学习 F(x)+x。
+ResNet 的每一个「模块（block）」都由一系列层和一个「捷径（shortcut）」连接组成，这个「捷径」将该模块的输入和输出连接到了一起。然后在元素层面上执行「加法（add）」运算，
+ResNet本质上就干了一件事：降低数据中信息的冗余度。具体说来，就是对非冗余信息采用了线性激活（通过skip connection获得无冗余的identity部分），然后对冗余信息采用了非线性激活（通过ReLU对identity之外的其余部分进行信息提取/过滤，提取出的有用信息即是残差）。其中，提取identity这一步，就是ResNet思想的核心。
+DenseNet SqueezeNet 1*1卷积替换3*3卷积
+3*3卷积采用更少的channel数
+降采样后置
+MobileNet 先深度可分离，再1乘1卷积。减少参数量 ReLU6，移动端部署精度没有那么高</content></entry><entry><title>cv-CTPN</title><url>/post/cv-ctpn/</url><categories><category>cv</category></categories><tags/><content type="html">CTPN算法 文本通常都是从左往右写的（水平），并且字之间的宽度都大致相同 固定宽度，来检测文本高度即可，但是如何应对变长序列呢？ 本质上还是RPN方法(可参考faster&amp;ndash;rcnn),可将检测到的框拼在一起！
 CTPN第一步和通用的目标检测网络一样，先用一个backbone，这里用的是VGG16来提取空间特征，取VGG的conv5层的输出，输出维度为B × W × H × C（批次batchsize×宽×高×通道数）。这里要注意因为是第五层卷积输出，所以下采样倍数为16，也就是输出的feature map中的每个特征点对应原图16个像素。
 接下来我们会对feature map做一个编码，在feature map上使用3×3的滑窗来提取空间特征（也就是卷积），经过滑窗后得到的feature map大小依旧是B × W × H × C，但这里的每一个像素点都融合了周围3 × 3的信息（在论文中作者使用caffe中的im2col实现的滑窗操作，将B × W × H × C大小的feature map转换为B × W × H × 9C，本文遵从tf版本）
 接着将feature map reshape成(NH) × W × C输入双向LSTM提取每一行的序列特征。最后双向LSTM输出(NH) × W × 256，然后重新reshape回N × 256 × H × W
@@ -989,17 +1014,7 @@ b.Anchor框信息
 a. 根据中心点来判断：
 规则：寻找anchor_box中心点，落在groundtruth_boxes矩形范围的所有anchors。
 比如在get_in_boxes_info的代码中，通过groundtruth的[x_center,y_center，w，h]，计算出每张图片的每个groundtruth的左上角、右下角坐标。
-深入浅出Yolo系列之Yolox核心基础完整讲解 - 知乎 (zhihu.com) ]]></content></entry><entry><title>cv-残差网络(ResNet)</title><url>/post/cv-%E6%AE%8B%E5%B7%AE%E7%BD%91%E7%BB%9Cresnet/</url><categories><category>cv</category></categories><tags/><content type="html">残差操作这一思想起源于论文《Deep Residual Learning for Image Recognition》。如果存在某个K层的网络f是当前最优的网络，那么可以构造一个更深的网络，其最后几层仅是该网络f第K层输出的恒等映射（IdentityMapping），就可以取得与f一致的结果；也许K还不是所谓“最佳层数”，那么更深的网络就可以取得更好的结果。总而言之，与浅层网络相比，更深的网络的表现不应该更差。但是如下图所示，56层的神经网络表现明显要比20层的差。证明更深的网络在训练过程中的难度更大，因此作者提出了残差网络的思想。+ 定义 ResNet 的作者将这些问题归结成了一个单一的假设：直接映射是难以学习的。而且他们提出了一种修正方法：不再学习从 x 到 H(x) 的基本映射关系，而是学习这两者之间的差异，也就是「残差（residual）」。然后，为了计算 H(x)，我们只需要将这个残差加到输入上即可。假设残差为 F(x)=H(x)-x，那么现在我们的网络不会直接学习 H(x) 了，而是学习 F(x)+x。
-这就带来了你可能已经见过的著名 ResNet（残差网络）模块： ResNet 的每一个「模块（block）」都由一系列层和一个「捷径（shortcut）」连接组成，这个「捷径」将该模块的输入和输出连接到
-了一起。然后在元素层面上执行「加法（add）」运算，当输入和输出维度一致时，可以直接将输入加到输出上。如果输入和输出的大小不同，那就可以使用零填充或映射（通过 1×1 卷积）来得到匹配的大小。
-回到我们的思想实验，这能大大简化我们对恒等层的构建。直觉上就能知道，比起从头开始学习一个恒等变换，学会使 F(x) 为 0 并使输出仍为 x 要容易得多。一般来说，ResNet 会给层一个「参考」点 x，以 x 为基础开始学习。
-在此之前，深度神经网络常常会有梯度消失问题的困扰，因为 ResNet 的梯度信号可以直接通过捷径连接回到更早的层，而且它们的表现依然良好。
-ResNet本质上就干了一件事：降低数据中信息的冗余度。具体说来，就是对非冗余信息采用了线性激活（通过skip connection获得无冗余的identity部分），然后对冗余信息采用了非线性激活（通过ReLU对identity之外的其余部分进行信息提取/过滤，提取出的有用信息即是残差）。其中，提取identity这一步，就是ResNet思想的核心。
-优点 一方面是残差网络更好的拟合分类函数以获得更高的分类精度，另一方面是残差网络如何解决网络在层数加深时优化训练上的难题。
-1.残差网络拟合函数的优越性 首先从万能近似定理（Universal Approximation Theorem）入手。这个定理表明，一个前馈神经网络（feedforward neural network）如果具有线性输出层，同时至少存在一层具有任何一种“挤压”性质的激活函数（例如logistic sigmoid激活函数）的隐藏层，那么只要给予这个网络足够数量的隐藏单元，它就可以以任意的精度来近似任何从一个有限维空间到另一个有限维空间的波莱尔可测函数(Borel Measurable Function)。 万能近似定理意味着我们在构建网络来学习什么函数的时候，我们知道一定存在一个多层感知机（Multilayer Perceptron Model，MLP）能够表示这个函数。然而，我们不能保证训练算法能够学得这个函数。因为即使多层感知机能够表示该函数，学习也可能会失败，可能的原因有两种。
-（1）用于训练的优化算法可能找不到用于期望函数的参数值。 （2）训练算法可能由于过拟合而选择了错误的函数。
-第二种过拟合情况不在我们的讨论范围之内，因此我们聚焦在前一种情况，为何残差网络相比简单的多层网络能更好的拟合分类函数，即找到期望函数的参数值。 对于普通的不带短连接的神经网络来说，存在这样一个命题。 事实上对于高维函数，这一特点依然适用。因此，当函数的输入维度非常高时，这一做法就变的非常有意义。尽管在高维空间这一特点很难被可视化，但是这个理论给了一个很合理的启发，就是原则上，带短连接的网络的拟合高维函数的能力比普通连接的网络更强。这部分我们讨论了残差网络有能力拟合更高维的函数，但是在实际的训练过程中仍然可能存在各种各样的问题使得学习到最优的参数非常困难，因此下一小节讨论残差在训练过程中的优越性。
-2.残差网络训练过程的优越性 这个部分我们讨论为什么残差能够缓解深层网络的训练问题，以及探讨可能的短连接方式和我们最终选择的残差的理由。正如本章第三部分讨论的一样，整个残差卷积神经网络是由以上的残差卷积子模块堆积而成。如上一小节所定义的，假设第$l$层的残差卷积字子模块的映射为 pytorch 实现 import torch.nn as nn import torch from torch.nn.init import kaiming_normal, constant class BasicConvResBlock(nn.Module): def __init__(self, input_dim=128, n_filters=256, kernel_size=3, padding=1, stride=1, shortcut=False, downsample=None): super(BasicConvResBlock, self).__init__() self.downsample = downsample self.shortcut = shortcut self.conv1 = nn.Conv1d(input_dim, n_filters, kernel_size=kernel_size, padding=padding, stride=stride) self.bn1 = nn.BatchNorm1d(n_filters) self.relu = nn.ReLU() self.conv2 = nn.Conv1d(n_filters, n_filters, kernel_size=kernel_size, padding=padding, stride=stride) self.bn2 = nn.BatchNorm1d(n_filters) def forward(self, x): residual = x out = self.conv1(x) out = self.bn1(out) out = self.relu(out) out = self.conv2(out) out = self.bn2(out) if self.shortcut: out += residual out = self.relu(out) return out</content></entry><entry><title>cv-卷积神经网络（CNN)</title><url>/post/cv-%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Ccnn/</url><categories><category>cv</category></categories><tags/><content type="html">
+深入浅出Yolo系列之Yolox核心基础完整讲解 - 知乎 (zhihu.com) ]]></content></entry><entry><title>cv-卷积神经网络（CNN)</title><url>/post/cv-%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9Ccnn/</url><categories><category>cv</category></categories><tags/><content type="html">
 卷积层 卷积提取底层特征减少神经网络中参数个数
 为了避免尺寸的变化可以在当前层的矩阵的边界加入全０填充（zero-padding）．否则中间的像素会多次进入卷积野而边上的进入次数少 还可以通过设置过滤器移动步长调整结果矩阵的大小 池化层 防止过拟合、下采样、降维、去除冗余信息、对特征进行压缩、简化网络复杂度、减小计算量、减小内存消耗 实现非线性，扩大感知野 实现不变性，（平移不变性、旋转不变性和尺度不变性）
 加速卷积运算 im2col FFT（不常用） 卷积层输出矩阵大小 padding = “SAME”$n_{output}=[ n_{input} ]$
@@ -2394,7 +2409,7 @@ Group Normalization（GN，2018年）
 另外，还需要注意它们的映射参数γ和β的区别：对于 BN，IN，GN， 其γ和β都是维度等于通道数 C 的向量。而对于 LN，其γ和β都是维度等于 normalized_shape 的矩阵。
 最后，BN 和 IN 可以设置参数：momentum和track_running_stats来获得在整体数据上更准确的均值和标准差。LN 和 GN 只能计算当前 batch 内数据的真实均值和标准差
 我们将输入的 feature map shape 记为[N, C, H, W]，其中N表示batch size，即N个样本；C表示通道数；H、W分别表示特征图的高度、宽度。这几个方法主要的区别就是在：
-BN是在batch上，对N、H、W做归一化，而保留通道 C 的维度。BN对较小的batch size效果不好。BN适用于固定深度的前向神经网络，如CNN，不适用于RNN； LN在通道方向上，对C、H、W归一化，主要对RNN效果明显； IN在图像像素上，对H、W做归一化，用在风格化迁移； GN将channel分组，然后再做归一化。 SwitchableNorm是将BN、LN、IN结合，赋予权重，让网络自己去学习归一化层应该使用什么方法。 每个子图表示一个特征图，其中N为批量，C为通道，（H，W）为特征图的高度和宽度。通过蓝色部分的值来计算均值和方差，从而进行归一化。
+BN是在batch上，对N、H、W做归一化，而保留通道 C 的维度。BN对较小的batch size效果不好。BN适用于固定深度的前向神经网络，如CNN，不适用于RNN； LN在通道方向上，对C、H、W归一化，主要对RNN效果明显； IN在图像像素上，channel内做归一化,对H、W做归一化，用在风格化迁移； GN将channel分组，然后再做归一化。然后每个group内做归一化 算（C//G）HW的均值 这样与batchsize无关 不受其约束。 SwitchableNorm是将BN、LN、IN结合，赋予权重，让网络自己去学习归一化层应该使用什么方法。 每个子图表示一个特征图，其中N为批量，C为通道，（H，W）为特征图的高度和宽度。通过蓝色部分的值来计算均值和方差，从而进行归一化。
 如果把特征图比喻成一摞书，这摞书总共有 N 本，每本有 C 页，每页有 H 行，每行 有W 个字符。
 \1. BN 求均值时，相当于把这些书按页码一一对应地加起来（例如第1本书第36页，第2本书第36页&hellip;&hellip;），再除以每个页码下的字符总数：N×H×W，因此可以把 BN 看成求“平均书”的操作（注意这个“平均书”每页只有一个字），求标准差时也是同理。
 \2. LN 求均值时，相当于把每一本书的所有字加起来，再除以这本书的字符总数：C×H×W，即求整本书的“平均字”，求标准差时也是同理。
@@ -2494,7 +2509,24 @@ Focal Loss 在目标检测领域对于one-stage的检测器准确率不高的问
 缺点：
 模型很容易收到噪声干扰：会将噪声当成复杂样本，使模型过拟合退化； 模型的初期，数量多的一类可能主导整个loss，所以训练初期可能训练不稳定； 两个参数$\alpha_t$ 和$\gamma$具体的值很难定义，需要自己调参，调的不好可能效果会更差（论文中的 $\alpha_t$=0.25，$\gamma$=2最好）。 import torch.nn as nn import torch import torch.nn.functional as F class FocalLoss(nn.Module): def __init__(self, alpha=1, gamma=2, logits=False, reduce=True): super(FocalLoss, self).__init__() self.alpha = alpha self.gamma = gamma self.logits = logits # 如果BEC带logits则损失函数在计算BECloss之前会自动计算softmax/sigmoid将其映射到[0,1] self.reduce = reduce def forward(self, inputs, targets): if self.logits: BCE_loss = F.binary_cross_entropy_with_logits(inputs, targets, reduce=False) else: BCE_loss = F.binary_cross_entropy(inputs, targets, reduce=False) pt = torch.exp(-BCE_loss) F_loss = self.alpha * (1-pt)`self.gamma * BCE_loss if self.reduce: return torch.mean(F_loss) else: return F_loss FL1 = FocalLoss(logits=False) FL2 = FocalLoss(logits=True) inputs = torch.randn(5, 1, requires_grad=True) targets = torch.empty(5, 1).random_(2) pre = nn.Sigmoid()(inputs) f_loss_1 = FL1(pre, targets) f_loss_2 = FL2(inputs, targets) print(&#39;inputs:&#39;, inputs) inputs: tensor([[-1.3521], [ 0.4975], [-1.0178], [-0.3859], [-0.2923]], requires_grad=True) print(&#39;targets:&#39;, targets) targets: tensor([[1.], [1.], [0.], [1.], [1.]]) print(&#39;pre:&#39;, pre) pre: tensor([[0.2055], [0.6219], [0.2655], [0.4047], [0.4274]], grad_fn=&lt;SigmoidBackward&gt;) print(&#39;f_loss_1:&#39;, f_loss_1) f_loss_1: tensor(0.3375, grad_fn=&lt;MeanBackward0&gt;) print(&#39;f_loss_2&#39;, f_loss_2) f_loss_2 tensor(0.3375, grad_fn=&lt;MeanBackward0&gt;) Lovász-Softmax IoU是评价分割模型分割结果质量的重要指标，因此很自然想到能否用1−IoU（即Jaccard loss）来做损失函数，但是它是一个离散的loss，不能直接求导，所以无法直接用来作为损失函数。为了克服这个离散的问题，可以采用Lovász extension将离散的Jaccard loss 变得连续，从而可以直接求导，使得其作为分割网络的loss function。Lovász-Softmax相比于交叉熵函数具有更好的效果。
 import torch from torch.autograd import Variable import torch.nn.functional as F import numpy as np try: from itertools import ifilterfalse except ImportError: # py3k from itertools import filterfalse as ifilterfalse # --------------------------- MULTICLASS LOSSES --------------------------- def lovasz_softmax(probas, labels, classes=&#39;present&#39;, per_image=False, ignore=None): &#34;&#34;&#34; Multi-class Lovasz-Softmax loss probas: [B, C, H, W] Variable, class probabilities at each prediction (between 0 and 1). Interpreted as binary (sigmoid) output with outputs of size [B, H, W]. labels: [B, H, W] Tensor, ground truth labels (between 0 and C - 1) classes: &#39;all&#39; for all, &#39;present&#39; for classes present in labels, or a list of classes to average. per_image: compute the loss per image instead of per batch ignore: void class labels &#34;&#34;&#34; if per_image: loss = mean(lovasz_softmax_flat(*flatten_probas(prob.unsqueeze(0), lab.unsqueeze(0), ignore), classes=classes) for prob, lab in zip(probas, labels)) else: loss = lovasz_softmax_flat(*flatten_probas(probas, labels, ignore), classes=classes) return loss def lovasz_softmax_flat(probas, labels, classes=&#39;present&#39;): &#34;&#34;&#34; Multi-class Lovasz-Softmax loss probas: [P, C] Variable, class probabilities at each prediction (between 0 and 1) labels: [P] Tensor, ground truth labels (between 0 and C - 1) classes: &#39;all&#39; for all, &#39;present&#39; for classes present in labels, or a list of classes to average. &#34;&#34;&#34; if probas.numel() == 0: # only void pixels, the gradients should be 0 return probas * 0. C = probas.size(1) losses = [] class_to_sum = list(range(C)) if classes in [&#39;all&#39;, &#39;present&#39;] else classes for c in class_to_sum: fg = (labels == c).float() # foreground for class c if (classes is &#39;present&#39; and fg.sum() == 0): continue if C == 1: if len(classes) &gt; 1: raise ValueError(&#39;Sigmoid output possible only with 1 class&#39;) class_pred = probas[:, 0] else: class_pred = probas[:, c] errors = (Variable(fg) - class_pred).abs() errors_sorted, perm = torch.sort(errors, 0, descending=True) perm = perm.data fg_sorted = fg[perm] losses.append(torch.dot(errors_sorted, Variable(lovasz_grad(fg_sorted)))) return mean(losses) def flatten_probas(probas, labels, ignore=None): &#34;&#34;&#34; Flattens predictions in the batch &#34;&#34;&#34; if probas.dim() == 3: # assumes output of a sigmoid layer B, H, W = probas.size() probas = probas.view(B, 1, H, W) B, C, H, W = probas.size() probas = probas.permute(0, 2, 3, 1).contiguous().view(-1, C) # B * H * W, C = P, C labels = labels.view(-1) if ignore is None: return probas, labels valid = (labels != ignore) vprobas = probas[valid.nonzero().squeeze()] vlabels = labels[valid] return vprobas, vlabels def xloss(logits, labels, ignore=None): &#34;&#34;&#34; Cross entropy loss &#34;&#34;&#34; return F.cross_entropy(logits, Variable(labels), ignore_index=255) # --------------------------- HELPER FUNCTIONS --------------------------- def isnan(x): return x != x def mean(l, ignore_nan=False, empty=0): &#34;&#34;&#34; nanmean compatible with generators. &#34;&#34;&#34; l = iter(l) if ignore_nan: l = ifilterfalse(isnan, l) try: n = 1 acc = next(l) except StopIteration: if empty == &#39;raise&#39;: raise ValueError(&#39;Empty mean&#39;) return empty for n, v in enumerate(l, 2): acc += v if n == 1: return acc return acc / n 检测速度 前传耗时：从输入一张图像到输出最终结果所消耗的时间，包括前处理耗时（如图 像归一化）、网络前传耗时、后处理耗时（如非极大值抑制） 每秒帧数FPS(Frames Per Second)：每秒钟能处理的图像数量 浮点运算量(FLOPS floating-point operations per second)：处理一张图像所需要的浮点运算数量，跟具体软硬件没有关系，可以公平地比较不同算法之间的检测速度。
-]]></content></entry><entry><title>面试-技术问题</title><url>/post/%E9%9D%A2%E8%AF%95-%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98/</url><categories><category>面试</category></categories><tags/><content type="html">排序算法 不稳定：快选堆希
+]]></content></entry><entry><title>面试-计算量和参数量</title><url>/post/%E9%9D%A2%E8%AF%95-%E8%AE%A1%E7%AE%97%E9%87%8F%E5%92%8C%E5%8F%82%E6%95%B0%E9%87%8F/</url><categories><category>面试</category></categories><tags/><content type="html">FLOPS，即每秒浮点操作次数FLoating point OPerations per Second这个指标来衡量GPU的运算能力。 MACC，即乘加数Multiply-ACCumulate operation，或者叫MADD，来衡量模型的计算量
+全连接层的参数量和计算量 $parameter=(d_{in} +1)\times d_{out}$ $d_{in}$表示输入的特征向量的维度， $+1$表示偏置，$d_{out}$表示输出维度 $FLOPS=[d_{in} +(d_{in} -1)+1]\times d_{out}$ $d_{in} $表示乘法运算量 $d_{in} -1$表示加法运算量(权重矩阵与输入/上一层值的矩阵向量相乘所需的加法运算) $+1$表示偏置
+具有300个输入神经元和100个输出神经元的全连接层的参数量是：300×100+100=30100
+卷积层的参数量和计算量 stride=1，N个输入与M个输出，第m个通道的最终输出由下式给出 $\text { parameter }=\left(k_{w} \times k_{h} \times C_{i n}+1\right) \times C_{\text {out }}$
+$k_{w} , k_{h}$表示一个卷积核的宽和高，$+1$表示偏置，$C_{out }$个卷积核
+$F L O P s=\left[\left(C_{i n} \times k_{w} \times k_{h}\right)+\left(C_{i n} \times k_{w} \times k_{h}-1\right)+1\right] \times C_{\text {out }} \times w \times h$ $k_{w} ,k_{h}$ 分别表示卷积核的宽和高，其中 $C_{i n} \times k_{w} \times k_{h}$ 表示乘法计算量， $C_{i n} \times k_{w} \times k_{h}-1$表示加法计算量，$+1$表示偏置， $w,h$ 表示上一层 feature map的宽和高。
+池化层 其他类型的层，例如池化层。这些其他层类型肯定需要时间，但它们不使用点积，因此不能用MACC测量。
+示例：在112×112具有128通道的特征图上具有过滤器大小2和步幅2的最大池化层需要112×112×128=1,605,632 FLOPS或1.6兆 FLOPS。当然，如果步幅与滤波器尺寸不同例如3×3窗口，2×2步幅），则这些数字会稍微改变。
+但是，在确定网络的复杂性时，通常会忽略这些附加层。毕竟，与具有100个 MFLOPSE的卷积/全连接层相比，1.6 MFLOPS非常小。因此，它成为网络总计算复杂度的舍入误差。
+Batch normalization 在现代网络中，通常在每个卷积层之后都包含一个 batch norm层。针对每个输出值，计算公式如下 $z=gamma*(y-mean)/sqrt(variance epsilon) beta$ 此处，y是上一层的输出图中的元素。我们首先通过减去该输出通道的平均值并除以标准偏差来对该值进行归一化( epsilon用于确保不除以0,通常为0.001),然后，我们将系数gamm缩放，然后添加一个偏差或偏移beta。每个通道都有自己的 gamma,beta,均值和方差值
+因此，如果卷积层的输出中有C个通道，则 Batch normalization层将学习C×4参数，如下图所示
+通常将Batch normalization应用于卷积层的输出后，在ReLU之前，我们可以做一些数学运算以使Batch normalization层消失！由于在全连接层中进行的卷积或矩阵乘法只是一堆点积，它们是线性变换，而上面给出的Batch normalization公式也是线性变换，因此我们可以将这两个公式组合为一个变换。我们只需要将Batch normalization参数合并到前面各层的权重中，也就是说我们可以完全忽略Batch Normalization层的影响，因为我们在进行推理时实际上将其从模型中删除了。
+LSTM计算量和参数量估计 LSTM里面有 4 个非线性变换（3 个 门 + 1 个 tanh），每一个非线性变换说白了就是一个全连接网络，形如：$W\left[h_{t-1}, x_{t}\right]+b$ 。其中，$h_{t-1}, x_{t}$维度是$d_x + d_h$，易得MACC为： $$[(d_x + d_h) +1 ]d_h4$$
+$+1$表示偏置
+四个非线性变换中，还会对全连接层的输出进行激活函数计算（三个sigmoid和一个tanh），对于sigmoid的计算量为：$(d_x + d_h) * d_h 4 3 $个FLOPS。tanh的计算公式为：$\frac{exp(x)-exp(-x)}{exp(x)+exp(-x)}$，其中共有八个加，减，乘，除，求幂，平方根等计算，所以计算量为：$(d_x + d_h) * d_h * 8$个FLOPS。
+除此之外，LSTM除了在四个非线性变换中的计算，还有三个矩阵乘法（不是点积）、一个加法、一个tanh计算，其中三个矩阵乘法都是shape为$(batch, d_h)$，则这四个运算的计算量为：$batch * d_h*12 + batch * d_h * 8$ #???? 综上所述，LSTM的计算量为： $d_x * d_h * 8 + d_h * (d_h + 20) $个FLOPS
+对于特征维128的输入，LSTM单元数为64的网络来说，LSTM的参数量为：((128 + 64) * 64 + 64) * 4 = 49408 激活函数计算量 非线性激活函数，例如ReLU或 sigmoid不用MACC进行度量，而是使用 FLOPST进行度量，原因是它们不做点积，ReLU： $max(a ，0)$ 这是在GPU上的一项操作，激活函数仅应用于层的输出，例如在具有$J$个输出神经元的完全连接层上，ReLU计算$J$次，因此我们将其判定为$ J \space FLOPS$。而对于 Sigmoid激活函数来说，有不一样了，它涉及到了一个指数，所以成本更高 $y=\frac{1}{1 +\exp(-z)}$ 在计算 FLOPS时，我们通常将加，减，乘，除，求幕，平方根等作为单个FLOP进行计数，由于在 Sigmoid激活函数中有四个不同的运算，因此计算为$4 FLOPS$。
+实际上，通常不计这些操作，因为它们只占总时间的一小部分，更多时候我们主要对矩阵乘法和点积感兴趣，对于参数量？注意了它压根没有参数</content></entry><entry><title>面试-技术问题</title><url>/post/%E9%9D%A2%E8%AF%95-%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98/</url><categories><category>面试</category></categories><tags/><content type="html">排序算法 不稳定：快选堆希
 O(n*log2n) 快归堆希
 1.插入排序 ： 从第二个元素开始，每轮，已排序后面的元素向前比较，找到比他小或相等的元素，放到其后面 2.冒泡排序 ：每轮，从头开始和后面的比较交换，把未排序最大的放到后面。
 3.选择排序 ：每轮，从已排序后面的元素开始，选出最小的放到已排序的后面
@@ -2517,9 +2549,10 @@ smooth l1 loss式子以及为什么是这样的
 语义分割中miou计算公式
 了解的语义分割算法
 直接转置卷积和先上采样再卷积的区别
-数据增强 空间转换：随机尺寸、裁剪、翻转、旋转任意角度 颜色扭曲：改变亮度、改变色调(hue) 信息丢弃：random erasing、Cutout、hide-and-seek Has、GridMask 多图融合：Mixup、Cutmix Cutmix 是从一幅图中随机裁剪出一个 ROI，然后覆盖当前图像中对应的区域
+数据增强 空间转换：随机尺寸、裁剪、翻转、旋转任意角度 颜色扭曲：改变亮度、改变色调(hue) 信息丢弃：random erasing、Cutout、hide-and-seek Has、GridMask 多图融合：Mixup、Cutmix Cutout就是随机选择一个固定大小的正方形区域，然后采用全0填充就OK了，当然为了避免填充0值对训练的影响，应该要对数据进行中心归一化操作，norm到0。
+Random Erasing随机填充像素值
+Cutmix 是从一幅图中随机裁剪出一个 ROI，然后覆盖当前图像中对应的区域
 Mixup调整透明度两张图像叠加在一起。
-Cutout就是随机选择一个固定大小的正方形区域，然后采用全0填充就OK了，当然为了避免填充0值对训练的影响，应该要对数据进行中心归一化操作，norm到0。
 Mosaic参考2019年底提出的CutMix数据增强的方式，但CutMix只使用了两张图片进行拼接，而Mosaic数据增强则采用了4张图片，随机缩放、随机裁剪、随机排布的方式进行拼接。
 YOLOv5还使用了图像扰动，改变亮度、对比度、饱和度、色调，加噪声，随机缩放，随机裁剪（random crop），翻转，旋转，随机擦除
 矩形训练就是将图像resize到变成可以被步长整除并且最接近需要输入的大小，从而实现最小填充，
@@ -2793,20 +2826,7 @@ data_train[&#39;CabinCat&#39;] = data_train[&#39;Cabin&#39;].copy() data_train.l
 K最近距离邻法（K-means clustering） 通过K均值的聚类方法将所有样本进行聚类划分，然后再通过划分的种类的均值对各自类中的缺失值进行填补。归其本质还是通过找相似来填补缺失值。
 多重插补： 我们看到，以上提出的拟合和替换方法都是单一的插补方法，而多重插补弥补了单一插补的缺陷，它并没有试图去通过模拟值去估计每个缺失值，而是提出缺失数据值的一个随即样本（这些样本可以是不同的模型拟合结果的组合）。这种程序的实施恰当地反映了由于缺失值引起的不确定性，使得统计推断有效。多重插补推断可以分为以下3个步骤：
 为每个缺失值产生一套可能的插补值，这些值反映了无响应模型的不确定性； 每个插补数据集合都用针对完整数据集的统计方法进行统计分析； 对来自各个插补数据集的结果，根据评分函数进行选择，产生最终的插补值；
-随机森林： 这也是Kaggle竞赛中大佬们经常使用的一个办法，具体实现方式与正常一样，只是将缺失值作为目标变量即可. def set_missing_ages(df): # 把已有的数值型特征取出来丢进Random Forest Regressor中 age_df = df[[&#39;Age&#39;,&#39;Fare&#39;, &#39;Parch&#39;, &#39;SibSp&#39;, &#39;Pclass&#39;]] # 乘客分成已知年龄和未知年龄两部分 known_age = age_df[age_df.Age.notnull()].as_matrix() unknown_age = age_df[age_df.Age.isnull()].as_matrix() # y即目标年龄 y = known_age[:, 0] # X即特征属性值 X = known_age[:, 1:] # fit到RandomForestRegressor之中 rfr = RandomForestRegressor(random_state=0, n_estimators=2000, n_jobs=-1) rfr.fit(X, y) # 用得到的模型进行未知年龄结果预测 predictedAges = rfr.predict(unknown_age[:, 1:]) # print predictedAges # 用得到的预测结果填补原缺失数据 df.loc[ (df.Age.isnull()), &#39;Age&#39; ] = predictedAges return df, rfr ]]></content></entry><entry><title>面试-神经网络的计算量和参数量</title><url>/post/%E9%9D%A2%E8%AF%95-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E8%AE%A1%E7%AE%97%E9%87%8F%E5%92%8C%E5%8F%82%E6%95%B0%E9%87%8F/</url><categories><category>面试</category></categories><tags/><content type="html">FLOPS，即每秒浮点操作次数FLoating point OPerations per Second这个指标来衡量GPU的运算能力。 MACC，即乘加数Multiply-ACCumulate operation，或者叫MADD，来衡量模型的计算量
-全连接层的参数量和计算量 $parameter=(d_{in} +1)\times d_{out}$ $d_{in}$表示输入的特征向量的维度， $+1$表示偏置，$d_{out}$表示输出维度 $FLOPS=[d_{in} +(d_{in} -1)+1]\times d_{out}$ $d_{in} $表示乘法运算量 $d_{in} -1$表示加法运算量(权重矩阵与输入/上一层值的矩阵向量相乘所需的加法运算) $+1$表示偏置
-具有300个输入神经元和100个输出神经元的全连接层的参数量是：300×100+100=30100
-卷积层的参数量和计算量 stride=1，N个输入与M个输出，第m个通道的最终输出由下式给出 $\text { parameter }=\left(k_{w} \times k_{h} \times C_{i n}+1\right) \times C_{\text {out }}$ $k_{w} , k_{h}$表示一个卷积核的宽和高，$+1$表示偏置，$C_{out }$个卷积核 $F L O P s=\left[\left(C_{i n} \times k_{w} \times k_{h}\right)+\left(C_{i n} \times k_{w} \times k_{h}-1\right)+1\right] \times C_{\text {out }} \times w \times h$ $k_{w} ,k_{h}$ 分别表示卷积核的宽和高，其中 $C_{i n} \times k_{w} \times k_{h}$ 表示乘法计算量， $C_{i n} \times k_{w} \times k_{h}-1$表示加法计算量，$+1$表示偏置， $w,h$ 表示上一层 feature map的宽和高。
-池化层 其他类型的层，例如池化层。这些其他层类型肯定需要时间，但它们不使用点积，因此不能用MACC测量。
-示例：在112×112具有128通道的特征图上具有过滤器大小2和步幅2的最大池化层需要112×112×128=1,605,632 FLOPS或1.6兆 FLOPS。当然，如果步幅与滤波器尺寸不同例如3×3窗口，2×2步幅），则这些数字会稍微改变。
-但是，在确定网络的复杂性时，通常会忽略这些附加层。毕竟，与具有100个 MFLOPSE的卷积/全连接层相比，1.6 MFLOPS非常小。因此，它成为网络总计算复杂度的舍入误差。
-Batch normalization 在现代网络中，通常在每个卷积层之后都包含一个 batch norm层。针对每个输出值，计算公式如下 $z=gamma*(y-mean)/sqrt(variance epsilon) beta$ 此处，y是上一层的输出图中的元素。我们首先通过减去该输出通道的平均值并除以标准偏差来对该值进行归一化( epsilon用于确保不除以0,通常为0.001),然后，我们将系数gamm缩放，然后添加一个偏差或偏移beta。每个通道都有自己的 gamma,beta,均值和方差值
-因此，如果卷积层的输出中有C个通道，则 Batch normalization层将学习C×4参数，如下图所示
-通常将Batch normalization应用于卷积层的输出后，在ReLU之前，我们可以做一些数学运算以使Batch normalization层消失！由于在全连接层中进行的卷积或矩阵乘法只是一堆点积，它们是线性变换，而上面给出的Batch normalization公式也是线性变换，因此我们可以将这两个公式组合为一个变换。我们只需要将Batch normalization参数合并到前面各层的权重中，也就是说我们可以完全忽略Batch Normalization层的影响，因为我们在进行推理时实际上将其从模型中删除了。
-LSTM计算量和参数量估计 LSTM里面有 4 个非线性变换（3 个 门 + 1 个 tanh），每一个非线性变换说白了就是一个全连接网络，形如：$W\left[h_{t-1}, x_{t}\right]+b$ 。其中，$h_{t-1}, x_{t}$维度是$d_x + d_h$，易得MACC为： $$[(d_x + d_h) +1 ]d_h4$$ $+1$表示偏置 四个非线性变换中，还会对全连接层的输出进行激活函数计算（三个sigmoid和一个tanh），对于sigmoid的计算量为：$(d_x + d_h) * d_h 4 3 $个FLOPS。tanh的计算公式为：$\frac{exp(x)-exp(-x)}{exp(x)+exp(-x)}$，其中共有八个加，减，乘，除，求幂，平方根等计算，所以计算量为：$(d_x + d_h) * d_h * 8$个FLOPS。
-除此之外，LSTM除了在四个非线性变换中的计算，还有三个矩阵乘法（不是点积）、一个加法、一个tanh计算，其中三个矩阵乘法都是shape为$(batch, d_h)$，则这四个运算的计算量为：$batch * d_h*12 + batch * d_h * 8$ #???? 综上所述，LSTM的计算量为： $d_x * d_h * 8 + d_h * (d_h + 20) $个FLOPS
-对于特征维128的输入，LSTM单元数为64的网络来说，LSTM的参数量为：((128 + 64) * 64 + 64) * 4 = 49408 激活函数计算量 非线性激活函数，例如ReLU或 sigmoid不用MACC进行度量，而是使用 FLOPST进行度量，原因是它们不做点积，ReLU： $max(a ，0)$ 这是在GPU上的一项操作，激活函数仅应用于层的输出，例如在具有$J$个输出神经元的完全连接层上，ReLU计算$J$次，因此我们将其判定为$ J \space FLOPS$。而对于 Sigmoid激活函数来说，有不一样了，它涉及到了一个指数，所以成本更高 $y=\frac{1}{1 +\exp(-z)}$ 在计算 FLOPS时，我们通常将加，减，乘，除，求幕，平方根等作为单个FLOP进行计数，由于在 Sigmoid激活函数中有四个不同的运算，因此计算为$4 FLOPS$。
-实际上，通常不计这些操作，因为它们只占总时间的一小部分，更多时候我们主要对矩阵乘法和点积感兴趣，对于参数量？注意了它压根没有参数</content></entry><entry><title>面试-数据分析指标</title><url>/post/%E9%9D%A2%E8%AF%95-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%8C%87%E6%A0%87/</url><categories><category>面试</category></categories><tags/><content type="html">DAU(Daily Active Users) DNU(Daily New Users) ARPU(Average Revenue per User) ARPPU(Average Revenue per Paying User) APA (Active Payment Account)
+随机森林： 这也是Kaggle竞赛中大佬们经常使用的一个办法，具体实现方式与正常一样，只是将缺失值作为目标变量即可. def set_missing_ages(df): # 把已有的数值型特征取出来丢进Random Forest Regressor中 age_df = df[[&#39;Age&#39;,&#39;Fare&#39;, &#39;Parch&#39;, &#39;SibSp&#39;, &#39;Pclass&#39;]] # 乘客分成已知年龄和未知年龄两部分 known_age = age_df[age_df.Age.notnull()].as_matrix() unknown_age = age_df[age_df.Age.isnull()].as_matrix() # y即目标年龄 y = known_age[:, 0] # X即特征属性值 X = known_age[:, 1:] # fit到RandomForestRegressor之中 rfr = RandomForestRegressor(random_state=0, n_estimators=2000, n_jobs=-1) rfr.fit(X, y) # 用得到的模型进行未知年龄结果预测 predictedAges = rfr.predict(unknown_age[:, 1:]) # print predictedAges # 用得到的预测结果填补原缺失数据 df.loc[ (df.Age.isnull()), &#39;Age&#39; ] = predictedAges return df, rfr ]]></content></entry><entry><title>面试-数据分析指标</title><url>/post/%E9%9D%A2%E8%AF%95-%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%8C%87%E6%A0%87/</url><categories><category>面试</category></categories><tags/><content type="html">DAU(Daily Active Users) DNU(Daily New Users) ARPU(Average Revenue per User) ARPPU(Average Revenue per Paying User) APA (Active Payment Account)
 ROI(投资回报率） = $（收入－成本）／投入＊100% $ 它所表达的是 收回了多少，而非利润，更准确点说就是销售收入。
 ARPU(Average Revenue Per User)：某段时间平均每用户收入 LTV（Life Time Value）：用户生命周期价值 一月份用户流失率30%，3.333个月流失光，ARPU=100，这批用户LTV=300
 UV（独立访客）：即Unique Visitor，访问您网站的一台电脑客户端为一个访客。 PV(page view)，即页面浏览量，或点击量；用户每1次对网站中的每个网页访问均被记录1次。用户对同一页面的多次访问，访问量累计。 以上来自百度百科。 简单来说： UV = 一个人（记录身份证号） PV = 人次（只认次数，不认人）</content></entry><entry><title>面试-数据集的划分</title><url>/post/%E9%9D%A2%E8%AF%95-%E6%95%B0%E6%8D%AE%E9%9B%86%E7%9A%84%E5%88%92%E5%88%86/</url><categories><category>面试</category></categories><tags/><content type="html">Holdout检验 按一定比例划分为训练集和测试集 这种方法也称为保留法。我们通常取8-2、7-3、6-4、5-5比例切分，直接将数据随机划分为训练集和测试集，然后使用训练集来生成模型，再用测试集来测试模型的正确率和误差，以验证模型的有效性。 在验证集上计算出来的最后评估指标与原始分组有很大关系。
