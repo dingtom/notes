@@ -262,6 +262,10 @@ Concatenate操作是在Inception中首次使用，被DenseNet发扬光大，和a
 
 ![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_17-24-25-278.png)
 
+v2用3\*3代替5\*5
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-11/2022-12-11_23-58-21-681.png)
+
 ## ResNet
 
 明更深的网络在训练过程中的难度更大
@@ -298,3 +302,5 @@ ResNet本质上就干了一件事：`降低数据中信息的冗余度`。具体
 - ReLU6，移动端部署精度没有那么高
 
 ![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_17-37-42-315.png)
+
+## shuffleNet

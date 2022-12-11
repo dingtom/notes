@@ -6,8 +6,8 @@
         - 面试
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
-    
---- 
+
+---
 
 ![](https://upload-images.jianshu.io/upload_images/18339009-06d5ce952a0eb80b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 ![](https://upload-images.jianshu.io/upload_images/18339009-fde0401c30936d0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -21,6 +21,10 @@
 需要激活函数来引入非线性因素，使得神经网络可以任意逼近任何非线性函数。
 
 ![](https://upload-images.jianshu.io/upload_images/18339009-06a800d974c5405f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+relu计算量小，可以防止梯度消失
+
+
 
 
 
