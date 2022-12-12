@@ -1,8 +1,8 @@
 import xml.etree.ElementTree as ET
 import os
 import random
-
-
+import shutil
+from tqdm import tqdm
 def convert(size, box):
     dw = 1./size[0]
     dh = 1./size[1]
@@ -39,28 +39,50 @@ def convert_annotation(txt_path,xml_path):
 
 classes = ['aeroplane','bicycle','bird','boat','bottle','bus','car','cat','chair','cow','diningtable','dog','horse','motorbike','person','pottedplant','sheep','sofa','train','tvmonitor']
 data_dir = 'D:\work\data\VOC'
-val_ratio = 0.3
-test_ratio = 0.3
 image_type = '.jpg'
+val_ratio = 0.2
+test_ratio = 0.1
 xml_dir = os.path.join(data_dir, 'Annotations')
-txt_dir = os.path.join(data_dir, 'labels')
+
 
 train_file = open(os.path.join(data_dir, 'train.txt'), 'w')
 val_file = open(os.path.join(data_dir, 'val.txt'), 'w')
 test_file = open(os.path.join(data_dir, 'test.txt'), 'w')
 
+train_dir = os.path.join(data_dir, 'train')
+val_dir = os.path.join(data_dir, 'val')
+test_dir = os.path.join(data_dir, 'test')
+
+for i in [train_dir, val_dir, test_dir]:
+    if not os.path.exists(i): 
+        os.mkdir(i) 
+        os.mkdir(os.path.join(i, 'images')) 
+        os.mkdir(os.path.join(i, 'labels')) 
+
+    
 files = os.listdir(xml_dir)
-for f in files:
+for f in tqdm(files):
     f_name = os.path.splitext(f)[0]
+
+    r = random.random()
+    if r < test_ratio:
+       save_dir = test_dir
+       file = test_file
+    elif val_ratio < r < val_ratio + test_ratio:
+       save_dir = val_dir
+       file = val_file
+    else:
+       save_dir = train_dir
+       file = train_file
+
+    image_path = os.path.join(save_dir, 'images', f_name+image_type)
+    file.write(image_path+'\n')
+    shutil.copy(os.path.join(data_dir, 'JPEGImages', f_name+image_type), os.path.join(save_dir, 'images'))
+
+    txt_dir = os.path.join(save_dir, 'labels')
     convert_annotation(os.path.join(txt_dir, f.replace('xml', 'txt')), os.path.join(xml_dir, f))
 
-    path = os.path.join(data_dir, 'JPEGImages', f_name+image_type)+'\n'
-    r = random.random()
-    if r < val_ratio:
-        val_file.write(path)
-    elif val_ratio < r < val_ratio + test_ratio:
-        test_file.write(path)
-    else:
-        train_file.write(path)
+
 train_file.close()
 val_file.close()
+test_file.close()

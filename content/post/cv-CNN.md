@@ -303,4 +303,26 @@ ResNet本质上就干了一件事：`降低数据中信息的冗余度`。具体
 
 ![](https://gitee.com/tomding1995/picture/raw/master/2022-12-08/2022-12-08_17-37-42-315.png)
 
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-12/2022-12-12_00-05-57-871.png)
+
 ## shuffleNet
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-12/2022-12-12_00-10-37-397.png)
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-12/2022-12-12_00-08-06-836.png)
+
+
+
+
+
+v2
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-12/2022-12-12_00-14-20-731.png)
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-12/2022-12-12_00-13-40-991.png)
+
+>- 通道宽度相同、减少分组卷积、减少分支、减少Element-wise
+>- 提出Channel Split,将module的输入通道划分为两部分，一部分直接用于Concat。算是变相的group:操作
+>- 去掉element-wise add,用Concat直接连接通道分支
+>- 将Shuffle单元提到外面，整体的卷积之后再做通道随机打乱，使得各channels之间的信息相互交通
+>- 不再用分组卷积，都用普通卷积

@@ -429,9 +429,7 @@ FCN首先将一幅RGB图像输入到卷积神经网络后，经过多次卷积�
 
 ![quicker_fdb13fc8-47b1-42ca-8b6d-ad8d4ce801c2.png](https://s2.loli.net/2022/04/01/aAzVlHI98TebNSZ.png)
 
-反卷积和卷积类似，都是相乘相加的运算。只不过后者是多对一，前者是一对多。而反卷积的前向和反向传播，只用颠倒卷积的前后向传播即可。如下图所示：
 
-![quicker_e53dd05f-9c15-4350-95b3-a538a553abab.png](https://s2.loli.net/2022/04/01/FCKN4js6LuwVXEl.png)要注意的是，unpooling和反卷积是有几种不同的操作的。反池化很好理解，其中一种比较常用的操作是只需记住池化过程中的位置（最大值出现的地方），在unpooling的过程中，将对应位置置相应的值，其余位置置0即可。另外还有一种操作就是将所有unpooling的值全部填充下采样（pooling）的值。
 
 
 
