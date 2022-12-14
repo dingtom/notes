@@ -13,6 +13,11 @@
 
 
 
+```python
+#找源码
+grep 'COLOR_BGR2RGBA' * -rn  | grep '\.hpp'
+```
+
 
 
 
@@ -222,6 +227,141 @@ while True:
     if key & 0xFF == ord('q'):
         break
 cv2.destroyAllWindows()
+```
+
+
+
+
+
+##  色相
+
+`HSV`
+
+Hue:色相，即色彩，如红色，蓝色
+Saturation:饱和度，颜色的纯度
+Value:明度
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-15/2022-12-15_00-10-16-967.png)
+
+
+
+`HUV`主要用在视频中
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-15/2022-12-15_00-17-37-568.png)
+
+```python
+def callback(userdata):
+    pass
+
+
+cv2.namedWindow('color', cv2.WINDOW_NORMAL)
+
+img = cv2.imread('./RMB.jpeg')
+
+colorspaces = [cv2.COLOR_BGR2RGBA,
+               cv2.COLOR_BGR2BGRA,
+               cv2.COLOR_BGR2GRAY,
+               cv2.COLOR_BGR2HSV,
+               cv2.COLOR_BGR2YUV]
+cv2.createTrackbar('curcolor', 'color', 0, 4, callback)
+
+while True:
+    index = cv2.getTrackbarPos('curcolor', 'color')
+
+    # 颜色空间转换API
+    cvt_img = cv2.cvtColor(img, colorspaces[index])
+
+    cv2.imshow('color', cvt_img)
+    key = cv2.waitKey(10)
+    print(key)
+    if key & 0xFF == ord('q'):
+        break
+
+cv2.destroyAllWindows()
+```
+
+## numpy
+
+```python
+#通过array定义矩阵
+# b = np.array([[1, 2, 3], [4, 5, 6]])
+#定义zeros矩阵
+img = np.zeros((480, 640, 3), np.uint8)
+#定义ones矩阵
+#d = np.ones((8,8), np.uint8)
+#定义full矩阵
+# e = np.full((8,8), 10, np.uint8)
+#定义单位矩阵identity
+# f = np.identity(8)
+# g= np.eye(5, 7, k=1)
+
+
+img = cv2.imread('RMB.jpeg')
+# 浅拷贝
+img2 = img
+# 深拷贝
+img3 = img.copy()
+
+# Mat属性
+
+# dims维度
+#channels通道数RGB是3
+#rows行数
+#size矩阵大小
+#cols列数
+#type dep+dt+chs CV_8UC3
+#depth像素的位深
+#data存放数据
+# shape属性中包括了三个信息
+# 高度，长度 和 通道数
+print(img.shape)
+# 图像占用多大空间
+# 高度 * 长度 * 通道数
+print(img.size)
+
+# 通道分割合并
+b, g, r = cv2.split(img)
+img2 = cv2.merge((b, g, r))
+
+```
+
+## 绘制
+
+
+
+```python
+import cv2
+import numpy as np
+
+img = np.zeros((480, 640, 3), np.uint8)
+
+# 画线，坐标点为（x, y）
+# cv2.line(img, (10, 20), (300, 400), (0, 0, 255), 5, 4)
+# line(img,开始点，结束点grep 'COLOR_BGR2RGBA' * -rn  | grep '\.hpp'，颜色、线宽、线形)
+# 画矩形
+# cv2.rectangle(img, (10,10), (100, 100), (0, 0, 255), -1)
+
+# 画圆
+# cv2.circle(img, (320, 240), 100, (0, 0, 255))
+cv2.circle(img, (320, 240), 5, (0, 0, 255), -1)
+
+# 画椭圆
+# 度是按顺时针计算的
+# 0度是从左侧开始的
+cv2.ellipse(img, (320, 240), (100, 50), 15, 0, 360, (0, 0, 255), -1)
+# 中心点，长、宽的一半，角度，从哪个角度开始，到哪个角度结束
+# 画多边形
+pts = np.array([(300, 10), (150, 100), (450, 100)], np.int32)
+cv2.polylines(img, [pts], True, (0, 0, 255))
+# 点集、是否闭环、颜色
+# 填充多边形
+# cv2.fillPoly(img, [pts], (255, 255, 0))
+# 点集、颜色
+# 绘制文本
+cv2.putText(img, "Hello World!", (10, 400), cv2.FONT_HERSHEY_TRIPLEX, 3, (255, 0, 0))
+# 字符串、启始点、字体字号
+cv2.imshow('draw', img)
+cv2.waitKey(0)
 ```
 
 
