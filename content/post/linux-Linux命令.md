@@ -265,9 +265,13 @@ stat可查看：
 >-A <行号>:显示所找的匹配字段，并显示下面指定的行数的信息
 >-B <行号>:显示所找的匹配字段，并显示上面指定的行数的信息
 
->```grep -rn --color POST access.log```查看nginx日志中的POST请求。
-```grep -rn --color Exception -A10 -B2   error.log```看某个异常前后相关的内容
-```grep ^Aug /var/log/messages``` 在文件 '/var/log/messages'中查找以"Aug"开始的词汇
+
+
+> grep -rn "内容" 路径
+>
+>grep -rn --color POST access.log查看nginx日志中的POST请求。
+>grep -rn --color Exception -A10 -B2   error.log看某个异常前后相关的内容
+>grep ^Aug /var/log/messages 在文件 '/var/log/messages'中查找以"Aug"开始的词汇
 
 
 #### 正则表达式表示方法:
@@ -541,9 +545,9 @@ x表示可执行
 ```chmod -R u+r directory  ``` 递归地给directory目录下所有文件和子目录的属主分配读的权限
 ```chmod 4755 ``` 设置用ID，给属主分配读、写和执行权限，给组和其他用户分配读、执行的权限。
 
-
-####df(report file system disk space usage)
+#### df(report file system disk space usage)
 显示文件系统磁盘空间的使用情况
+
 >-h 以人类可读的方式显示，KD，Mb，GB等
 #### du  (estimate file space usage)
 显示指定的目录及其子目录已使用的磁盘空间的总和

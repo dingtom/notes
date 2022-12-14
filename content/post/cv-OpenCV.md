@@ -6,10 +6,227 @@
         - cv
     # 发表日期
     date: 2022-12-01T19:59:47+08:00
-    
---- 
+
+---
 
 `图像处理中的坐标系，水平向右为x轴正方向，竖直向下为y轴正方向`。
+
+
+
+
+
+
+
+# 基本操作
+
+```python
+import cv2
+cv2.namedWindow('img', cv2.WINDOW_NORMAL)
+cv2.resizeWindow('img', 320, 240)
+img = cv2.imread("perspective.jpeg")
+# flags 0灰度，1原色
+img2 = img.copy()cv2.imshow('img', img2)
+key = cv2.waitKey(0)
+while True:
+    cv2.imshow('img', img2)
+
+    key = cv2.waitKey(0)
+    # 等待的时间ms， 0 一直等待，返回按键assic码
+
+    if(key & 0xFF == ord('q')):
+        break
+    elif(key & 0xFF == ord('s')):
+        cv2.imwrite("123.png", img)
+    else:
+        print(key)
+cv2.destroyAllWindows()
+        
+```
+
+## 图片采集脚本
+
+```python
+'''
+
+“N”  新建文件夹 data/  用来存储图像
+"S"   开始采集图像，将采集到的图像放到 data/ 路径下
+“Q”   退出窗口
+'''
+
+import numpy as np  # 数据处理的库 Numpy
+import cv2  # 图像处理的库 OpenCv
+import os  # 读写文件
+from PIL import Image, ImageDraw, ImageFont
+
+# # OpenCv 调用摄像头 / Use camera
+cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+
+'''
+#功能函数，只是用来往图片中显示汉字
+#示例 img = cv2ImgAddText(cv2.imread('img1.jpg'), "大家好，我是片天边的云彩", 10, 65, (0, 0, 139), 20)
+参数说明：
+img：OpenCV图片格式的图片
+text：要写入的汉字
+left：字符坐标x值
+top：字符坐标y值
+textColor：字体颜色
+：textSize：字体大小
+'''
+
+
+def cv2ImgAddText(img, text, left, top, textColor=(0, 255, 0), textSize=20):
+    if (isinstance(img, np.ndarray)):  # 判断是否OpenCV图片类型
+        img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+    # 创建一个可以在给定图像上绘图的对象
+    draw = ImageDraw.Draw(img)
+    # 字体的格式
+    fontStyle = ImageFont.truetype(
+        "font/simsun.ttc", textSize, encoding="utf-8")
+    # 绘制文本
+    draw.text((left, top), text, textColor, font=fontStyle)
+    # 转换回OpenCV格式
+    return cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
+
+
+# 存储图像的文件夹 
+current_dir = ""
+# 保存  图像 的路径 
+path_photos_from_camera = "data/"
+
+press_n_flag = 0
+cnt_ss = 0
+
+while cap.isOpened():
+    flag, img_rd = cap.read()
+    # print(img_rd.shape)
+
+    kk = cv2.waitKey(2)
+    # 待会要写的字体 / Font to write
+    font = cv2.FONT_ITALIC
+
+    # 4. 按下 'n' 新建存储人脸的文件夹 / press 'n' to create the folders for saving faces
+    if kk == ord('N') or kk == ord('n'):
+        current_dir = path_photos_from_camera
+        # os.makedirs(current_dir)
+        if os.path.isdir(current_dir):
+            pass
+        else:
+            os.mkdir(current_dir)
+        print('\n')
+        print("新建的保存图像的文件夹 / Create folders: ", current_dir)
+
+        press_n_flag = 1  # 已经按下 'n' / have pressed 'n'
+
+    # 5. 按下 's' 保存摄像头中的图像到本地 / Press 's' to save image into local images
+    if kk == ord('S') or kk == ord('s'):
+        # 检查有没有先按'n'新建文件夹 / check if you have pressed 'n'
+        if press_n_flag:
+            cnt_ss += 1
+            cv2.imwrite(current_dir + "/img_" + str(cnt_ss) + ".jpg", img_rd)
+            print("写入本地 / Save into：", str(current_dir) + "/img_face_" + str(cnt_ss) + ".jpg")
+        else:
+            print("请在按 'S' 之前先按 'N' 来建文件夹 / Please press 'N' before 'S'")
+
+    # 添加说明 / Add some statements
+    # cv2.putText(img_rd, "Face Register", (20, 40), font, 1, (0, 255, 0), 1, cv2.LINE_AA)
+    img_rd = cv2ImgAddText(img_rd, "图片采集系统", 160, 25, (0, 255, 0), 30)
+    # cv2.putText(img_rd, "N: Create face folder", (20, 350), font, 0.8, (0, 255, 0), 1, cv2.LINE_AA)
+    img_rd = cv2ImgAddText(img_rd, "N: 创建保存图像文件夹", 20, 350, (0, 255, 0), 20)
+    # cv2.putText(img_rd, "S: Save current face", (20, 400), font, 0.8, (0, 255, 0), 1, cv2.LINE_AA)
+    img_rd = cv2ImgAddText(img_rd, "S: 保存当前图片", 20, 400, (0, 255, 0), 20)
+    # cv2.putText(img_rd, "Q: Quit", (20, 450), font, 0.8, (0, 0, 0), 1, cv2.LINE_AA)
+    img_rd = cv2ImgAddText(img_rd, "Q: 退出", 20, 450, (0, 255, 0), 20)
+
+    # 6. 按下 'Q' 键退出 / Press 'q' to exit
+    if kk == ord('Q') or kk == ord('q'):
+        break
+    # 如果需要摄像头窗口大小可调 / Uncomment this line if you want the camera window is resizeable
+    cv2.namedWindow("camera", 0)
+    cv2.imshow("camera", img_rd)
+
+# 释放摄像头 / Release camera and destroy all windows
+cap.release()
+cv2.destroyAllWindows()
+
+```
+
+
+
+## 视频采集
+
+```python
+#cap = cv2.VideoCapture('./out.mp4')
+cap = cv2.VideoCapture(0)
+#创建VideoWriter为写多媒体文件
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+vw = cv2.VideoWriter('./out.mp4', fourcc, 25,
+                     (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
+                      int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))))
+#输出文件
+#多媒体文件格式（VideoWriter_fourcc）
+#帧率
+#分辨率大小
+
+#判断摄像头是否为打开关态
+while cap.isOpened():
+    #从摄像头读视频帧
+    ret, frame = cap.read()
+    if ret == True:
+        #将视频帧在窗口中显示
+        cv2.imshow('video', frame)
+        #重新将窗口设备为指定大小
+        cv2.resizeWindow('video', 640, 360)
+        #写数据到多媒体文件
+        vw.write(frame)
+        #等待键盘事件，如果为q，退出
+        key = cv2.waitKey(1)
+        if(key & 0xFF == ord('q')):
+            break
+    else:
+        break
+
+#释放VideoCapture
+cap.release()
+#释放VideoWriter
+vw.release()
+#vw.release()
+cv2.destroyAllWindows()
+
+```
+
+## 鼠标
+
+```python
+setMouseCallback(winname,callback,userdata)
+callback(event,x,y,flags,userdata)
+
+#event:鼠标移动、按下左键
+#X,y:鼠标坐标
+#flags:鼠标键及组合键
+
+#鼠标回调函数
+def mouse_callback(event, x, y , flags, userdata):
+    print(event, x, y, flags, userdata)
+#创建窗口
+cv2.namedWindow('mouse', cv2.WINDOW_NORMAL)
+cv2.resizeWindow('mouse', 640, 360)
+#设置鼠标回调
+cv2.setMouseCallback('mouse', mouse_callback, "123")
+#显示窗口和背景
+img = np.zeros((360, 640, 3), np.uint8)
+while True:
+    cv2.imshow('mouse', img)
+    key = cv2.waitKey(1)
+    if key & 0xFF == ord('q'):
+        break
+cv2.destroyAllWindows()
+```
+
+
+
+
 
 
 
