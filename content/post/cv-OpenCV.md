@@ -20,6 +20,51 @@ grep 'COLOR_BGR2RGBA' * -rn  | grep '\.hpp'
 
 
 
+安装OpenCV-Python,
+
+```bash
+pip install opencv-python==3.4.2.17
+```
+
+要利用SIFT和SURF等进行特征提取时，还需要安装：
+
+```bash
+pip install opencv-contrib-python==3.4.2.17
+```
+
+core、highgui、imgproc是最基础的模块，该课程主要是围绕这几个模块展开的，分别介绍如下：
+
+- `core模块`实现了最核心的数据结构及其基本运算，如绘图函数、数组操作相关函数等。
+- `highgui模块`实现了视频与图像的读取、显示、存储等接口。
+- `imgproc模块`实现了图像处理的基础方法，包括图像滤波、图像的几何变换、平滑、阈值分割、形态学处理、边缘检测、目标检测、运动分析和对象跟踪等。
+
+对于图像处理其他更高层次的方向及应用，OpenCV也有相关的模块实现
+
+- `features2d模块`用于提取图像特征以及特征匹配，nonfree模块实现了一些专利算法，如sift特征。
+- `objdetect模块`实现了一些目标检测的功能，经典的基于Haar、LBP特征的人脸检测，基于HOG的行人、汽车等目标检测，分类器使用Cascade Classification（级联分类）和Latent SVM等。
+- `stitching模块`实现了图像拼接功能。
+- `FLANN模块`（Fast Library for Approximate Nearest Neighbors），包含快速近似最近邻搜索FLANN 和聚类Clustering算法。
+- `ml模块`机器学习模块（SVM，决策树，Boosting等等）。
+- `photo模块`包含图像修复和图像去噪两部分。
+- `video模块`针对视频处理，如背景分离，前景检测、对象跟踪等。
+- `calib3d模块`即Calibration（校准）3D，这个模块主要是相机校准和三维重建相关的内容。包含了基本的多视角几何算法，单个立体摄像头标定，物体姿态估计，立体相似性算法，3D信息的重建等等。
+- `G-API模块`包含超高效的图像处理pipeline引擎
+
+
+
+
+
+ opencv 的接口使用BGR模式，而 matplotlib.pyplot 接口使用的是RGB模式
+
+```PYTHON
+b, g, r = cv2.split(srcImage)
+srcImage_new = cv2.merge([r, g, b])
+plt.imshow(srcImage_new)
+# 通道变换之后对灰度图进行输出的图片颜色仍然为绿色,这是因为我们还是直接使用plt显示图像，它默认使用三通道显示图像
+grayImage = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)  # 灰度变换
+plt.imshow(grayImage, cmap="gray")
+```
+
 
 
 # 基本操作
@@ -325,6 +370,8 @@ img2 = cv2.merge((b, g, r))
 
 ```
 
+# 图像处理
+
 ## 绘制直线、圆
 
 
@@ -357,82 +404,39 @@ cv2.polylines(img, [pts], True, (0, 0, 255))
 # 填充多边形
 # cv2.fillPoly(img, [pts], (255, 255, 0))
 # 点集、颜色
-# 绘制文本
-cv2.putText(img, "Hello World!", (10, 400), cv2.FONT_HERSHEY_TRIPLEX, 3, (255, 0, 0))
-# 字符串、启始点、字体字号
+
 cv2.imshow('draw', img)
 cv2.waitKey(0)
 ```
 
-
-
-
-
-
-
-安装OpenCV-Python,
-
-```bash
-pip install opencv-python==3.4.2.17
+```python
+#对mask按位求反
+m = cv2.bitwise_not(mask)
+#选择dog添加logo的位置
+roi = dog[0:200, 0:200]
+#与m进行与操作
+tmp = cv2.bitwise_and(roi, roi, mask = m)
 ```
-
-要利用SIFT和SURF等进行特征提取时，还需要安装：
-
-```bash
-pip install opencv-contrib-python==3.4.2.17
-```
-
-core、highgui、imgproc是最基础的模块，该课程主要是围绕这几个模块展开的，分别介绍如下：
-
-- `core模块`实现了最核心的数据结构及其基本运算，如绘图函数、数组操作相关函数等。
-- `highgui模块`实现了视频与图像的读取、显示、存储等接口。
-- `imgproc模块`实现了图像处理的基础方法，包括图像滤波、图像的几何变换、平滑、阈值分割、形态学处理、边缘检测、目标检测、运动分析和对象跟踪等。
-
-对于图像处理其他更高层次的方向及应用，OpenCV也有相关的模块实现
-
-- `features2d模块`用于提取图像特征以及特征匹配，nonfree模块实现了一些专利算法，如sift特征。
-- `objdetect模块`实现了一些目标检测的功能，经典的基于Haar、LBP特征的人脸检测，基于HOG的行人、汽车等目标检测，分类器使用Cascade Classification（级联分类）和Latent SVM等。
-- `stitching模块`实现了图像拼接功能。
-- `FLANN模块`（Fast Library for Approximate Nearest Neighbors），包含快速近似最近邻搜索FLANN 和聚类Clustering算法。
-- `ml模块`机器学习模块（SVM，决策树，Boosting等等）。
-- `photo模块`包含图像修复和图像去噪两部分。
-- `video模块`针对视频处理，如背景分离，前景检测、对象跟踪等。
-- `calib3d模块`即Calibration（校准）3D，这个模块主要是相机校准和三维重建相关的内容。包含了基本的多视角几何算法，单个立体摄像头标定，物体姿态估计，立体相似性算法，3D信息的重建等等。
-- `G-API模块`包含超高效的图像处理pipeline引擎
-
-
-
-
-
- opencv 的接口使用BGR模式，而 matplotlib.pyplot 接口使用的是RGB模式
-
-```PYTHON
-b, g, r = cv2.split(srcImage)
-srcImage_new = cv2.merge([r, g, b])
-plt.imshow(srcImage_new)
-# 通道变换之后对灰度图进行输出的图片颜色仍然为绿色,这是因为我们还是直接使用plt显示图像，它默认使用三通道显示图像
-grayImage = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)  # 灰度变换
-plt.imshow(grayImage, cmap="gray")
-```
-
-
-
-# 图像处理
 
 ## 二值化
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-15/2022-12-15_21-40-05-948.png)
 
 ```python
 # 全局阈值
 thresh, dst = cv2.threshold(src, thresh, maxVal, type)
-type: cv2.THRESH_BINARY 大于阈值的为maxVal,小于的为0  cv2.THRESH_BINARY_INV
+# type: cv2.THRESH_BINARY 大于阈值的为maxVal,小于的为0  cv2.THRESH_BINARY_INV 小于阈值的为maxVal,大于的为0 
+
+
 # 自适应阈值
 dst = cv2.adaptiveThreshold(src, maxVal, adaptiveMethod, type, blockSize, C)
 #type:cv2.THRESH_BINARY
-#adapttiveMethod:cv2.ADAPTIVE_THRESH_MEAN_C 
+#adapttiveMethod:cv2.ADAPTIVE_THRESH_MEAN_C 计算邻近区域的平均值  
+#ADAPTIVE THRESH GAUSSIAN C:高斯窗口加权平均值
 #thresh=blockSize*blockSize矩阵平均值灰度-C，大于thresh的为maxValue
 ```
 
-# 寻找轮廓
+## 寻找轮廓
 
 ```python
 contours, hierarchy = cv2.findContours(image, mode, method)
@@ -464,11 +468,11 @@ x，y是矩阵左上点的坐标，w，h是矩阵的宽和高
 ```python
 # 读取图像
 img = cv.imread('messi5.jpg',0)
-参数：要读取的图像；读取方式的标志
-cv.IMREAD*COLOR：以彩色模式加载图像，任何图像的透明度都将被忽略。这是默认参数。
-cv.IMREAD*GRAYSCALE：以灰度模式加载图像
-cv.IMREAD_UNCHANGED：包括alpha通道的加载图像模式。
-可以使用1、0或者-1来替代上面三个标志
+#参数：要读取的图像；读取方式的标志
+#cv.IMREAD*COLOR：以彩色模式加载图像，任何图像的透明度都将被忽略。这是默认参数。
+#cv.IMREAD*GRAYSCALE：以灰度模式加载图像
+#cv.IMREAD_UNCHANGED：包括alpha通道的加载图像模式。
+#可以使用1、0或者-1来替代上面三个标志
 
 
 # 显示图像
@@ -478,24 +482,24 @@ cv.waitKey(0)
 # matplotlib中展示
 plt.imshow(img[:,:,::-1])
 
-参数：显示图像的窗口名称，以字符串类型表示，要加载的图像
-注意：在调用显示图像的API后，要调用cv.waitKey()给图像绘留下时间，否则窗口会出现无响应情况，并且图像无法显示出来
+#参数：显示图像的窗口名称，以字符串类型表示，要加载的图像
+#注意：在调用显示图像的API后，要调用cv.waitKey()给图像绘留下时间，否则窗口会出现无响应情况，并且图像无法显示出来
 
 # 保存图像
 cv.imwrite('messigray.png',img)
-参数：文件名，要保存在哪里；要保存的图像
+#参数：文件名，要保存在哪里；要保存的图像
 
 # 向图像中添加文字
 cv.putText(img,text,station, font, fontsize,color,thickness,cv.LINE_AA)
-参数：
-img: 图像
-text：要写入的文本数据
-station：文本的放置位置
-font：字体
-Fontsize :字体大小
+#img: 图像
+#text：要写入的文本数据
+#station：文本的放置位置
+#font：字体
+#Fontsize :字体大小
 
     
-通过行和列的坐标值获取该像素点的像素值。对于BGR图像，它返回一个蓝，绿，红值的数组。对于灰度图像，仅返回相应的强度值。使用相同的方法对像素值进行修改。   
+#通过行和列的坐标值获取该像素点的像素值。
+#对于BGR图像，它返回一个蓝，绿，红值的数组。对于灰度图像，仅返回相应的强度值。使用相同的方法对像素值进行修改。   
 img = cv.imread('messi5.jpg')
 # 获取某个像素点的值
 px = img[100,100]
@@ -512,26 +516,60 @@ cv.cvtColor(image，flag)
 cv.COLOR_BGR2GRAY : BGR↔Gray
 cv.COLOR_BGR2HSV: BGR→HSV
 # 图像的加法
-OpenCV加法和Numpy加法之间存在差异。OpenCV的加法是饱和操作，而Numpy添加是模运算。
-尽量使用 OpenCV 中的函数。
->>> x = np.uint8([250])
->>> y = np.uint8([10])
->>> print( cv.add(x,y) ) # 250+10 = 260 => 255
->>> print( x+y )          # 250+10 = 260 % 256 = 4
+#OpenCV加法和Numpy加法之间存在差异。OpenCV的加法是饱和操作，而Numpy添加是模运算。尽量使用 OpenCV 中的函数。
+x = np.uint8([250])
+y = np.uint8([10])
+print( cv.add(x,y) ) # 250+10 = 260 => 255
+print( x+y )          # 250+10 = 260 % 256 = 4
 
 # 图像的混合
-这其实也是加法，但是不同的是两幅图像的权重不同，这就会给人一种混合或者透明的感觉。图像混合的计算公式如下：dst = α⋅img1 + β⋅img2 + γ
+#这其实也是加法，但是不同的是两幅图像的权重不同，这就会给人一种混合或者透明的感觉。图像混合的计算公式如下：dst = α⋅img1 + β⋅img2 + γ
 img3 = cv.addWeighted(img1,α,img2,β,γ)
-
-    
-   
 ```
 
 ### 图像旋转
 
 <img src='https://s2.loli.net/2022/04/28/WyLYjn6C1Z2OBh4.png' title='quicker_d8c220b4-a82b-432e-a585-c7a8ac798020.png' />
 
+```python
+# 图像缩放
+cv2.resize(src,dsize,fx=0,fy=0,interpolation=cv2.INTER_LINEAR)
+#src : 输入图像
+#dsize: 绝对尺寸，直接指定调整后图像的大小 (2*cols,2*rows)
+#fx,fy: 相对尺寸，将dsize设置为None，(img1,None,fx=0.5,fy=0.5)
+#interpolation：插值方法，
+#cv2.INTER_LINEAR  双线性插值法（周围四个点）
+#cv2.INTER_NEAREST 最临近插值（边界直接拷贝，速度快，效果差）
+#cv2.INTER_AREA 像素区域重采样{默认}（一片区域）
+#cv2.INTER_CUBIC 双三次插值（周围16个点）
 
+# 图像翻转
+cv2.flip(img,flipCode)
+#flipCode==0上下；flipCode>:0左右；flipCode<O上下+左右
+    
+# 图像平移
+M = np.float32([[1,0,100],[0,1,50]])# 将图像的像素点移动(50,100)的距离：
+dst = cv.warpAffine(img1,M,dsize=(cols,rows)，borderValue=(0,0,0))
+#img: 输入图像
+#M： 2*3移动矩阵
+#dsize: 输出图像的大小，它应该是(宽度，高度)的形式。请记住,width=列数，height=行数。
+#borderValue为边界填充颜色（注意是BGR顺序，( 0 , 0 , 0 ) (0,0,0)(0,0,0)代表黑色）:
+
+#  图像旋转
+#旋转中图像仍保持这原始尺寸。图像旋转后图像的水平对称轴、垂直对称轴及中心坐标原点都可能会发生变换，因此需要对图像旋转中的坐标进行相应转换。
+# 生成旋转矩阵
+M = cv.getRotationMatrix2D((cols/2,rows/2),90,1)
+# center：旋转中心；angle：逆时针旋转角度；scale：缩放比例
+
+# 进行旋转变换
+dst = cv.warpAffine(img,M,(cols,rows))
+#warpAffine(src,M,dsize,flags,mode,value)
+#M:变换矩阵，
+#dsize输出尺寸
+#flag:与resize中的插值算法一致
+#mode:边界外推法标志
+#vaue:填充边界的值
+```
 
 ### 仿射变换
 
@@ -539,76 +577,45 @@ img3 = cv.addWeighted(img1,α,img2,β,γ)
 
 ![quicker_f637ed85-6bd2-48b6-9c3c-b1c33325db57.png](https://s2.loli.net/2022/04/28/hTgPDuieE3BClxt.png)
 
+```python
+# 仿射变换
+#仿射变换主要是对图像的缩放，旋转，翻转和平移等操作的组合。
+#通过三个点可以确定变换的位置  两点共线
+src = np.float32([[400, 300], [800, 300], [400, 1000]])
+dst = np.float32([[200, 400], [600, 500], [150, 1100]])
+M = cv2.getAffineTransform(src, dst)
+dst = cv.warpAffine(img,M,(cols,rows))
+
+#平移矩阵
+#矩阵中的每个像素由(x,y)组成
+#因此，其变换矩阵是2x2的矩阵
+#平移向量为2x1的向量，所在平移矩阵为2x3矩阵
+```
+
 ### 透射变换
+
+将一种坐标系转换为两一种坐标系
 
 ![quicker_c19ebd8f-9b86-42d7-b372-dbc223a209a4.png](https://s2.loli.net/2022/04/28/awiPEVFmDq3LJsc.png)
 
-
+```python
+# 透射变换
+pts1 = np.float32([[56,65],[368,52],[28,387],[389,390]]) 
+pts2 = np.float32([[100,145],[300,100],[80,290],[310,300]])
+T = cv.getPerspectiveTransform(pts1,pts2)
+# 2.2 进行变换
+dst = cv.warpPerspective(img,T,(cols,rows))
+```
 
 ###  图像金字塔
 
 ![quicker_01b001f5-46b8-430d-a549-0fa2507eae71.png](https://s2.loli.net/2022/04/29/HYBu8aq1Q4wFAcZ.png)
 
-
-
-
-
-
-
 ```python
-
-# 图像缩放
-cv2.resize(src,dsize,fx=0,fy=0,interpolation=cv2.INTER_LINEAR)
-src : 输入图像
-dsize: 绝对尺寸，直接指定调整后图像的大小 (2*cols,2*rows)
-fx,fy: 相对尺寸，将dsize设置为None，(img1,None,fx=0.5,fy=0.5)
-interpolation：插值方法，
-cv2.INTER_LINEAR  双线性插值法
-cv2.INTER_NEAREST 最临近插值
-cv2.INTER_AREA 像素区域重采样{默认}
-cv2.INTER_CUBIC 双三次插值
-
-# 图像平移
-M = np.float32([[1,0,100],[0,1,50]])# 将图像的像素点移动(50,100)的距离：
-dst = cv.warpAffine(img1,M,dsize=(cols,rows)，borderValue=(0,0,0))
-img: 输入图像
-M： 2*∗3移动矩阵
-dsize: 输出图像的大小，它应该是(宽度，高度)的形式。请记住,width=列数，height=行数。
-borderValue为边界填充颜色（注意是BGR顺序，( 0 , 0 , 0 ) (0,0,0)(0,0,0)代表黑色）:
-
-
-#  图像旋转
-旋转中图像仍保持这原始尺寸。图像旋转后图像的水平对称轴、垂直对称轴及中心坐标原点都可能会发生变换，因此需要对图像旋转中的坐标进行相应转换。
-# 生成旋转矩阵
-M = cv.getRotationMatrix2D((cols/2,rows/2),90,1)
-# center：旋转中心；angle：旋转角度；scale：缩放比例
-# 进行旋转变换
-dst = cv.warpAffine(img,M,(cols,rows))
-
-
-# 仿射变换
-涉及到图像的形状位置角度的变化，是深度学习预处理中常到的功能,仿射变换主要是对图像的缩放，旋转，翻转和平移等操作的组合。
-
-pts1 = np.float32([[50,50],[200,50],[50,200]])# 2.1 创建变换矩阵
-pts2 = np.float32([[100,100],[200,50],[100,250]])
-M = cv.getAffineTransform(pts1,pts2)
-dst = cv.warpAffine(img,M,(cols,rows))# 2.2 完成仿射变换
-
-# 透射变换
-pts1 = np.float32([[56,65],[368,52],[28,387],[389,390]]) # 2.1 创建变换矩阵
-pts2 = np.float32([[100,145],[300,100],[80,290],[310,300]])
-T = cv.getPerspectiveTransform(pts1,pts2)
-# 2.2 进行变换
-dst = cv.warpPerspective(img,T,(cols,rows))
-
-
 # 图像金字塔
 cv.pyrUp(img)      #对图像进行上采样
 cv.pyrDown(img)        #对图像进行下采样
-
 ```
-
-
 
 ## 形态学操作
 
@@ -681,7 +688,7 @@ cvClose = cv.morphologyEx(img2,cv.MORPH_BLACKHAT,kernel)# 黑帽运算
 
 ## 图像平滑
 
-### 图像噪声
+
 
 `椒盐噪声`也称为脉冲噪声，是图像中经常见到的一种噪声，它是一种`随机出现的白点或者黑点`，可能是亮的区域有黑色像素或是在暗的区域有白色像素（或是两者皆有）。椒盐噪声的成因可能是影像讯号受到突如其来的强烈干扰而产生、类比数位转换器或位元传输错误等。例如失效的感应器导致像素值为最小值，饱和的感应器导致像素值为最大值。
 
@@ -792,15 +799,28 @@ tileGridSize: 分块的大小，默认为8*88∗8
 
 `Sobel边缘检测算法`比较简单，实际应用中效率`比canny边缘检测效率要高`，但是边缘`不如Canny检测的准确`，但是很多实际应用的场合，sobel边缘却是首选，Sobel算子是`高斯平滑与微分操作的结合体，所以其抗噪声能力很强，用途较多`。尤其是效率要求较高，而对细纹理不太关心的时候。
 
+`Sobel`（索贝尔）（高斯）卷积核，size设置为-1就是沙尔。
+
+对噪音适应性强，先高斯滤波过滤噪声，再通过一阶导数求图像边缘， `Scharr`（沙尔）比sobel效果好，卷积核size不可改
+
+上面两个计算边缘，只能求横、纵一个方向的，最后相加。
+
 ![quicker_b8444d61-1a79-48a9-9df9-ec4a3cfd7d7f.png](https://s2.loli.net/2022/05/01/FR6ZhUeb8flJop1.png)
 
-`Laplacian是利用二阶导数来检测边缘 。`
+`Laplacian是利用二阶导数来检测边缘 。`（拉普拉斯），对噪音敏感，需手工降噪。可以同时求两个方向的边缘
 
 ![quicker_cb380bdc-d81c-4ac5-a4c5-6e83439c8e8d.png](https://s2.loli.net/2022/05/02/xs7ztkwRfuWP1Qy.png)
 
 
 
 `Canny 边缘检测算法被认为是最优的边缘检测算法`。
+
+
+
+使用5×5高斯滤波消除噪声
+计算图像梯度的方向(0°/45°/90°/135°)
+取局部极大值
+阈值计算
 
 ![quicker_39c15296-346c-42e6-a6ff-4590df34bf5d.png](https://s2.loli.net/2022/05/01/9w4cPjUBeXKZ1np.png)
 
@@ -809,45 +829,52 @@ tileGridSize: 分块的大小，默认为8*88∗8
 
 
 ```python
-# sobel边缘检测
-Sobel_x_or_y = cv2.Sobel(src, ddepth, dx, dy, dst, ksize, scale, delta, borderType)
-src：传入的图像
-ddepth: 图像的深度
-dx和dy: 指求导的阶数，0表示这个方向上没有求导，取值为0、1。
-ksize: 是Sobel算子的大小，即卷积核的大小，必须为奇数1、3、5、7，默认为3。注意：如果ksize=-1，就演变成为3x3的Scharr算子。
-scale：缩放导数的比例常数，默认情况为没有伸缩系数。
-borderType：图像边界的模式，默认值为cv2.BORDER_DEFAULT。
+# Sobel_x = cv2.Sobel(src, ddepth, dx, dy, dst, ksize, scale, delta, borderType)
+#src：传入的图像
+#ddepth: 图像的深度
+#dx和dy: 指求导的阶数，0表示这个方向上没有求导，取值为0、1。
+#ksize: 是Sobel算子的大小，即卷积核的大小，必须为奇数1、3、5、7，默认为3。注意：如果ksize=-1，就演变成为3x3的Scharr算子。
+#scale：缩放导数的比例常数，默认情况为没有伸缩系数。
+#borderType：图像边界的模式，默认值为cv2.BORDER_DEFAULT。
 
-Sobel函数求完导数后会有负值，还有会大于255的值。而原图像是uint8，即8位无符号数，所以Sobel建立的图像位数不够，会有截断。因此要使用16位有符号的数据类型，即cv2.CV_16S。处理完图像后，再使用cv2.convertScaleAbs()函数将其转回原来的uint8格式，否则图像无法显示。Sobel算子是在两个方向计算的，最后还需要用cv2.addWeighted( )函数将其组合起来
-
+#Sobel函数求完导数后会有负值，还有会大于255的值。而原图像是uint8，即8位无符号数，所以Sobel建立的图像位数不够，会有截断。因此要使用16位有符号的数据类型，即cv2.CV_16S。处理完图像后，再使用cv2.convertScaleAbs()函数将其转回原来的uint8格式，否则图像无法显示。Sobel算子是在两个方向计算的，最后还需要用cv2.addWeighted( )函数将其组合起来
 x = cv.Sobel(img, cv.CV_16S, 1, 0)# 2 计算Sobel卷积结果
 y = cv.Sobel(img, cv.CV_16S, 0, 1)
 Scale_absX = cv.convertScaleAbs(x)  # convert 转换  scale 缩放
 Scale_absY = cv.convertScaleAbs(y)
 result = cv.addWeighted(Scale_absX, 0.5, Scale_absY, 0.5, 0)# 4 结果合成
 
-# laplacian算子
-cv2.Laplacian(src, ddepth[, dst[, ksize[, scale[, delta[, borderType]]]]])
-Src: 需要处理的图像，
-Ddepth: 图像的深度，-1表示采用的是原图像相同的深度，目标图像的深度必须大于等于原图像的深度；
-ksize：算子的大小，即卷积核的大小，必须为1,3,5,7。
+# 索贝尔算子y方向边缘
+d1 = cv2.Sobel(img, cv2.CV_64F, 1, 0, ksize=5)
+# 索贝尔算子x方向边缘
+d2 = cv2.Sobel(img, cv2.CV_64F, 0, 1, ksize=5)
+# 沙尔
+# d1 = cv2.Scharr(img, cv2.CV_64F, 1, 0)
+# d2 = cv2.Scharr(img, cv2.CV_64F, 0, 1)
 
-result = cv.Laplacian(img,cv.CV_16S)
-Scale_abs = cv.convertScaleAbs(result)
+dst = cv2.add(d1, d2)
+# cv2.imshow('d1', d1)
+# cv2.imshow('d2', d2)
+# cv2.imshow('dst', dst)
+
+# 拉普拉斯
+cv2.Laplacian(src, ddepth, dst, ksize, scale, delt, borderType)
+#Src: 需要处理的图像，
+#Ddepth: 图像的深度，-1表示采用的是原图像相同的深度，目标图像的深度必须大于等于原图像的深度；
+#ksize：算子的大小，即卷积核的大小，必须为1,3,5,7。
+ldst = cv2.Laplacian(img, cv2.CV_64F, ksize=5)
+cv2.imshow('img', img)
 
 
 # canny检测
 canny = cv2.Canny(image, threshold1, threshold2)
-image:灰度图，
-threshold1: minval，较小的阈值将间断的边缘连接起来
-threshold2: maxval，较大的阈值检测图像中明显的边缘
-
-lowThreshold = 0
-max_lowThreshold = 100
-canny = cv.Canny(img, lowThreshold, max_lowThreshold) 
-
-    
+#image:灰度图，
+#threshold1: minval，较小的阈值将间断的边缘连接起来
+#threshold2: maxval，较大的阈值检测图像中明显的边缘
+canny = cv.Canny(img, 0, 100) 
 ```
+
+
 
 
 
@@ -1422,5 +1449,78 @@ while(cap.isOpened()):
 # 5. 释放资源
 cap.release()  
 cv.destroyAllWindows()
+```
+
+# 测距
+
+```python
+import cv2
+
+# 焦距/物距=像宽/物宽
+win_width = 1920
+win_height = 1080
+mid_width = int(win_width / 2)
+mid_height = int(win_height / 2)
+
+focal_distance = 2810.0
+real_width = 11.69
+image_width = 1
+
+capture = cv2.VideoCapture(0)
+capture.set(3, win_width)
+capture.set(4, win_height)
+
+while True:
+    ret, frame = capture.read()
+    frame = cv2.flip(frame, 1)
+    if not ret:
+        break
+
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    gray = cv2.GaussianBlur(gray, (5, 5), 0)
+    ret, binary = cv2.threshold(gray, 127, 255, 0)
+    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+    binary = cv2.dilate(binary, kernel, iterations=2)  # 形态学膨胀
+    contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    # cv2.drawContours(frame, contours, -1, (0, 255, 0), 2)
+    for c in contours:
+        if cv2.contourArea(c) < 2000:  # 对于矩形区域，只显示大于给定阈值的轮廓，所以一些微小的变化不会显示。对于光照不变和噪声低的摄像头可不设定轮廓最小尺寸的阈值
+            continue
+
+        x, y, w, h = cv2.boundingRect(c)  # 该函数计算矩形的边界框
+
+        if x > mid_width or y > mid_height:
+            continue
+        if (x + w) < mid_width or (y + h) < mid_height:
+            continue
+        if h > w:
+            continue
+        if x == 0 or y == 0:
+            continue
+        if x == win_width or y == win_height:
+            continue
+
+        image_width = w
+        cv2.rectangle(frame, (x + 1, y + 1), (x + image_width - 1, y + h - 1), (0, 255, 0), 2)
+
+    dis_inch = (real_width * focal_distance) / (image_width - 2)
+    dis_cm = dis_inch * 2.54
+    # os.system("cls")
+    # print("Distance : ", dis_cm, "cm")
+    frame = cv2.putText(frame, "%.2fcm" % (dis_cm), (5, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+    frame = cv2.putText(frame, "+", (mid_width, mid_height), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0), 2)
+
+    cv2.namedWindow('res', 0)
+    cv2.namedWindow('gray', 0)
+    cv2.resizeWindow('res', win_width, win_height)
+    cv2.resizeWindow('gray', win_width, win_height)
+    cv2.imshow('res', frame)
+    cv2.imshow('gray', binary)
+
+    key = cv2.waitKey(100) & 0xFF
+    if key == ord('q'):
+        break
+
+cv2.destroyAllWindows()
 ```
 
