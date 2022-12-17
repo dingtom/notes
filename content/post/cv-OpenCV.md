@@ -204,48 +204,6 @@ cv2.destroyAllWindows()
 
 
 
-## 视频采集
-
-```python
-#cap = cv2.VideoCapture('./out.mp4')
-cap = cv2.VideoCapture(0)
-#创建VideoWriter为写多媒体文件
-fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-vw = cv2.VideoWriter('./out.mp4', fourcc, 25,
-                     (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
-                      int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))))
-#输出文件
-#多媒体文件格式（VideoWriter_fourcc）
-#帧率
-#分辨率大小
-
-#判断摄像头是否为打开关态
-while cap.isOpened():
-    #从摄像头读视频帧
-    ret, frame = cap.read()
-    if ret == True:
-        #将视频帧在窗口中显示
-        cv2.imshow('video', frame)
-        #重新将窗口设备为指定大小
-        cv2.resizeWindow('video', 640, 360)
-        #写数据到多媒体文件
-        vw.write(frame)
-        #等待键盘事件，如果为q，退出
-        key = cv2.waitKey(1)
-        if(key & 0xFF == ord('q')):
-            break
-    else:
-        break
-
-#释放VideoCapture
-cap.release()
-#释放VideoWriter
-vw.release()
-#vw.release()
-cv2.destroyAllWindows()
-
-```
-
 ## 鼠标
 
 ```python
@@ -686,7 +644,7 @@ cvClose = cv.morphologyEx(img2,cv.MORPH_BLACKHAT,kernel)# 黑帽运算
 
 
 
-## 图像平滑
+## 图像平滑（滤波)
 
 
 
@@ -726,26 +684,58 @@ cvClose = cv.morphologyEx(img2,cv.MORPH_BLACKHAT,kernel)# 黑帽运算
 
 ![quicker_59bc7d70-51bf-45e4-9e48-e760963c175e.png](https://s2.loli.net/2022/05/01/wnAPQrxaGZ82Yty.png)
 
+一幅图像通过滤波器得到另一幅图像；其中滤波器又称为卷积核，滤波的过程称为卷积；
 
+
+
+`低通滤波`可以去除噪音或平滑图像
+`高通滤波`可以帮助查找图像的边缘
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-15/2022-12-15_17-27-43-802.png)
+
+
+
+normalize=true,a=1/W x H
+normalize=false,a=1
+
+当normalize=true时方盒滤波=平均滤波
+
+`高斯滤波`，去除高斯噪点，中间权重高
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-15/2022-12-15_17-29-28-961.png)
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-15/2022-12-15_17-30-48-450.png)
+
+`中值滤波`取窗口中间值，作为卷积输出。对胡椒噪音效果明显
+
+`双边滤波`，可以保留边缘同时可以对边缘内的区域进行平滑处理，可用作美颜
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-15/2022-12-15_17-37-52-837.png)
 
 ```python
+kernel = np.ones((5,5), np.float32) / 25
+dst = cv2.filter2D(img, -1, kernel)
+# 方盒滤波
+dst = cv2.boxFilter(src, ddepth, ksize, anchor, normalize, borderType)
 # 均值滤波
 cv.blur(src, ksize, anchor, borderType)
-src：输入图像
-ksize：卷积核的大小
-anchor：默认值 (-1,-1) ，表示核中心
-borderType：边界类型
+#src：输入图像
+#ksize：卷积核的大小
+#anchor：默认值 (-1,-1) ，表示核中心
+#borderType：边界类型
 # 高斯滤波
 cv2.GaussianBlur(src,ksize,sigmaX,sigmay,borderType)
-src: 输入图像
-ksize:高斯卷积核的大小，注意 ： 卷积核的宽度和高度都应为奇数，且可以不同
-sigmaX: 水平方向的标准差
-sigmaY: 垂直方向的标准差，默认值为0，表示与sigmaX相同
-borderType:填充边界类型
+#src: 输入图像
+#ksize:高斯卷积核的大小，注意 ： 卷积核的宽度和高度都应为奇数，且可以不同
+#sigmaX: 水平方向的标准差
+#sigmaY: 垂直方向的标准差，默认值为0，表示与sigmaX相同
+#borderType:填充边界类型
 # 中值滤波
 cv.medianBlur(src, ksize )
-src：输入图像
-ksize：卷积核的大小
+#src：输入图像
+#ksize：卷积核的大小
+# 双边滤波
+dst = cv2.bilateralFilter(img, 7, 20, 50)
 ```
 
 ## 直方图
@@ -935,23 +925,9 @@ plt.xticks([]), plt.yticks([])
 plt.show()    
 ```
 
-
-
-
-
-
-
-
-
 # 图像特征提取和描述
 
 模板匹配不适用于尺度变换，视角变换后的图像，这时我们就要使用关键点匹配算法，比较经典的关键点检测算法包括SIFT和SURF等，主要的思路是首先通过关键点检测算法获取模板和测试图片中的关键点；然后使用关键点匹配算法处理即可，这些关键点可以很好的处理尺度变化、视角变换、旋转变化、光照变化等，具有很好的不变性。
-
-
-
-
-
-
 
 ## 角点特征
 
@@ -1108,10 +1084,8 @@ plt.show()
 # 视频操作
 
 ```python
-import numpy as np
-import cv2 as cv
-# 1.获取视频对象
-cap = cv.VideoCapture('DOG.wmv')
+#cap = cv2.VideoCapture('./out.mp4')
+cap = cv2.VideoCapture(0)
 # 获取视频属性
 # retval = cap.get(propId)
 #0.cv2.CAP_PROP POS MSEC视频文件的当前位置(ms)
@@ -1125,50 +1099,41 @@ cap = cv.VideoCapture('DOG.wmv')
 # 修改视频的属性信息
 # cap.set(propId，value)
 
-# 2.判断是否读取成功
-while(cap.isOpened()):
-    # 3.获取每一帧图像
-    ret, frame = cap.read()
-    #ret: 若获取成功返回True，获取失败，返回False
-	#Frame: 获取到的某一帧的图像
-    # 4. 获取成功显示图像
-    if ret == True:
-        cv.imshow('frame',frame)
-    # 5.每一帧间隔为25ms
-    if cv.waitKey(25) & 0xFF == ord('q'):
-        break
-# 6.释放视频对象
-cap.release()
-cv.destoryAllwindows()
-
-
-
-
-# 1. 读取视频
-cap = cv.VideoCapture("DOG.wmv")
-
-# 3. 创建保存视频的对象，设置编码格式，帧率，图像的宽高等
-out = cv.VideoWriter('outpy.avi',cv.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
-
-#ilename：视频保存的位置
+#创建VideoWriter为写多媒体文件
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+vw = cv2.VideoWriter('./out.mp4', fourcc, 25,
+                     (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
+                      int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))))
+#filename：视频保存的位置
 #fourcc：指定视频编解码器的4字节代码cv2.VideoWriter_fourcc( c1, c2, c3, c4 ) c1,c2,c3,c4: 是视频编解码器的4字节代码，在fourcc.org中找到可用代码列表，与平台紧密相关
 #fps：帧率
 #frameSize：帧大小
 
 
-while(True):
-    # 4.获取视频中的每一帧图像
+#判断摄像头是否为打开关态
+while cap.isOpened():
+    #从摄像头读视频帧
     ret, frame = cap.read()
-    if ret == True: 
-        # 5.将每一帧图像写入到输出文件中
-        out.write(frame)
+    if ret == True:
+        #将视频帧在窗口中显示
+        cv2.imshow('video', frame)
+        #重新将窗口设备为指定大小
+        cv2.resizeWindow('video', 640, 360)
+        #写数据到多媒体文件
+        vw.write(frame)
+        #等待键盘事件，如果为q，退出
+        key = cv2.waitKey(1)
+        if(key & 0xFF == ord('q')):
+            break
     else:
-        break 
+        break
 
-# 6.释放资源
+#释放VideoCapture
 cap.release()
-out.release()
-cv.destroyAllWindows()
+#释放VideoWriter
+vw.release()
+#vw.release()
+cv2.destroyAllWindows()
 ```
 
 ## 视频追踪
