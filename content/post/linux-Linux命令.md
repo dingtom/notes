@@ -672,27 +672,41 @@ export	显示从 Shell 中导出成环境变量的变量，也能通过它将自
 #### gzip 
 >压缩文件成者文件夹
 -d解压缩文件
-```gzip file1 ```压缩一个叫做 'file1'的文件
-```gzip -9 file1 ```最大程度压缩
+
+
+```bash
+gzip file1 #压缩一个叫做 'file1'的文件
+gzip -9 file1 #最大程度压缩
+```
 
 #### zip
+
 >-r 参数表示递归打包包含子目录的全部内容，9 压缩级别最大1 最小, 
 -q 参数表示为安静模式，即不向屏幕输出信息，
 -o，表示输出文件,
 -l 参数将 LF 转换为 CR+LF 来达到win/linux兼容。
 
->``` zip -r  -9 -q -o -l shiyanlou.zip /home/shiyanlou/Desktop```将目录 /home/shiyanlou/Desktop 打包成一个文件
-```zip file1.zip file1 ```创建一个zip格式的压缩包
-```zip -r file1.zip file1 file2 dir1``` 将几个文件和目录同时压缩成一个zip格式的压缩包
+```bash
+zip -r  -9 -q -o -l shiyanlou.zip /home/shiyanlou/Desktop
+#将目录 /home/shiyanlou/Desktop 打包成一个文件
+zip file1.zip file1 
+#创建一个zip格式的压缩包
+zip -r file1.zip file1 file2 dir1 
+#将几个文件和目录同时压缩成一个zip格式的压缩包
+```
 
 #### unzip
+
 >-q 使用安静模式
 -d指定路径
 -l 不解压只想查看压缩包的内容
 -O（英文字母，大写 o）参数指定编码类型：(win默认会采用 GBK , Linux 默认 UTF-8 )
 unzip -O GBK 中文压缩文件.zip
 
-``` unzip -q shiyanlou.zip -d ziptest```将文件解压到指定目录：
+```bash
+unzip -q shiyanlou.zip -d ziptest
+#将文件解压到指定目录：
+```
 
 #### tar 
 >-P 保留绝对路径符
@@ -702,23 +716,32 @@ unzip -O GBK 中文压缩文件.zip
 >-c 表示创建一个 tar 包文件
 >-f 用于指定创建的文件名，件名必须紧跟在 -f 参数之后
 >-p在其他主机还原时希望保留文件的属性
->-h 备份链接指向的
->
->源文件而不是链接本身
+>-h 备份链接指向的源文件而不是链接本身
 >-x解包一个文件
 >-C 指定保存路径
 >-t只查看不解包文件 
 
-```tar -jcv -f filename.tar.bz2``` 压缩
-```tar -jtv -f filename.tar.bz2``` 查询
-```tar -jxv -f filename.tar.bz2 -C dirname```解压
-
-
+```bash
+tar -jcv -f filename.tar.bz2 
+#压缩
+tar -jtv -f filename.tar.bz2 
+#查询
+tar -jxv -f filename.tar.bz2 -C dirname
+#解压
+```
 
 #### rar
-rar a file1.rar test_file 创建一个叫做 'file1.rar' 的包
-rar a file1.rar file1 file2 dir1 同时压缩 'file1', 'file2' 以及目录 'dir1'
-rar x file1.rar 解压rar包
+
+```bash
+rar a file1.rar test_file 
+#创建一个叫做 'file1.rar' 的包
+rar a file1.rar file1 file2 dir1 
+#同时压缩 'file1', 'file2' 以及目录 'dir1'
+rar x file1.rar 
+#解压rar包
+```
+
+
 
 
 
