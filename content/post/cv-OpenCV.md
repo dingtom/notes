@@ -386,6 +386,7 @@ thresh, dst = cv2.threshold(src, thresh, maxVal, type)
 # type: cv2.THRESH_BINARY 大于阈值的为maxVal,小于的为0  cv2.THRESH_BINARY_INV 小于阈值的为maxVal,大于的为0 
 
 
+# 由于光照不均匀以及阴影的存在，只有一个间值会使得在阴影处的白色被二值化成黑色
 # 自适应阈值
 dst = cv2.adaptiveThreshold(src, maxVal, adaptiveMethod, type, blockSize, C)
 #type:cv2.THRESH_BINARY
