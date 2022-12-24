@@ -1,0 +1,434 @@
+<!doctype html><html lang=zh-cn data-theme=dark><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: dark)"><meta name=generator content="Hugo 0.107.0"><link rel="shortcut icon" type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="面试-模型评估指标"><meta itemprop=description content="Love and Peace"><meta itemprop=datePublished zgotmplz><meta itemprop=dateModified zgotmplz><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=keywords content="Hugo,NexT,主题,简单,强大"><meta property="og:type" content="article"><meta property="og:title" content="面试-模型评估指标"><meta property="og:description" content="Love and Peace"><meta property="og:image" content="/imgs/hugo_next_avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="/post/%E9%9D%A2%E8%AF%95-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/"><meta property="og:site_name" content="Tomding's Blog"><meta property="og:locale" content="zh-CN"><meta property="article:author" content="Tomding"><meta property="article:published_time" content="2022-12-01 19:59:47 +0800 CST"><meta property="article:modified_time" content="2022-12-01 19:59:47 +0800 CST"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.0ca97083b39f4eda7430d39b99194aa738d8f8db4090f00bc7e814013df699cb.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"%E9%9D%A2%E8%AF%95-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87","permalink":"/post/%E9%9D%A2%E8%AF%95-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/","title":"面试-模型评估指标","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>面试-模型评估指标 - Tomding's Blog</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Tomding's Blog</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Just do it!</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>首页</a></li><li class="menu-item menu-item-about"><a href=/about.html class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>73</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><a href=#rmseroot-mean-square-error均方根误差>RMSE（Root Mean Square Error）均方根误差</a></li><li><a href=#msemean-square-error均方误差>MSE（Mean Square Error）均方误差</a></li><li><a href=#maemean-absolute-error平均绝对误差>MAE（Mean Absolute Error）平均绝对误差</a></li><li><a href=#sdstandard-deviation标准差>SD（Standard Deviation）标准差</a></li><li><a href=#r2r--square拟合优度>R2(R- Square）拟合优度</a></li></ul><ul><li><a href=#查全率召回率recall>查全率/召回率(recall)</a></li><li><a href=#f1>F1</a></li><li><a href=#rocreceiver-operating-characteristic曲线又称接受者操作特征曲线>ROC(Receiver Operating Characteristic）曲线，又称接受者操作特征曲线</a></li><li><a href=#auc>AUC</a></li><li><a href=#binary-class-classification>Binary-class classification</a></li><li><a href=#宏平均macro-averaging和微平均micro-averaging>宏平均（Macro-averaging）和微平均（Micro-averaging）：</a></li><li><a href=#multi-class-classification>Multi-class classification</a></li></ul><ul><li><a href=#iou交并比>IOU（交并比）</a></li><li><a href=#dice系数>Dice系数</a></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=Tomding src=/imgs/img-lazy-loading.gif data-src=/imgs/hugo_next_avatar.png><p class=site-author-name itemprop=name>Tomding</p><div class=site-description itemprop=description>Love and Peace</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>73</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>5</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>0</span>
+<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/ title="Github → https://github.com/" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span>
+<span class=links-of-social-item><a href=https://www.zhihu.com/hot title="知乎 → https://www.zhihu.com/hot" rel=noopener class=hvr-icon-pulse target=_blank><i class="fa fa-book fa-fw hvr-icon"></i>知乎</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt=共享知识></a></div><div class="links-of-blogroll site-overview-item animated"><div class=links-of-blogroll-title><i class="fa fa-globe fa-fw"></i>友情链接</div><ul class=links-of-blogroll-list><li class=links-of-blogroll-item><a href=https://gitee.com/hugo-next/hugo-theme-next title=https://gitee.com/hugo-next/hugo-theme-next target=_blank>Hugo-NexT</a></li><li class=links-of-blogroll-item><a href=https://lisenhui.cn title=https://lisenhui.cn target=_blank>凡梦星尘空间站</a></li></ul></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
+<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=2022-12-01T19:59:47+08:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=275201></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=587></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2022-12-18T15:39:56+08:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
+<span>0%</span></div></div><div class=reading-progress-bar></div><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=/post/%E9%9D%A2%E8%AF%95-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=name content="Tomding"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="Tomding"><meta itemprop=description content="Love and Peace"></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="面试-模型评估指标"><meta itemprop=description content="回归 RMSE（Root Mean Square Error）均方根误差 衡量观测值与真实值之间的偏差。常用来作为机器学习模型预测结果衡量的标准。如果存在个别偏离程度"></span><header class=post-header><h1 class=post-title itemprop="name headline">面试-模型评估指标
+<a href=https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/post/%e9%9d%a2%e8%af%95-%e6%a8%a1%e5%9e%8b%e8%af%84%e4%bc%b0%e6%8c%87%e6%a0%87.md rel="noopener external nofollow noreferrer" target=_blank class="exturl post-edit-link" title=编辑><i class="fa fa-pen-nib"></i></a></h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2022-12-01 19:59:47 +0800 CST" itemprop="dateCreated datePublished" datetime="2022-12-01 19:59:47 +0800 CST">2022-12-01</time></span>
+<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/%E9%9D%A2%E8%AF%95 itemprop=url rel=index><span itemprop=name>面试</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="far fa-file-word"></i></span>
+<span class=post-meta-item-text>字数：</span><span>5064</span></span>
+<span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="far fa-clock"></i></span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>11分钟</span></span>
+<span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
+<span class=post-meta-item-text>浏览：</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/post/%E9%9D%A2%E8%AF%95-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-61f9cf3c7b3600d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h1 id=回归>回归</h1><h2 id=rmseroot-mean-square-error均方根误差>RMSE（Root Mean Square Error）均方根误差</h2><p>衡量观测值与真实值之间的偏差。常用来作为机器学习模型预测结果衡量的标准。<code>如果存在个别偏离程度非常大的离群点（ Outlier）时，即使离群点数量非常少，也会让RMSE指标变得很差。</code>
+$RMSE = \sqrt{\frac{1}{m}
+\sum_{i=1}^{m}(\hat{y_i}-y_i)^2} $</p><h2 id=msemean-square-error均方误差>MSE（Mean Square Error）均方误差</h2><p>通过平方的形式便于求导，所以常被用作线性回归的损失函数。
+$MSE = \frac{1}{m}
+\sum_{i=1}^{m} (\hat{y_i}-y_i)^2 $</p><blockquote><p><code>L2 loss对异常敏感</code>，用了MSE为代价函数的模型因为要最小化这个异常值带来的误差，就会尽量贴近异常值，也就是对outliers（异常值）赋予更大的权重。这样就会影响总体的模型效果。</p></blockquote><h2 id=maemean-absolute-error平均绝对误差>MAE（Mean Absolute Error）平均绝对误差</h2><p>是绝对误差的平均值。可以更好地反映预测值误差的实际情况。
+$MAE = \frac{1}{m}
+\sum_{i=1}^{m} |\hat{y_i}-y_i| $</p><blockquote><p>相比MSE来说，MAE在数据里有不利于预测结果<code>异常值的情况下鲁棒性更好</code>。</p></blockquote><h2 id=sdstandard-deviation标准差>SD（Standard Deviation）标准差</h2><p>方差的算术平均根。用于衡量<code>一组数值的离散程度</code>。
+$SD = \sqrt{\frac{1}{m}
+\sum_{i=1}^{m} (avg(x)-x_i)^2} $</p><h2 id=r2r--square拟合优度>R2(R- Square）拟合优度</h2><p>R2=SSR/SST=1-SSE/SST
+其中：SST=SSR+SSE，</p><p>SST(total sum of squares)为总离差平方和，$S S_{\text {tot}}=\sum\left(y_{i}-\overline{y}<em>{i}\right)^{2}$
+SSR(regression sum of squares)为回归平方和，$S S</em>{\text {reg}}=\sum\left(\hat{y_{i}}-\overline{y}<em>{i}\right)^{2}$
+SSE(error sum of squares) 为残差平方和，$S S</em>{\text {res}}=\sum\left(y_{i}-\hat{y}_{i}\right)^{2}$</p><p>其中$\overline{y}$表示$y$的平均值得到$R^2$表达式为：
+$R^{2}=1-\frac{S S_{\text {res}}}{S S_{\text {tot}}}=1-\frac{\sum\left(y_{i}-\hat{y}<em>{i}\right)^{2}}{\sum\left(y</em>{i}-\overline{y}\right)^{2}}$</p><p><code>$R^2$因变量的变异能通过回归关系被由自変量解释的比例取值范国是0~1，R越近1表明回归平方和占总平方和的比例越大回归线与各观则点越接近</code>，回归的拟合程度就越好。所以R也称为拟合优度（ Goodness of Fit）的统计量</p><h1 id=error--bias--variance>Error = Bias + Variance</h1><p>Error反映的是整个模型的准确度，Bias反映的是模型在样本上的输出与真实值之间的误差，即模型本身的精准度，Variance反映的是模型<code>每一次输出结果与模型输出期望之间的误差</code>，即模型的稳定性。</p><h1 id=分类>分类</h1><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-c549d3e0714b4c33.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-7de651cf33176560.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+<code>第一个字母T或F，代表这个分类结果是否正确，第二个字母P或N，代表分类器认为是正例还是负例。</code></p><p>准确率（accuracy）</p><p>所有预测正确的样本/总的样本 = （TP+TN）/总</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>from sklearn.metrics import accuracy
+</span></span><span style=display:flex><span>accuracy = accuracy_score(y_test, y_predict)
+</span></span></code></pre></div><h1 id=查准率precision>查准率（precision)</h1><p><code>预测为正的样本中有多少是真的正样本</code>。两种可能，一种就是把正类预测为正类(TP)，另一种就是把负类预测为正类(FP)
+$P = \frac{TP}{TP+FP}$</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>from sklearn.metrics import precision_score
+</span></span><span style=display:flex><span>precision = precision_score(y_test, y_predict)
+</span></span></code></pre></div><h2 id=查全率召回率recall>查全率/召回率(recall)</h2><p><code>样本中的正样本有多少被预测正确了</code>。两种可能，一种是把原来的正类预测成正类(TP)，另一种就是把原来的正类预测为负类(FN)：
+$R = \frac{TP}{TP+FN}$</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>from sklearn.metrics import recall_score
+</span></span><span style=display:flex><span>recall = recall_score(y_test, y_predict)#recall得到的是一个list，是每一类的召回率
+</span></span></code></pre></div><h2 id=f1>F1</h2><p>recall 和 precision是负相关的</p><p>置信度提高→TP↓，FN↑，FP↓↓→precision↑，recall↓</p><p>置信度降低→TP↑，FN↓，FP↑↑→precision↓，recall↑</p><p>对于搜索应用，在保证召回率的条件下，尽量提升精确率。即<code>减少假阳性率</code>、搜索出无关的信息。</p><p>对于癌症检测、地震检测、金融欺诈等，则在保证精确率的条件下，尽量提升召回率。<code>减少假阴性率、</code>漏检</p><p>是<code>准确率和召回率</code>的调和平均
+$$
+F_{1}=2 \cdot \frac{\text { precision } \cdot \text {recall}}{\text {precision}+\text {recall}}
+$$</p><p>$F1=\frac{ 2TP }{ 2TP+FP+FN }$
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-68c5cfb068834c48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>from sklearn.metrics import f1_score
+</span></span><span style=display:flex><span>f1_score(y_test, y_predict)
+</span></span></code></pre></div><blockquote><p>在一个总样本中，正样本占90%，负样本占10%，样本是严重不平衡的，只需要将全部样本预测为正样本
+准确率为90%
+查准率为90%
+召回率100%
+F1 为18/19</p></blockquote><p>#　PR曲线(AP,mAP)</p><p>PR曲线是准确率和召回率的点连成的线。
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-354497cc47a449f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=曲线越靠近右上角性能越好></p><p><code>PR曲线下的面积就定义为AP</code>(Average precision)，</p><p><code>均精度均值(mAP)</code>：把每个类别的AP都算一遍，再取平均值</p><p><a href=mailto:mAP@0.5 title=mAP@0.5>mAP@0.5</a> &
+<a href=mailto:mAP@0.5 title=mAP@0.5>mAP@0.5
+</a>:0.95：就是mAP是用Precision和Recall作为两轴作图后围成的面积，m表示平均，@后面的数表示判定iou为正负样本的阈值，@0.5:0.95表示阈值取0.5:0.05:0.95后取均值。（0.5是iou阈值=0.5时mAP的值），mAP只是一个形容PR曲线面积的代替词叫做平均准确率，越高越好。</p><blockquote><ul><li>TPR(True Positive Rate)真正例率/查准率
+真实的正例中，被预测为正例的比例：TPR = TP/(TP+FN)。</li><li>FPR(False Positive Rate)假正例率
+真实的反例中，被预测为正例的比例：FPR = FP/(TN+FP)。</li><li>ROC-AUC兼顾正负例，能够更加稳定地反映模型本身的好坏。</li><li>PR曲线与ROC曲线的相同点是都采用了TPR (Recall)，都可以用AUC来衡量分类器的效果。不同点是ROC曲线使用了FPR，而PR曲线使用了Precision</li><li><code>因此PR曲线的两个指标都聚焦于正例。类别不平衡问题中由于主要关心正例</code>，所以在此情况下PR曲线被广泛认为优于ROC曲线。</li></ul></blockquote><h2 id=rocreceiver-operating-characteristic曲线又称接受者操作特征曲线>ROC(Receiver Operating Characteristic）曲线，又称接受者操作特征曲线</h2><p>通过动态地调整截断点，从最高的得分开始（实际上是从正无穷开始，对应着ROC曲线的零点），逐渐调整到最低得分，每一个截断点都会对应一个FPR和TPR，在ROC图上绘制出每个截断点对应的位置再连接所有点就得到最终的ROC曲线。</p><p>ROC的含义为概率曲线，AUC的含义为<code>正负类可正确分类的程度</code>。
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-41fc89a5e72e229c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=左上角最好></p><blockquote><ul><li><p>TPR(True Positive Rate)真正例率/查准率
+真实的正例中，被预测为正例的比例：TPR = TP/(TP+FN)。</p></li><li><p>FPR(False Positive Rate)假正例率
+真实的反例中，被预测为正例的比例：FPR = FP/(TN+FP)。</p></li><li><p><code>理想分类器TPR=1，FPR=0。ROC曲线越接近左上角，代表模型越好，即ACU接近1</code></p></li><li><p><code>截断点thresholds</code>
+指的就是<code>区分正负预测结果的阈值</code></p></li></ul></blockquote><h2 id=auc>AUC</h2><p><code>AUC值为ROC曲线所覆盖的区域面积，显然,AUC越大,分类器分类效果越好。</code></p><p>AUC = 1，是完美分类器，采用这个预测模型时，不管设定什么阈值都能得出完美预测。绝大多数预测的场合，不存在完美分类器。0.5 &lt; AUC &lt; 1，优于随机猜测。AUC = 0.5，跟随机猜测一样。AUC &lt; 0.5，比随机猜测还差。</p><p>计算：分别随机从正负样本集中抽取一个正样本，一个负样本，<code>正样本的预测值大于负样本的概率。</code></p><blockquote><p>例题：对于样本 (A, B, C, D, E) ,
+已知其对应的label为 (0, 1, 1 ,0 ,1)，
+模型A的预估值为 (0.2, 0.4, 0.7, 0.3, 0.5),
+模型 B 的预估值为(0.1, 0.3, 0.9, 0.2, 0.5)，
+模型 A 和 模型 B 的 AUC 一样
+本题样本对（一个正样本，一个负样本组成一个样本对）共有3*2=6个，
+分别是（B，A）（B，D）（C，A）（C，D）（E，A）（E，D）。
+模型A对应概率为(0.4,0.2)，(0.4,0.3)，(0.7,0.2)，(0.7,0.3)，(0.5,0.2)，(0.5,0.3)，
+可得其对应AUC为：(1+1+1+1+1+1)/6 = 1。同理，模型B也等于1。</p></blockquote><h2 id=binary-class-classification>Binary-class classification</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>np.random.seed(10)
+</span></span><span style=display:flex><span>import matplotlib.pyplot as plt
+</span></span><span style=display:flex><span>from sklearn.datasets import make_classification
+</span></span><span style=display:flex><span>from sklearn.preprocessing import label_binarize
+</span></span><span style=display:flex><span>from sklearn.ensemble import RandomForestClassifier
+</span></span><span style=display:flex><span>from sklearn.model_selection import train_test_split
+</span></span><span style=display:flex><span>from sklearn.metrics import roc_curve
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>X, y = make_classification(n_samples=80000)
+</span></span><span style=display:flex><span># print(X[0], y[0])
+</span></span><span style=display:flex><span># (80000, 20) (80000,)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>X_train, X_train_lr, y_train, y_train_lr = train_test_split(X_train,                                                            y_train,                                                       test_size=0.5)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>from keras.models import Sequential
+</span></span><span style=display:flex><span>from keras.layers import Dense
+</span></span><span style=display:flex><span>from sklearn.metrics import auc
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>model = Sequential()
+</span></span><span style=display:flex><span>model.add(Dense(20, input_dim=20, activation=&#39;relu&#39;))
+</span></span><span style=display:flex><span>model.add(Dense(40, activation=&#39;relu&#39;))
+</span></span><span style=display:flex><span>model.add(Dense(1, activation=&#39;sigmoid&#39;))
+</span></span><span style=display:flex><span>model.compile(loss=&#39;binary_crossentropy&#39;, optimizer=&#39;adam&#39;, metrics=[&#39;accuracy&#39;])
+</span></span><span style=display:flex><span>model.fit(X_train, y_train, epochs=5, batch_size=100, verbose=1)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>y_pred = model.predict(X_test).ravel()
+</span></span><span style=display:flex><span>print(y_pred.shape)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fpr, tpr, thresholds = roc_curve(y_test, y_pred)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>roc_auc = auc(fpr, tpr)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt.figure(1)
+</span></span><span style=display:flex><span>plt.plot([0, 1], [0, 1], &#39;k--&#39;)
+</span></span><span style=display:flex><span>plt.plot(fpr, tpr, label=&#39;Keras (area = {:.3f})&#39;.format(roc_auc))
+</span></span><span style=display:flex><span>plt.xlabel(&#39;False positive rate&#39;)
+</span></span><span style=display:flex><span>plt.ylabel(&#39;True positive rate&#39;)
+</span></span><span style=display:flex><span>plt.title(&#39;ROC curve&#39;)
+</span></span><span style=display:flex><span>plt.legend(loc=&#39;best&#39;)
+</span></span><span style=display:flex><span>plt.show()
+</span></span><span style=display:flex><span># Zoom in view of the upper left corner.
+</span></span><span style=display:flex><span>plt.figure(2)
+</span></span><span style=display:flex><span>plt.xlim(0, 0.2)
+</span></span><span style=display:flex><span>plt.ylim(0.8, 1)
+</span></span><span style=display:flex><span>plt.plot([0, 1], [0, 1], &#39;k--&#39;)
+</span></span><span style=display:flex><span>plt.plot(fpr, tpr, label=&#39;Keras (area = {:.3f})&#39;.format(roc_auc))
+</span></span><span style=display:flex><span>plt.xlabel(&#39;False positive rate&#39;)
+</span></span><span style=display:flex><span>plt.ylabel(&#39;True positive rate&#39;)
+</span></span><span style=display:flex><span>plt.title(&#39;ROC curve (zoomed in at top left)&#39;)
+</span></span><span style=display:flex><span>plt.legend(loc=&#39;best&#39;)
+</span></span><span style=display:flex><span>plt.show()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># (Optional) Prediction probability density function(PDF)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>from scipy.interpolate import UnivariateSpline
+</span></span><span style=display:flex><span>from matplotlib import pyplot as plt
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def plot_pdf(y_pred, y_test, name=None, smooth=500):
+</span></span><span style=display:flex><span>    positives = y_pred[y_test == 1]
+</span></span><span style=display:flex><span>    negatives = y_pred[y_test == 0]
+</span></span><span style=display:flex><span>    N = positives.shape[0]
+</span></span><span style=display:flex><span>    n = N//smooth
+</span></span><span style=display:flex><span>    s = positives
+</span></span><span style=display:flex><span>    p, x = np.histogram(s, bins=n) # bin it into n = N//10 bins
+</span></span><span style=display:flex><span>    x = x[:-1] + (x[1] - x[0])/2   # convert bin edges to centers
+</span></span><span style=display:flex><span>    f = UnivariateSpline(x, p, s=n)
+</span></span><span style=display:flex><span>    plt.plot(x, f(x))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    N = negatives.shape[0]
+</span></span><span style=display:flex><span>    n = N//smooth
+</span></span><span style=display:flex><span>    s = negatives
+</span></span><span style=display:flex><span>    p, x = np.histogram(s, bins=n) # bin it into n = N//10 bins
+</span></span><span style=display:flex><span>    x = x[:-1] + (x[1] - x[0])/2   # convert bin edges to centers
+</span></span><span style=display:flex><span>    f = UnivariateSpline(x, p, s=n)
+</span></span><span style=display:flex><span>    plt.plot(x, f(x))
+</span></span><span style=display:flex><span>    plt.xlim([0.0, 1.0])
+</span></span><span style=display:flex><span>    plt.xlabel(&#39;density&#39;)
+</span></span><span style=display:flex><span>    plt.ylabel(&#39;density&#39;)
+</span></span><span style=display:flex><span>    plt.title(&#39;PDF-{}&#39;.format(name))
+</span></span><span style=display:flex><span>    plt.show()
+</span></span><span style=display:flex><span>plot_pdf(y_pred, y_test, &#39;Keras&#39;)
+</span></span></code></pre></div><h2 id=宏平均macro-averaging和微平均micro-averaging>宏平均（Macro-averaging）和微平均（Micro-averaging）：</h2><p>用途：用于<code>多个类别的分类</code>
+<code>宏平均</code>：先计算每一类的F1，然后3类求平均。</p><p><code>微平均</code>：先计算出所有类别总共的TP，FP和FN，然后按公式求。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-f1c02a2540993c29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-4ab30c4df81575e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><p><img src=/imgs/img-lazy-loading.gif data-src=https://i.loli.net/2021/05/18/wUd9HlnC1jNpfim.png alt></p><h2 id=multi-class-classification>Multi-class classification</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>
+</span></span><span style=display:flex><span>from sklearn.datasets import make_classification
+</span></span><span style=display:flex><span>from sklearn.preprocessing import label_binarize
+</span></span><span style=display:flex><span>from keras.models import Sequential
+</span></span><span style=display:flex><span>from keras.layers import Dense
+</span></span><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>from scipy import interp
+</span></span><span style=display:flex><span>import matplotlib.pyplot as plt
+</span></span><span style=display:flex><span>from itertools import cycle
+</span></span><span style=display:flex><span>from sklearn.model_selection import train_test_split
+</span></span><span style=display:flex><span>from sklearn.metrics import roc_curve, auc
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 标签共三类
+</span></span><span style=display:flex><span>n_classes = 3
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>X, y = make_classification(n_samples=80000, n_features=20, n_informative=3, n_redundant=0, n_classes=n_classes,
+</span></span><span style=display:flex><span>    n_clusters_per_class=2)
+</span></span><span style=display:flex><span># print(X.shape, y.shape)
+</span></span><span style=display:flex><span># print(X[0], y[0])
+</span></span><span style=display:flex><span># (80000, 20) (80000,)
+</span></span><span style=display:flex><span># [-1.90920853 -1.30052757 -0.76903467 -3.2546519  -0.02947816  0.14105006
+</span></span><span style=display:flex><span>#   0.43556031 -0.81300607 -0.94553296 -0.92774495  1.49041451 -0.4443121
+</span></span><span style=display:flex><span>#  -1.16342165 -0.32997815 -1.02907045 -0.39950447 -0.711287    0.51382424
+</span></span><span style=display:flex><span>#   2.88822258 -2.0935274 ] 
+</span></span><span style=display:flex><span># 1
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># Binarize the output相当于one_hot
+</span></span><span style=display:flex><span>y = label_binarize(y, classes=[0, 1, 2])
+</span></span><span style=display:flex><span># print(y.shape, y[0])
+</span></span><span style=display:flex><span># (80000, 3) [0 1 0]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5)
+</span></span><span style=display:flex><span>model = Sequential()
+</span></span><span style=display:flex><span>model.add(Dense(20, input_dim=20, activation=&#39;relu&#39;))
+</span></span><span style=display:flex><span>model.add(Dense(40, activation=&#39;relu&#39;))
+</span></span><span style=display:flex><span>model.add(Dense(3, activation=&#39;softmax&#39;))
+</span></span><span style=display:flex><span>model.compile(loss=&#39;categorical_crossentropy&#39;, optimizer=&#39;adam&#39;, metrics=[&#39;accuracy&#39;])
+</span></span><span style=display:flex><span>model.fit(X_train, y_train, epochs=1, batch_size=100, verbose=1)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>y_pred = model.predict(X_test)
+</span></span><span style=display:flex><span># print(y_pred.shape)
+</span></span><span style=display:flex><span># (40000, 3)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># Compute ROC curve and ROC area for each class
+</span></span><span style=display:flex><span>fpr = dict()
+</span></span><span style=display:flex><span>tpr = dict()
+</span></span><span style=display:flex><span>roc_auc = dict()
+</span></span><span style=display:flex><span>for i in range(n_classes):
+</span></span><span style=display:flex><span>    # scores = np.array([0.1, 0.4, 0.35, 0.8])
+</span></span><span style=display:flex><span>    # fpr, tpr, thresholds = metrics.roc_curve(y, scores, pos_label=2)
+</span></span><span style=display:flex><span>    # y 就是标准值，scores 是每个预测值对应的阳性概率，比如0.1就是指第一个数预测为阳性的概率为0.1，很显然，
+</span></span><span style=display:flex><span>    # y 和 socres应该有相同多的元素，都等于样本数。pos_label=2 是指在y中标签为2的是标准阳性标签，其余值是阴性。
+</span></span><span style=display:flex><span>    # 接下来选取一个阈值计算TPR/FPR,阈值的选取规则是在scores值中从大到小的以此选取，于是第一个选取的阈值是0.8
+</span></span><span style=display:flex><span>    # label=[1,1,2,2] scores=[0.1,0.4,0.35,0.8] thresholds=[0.8,0.4,0.35,0.1] 以threshold为0.8为例，将0.8与
+</span></span><span style=display:flex><span>    # scores 中所有值比较大小得到预测值，[0,0,0,1].对于label中两个1，其概率分别为0.1，0.4，小于阈值0.8，判定为
+</span></span><span style=display:flex><span>    # 负样本，而他们的label是1，说明他们确实是负样本，判断正确，是两个TN；两个2，对应概率为0.35，0.8，0.35小于
+</span></span><span style=display:flex><span>    # 0.8，判定为负样本，但是label是2，应该是个正样本，所以这是个FN；最后0.8&gt;=0.8,这是个TP，所以最后的结果是
+</span></span><span style=display:flex><span>    # ：1个TP，2个TN，1个FN，0个FP
+</span></span><span style=display:flex><span>    fpr[i], tpr[i], thresholds = roc_curve(y_test[:, i], y_pred[:, i])  # (40000,)
+</span></span><span style=display:flex><span>    # print(fpr[i].shape)# (5491,)# (6562,)# (4271,)
+</span></span><span style=display:flex><span>    roc_auc[i] = auc(fpr[i], tpr[i])
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 计算microROC曲线和ROC面积 
+</span></span><span style=display:flex><span># .ravel()将多维数组转换为一维数组
+</span></span><span style=display:flex><span>fpr[&#34;micro&#34;], tpr[&#34;micro&#34;]  , thresholds = roc_curve(y_test.ravel(), y_pred.ravel())  #  (120000,)
+</span></span><span style=display:flex><span>roc_auc[&#34;micro&#34;] = auc(fpr[&#34;micro&#34;], tpr[&#34;micro&#34;])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 计算macroROC曲线和ROC面积
+</span></span><span style=display:flex><span># 首先，汇总所有的假阳性率
+</span></span><span style=display:flex><span># np.unique() 该函数是去除数组中的重复数字，并进行排序之后输出。
+</span></span><span style=display:flex><span># print(np.concatenate([fpr[i] for i in range(n_classes)]).shape) (16324,)
+</span></span><span style=display:flex><span>all_fpr = np.unique(np.concatenate([fpr[i] for i in range(n_classes)]))  # (7901,)
+</span></span><span style=display:flex><span># 然后插值所有的ROC曲线在这一点
+</span></span><span style=display:flex><span># np.zeros_like() 这个函数的意思就是生成一个和你所给数组a相同shape的全0数组。
+</span></span><span style=display:flex><span>mean_tpr = np.zeros_like(all_fpr)
+</span></span><span style=display:flex><span>for i in range(n_classes):
+</span></span><span style=display:flex><span>    mean_tpr += interp(all_fpr, fpr[i], tpr[i])
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span># 最后求平均值并计算AUC
+</span></span><span style=display:flex><span>mean_tpr /= n_classes
+</span></span><span style=display:flex><span>fpr[&#34;macro&#34;] = all_fpr
+</span></span><span style=display:flex><span>tpr[&#34;macro&#34;] = mean_tpr
+</span></span><span style=display:flex><span>roc_auc[&#34;macro&#34;] = auc(fpr[&#34;macro&#34;], tpr[&#34;macro&#34;])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># Plot all ROC curves
+</span></span><span style=display:flex><span>plt.figure(1)
+</span></span><span style=display:flex><span>plt.plot(fpr[&#34;micro&#34;], tpr[&#34;micro&#34;], color=&#39;deeppink&#39;, linestyle=&#39;:&#39;, linewidth=4,
+</span></span><span style=display:flex><span>         label=&#39;micro-average ROC curve (area = {0:0.2f})&#39;.format(roc_auc[&#34;micro&#34;]))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt.plot(fpr[&#34;macro&#34;], tpr[&#34;macro&#34;],color=&#39;navy&#39;, linestyle=&#39;:&#39;, linewidth=4,
+</span></span><span style=display:flex><span>         label=&#39;macro-average ROC curve (area = {0:0.2f})&#39;.format(roc_auc[&#34;macro&#34;]))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>colors = cycle([&#39;aqua&#39;, &#39;darkorange&#39;, &#39;cornflowerblue&#39;])
+</span></span><span style=display:flex><span>for i, color in zip(range(n_classes), colors):
+</span></span><span style=display:flex><span>    plt.plot(fpr[i], tpr[i], color=color, linewidth=2,
+</span></span><span style=display:flex><span>             label=&#39;ROC curve of class {0} (area = {1:0.2f})&#39;.format(i, roc_auc[i]))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt.plot([0, 1], [0, 1], &#39;k--&#39;, linewidth=2)
+</span></span><span style=display:flex><span>plt.xlim([0.0, 1.0])
+</span></span><span style=display:flex><span>plt.ylim([0.0, 1.05])
+</span></span><span style=display:flex><span>plt.xlabel(&#39;False Positive Rate&#39;)
+</span></span><span style=display:flex><span>plt.ylabel(&#39;True Positive Rate&#39;)
+</span></span><span style=display:flex><span>plt.title(&#39;Some extension of Receiver Operating Characteristic to multi-class&#39;)
+</span></span><span style=display:flex><span>plt.legend(loc=&#39;best&#39;)
+</span></span><span style=display:flex><span>plt.show()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># Zoom in view of the upper left corner.
+</span></span><span style=display:flex><span>plt.figure(2)
+</span></span><span style=display:flex><span>plt.xlim(0, 0.2)
+</span></span><span style=display:flex><span>plt.ylim(0.8, 1)
+</span></span><span style=display:flex><span>plt.plot(fpr[&#34;micro&#34;], tpr[&#34;micro&#34;],color=&#39;deeppink&#39;, linestyle=&#39;:&#39;, linewidth=4,
+</span></span><span style=display:flex><span>         label=&#39;micro-average ROC curve (area = {0:0.2f})&#39;.format(roc_auc[&#34;micro&#34;]))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt.plot(fpr[&#34;macro&#34;], tpr[&#34;macro&#34;],color=&#39;navy&#39;, linestyle=&#39;:&#39;, linewidth=4,
+</span></span><span style=display:flex><span>         label=&#39;macro-average ROC curve (area = {0:0.2f})&#39;.format(roc_auc[&#34;macro&#34;]))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>colors = cycle([&#39;aqua&#39;, &#39;darkorange&#39;, &#39;cornflowerblue&#39;])
+</span></span><span style=display:flex><span>for i, color in zip(range(n_classes), colors):
+</span></span><span style=display:flex><span>    plt.plot(fpr[i], tpr[i], color=color, linewidth=2,
+</span></span><span style=display:flex><span>             label=&#39;ROC curve of class {0} (area = {1:0.2f})&#39;.format(i, roc_auc[i]))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt.plot([0, 1], [0, 1], &#39;k--&#39;, linewidth=2)
+</span></span><span style=display:flex><span>plt.xlabel(&#39;False Positive Rate&#39;)
+</span></span><span style=display:flex><span>plt.ylabel(&#39;True Positive Rate&#39;)
+</span></span><span style=display:flex><span>plt.title(&#39;ROC curve (zoomed in at top left)&#39;)
+</span></span><span style=display:flex><span>plt.legend(loc=&#39;best&#39;)
+</span></span><span style=display:flex><span>plt.show()
+</span></span></code></pre></div><h1 id=混淆矩阵confusion-matrix>混淆矩阵confusion matrix：</h1><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-5e76761a1c380552.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt="混淆矩阵的每一列代表了<code>预测类别</code>每一行代表了数据的<code>真实类别</code>"></p><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-8a1b811436e18079?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>def plot_confusion_matrix(title, y_true, y_pred, labels):
+</span></span><span style=display:flex><span>    import matplotlib.pyplot as plt
+</span></span><span style=display:flex><span>    from sklearn.metrics import confusion_matrix
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    cm = confusion_matrix(y_true, y_pred)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    # np.newaxis的作用就是在这一位置增加一个一维，这一位置指的是np.newaxis所在的位置，比较抽象，需要配合例子理解。
+</span></span><span style=display:flex><span>    # x1 = np.array([1, 2, 3, 4, 5])
+</span></span><span style=display:flex><span>    # the shape of x1 is (5,)
+</span></span><span style=display:flex><span>    # x1_new = x1[:, np.newaxis]
+</span></span><span style=display:flex><span># now, the shape of x1_new is (5, 1)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    cm_normalized = cm.astype(&#39;float&#39;) / cm.sum(axis=1)[:, np.newaxis]
+</span></span><span style=display:flex><span>    # print (cm, &#39;\n\n&#39;, cm_normalized)
+</span></span><span style=display:flex><span>    # [[1 0 0 0 0]                           
+</span></span><span style=display:flex><span>    #  [0 1 0 0 0]
+</span></span><span style=display:flex><span>    #  [0 0 1 0 0]
+</span></span><span style=display:flex><span>    #  [0 0 0 1 0]
+</span></span><span style=display:flex><span>    #  [0 0 0 0 1]]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    #  [[1. 0. 0. 0. 0.]
+</span></span><span style=display:flex><span>    #  [0. 1. 0. 0. 0.]
+</span></span><span style=display:flex><span>    #  [0. 0. 1. 0. 0.]
+</span></span><span style=display:flex><span>    #  [0. 0. 0. 1. 0.]
+</span></span><span style=display:flex><span>    #  [0. 0. 0. 0. 1.]]
+</span></span><span style=display:flex><span>    tick_marks = np.array(range(len(labels))) + 0.5
+</span></span><span style=display:flex><span>    #  [0.5 1.5 2.5 3.5 4.5 5.5]
+</span></span><span style=display:flex><span>    np.set_printoptions(precision=2)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    plt.figure(figsize=(10, 8), dpi=120)
+</span></span><span style=display:flex><span>    ind_array = np.arange(len(labels))
+</span></span><span style=display:flex><span>    x, y = np.meshgrid(ind_array, ind_array)
+</span></span><span style=display:flex><span>    # print(ind_ａrray, &#39;\n\n&#39;, x, &#39;\n\n&#39;, y)
+</span></span><span style=display:flex><span>    # [0 1 2 3 4 5] 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    #  [[0 1 2 3 4 5]
+</span></span><span style=display:flex><span>    #  [0 1 2 3 4 5]
+</span></span><span style=display:flex><span>    #  [0 1 2 3 4 5]
+</span></span><span style=display:flex><span>    #  [0 1 2 3 4 5]
+</span></span><span style=display:flex><span>    #  [0 1 2 3 4 5]
+</span></span><span style=display:flex><span>    #  [0 1 2 3 4 5]] 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    #  [[0 0 0 0 0 0]
+</span></span><span style=display:flex><span>    #  [1 1 1 1 1 1]
+</span></span><span style=display:flex><span>    #  [2 2 2 2 2 2]
+</span></span><span style=display:flex><span>    #  [3 3 3 3 3 3]
+</span></span><span style=display:flex><span>    #  [4 4 4 4 4 4]
+</span></span><span style=display:flex><span>    #  [5 5 5 5 5 5]]
+</span></span><span style=display:flex><span>    intFlag = 0 # 标记在图片中对文字是整数型还是浮点型
+</span></span><span style=display:flex><span>    for x_val, y_val in zip(x.flatten(), y.flatten()):
+</span></span><span style=display:flex><span>        # plt.text()函数用于设置文字说明。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        if (intFlag):
+</span></span><span style=display:flex><span>            c = cm[y_val][x_val]
+</span></span><span style=display:flex><span>            plt.text(x_val, y_val, &#34;%d&#34; % (c,), color=&#39;red&#39;, fontsize=8, va=&#39;center&#39;, ha=&#39;center&#39;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        else:
+</span></span><span style=display:flex><span>            c = cm_normalized[y_val][x_val]
+</span></span><span style=display:flex><span>            if (c &gt; 0.01):
+</span></span><span style=display:flex><span>                plt.text(x_val, y_val, &#34;%0.2f&#34; % (c,), color=&#39;red&#39;, fontsize=7, va=&#39;center&#39;, ha=&#39;center&#39;)
+</span></span><span style=display:flex><span>            else:
+</span></span><span style=display:flex><span>                plt.text(x_val, y_val, &#34;%d&#34; % (0,), color=&#39;red&#39;, fontsize=7, va=&#39;center&#39;, ha=&#39;center&#39;)
+</span></span><span style=display:flex><span>    cmap = plt.cm.binary
+</span></span><span style=display:flex><span>    if(intFlag):
+</span></span><span style=display:flex><span>        plt.imshow(cm, interpolation=&#39;nearest&#39;, cmap=cmap)
+</span></span><span style=display:flex><span>    else:
+</span></span><span style=display:flex><span>        plt.imshow(cm_normalized, interpolation=&#39;nearest&#39;, cmap=cmap)
+</span></span><span style=display:flex><span>    plt.gca().set_xticks(tick_marks, minor=True)
+</span></span><span style=display:flex><span>    plt.gca().set_yticks(tick_marks, minor=True)
+</span></span><span style=display:flex><span>    plt.gca().xaxis.set_ticks_position(&#39;none&#39;)
+</span></span><span style=display:flex><span>    plt.gca().yaxis.set_ticks_position(&#39;none&#39;)
+</span></span><span style=display:flex><span>    plt.grid(True, which=&#39;minor&#39;, linestyle=&#39;-&#39;)
+</span></span><span style=display:flex><span>    plt.gcf().subplots_adjust(bottom=0.15)
+</span></span><span style=display:flex><span>    plt.title(title)
+</span></span><span style=display:flex><span>    plt.colorbar()
+</span></span><span style=display:flex><span>    xlocations = np.array(range(len(labels)))
+</span></span><span style=display:flex><span>    plt.xticks(xlocations, labels, rotation=90)
+</span></span><span style=display:flex><span>    plt.yticks(xlocations, labels)
+</span></span><span style=display:flex><span>    plt.ylabel(&#39;Index of True Classes&#39;)
+</span></span><span style=display:flex><span>    plt.xlabel(&#39;Index of Predict Classes&#39;)
+</span></span><span style=display:flex><span>    plt.savefig(&#39;confusion_matrix.jpg&#39;, dpi=300)
+</span></span><span style=display:flex><span>    plt.show()
+</span></span><span style=display:flex><span>title=&#39;Confusion Matrix&#39;
+</span></span><span style=display:flex><span>labels = [&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;F&#39;, &#39;G&#39;]
+</span></span><span style=display:flex><span>y_true = [1, 2, 3, 4, 5]# np.loadtxt(r&#39;/home/dingtom/a.txt&#39;)
+</span></span><span style=display:flex><span>y_pred = [1, 2, 3, 4, 5]# np.loadtxt(r&#39;/home/dingtom/b.txt&#39;)
+</span></span><span style=display:flex><span>plot＿confusion_matrix(title, y_true,y_pred, labels)
+</span></span></code></pre></div><p>参考：
+<a href=https://github.com/Tony607/ROC-Keras/blob/master/ROC-Keras.ipynb title=https://github.com/Tony607/ROC-Keras/blob/master/ROC-Keras.ipynb rel="noopener external nofollow noreferrer" target=_blank class=exturl>https://github.com/Tony607/ROC-Keras/blob/master/ROC-Keras.ipynb
+<i class="fa fa-external-link-alt"></i></a></p><h1 id=图像>图像</h1><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/04/13/O41uKwk9roFP7jN.png alt=quicker_a44be6fb-20d3-40fa-9159-8216b432de21.png></p><h2 id=iou交并比>IOU（交并比）</h2><p>它是模型所<code>预测</code>的检测框(bbox)和<code>真实</code>的检测框(ground truth)的<code>交集和并集</code>之间的比例。用于比较有限样本集之间的相似性与差异性。<code>Jaccard值越大，样本相似度越高</code>。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/03/31/YXvqJbEAxoIruaf.png alt=quicker_981e58bd-cd83-4bcb-97d3-b59e6a823416.png></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>iou_score</span>(output, target):
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;&#39;&#39;计算IoU指标&#39;&#39;&#39;</span>
+</span></span><span style=display:flex><span>	  intersection <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>logical_and(target, output) 
+</span></span><span style=display:flex><span>    union <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>logical_or(target, output) 
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> np<span style=color:#f92672>.</span>sum(intersection) <span style=color:#f92672>/</span> np<span style=color:#f92672>.</span>sum(union)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 生成随机两个矩阵测试</span>
+</span></span><span style=display:flex><span>target <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randint(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>2</span>, (<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>3</span>))
+</span></span><span style=display:flex><span>output <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randint(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>2</span>, (<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>3</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>d <span style=color:#f92672>=</span> iou_score(output, target)
+</span></span><span style=display:flex><span><span style=color:#75715e># ----------------------------</span>
+</span></span><span style=display:flex><span>target <span style=color:#f92672>=</span> array([[<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>       			[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>],
+</span></span><span style=display:flex><span>			    [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>]])
+</span></span><span style=display:flex><span>output <span style=color:#f92672>=</span> array([[<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>],
+</span></span><span style=display:flex><span>       			[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>       			[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]])
+</span></span><span style=display:flex><span>d <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.4</span>
+</span></span></code></pre></div><h2 id=dice系数>Dice系数</h2><p>一种集合相似度度量指标,通常用于<code>计算两个样本的相似度</code>,值的范围0~1 ,分割结果最好时值为1 ,最差时值为0 。<code>Dice相似系数对mask的内部填充比较敏感</code>。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/03/31/JmXVnbEeHgiPsCK.png alt=quicker_ac9f04ae-c215-40f7-bffd-bf9bbfec8003.png></p><p>Dice系数与分类评价指标中的F1 score很相似</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/04/13/7iv3pCDURLOaxqV.png alt=quicker_8d5bd778-0023-4880-b554-309808a8581e.png></p><p>所以，Dice系数不仅在直观上体现了target与prediction的相似程度，同时其本质上还隐含了精确率和召回率两个重要指标。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/03/31/TwyK6WUlzjRfvu1.png alt=quicker_e2a97b9b-e737-4043-93d0-76a00e22716e.png></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>dice</span>(output, target):
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#39;&#39;&#39;计算Dice系数&#39;&#39;&#39;</span>
+</span></span><span style=display:flex><span>    smooth <span style=color:#f92672>=</span> <span style=color:#ae81ff>1e-6</span> <span style=color:#75715e># 避免0为除数</span>
+</span></span><span style=display:flex><span>    intersection <span style=color:#f92672>=</span> (output <span style=color:#f92672>*</span> target)<span style=color:#f92672>.</span>sum()
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> (<span style=color:#ae81ff>2.</span> <span style=color:#f92672>*</span> intersection <span style=color:#f92672>+</span> smooth) <span style=color:#f92672>/</span> (output<span style=color:#f92672>.</span>sum() <span style=color:#f92672>+</span> target<span style=color:#f92672>.</span>sum() <span style=color:#f92672>+</span> smooth)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 生成随机两个矩阵测试</span>
+</span></span><span style=display:flex><span>target <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randint(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>2</span>, (<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>3</span>))
+</span></span><span style=display:flex><span>output <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randint(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>2</span>, (<span style=color:#ae81ff>3</span>, <span style=color:#ae81ff>3</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>d <span style=color:#f92672>=</span> dice(output, target)
+</span></span><span style=display:flex><span><span style=color:#75715e># ----------------------------</span>
+</span></span><span style=display:flex><span>target <span style=color:#f92672>=</span> array([[<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>       			[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>],
+</span></span><span style=display:flex><span>			    [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>]])
+</span></span><span style=display:flex><span>output <span style=color:#f92672>=</span> array([[<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>],
+</span></span><span style=display:flex><span>       			[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>],
+</span></span><span style=display:flex><span>       			[<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>]])
+</span></span><span style=display:flex><span>d <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.5714286326530524</span>
+</span></span></code></pre></div></div><footer class=post-footer><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
+面试-模型评估指标</li><li class=post-copyright-author><strong>本文作者：</strong>
+Tomding</li><li class=post-copyright-link><strong>本文链接：</strong>
+<a id=post-cr-link href=/post/%E9%9D%A2%E8%AF%95-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/ title=面试-模型评估指标>/post/%E9%9D%A2%E8%AF%95-%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0%E6%8C%87%E6%A0%87/</a></li><li class=post-copyright-license><strong>版权声明：</strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class=followme><span>欢迎关注我的其它发布渠道</span><div class=social-list><div class=social-item><a target=_blank class=social-link href=/images/wechat_channel.jpg><span class=icon><i class="fab fa-weixin"></i></span>
+<span class=label>WeChat</span></a></div><div class=social-item><a target=_blank class=social-link href=/atom.xml><span class=icon><i class="fa fa-rss"></i></span>
+<span class=label>RSS</span></a></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/post/%E9%9D%A2%E8%AF%95-%E6%A8%A1%E5%9E%8B%E8%B0%83%E5%8F%82/ rel=next title=面试-模型调参><i class="fa fa-chevron-left"></i> 面试-模型调参</a></div><div class="post-nav-prev post-nav-item"><a href=/post/%E9%9D%A2%E8%AF%95-%E6%A8%A1%E5%9E%8B%E8%9E%8D%E5%90%88/ rel=prev title=面试-模型融合>面试-模型融合
+<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
+<span itemprop=copyrightYear>2010 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span>
+<span class=author itemprop=copyrightHolder>Tomding</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":false,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.e34208af37d3db3a875e6fbad04c2f1c241185af925a9c6ebf79dd1ba2730cdd.js defer></script></body></html>

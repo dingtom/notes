@@ -390,8 +390,9 @@ thresh, dst = cv2.threshold(src, thresh, maxVal, type)
 # 自适应阈值
 dst = cv2.adaptiveThreshold(src, maxVal, adaptiveMethod, type, blockSize, C)
 #type:cv2.THRESH_BINARY
-#adapttiveMethod:cv2.ADAPTIVE_THRESH_MEAN_C 计算邻近区域的平均值  
-#ADAPTIVE THRESH GAUSSIAN C:高斯窗口加权平均值
+#adapttiveMethod:
+#      cv2.ADAPTIVE_THRESH_MEAN_C 计算邻近区域的平均值  
+#          ADAPTIVE THRESH GAUSSIAN C:高斯窗口加权平均值
 #thresh=blockSize*blockSize矩阵平均值灰度-C，大于thresh的为maxValue
 ```
 
@@ -587,6 +588,8 @@ cv.pyrDown(img)        #对图像进行下采样
 ![quicker_1f6186c4-8aed-459e-9ae3-ae3af2b09f3c.png](https://s2.loli.net/2022/04/28/UmGAk7bd5sRrO41.png)
 
 ### 腐蚀、膨胀
+
+
 
 ![quicker_d0033f1b-8a50-4897-ae0e-ee437855f6db.png](https://s2.loli.net/2022/04/28/FcCt2RTbWafueKZ.png)
 
