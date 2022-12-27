@@ -1,5 +1,5 @@
 ---
-    # 文章标题
+```python    # 文章标题
     title: "cv-OpenCV"
     # 分类
     categories: 
@@ -401,27 +401,74 @@ dst = cv2.adaptiveThreshold(src, maxVal, adaptiveMethod, type, blockSize, C)
 ```python
 contours, hierarchy = cv2.findContours(image, mode, method)
 # 轮廓检索模式
-# Cv2.RETR_EXTERNAL检测外轮廓
-# Cv2.RETR_TREE等级树结构的轮廓
+#cv2.RETR_EXTERNAL=0,表示只检测外轮廓
+#cv2.RETR_LIST=1,检测的轮廓不建立等级关系,所有轮廓放在list中
+#cv2.RETR_CCOMP=2,每层最多两级
+#cv2.RETR_TREE=3,按树形存储轮廓
+
 # 轮廓近似方法
-# Cv2.CHAIN_APPROX_NONE所有点
-# Cv2.CHAIN_APPROX_SIMPLE直线两端点
-# contours：list结构，列表中每个元素代表一个边沿信息。每个元素是(x,1,2)的三维向量，x表示该条边沿里共有多少个像素点，第三维的那个“2”表示每个点的横、纵坐标；
-# 注意：如果输入选择cv2.CHAIN_APPROX_SIMPLE，则contours中一个list元素所包含的x点之间应该用直线连接起来，这个可以用cv2.drawContours()函数观察一下效果。
+# Cv2.CHAIN_APPROX_NONE保存所有轮廓上的点
+# Cv2.CHAIN_APPROX_SIMPLE只保存角点
+
+# 返回：contours：list结构，列表中每个元素代表一个边沿信息。每个元素是(x,1,2)的三维向量，x表示该条边沿里共有多少个像素点，第三维的那个“2”表示每个点的横、纵坐标；
+
 # hierarchy：返回类型是(x,4)的二维ndarray。x和contours里的x是一样的意思。如果输入选择cv2.RETR_TREE，则以树形结构组织输出，hierarchy的四列分别对应下一个轮廓编号、上一个轮廓编号、父轮廓编号、子轮廓编号，该值为负数表示没有对应项。
 iamge = cv2.drawContours(image, contours, i, color, thickness)
 # i：列表中第几个轮廓，-1所有；color：绘制颜色；thickness：线条粗细，-1填充
+x, y, w, h = cv2.boundingRect(contours)  
+#用一个最小的矩形，把找到的形状包起来。x，y是矩阵左上点的坐标，w，h是矩阵的宽和高
 
+contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+cv2.drawContours(img, contours, 1, (0, 255, 0), 1)
+#计算面积
+area = cv2.contourArea(contours[0])
+# #计算周长
+len = cv2.arcLength(contours[0], False) # 是否是闭合的轮廓
 
-x, y, w, h = cv2.boundingRect(contours)  用一个最小的矩形，把找到的形状包起来。
-x，y是矩阵左上点的坐标，w，h是矩阵的宽和高
+# 多边形逼近（减少存储数据量）与凸包（只需轮廓不需要细节）
+approx = cv2.approxPolyDP(contours[0], 20, True)
+# curve:轮廓;epsilon精度;closed:是否是闭合的轮廓
+hull = cv2.convexHull(contours[1])  
+# points:轮廓 clockwise:顺时针绘制
+drawShape(img, hull)
+
+def drawShape(src, points):
+    i = 0
+    while i < len(points):
+        if i == len(points) - 1:
+            x, y = points[i][0]
+            x1, y1 = points[0][0]
+            cv2.line(src, (x, y), (x1, y1), (0, 0, 255), 3)
+        else:
+            x, y = points[i][0]
+            x1, y1 = points[i + 1][0]
+            cv2.line(src, (x, y), (x1, y1), (0, 0, 255), 3)
+        i = i + 1
+
+#最小外接矩形
+minAreaRect(points)
+# points:轮廓返回值：RotatedRect  x,y width,height angle   包含角度
+#最大外接矩形
+boundingRect(array)
+#array::轮廓 返回值：Rect x,y width,height  无角度
+r = cv2.minAreaRect(contours[1])
+box = cv2.boxPoints(r)
+box = np.int0(box)
+cv2.drawContours(img, [box], 0, (0, 0, 255), 2)
+
+x, y, w, h = cv2.boundingRect(contours[1])
+cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
 ```
 
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-26/2022-12-26_22-23-44-716.png)
 
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-26/2022-12-26_22-24-26-877.png)
 
+![![](https://gitee.com/tomding1995/picture/raw/master/2022-12-26/2022-12-26_22-26-37-785.png)](https://gitee.com/tomding1995/picture/raw/master/2022-12-26/2022-12-26_22-26-13-181.png)
 
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-26/2022-12-26_22-26-37-785.png)
 
-
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-26/2022-12-26_23-23-15-430.png)
 
 ## 几何变换
 
@@ -518,8 +565,8 @@ dst = cv.warpAffine(img1,M,dsize=(cols,rows)，borderValue=(0,0,0))
 #  图像旋转
 #旋转中图像仍保持这原始尺寸。图像旋转后图像的水平对称轴、垂直对称轴及中心坐标原点都可能会发生变换，因此需要对图像旋转中的坐标进行相应转换。
 # 生成旋转矩阵
-M = cv.getRotationMatrix2D((cols/2,rows/2),90,1)
-# center：旋转中心；angle：逆时针旋转角度；scale：缩放比例
+h, w, ch = dog.shape
+M = cv2.getRotationMatrix2D((w/2, h/2), 90, 1.0)# center：旋转中心；angle：逆时针旋转角度；scale：缩放比例
 
 # 进行旋转变换
 dst = cv.warpAffine(img,M,(cols,rows))
@@ -627,26 +674,21 @@ cv.pyrDown(img)        #对图像进行下采样
 # 腐蚀、膨胀
 cv.erode(img,kernel,iterations)
 cv.dilate(img,kernel,iterations)
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7))
+dst = cv2.erode(img, kernel, iterations=1)
+dst1 = cv2.dilate(dst, kernel, iterations=1)
 
 # 开闭运算# 礼帽和黑帽
-
 kernel = np.ones((10, 10), np.uint8)# 2 创建核结构
+# kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7))
+#MORPH_RECT、MORPH_ELLIPSE、MORPH_CROSS
 cvOpen = cv.morphologyEx(img1,cv.MORPH_OPEN,kernel) # 开运算
 cvClose = cv.morphologyEx(img2,cv.MORPH_CLOSE,kernel)# 闭运算
 cvOpen = cv.morphologyEx(img1,cv.MORPH_TOPHAT,kernel) # 礼帽运算
 cvClose = cv.morphologyEx(img2,cv.MORPH_BLACKHAT,kernel)# 黑帽运算
-
-
-
+# 梯度
+# dst1 = cv2.morphologyEx(img, cv2.MORPH_GRADIENT, kernel) # 原图-腐蚀，得到边缘
 ```
-
-
-
-
-
-
-
-
 
 ## 图像平滑（滤波)
 
@@ -941,6 +983,16 @@ plt.show()
 
 `Harris`
 
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-27/2022-12-27_10-29-56-180.png)
+
+光滑地区，无论向哪里移动，衡量系数不变
+边缘地址，垂直边缘移动时，衡量系统变化具烈
+在交点处，往那个方向移动，衡量系统都变化具烈
+
+
+
+
+
 优点：
 
 - `旋转不变性`，椭圆转过一定角度但是其形状保持不变（特征值保持不变）
@@ -953,7 +1005,7 @@ plt.show()
 
 `Shi-Tomasi`
 
-对Harris算法的改进，能够更好地检测角点
+对Harris算法的改进，能够更好地检测角点；Harris角点检测算的稳定性和k有关，而k是个经验值，不好设定最佳值
 
 ![quicker_9e35dfbc-4202-42a3-870a-64675311f339.png](https://s2.loli.net/2022/05/04/NOYH29EvTesRbBJ.png)
 
@@ -964,10 +1016,10 @@ plt.show()
 ```python
 #Hariis检测使用的API是：
 dst=cv.cornerHarris(src, blockSize, ksize, k)
-img：数据类型为 ﬂoat32 的输入图像。
-blockSize：角点检测中要考虑的邻域大小。
-ksize：sobel求导使用的核大小
-k ：角点检测方程中的自由参数，取值参数为 [0.04，0.06].
+#img：数据类型为 ﬂoat32 的输入图像。
+#blockSize：角点检测中要考虑的邻域大小。
+#ksize：sobel求导使用的核大小
+#k ：角点检测方程中的自由参数，取值参数为 [0.04，0.06].
 
 
 # 1 读取图像，并转换成灰度图像
@@ -987,13 +1039,12 @@ plt.xticks([]), plt.yticks([])
 plt.show()
 
 # Shi-Tomasi
-corners = cv2.goodFeaturesToTrack ( image, maxcorners, qualityLevel, minDistance )
-Image: 输入灰度图像
-maxCorners : 获取角点数的数目。
-qualityLevel：该参数指出最低可接受的角点质量水平，在0-1之间。
-minDistance：角点之间最小的欧式距离，避免得到相邻特征点。
-返回：
-Corners: 搜索到的角点，在这里所有低于质量水平的角点被排除掉，然后把合格的角点按质量排序，然后将质量较好的角点附近（小于最小欧式距离）的角点删掉，最后找到maxCorners个角点返回。
+corners = cv2.goodFeaturesToTrack(image, maxcorners, qualityLevel, minDistance )
+#Image: 输入灰度图像
+#maxCorners : 获取角点数的数目。
+#qualityLevel：该参数指出最低可接受的角点质量水平，在0-1之间。
+#minDistance：角点之间最小的欧式距离，避免得到相邻特征点。
+#返回：Corners: 搜索到的角点，在这里所有低于质量水平的角点被排除掉，然后把合格的角点按质量排序，然后将质量较好的角点附近（小于最小欧式距离）的角点删掉，最后找到maxCorners个角点返回。
 
 import numpy as np 
 import cv2 as cv
@@ -1491,5 +1542,29 @@ while True:
         break
 
 cv2.destroyAllWindows()
+```
+
+# 使用网络摄像头
+
+```python
+import cv2
+import time
+
+# 这里使用了网络摄像头，可换为ipconf=0使用笔记本摄像头
+ipconf = 'http://192.168.68.221:4747/mjpegfeed?1920x1080'
+cap = cv2.VideoCapture(ipconf)
+assert cap.isOpened(), 'Wrong!'
+settings = {'fps': 20, 'size': (1280, 720)}
+while cap.isOpened():
+    ret, frame = cap.read()
+    assert ret, 'Fail to get frames!'
+    frame = cv2.resize(frame, settings['size'])
+    # frame = cv2.flip(frame, 0)
+    h, w, ch = frame.shape
+    M = cv2.getRotationMatrix2D((w/2, h/2), 270, 1.0)
+    frame = cv2.warpAffine(frame, M, (w, h))
+
+    cv2.imshow('window', frame)
+    cv2.waitKey(1)
 ```
 
