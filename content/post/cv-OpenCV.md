@@ -1041,10 +1041,17 @@ plt.show()
 # Shi-Tomasi
 corners = cv2.goodFeaturesToTrack(image, maxcorners, qualityLevel, minDistance )
 #Image: 输入灰度图像
-#maxCorners : 获取角点数的数目。
-#qualityLevel：该参数指出最低可接受的角点质量水平，在0-1之间。
+#maxCorners : 角点的数目。值为0表示无限制
+#qualityLevel：最低可接受的角点质量水平，小于1.0的正数，一般在0.01-0.1之间。
 #minDistance：角点之间最小的欧式距离，避免得到相邻特征点。
+#mask:感兴趣的区域
+#blockSize:检测窗口
+#useHarrisDetector:True使用Harris算法
+#k:使用Harris算法设置k,默认是0.04
+
 #返回：Corners: 搜索到的角点，在这里所有低于质量水平的角点被排除掉，然后把合格的角点按质量排序，然后将质量较好的角点附近（小于最小欧式距离）的角点删掉，最后找到maxCorners个角点返回。
+
+
 
 import numpy as np 
 import cv2 as cv
@@ -1069,11 +1076,11 @@ plt.show()
 
 ## SIFT/SURF算法
 
-Harris和Shi-Tomasi角点检测算法，这两种算法具有旋转不变性，但不具有尺度不变性
+Harris和Shi-Tomasi角点检测算法，这两种算法具有旋转不变性，但不具有尺度不变性（缩放后，原来的角点有可能就不是角点了）
 
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-28/2022-12-28_09-31-50-759.png)
 
-
-`SIFT算法的实质是在不同的尺度空间上查找关键点(特征点)，并计算出关键点的方向。SIFT所查找到的关键点是一些十分突出，不会因光照，仿射变换和噪音等因素而变化的点，如角点、边缘点、暗区的亮点及亮区的暗点`，但并不完美，仍然存在实时性不高，有时特征点较少，对边缘光滑的目标无法准确提取特征点等缺陷
+`SIFT（Scale-Invariant Feature Transform）算法的实质是在不同的尺度空间上查找关键点(特征点)，并计算出关键点的方向。SIFT所查找到的关键点是一些十分突出，不会因光照，仿射变换和噪音等因素而变化的点，如角点、边缘点、暗区的亮点及亮区的暗点`，但并不完美，仍然存在实时性不高，有时特征点较少，对边缘光滑的目标无法准确提取特征点等缺陷
 
 
 
@@ -1086,32 +1093,41 @@ SIFT原理：
 
 
 
-使用 SIFT 算法进行关键点检测和描述的执行速度比较慢， 需要速度更快的算法。 2006 年 Bay提出了 SURF 算法，是SIFT算法的增强版，它的计算量小，运算速度快，提取的特征与SIFT几乎相同，将其与SIFT算法对比如下：
+使用 SIFT 算法进行关键点检测和描述的执行速度比较慢， 需要速度更快的算法。 2006 年 Bay提出了 `SURF （Speeded-Up Robust Features）`算法，是SIFT算法的增强版，`它的计算量小，运算速度快，提取的特征与SIFT几乎相同`，将其与SIFT算法对比如下：
 
 ![quicker_cdef8f3f-84d9-4b0e-aa28-dd880ba6aab0.png](https://s2.loli.net/2022/05/04/f1HINV4cnmzRDKp.png)
 
 
 
+`ORB(Oriented FAST and Rotated BRIEF)`
+
+ORB可以做到实时检测
+ORB=Oriented FAST+Rotated BRIEF
+
 ```python
-# 实例化sift
+# 1.实例化sift
 sift = cv.xfeatures2d.SIFT_create()
-# 利用sift.detectAndCompute()检测关键点并计算
+
+# 2.利用sift.detectAndCompute()检测关键点并计算
 kp,des = sift.detectAndCompute(gray,None)
-gray: 进行关键点检测的图像，注意是灰度图像
-返回：
-kp: 关键点信息，包括位置，尺度，方向信息
-des: 关键点描述符，每个关键点对应128个梯度信息的特征向量
-# 将关键点检测结果绘制在图像上
+#gray: 进行关键点检测的图像，注意是灰度图像
+#mask：指明对img中哪个区域进行计算
+#返回：kp: 关键点信息，包括位置，尺度，方向信息
+#des: 关键点描述子，每个关键点对应128个梯度信息的特征向量
+#关键点：位置，大小和方向
+#关键点描述子：记录了关键点周围对其有贡献的像素点的一组向量值，其不受仿射变换、光照变换等影响
+
+# 3.将关键点检测结果绘制在图像上
 cv.drawKeypoints(image, keypoints, outputimage, color, flags)
-image: 原始图像
-keypoints：关键点信息，将其绘制在图像上
-outputimage：输出图片，可以是原始图像
-color：颜色设置，通过修改（b,g,r）的值,更改画笔的颜色，b=蓝色，g=绿色，r=红色。
-flags：绘图功能的标识设置
-cv2.DRAW_MATCHES_FLAGS_DEFAULT：创建输出图像矩阵，使用现存的输出图像绘制匹配对和特征点，对每一个关键点只绘制中间点
-cv2.DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG：不创建输出图像矩阵，而是在输出图像上绘制匹配对
-cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS：对每一个特征点绘制带大小和方向的关键点图形
-cv2.DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS：单点的特征点不被绘制
+#image: 原始图像
+#keypoints：关键点信息，将其绘制在图像上
+#outputimage：输出图片，可以是原始图像
+#color：颜色设置，通过修改（b,g,r）的值,更改画笔的颜色，b=蓝色，g=绿色，r=红色。
+#flags：绘图功能的标识设置
+# cv2.DRAW_MATCHES_FLAGS_DEFAULT：创建输出图像矩阵，使用现存的输出图像绘制匹配对和特征点，对每一个关键点只绘制中间点
+# cv2.DRAW_MATCHES_FLAGS_DRAW_OVER_OUTIMG：不创建输出图像矩阵，而是在输出图像上绘制匹配对
+# cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS：对每一个特征点绘制带大小和方向的关键点图形
+# cv2.DRAW_MATCHES_FLAGS_NOT_DRAW_SINGLE_POINTS：单点的特征点不被绘制
 
 
 # 1 读取图像
@@ -1129,6 +1145,123 @@ plt.figure(figsize=(8,6),dpi=100)
 plt.imshow(img[:,:,::-1]),plt.title('sift检测')
 plt.xticks([]), plt.yticks([])
 plt.show()
+
+
+# 创建surf对象
+# surf = cv2.xfeatures2d.SURF_create()
+# 使用surf进行检测
+# kp, des = surf.detectAndCompute(gray, None)
+# 绘制keypoints
+# cv2.drawKeypoints(gray, kp, img)
+
+
+# 创建ORB对象
+# orb = cv2.ORB_create()
+# orb进行检测
+# kp, des = orb.detectAndCompute(gray, None)
+# 绘制keypoints
+# cv2.drawKeypoints(gray, kp, img)
+
+
+
+```
+
+
+
+暴力特征匹配原理
+它使用第一组中的每个特征的描述子；与第二组中的所有特征描术子进行匹配；计算它们之间的差距，然后将最接近一个匹配返回
+
+
+
+FLANN
+在进行批量特征匹配时，FLANN速度更快
+由于它使用的是邻近近似值，所以精度较差
+
+
+
+
+
+图像查找
+特征匹配+单应性矩阵（）
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-28/2022-12-28_10-46-50-646.png)
+
+
+
+```python
+img1 = cv2.imread('opencv_search.png')
+img2 = cv2.imread('opencv_orig.png')
+g1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+g2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+sift = cv2.xfeatures2d.SIFT_create()
+kp1, des1 = sift.detectAndCompute(g1, None)
+kp2, des2 = sift.detectAndCompute(g2, None)
+# 1.创建匹配器
+bf = cv2.BFMatcher(cv2.NORM_L1)
+#normType:NORM_L1,NORM L2,HAMMING1...
+#crossCheck:是否进行交叉匹配，默认为false
+# 2.特征匹配
+match = bf.match(des1, des2)
+# 3.绘制匹配点+
+img3 = cv2.drawMatches(img1, kp1, img2, kp2, match, None)
+#搜索img,kp
+#匹配图img,kp
+#match方法返回的匹配结果
+
+
+
+
+
+import cv2
+import numpy as np
+
+img1 = cv2.imread('opencv_search.png')
+img2 = cv2.imread('opencv_orig.png')
+g1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+g2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+sift = cv2.xfeatures2d.SIFT_create()
+kp1, des1 = sift.detectAndCompute(g1, None)
+kp2, des2 = sift.detectAndCompute(g2, None)
+
+# 创建匹配器
+index_params = dict(algorithm=1, trees=5)
+search_params = dict(checks=50)
+# index_params字典：匹配算法KDTREE=1、LSH
+# search_params字典：指定KDTREE算法中遍历树的次数
+flann = cv2.FlannBasedMatcher(index_params, search_params)
+# 对描述子进行匹配计算
+matchs = flann.knnMatch(des1, des2, k=2)
+# 参数为SIFT、SURF、ORB等计算的描述子
+# k,表示取欧式距离最近的前k个关键点
+# 返回对象：distance,描述子之间的距离，值越低越好
+# queryIdx,第一个图像的描述子索引值
+# trainIdx,第二个图的描述子索引值
+# imgIdx,第二个图的索引值
+good = []
+for i, (m, n) in enumerate(matchs):
+    if m.distance < 0.7 * n.distance:
+        good.append(m)
+
+if len(good) >= 4:
+    srcPts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
+    dstPts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
+    # 单应性矩阵
+    H, _ = cv2.findHomography(srcPts, dstPts, cv2.RANSAC, 5.0)
+    # 错误匹配过滤，随机抽样抑制算法；阀值
+    h, w = img1.shape[:2]
+    # 透视变换
+    pts = np.float32([[0, 0], [0, h - 1], [w - 1, h - 1], [w - 1, 0]]).reshape(-1, 1, 2)
+    dst = cv2.perspectiveTransform(pts, H)
+
+    cv2.polylines(img2, [np.int32(dst)], True, (0, 0, 255))
+else:
+    print('the number of good is less than 4.')
+    exit()
+# 绘制匹配点
+ret = cv2.drawMatchesKnn(img1, kp1, img2, kp2, [good], None)
+
+cv2.imshow('result', ret)
+cv2.waitKey()
 
 ```
 
@@ -1543,6 +1676,90 @@ while True:
 
 cv2.destroyAllWindows()
 ```
+
+# 车辆检测
+
+```python
+import cv2
+
+min_w = 90
+min_h = 90
+# 检测线的高度
+line_high = 550
+# 线的偏移
+offset = 7
+# 统计车的数量
+carno = 0
+# 存放有效车辆的数组
+cars = []
+
+
+def center(x, y, w, h):
+    x1 = int(w / 2)
+    y1 = int(h / 2)
+    cx = x + x1
+    cy = y + y1
+    return cx, cy
+
+
+cap = cv2.VideoCapture('video.mp4')
+bgsubmog = cv2.bgsegm.createBackgroundSubtractorMOG()
+# 形态学kernel
+kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+
+while True:
+    ret, frame = cap.read()
+    if ret:
+        # 灰度
+        cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # 去噪（高斯）
+        blur = cv2.GaussianBlur(frame, (3, 3), 5)
+        # 去背影
+        mask = bgsubmog.apply(blur)
+        # 腐蚀， 去掉图中小斑块
+        erode = cv2.erode(mask, kernel)
+        # 膨胀， 还原放大
+        dilate = cv2.dilate(erode, kernel, iterations=3)
+        # 闭操作，去掉物体内部的小块
+        close = cv2.morphologyEx(dilate, cv2.MORPH_CLOSE, kernel)
+        close = cv2.morphologyEx(close, cv2.MORPH_CLOSE, kernel)
+        cnts, h = cv2.findContours(close, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+        # 画一条检测线
+        cv2.line(frame, (10, line_high), (1200, line_high), (255, 255, 0), 3)
+
+        for (i, c) in enumerate(cnts):
+            (x, y, w, h) = cv2.boundingRect(c)
+            # 对车辆的宽高进行判断
+            # 以验证是否是有效的车辆
+            isValid = (w >= min_w) and (h >= min_h)
+            if not isValid:
+                continue
+            # 到这里都是有效的车
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+            cpoint = center(x, y, w, h)
+            cars.append(cpoint)
+            cv2.circle(frame, (cpoint), 5, (0, 0, 255), -1)
+            for (x, y) in cars:
+                if (y > line_high - offset) and (y < line_high + offset):
+                    carno += 1
+                    cars.remove((x, y))
+                    print(carno)
+
+        cv2.putText(frame, "Cars Count:" + str(carno), (500, 60), cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 0, 0), 5)
+        cv2.imshow('video', frame)
+        # cv2.imshow('erode', close)
+    key = cv2.waitKey(1)
+    if key == 27:
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+
+
+```
+
+
 
 # 使用网络摄像头
 

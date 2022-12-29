@@ -137,8 +137,6 @@ docker start myrunoob
 PubkeyAuthentication yes 
 AuthorizedKeysFile .ssh/authorized_keys 
 PermitRootLogin yes 
-
-
 ```
 
 #### 杀掉容器：kill
@@ -178,7 +176,6 @@ https://www.runoob.com/docker/docker-ps-command.html
 
 ```
 docker ps
-
 ```
 
 #### inspect
@@ -251,8 +248,6 @@ https://www.runoob.com/docker/docker-pull-command.html
 
 ```
 docker pull nginx（等效于nginx:latest）
-
-
 ```
 
 

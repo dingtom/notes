@@ -34,6 +34,25 @@ Command 1 ; Command 2 首先运行Command1，然后运行Command2
 Command 1 && Command 2 当Command1运行成功并结束，然后运行Command2
 Command 1 || Command 2 当Command1运行失败时才运行Command2
 
+# 修改软件源
+
+```bash
+sudo vim /etc/apt/sources.list
+#使用以下源替换掉文件中所有的内容，保存编辑好的文件。
+deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse 
+deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse 
+deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse 
+deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse 
+deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse 
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse 
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse 
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse 
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse 
+deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse
+```
+
+
+
 
 # 文件
 ![](https://upload-images.jianshu.io/upload_images/18339009-be4aa0903719bf65.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -387,18 +406,26 @@ ssh [选项] [参数]
 - -y：开启信任X11转发功能。
 
 ```bash
-# 安装 OpenSSH Server
-sudo apt-get install openssh-server
-# SSH 默认连接到目标主机的 22 端口上-p 指定端口号为 23.
-ssh -p 23 rumenz@test.com 
-# 远程执行命令
-ssh rumenz@test.com "ls -l"
-# 生成SSH密钥和公钥
-ssh-keygen -t rsa  # 最后在`~/.ssh`目录下会生成`id_rsa`(秘钥),`id_rsa.pub`(公钥)两个文件
+#安装 SSH
+apt-get install openssh-server
+#安装 SSH 的客户端
+apt-get install openssh-client
+#进入当前用户的用户根目录
+cd ~
+#生成密钥，一直回车就行
+ssh-keygen -t rsa -P ""
+#生成的密钥在当前用户根目录下的 .ssh 文件夹中以 . 开头的文件与文件夹 ls 是看不懂的，需要ls -al才能查看。
 
-# 拷贝本机的公钥到服务器
-ssh-copy-id rumenz@test.com
-#  输入远程用户的密码后，SSH公钥就会自动上传了．SSH公钥保存在远程Linux服务器的`~/.ssh/authorized_keys`文件中．
+#将公钥追加到 authorized_keys 文件中
+cat .ssh/id_rsa.pub >> .ssh/authorized_keys
+#启动 SSH 服务
+service ssh start
+#免密登录自己
+ssh 127.0.0.1
+#修改 .bashrc 文件，启动 shell 的时候，自动启动 SSH 服务
+vim ~/.bashrc
+#添加一行
+service ssh start
 ```
 
 
