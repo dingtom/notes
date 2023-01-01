@@ -6,7 +6,7 @@
             - code
         # 发表日期
         date: 2023-01-01T14:28:53+08:00
---- 
+---
 
 
 
@@ -124,23 +124,27 @@ git checkout 版本号 文件名
 # 让工作区的文件恢复为暂存区
 
 ```shell
-git checkout -- xx
-// --很重要，没有--，就变成了“切换到另一个分支”的命令
+# 未add 撤销工作区修改
+git restore <chaned_file>
+# 撤销git add，保留工作区修改
+git restore --staged <chaned_file>
+# 撤销git add和工作区修改
+git checkout HEAD <chaned_file>
+# 撤销git commit，保留git add和工作区修改
+git reset --soft HEAD~1
+# 撤销git commit和git add，保留工作区修改
+git reset HEAD~1
+# 撤销git commit,git add和工作区修改
+git reset --hard HEAD~1
 
+#和git reset不同，git revert 本质上是增加一个 反相的commit。revert只能前进不许后退，
+#在公有分支上 只能前进 不许后退，私有分支上可以使用reset
+#不过同步时要使用 git push -f
+git revert HEAD~1
+
+
+#从工作目录中移除没有track的文件.-d表示同时移除目录,-f表示force
 git clean -df
-//从工作目录中移除没有track的文件.-d表示同时移除目录,-f表示force
-
-git checkout . && git clean -df
-```
-
-**当你不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改, 让暂存区恢复成和HEAD的一样**
-
-```shell
-1.git reset HEAD -- 文件名
-# 就回到了场景1，用HEAD时，表示最新的版本。
-
-2.按场景1操作。 
-已经提交了不合适的修改到版本库时，想要撤销本次提交，参考版本回退一节，不过前提是没有推送到远程库。 
 ```
 
 
