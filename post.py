@@ -99,11 +99,11 @@ if __name__=='__main__':
     # os.system('*'*20)
     # os.system('git status')
     parser = argparse.ArgumentParser()
-    parser.add_argument('--draft_path', type=str, default='my_record/Linux', help='draft_path')
+    parser.add_argument('--draft_path', type=str, default='c:/myFile/notes/my_record/code', help='draft_path')
     opt = parser.parse_known_args()[0]
 
     draft_path = opt.draft_path
-    post_path = 'content/post'
+    post_path = 'c:/myFile/notes/content/post'
 
     insert_str = """---
         # 文章标题
@@ -113,7 +113,9 @@ if __name__=='__main__':
             - categories_name
         # 发表日期
         date: post_date
-
+--- \n\n"""
+    """
+    
         # 标签
         #tags:
         # 文章内容摘要
@@ -146,8 +148,7 @@ if __name__=='__main__':
         #math: mathjax
         # 开启各种图渲染，如流程图、时序图、类图等
         #mermaid: true
---- \n\n"""
-    
+    """
     f_list = []
     for root, subdir, files in os.walk(draft_path):
         for f_name in files:
@@ -170,4 +171,4 @@ if __name__=='__main__':
             f.write(insert + content)
             count = count + 1
     print('post {} file, please commit changes'.format(count))
-    os.system('hugo serve')
+    # os.system('hugo serve')
