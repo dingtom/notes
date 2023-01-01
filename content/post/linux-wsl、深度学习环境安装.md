@@ -161,6 +161,11 @@ sudo chmod a+r /usr/local/cuda-11.6/lib64/libcudnn*
 # https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/
 bash Anaconda3xxx.sh
 
+vim ~/.bashrc
+#追加
+export PATH=/home/lq/anaconda3/bin:$PATH    
+source ~/.bashrc  
+
 #创建虚拟环境：
 conda create -n tf python==3.9
 #复制环境
@@ -214,7 +219,6 @@ show_channel_urls: true
 #1. 打开cmd输入set命令查看用户目录USERPROFILE；
 #2. 目录中创建一个pip目录,建一个文件 pip.ini
 #3. 在 pip.ini 文件输入：
-
 [global]
 	trusted-host = pypi.douban.com
 	index-url = https://pypi.douban.com/simple

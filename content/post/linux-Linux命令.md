@@ -420,6 +420,16 @@ ssh-keygen -t rsa -P ""
 cat .ssh/id_rsa.pub >> .ssh/authorized_keys
 #启动 SSH 服务
 service ssh start
+
+#设置密码，修改配置文件
+passwd
+vim /etc/ssh/sshd_config
+#注释这一行PermitRootLogin prohibit-password
+#添加一行
+PermitRootLogin yes
+#重启ssh服务
+/etc/init.d/ssh restart
+
 #免密登录自己
 ssh 127.0.0.1
 #修改 .bashrc 文件，启动 shell 的时候，自动启动 SSH 服务

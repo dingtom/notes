@@ -225,7 +225,6 @@ docker cp [OPTIONS] SRC_PATH  CONTAINER:DEST_PATH
 docker cp /www/runoob 96f7f14e99ab:/www/
 将主机/www/runoob目录拷贝到容器96f7f14e99ab中，目录重命名为www。
 docker cp /www/runoob 96f7f14e99ab:/www
-
 ```
 
 OPTIONS说明：
