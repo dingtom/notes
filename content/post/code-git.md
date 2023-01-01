@@ -127,7 +127,7 @@ git checkout 版本号 文件名
 # 未add 撤销工作区修改
 git restore <chaned_file>
 # 撤销git add，保留工作区修改
-git restore --staged <chaned_file>
+git restore --staged <chaned_file>
 # 撤销git add和工作区修改
 git checkout HEAD <chaned_file>
 # 撤销git commit，保留git add和工作区修改
@@ -147,7 +147,7 @@ git revert HEAD~1
 git clean -df
 ```
 
-
+test
 
 
 
