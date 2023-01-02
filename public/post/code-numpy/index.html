@@ -1,0 +1,233 @@
+<!doctype html><html lang=zh-cn data-theme=dark><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: dark)"><meta name=generator content="Hugo 0.107.0"><link rel="shortcut icon" type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="code-numpy"><meta itemprop=description content="Love and Peace"><meta itemprop=datePublished zgotmplz><meta itemprop=dateModified zgotmplz><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=keywords content="Hugo,NexT,主题,简单,强大"><meta property="og:type" content="article"><meta property="og:title" content="code-numpy"><meta property="og:description" content="Love and Peace"><meta property="og:image" content="/imgs/hugo_next_avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="/post/code-numpy/"><meta property="og:site_name" content="Tomding's Blog"><meta property="og:locale" content="zh-CN"><meta property="article:author" content="Tomding"><meta property="article:published_time" content="2023-01-01 14:28:53 +0800 CST"><meta property="article:modified_time" content="2023-01-01 14:28:53 +0800 CST"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.0ca97083b39f4eda7430d39b99194aa738d8f8db4090f00bc7e814013df699cb.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"code-numpy","permalink":"/post/code-numpy/","title":"code-numpy","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>code-numpy - Tomding's Blog</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Tomding's Blog</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Just do it!</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>首页</a></li><li class="menu-item menu-item-about"><a href=/about.html class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>126</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><a href=#npwherecondition-x-y>np.where(condition, [x, y])</a></li><li><a href=#numpypiecewisex-condlist-funclist-args-kw>numpy.piecewise(x, condlist, funclist, *args, **kw)</a><ul><li><a href=#argsort>argsort</a></li></ul></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=Tomding src=/imgs/img-lazy-loading.gif data-src=/imgs/hugo_next_avatar.png><p class=site-author-name itemprop=name>Tomding</p><div class=site-description itemprop=description>Love and Peace</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>126</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>10</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>0</span>
+<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/ title="Github → https://github.com/" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span>
+<span class=links-of-social-item><a href=https://www.zhihu.com/hot title="知乎 → https://www.zhihu.com/hot" rel=noopener class=hvr-icon-pulse target=_blank><i class="fa fa-book fa-fw hvr-icon"></i>知乎</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt=共享知识></a></div><div class="links-of-blogroll site-overview-item animated"><div class=links-of-blogroll-title><i class="fa fa-globe fa-fw"></i>友情链接</div><ul class=links-of-blogroll-list><li class=links-of-blogroll-item><a href=https://gitee.com/hugo-next/hugo-theme-next title=https://gitee.com/hugo-next/hugo-theme-next target=_blank>Hugo-NexT</a></li><li class=links-of-blogroll-item><a href=https://lisenhui.cn title=https://lisenhui.cn target=_blank>凡梦星尘空间站</a></li></ul></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
+<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=2022-12-01T19:59:47+08:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=446699></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=958></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2023-01-01T14:28:53+08:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
+<span>0%</span></div></div><div class=reading-progress-bar></div><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=/post/code-numpy/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=name content="Tomding"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="Tomding"><meta itemprop=description content="Love and Peace"></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="code-numpy"><meta itemprop=description content="生成随机数 随机数种子 np.random.seed(42) 设置显示小数点后两位 np.set_printoptions(precision=2) 产生元素为0到1，大小为4*3的随机数据矩阵 np.random.rand(4,3) 元素由标准正态分布产生，大小为4*3的随机数矩阵 np.random.randn(4,3)"></span><header class=post-header><h1 class=post-title itemprop="name headline">code-numpy
+<a href=https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/post/code-numpy.md rel="noopener external nofollow noreferrer" target=_blank class="exturl post-edit-link" title=编辑><i class="fa fa-pen-nib"></i></a></h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-01-01 14:28:53 +0800 CST" itemprop="dateCreated datePublished" datetime="2023-01-01 14:28:53 +0800 CST">2023-01-01</time></span>
+<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/code itemprop=url rel=index><span itemprop=name>code</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="far fa-file-word"></i></span>
+<span class=post-meta-item-text>字数：</span><span>1997</span></span>
+<span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="far fa-clock"></i></span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>4分钟</span></span>
+<span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
+<span class=post-meta-item-text>浏览：</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/post/code-numpy/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><h1 id=生成随机数>生成随机数</h1><p><strong>随机数种子</strong>
+<code>np.random.seed(42)</code>
+<strong>设置显示小数点后两位</strong>
+<code>np.set_printoptions(precision=2)</code>
+<strong>产生元素为0到1，大小为4*3的随机数据矩阵</strong>
+<code>np.random.rand(4,3)</code>
+<strong>元素由标准正态分布产生，大小为4*3的随机数矩阵</strong>
+<code>np.random.randn(4,3)</code>
+<strong>元素为0到9的随机整数，大小为4*3的随机数矩阵</strong>
+<code>np.random.randint(0,10,(4,3))</code>
+<strong>元素由期望值为100，标准差为10的正态分布产生，大小为4*3的随机数矩阵</strong>
+<code>np.random.normal(100,10,(4,3))</code>
+<strong>元素由起始为10，终止为20的均匀分布产生，大小为4*3的随机数矩阵</strong>
+<code>np.random.uniform(10,20,(4,3))</code>
+<strong>元素由lambda为2的泊松分布产生，大小为4*3的随机数矩阵</strong>
+<code>np.random.poisson(2.0,(4,3))</code>
+<strong>随机打乱数组</strong>
+<code>np.random.permutation(10)</code>
+array([0, 7, 1, 3, 4, 2, 9, 5, 6, 8])
+<strong>shuffle</strong>
+permutation产生新数组，shuffle则打乱原始数组
+<code>np.random.shuffle(a)</code>
+<strong>重采样</strong>
+<code>np.random.choice([1, 2, 3],size=(4,3))</code>
+指定概率
+<code>np.random.choice(a,size=(4,3),p=a/np.sum(a))</code></p><h1 id=矩阵点乘>矩阵点乘</h1><p><code>*</code>： 根据数据类型的不同，在 np.array 中重载为元素乘法，在 np.matrix 中重载为矩阵乘法!
+<code>@</code>： 只做<strong>矩阵乘法</strong>运算
+<code>.dot</code>： 只做<strong>矩阵乘法</strong>运算</p><p>np.matmul(a,b) <strong>矩阵乘法</strong>运算</p><p><code>np.mutiply</code>：只做<strong>点乘</strong>运算</p><p>在numpy和tensorflow中都是
+y = w * x **
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/15873283-22aa9297a2b27ab7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=image.png></p><p>#矩阵乘法
+tf.matmul(w, x)
+np.dot(w,x)
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/15873283-f149f151d0811052.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=image.png></p><p>#转化为ndarray :np.asarray、np.array
+array和asarray都可以将结构数据转化为ndarray，但是主要区别就是当数据源是ndarray时，<strong>array仍然会copy出一个副本，占用新的内存，但asarray不会。</strong></p><h1 id=生成等差数列>生成等差数列</h1><p>linspace()通过指定开始值、终值（包含终值）和<strong>元素个数</strong>创建表示等差数列的一维数组，</p><p>arange()通过指定开始值、终值(不包含终值)和<strong>步长</strong>创建表示等差数列的一维数组</p><h1 id=沿着给定的axis0-by-defaultaxis加入一系列数组>沿着给定的(axis=0 by default)axis加入一系列数组</h1><p>np.concatenate((a1,a2,&mldr;), axis=0, out=None)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>axis=0\1\2
+</span></span><span style=display:flex><span>a = np.array([[1, 2], [3, 4]])
+</span></span><span style=display:flex><span>b = np.array([[5, 6]])
+</span></span><span style=display:flex><span>np.concatenate((a, b), axis=0)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt; array([[1, 2],
+</span></span><span style=display:flex><span>       [3, 4],
+</span></span><span style=display:flex><span>       [5, 6]])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>np.concatenate((a, b.T), axis=1)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt; array([[1, 2, 5], 
+</span></span><span style=display:flex><span>         [3, 4, 6]])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>np.concatenate((a, b), axis=None)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt; array([1, 2, 3, 4, 5, 6])
+</span></span></code></pre></div><p>#沿垂直方向堆叠数组:np.vstack()</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>a = np.array([1, 2, 3]) # (1,3)
+</span></span><span style=display:flex><span>b = np.array([4, 5, 6])
+</span></span><span style=display:flex><span>np.vstack((a, b))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt; array([[1, 2, 3],
+</span></span><span style=display:flex><span>         [4, 5, 6]])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>a = np.array([[1], [2], [3]]) # (3,1)
+</span></span><span style=display:flex><span>b = np.array([[2], [3], [4]])
+</span></span><span style=display:flex><span>np.vstack((a,b))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt; array([[1],
+</span></span><span style=display:flex><span>         [2],
+</span></span><span style=display:flex><span>         [3],
+</span></span><span style=display:flex><span>         [2],
+</span></span><span style=display:flex><span>         [3],
+</span></span><span style=display:flex><span>         [4]])
+</span></span></code></pre></div><p>#沿水平方向堆叠数组:np.hstack()</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>a = np.array((1,2,3))
+</span></span><span style=display:flex><span>b = np.array((2,3,4))
+</span></span><span style=display:flex><span>np.hstack((a,b))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt; array([1, 2, 3, 2, 3, 4])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>a = np.array([[1],[2],[3]])
+</span></span><span style=display:flex><span>b = np.array([[2],[3],[4]])
+</span></span><span style=display:flex><span>np.hstack((a,b))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt; array([[1, 2],
+</span></span><span style=display:flex><span>         [2, 3],
+</span></span><span style=display:flex><span>         [3, 4]])
+</span></span></code></pre></div><h1 id=多维数组降为一维npravelnpflatten>多维数组降为一维:np.ravel()、np.flatten()</h1><p><strong>np.flatten()返回一份拷贝，对拷贝所做修改不会影响原始矩阵，而np.ravel()返回的是视图，修改时会影响原始矩阵</strong></p><h1 id=增加一个一维----------npnewaxis>增加一个一维 np.newaxis</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>            x1 = np.array([1, 2, 3, 4, 5])
+</span></span><span style=display:flex><span>            the shape of x1 is (5,)
+</span></span><span style=display:flex><span>            x1_new = x1[:, np.newaxis]
+</span></span><span style=display:flex><span>            now, the shape of x1_new is (5, 1)
+</span></span></code></pre></div><h1 id=插入ndarray元素npappend-npinsert>插入ndarray元素np.append、 np.insert</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>x = np.array([1, 2, 3, 4, 5])
+</span></span><span style=display:flex><span>Y = np.array([[1,2,3],[4,5,6]])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x = np.append(x, [7,8]) # 秩为1的ndarray，也可通过列表一次添加多个
+</span></span><span style=display:flex><span>&gt; x = [1 2 3 4 5 6 7 8]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>v = np.append(Y, [[7,8,9]], axis=0) # 秩为2的ndarray，添加一行
+</span></span><span style=display:flex><span>q = np.append(Y,[[9],[10]], axis=1) # 秩为2的ndarray，添加一列; 当然也可添加两列 q = np.append(Y,[[9,99],[10,100]], axis=1)
+</span></span><span style=display:flex><span>&gt;v =
+</span></span><span style=display:flex><span> [[1 2 3]
+</span></span><span style=display:flex><span>  [4 5 6]
+</span></span><span style=display:flex><span>  [7 8 9]]
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>&gt; q =
+</span></span><span style=display:flex><span> [[ 1 2 3 9]
+</span></span><span style=display:flex><span>  [ 4 5 6 10]]
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>x = np.array([1, 2, 5, 6, 7])
+</span></span><span style=display:flex><span>Y = np.array([[1,2,3],[7,8,9]])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x = np.insert(x,2,[3,4]) # 向秩为1的ndarray第三个元素前插入3和4
+</span></span><span style=display:flex><span>&gt;x = [1 2 3 4 5 6 7]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>w = np.insert(Y,1,[4,5,6],axis=0) # 向秩为2的ndarray第二行前，插入4,5,6
+</span></span><span style=display:flex><span>v = np.insert(Y,1,5, axis=1) # 向秩为2的ndarray前第二列前，插入5
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt;w =
+</span></span><span style=display:flex><span>[[1 2 3]
+</span></span><span style=display:flex><span> [4 5 6]
+</span></span><span style=display:flex><span> [7 8 9]]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt;v =
+</span></span><span style=display:flex><span>[[1 5 2 3]
+</span></span><span style=display:flex><span> [7 5 8 9]]
+</span></span></code></pre></div><h1 id=删除ndarray元素npdelete>删除ndarray元素np.delete</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>x = np.array([1, 2, 3, 4, 5])
+</span></span><span style=display:flex><span>Y = np.array([[1,2,3],[4,5,6],[7,8,9]])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x = np.delete(x, [0,4]) # 此处删除第一个和第五个(最后一个)元素
+</span></span><span style=display:flex><span>&gt; x = [2 3 4]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>w = np.delete(Y, 0, axis=0) # 此处删除第一行的元素
+</span></span><span style=display:flex><span>v = np.delete(Y, [0,2], axis=1) # 此处删除第一列和第三列(最后一列)的元素
+</span></span><span style=display:flex><span>&gt;w =
+</span></span><span style=display:flex><span>[[4 5 6]
+</span></span><span style=display:flex><span> [7 8 9]]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>&gt;v =
+</span></span><span style=display:flex><span>[[2]
+</span></span><span style=display:flex><span> [5]
+</span></span><span style=display:flex><span> [8]]
+</span></span></code></pre></div><h1 id=矩阵比较>矩阵比较</h1><p>all（）操作就是对两个矩阵的比对结果再做一次与运算，而any则是做一次或运算
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-3cd960158cf2a97e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h1 id=mgrid>mgrid</h1><p>a🅱️cj</p><p>a=np.mgrid[-4:4:3j]
+在[-4,4]区间内取3个值
+a=np.mgrid[-4:4:3]
+间隔为3取值</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>x, y = np.mgrid[1:3:3j, 4:5:2j]
+</span></span><span style=display:flex><span>x=array([[1., 1.],
+</span></span><span style=display:flex><span>       [2., 2.],
+</span></span><span style=display:flex><span>       [3., 3.]])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>y=array([[4., 5.],
+</span></span><span style=display:flex><span>       [4., 5.],
+</span></span><span style=display:flex><span>       [4., 5.]])
+</span></span></code></pre></div><h1 id=meshgrid网格>meshgrid：网格</h1><p>1、主要使用的函数为[X,Y]=meshgrid(xgv,ygv);
+meshgrid函数生成的X，Y是大小相等的矩阵，xgv，ygv是两个网格矢量，xgv，ygv都是行向量。
+X：通过将xgv复制length(ygv)行（严格意义上是length(ygv)-1行）得到
+Y：首先对ygv进行转置得到ygv&rsquo;，将ygv&rsquo;复制（length(xgv)-1）次得到。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>[X,Y] = meshgrid(1:3,10:14)
+</span></span><span style=display:flex><span>X =     1     2     3
+</span></span><span style=display:flex><span>        1     2     3
+</span></span><span style=display:flex><span>        1     2     3
+</span></span><span style=display:flex><span>        1     2     3
+</span></span><span style=display:flex><span>        1     2     3
+</span></span><span style=display:flex><span>Y =    10    10    10
+</span></span><span style=display:flex><span>       11    11    11
+</span></span><span style=display:flex><span>       12    12    12
+</span></span><span style=display:flex><span>       13    13    13
+</span></span><span style=display:flex><span>       14    14    14
+</span></span><span style=display:flex><span>[X,Y]=meshgrid(1:3)
+</span></span><span style=display:flex><span>X =      1     2     3
+</span></span><span style=display:flex><span>         1     2     3
+</span></span><span style=display:flex><span>         1     2     3
+</span></span><span style=display:flex><span> Y =     1     1     1
+</span></span><span style=display:flex><span>         2     2     2
+</span></span><span style=display:flex><span>         3     3     3
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>x = np.linspace(-1, 1, 2)
+</span></span><span style=display:flex><span>y = np.linspace(-1, 1, 2)
+</span></span><span style=display:flex><span>print(x, y)  # [-1.  1.]
+</span></span><span style=display:flex><span>x = np.meshgrid(x, y)  # (20, 20) (20, 20)
+</span></span><span style=display:flex><span>print(x)
+</span></span><span style=display:flex><span># [[-1.  1.]
+</span></span><span style=display:flex><span># [-1.  1.]]
+</span></span><span style=display:flex><span>#
+</span></span><span style=display:flex><span># [[-1. -1.]
+</span></span><span style=display:flex><span># [ 1.  1.]]
+</span></span></code></pre></div><h1 id=条件语句>条件语句</h1><h2 id=npwherecondition-x-y>np.where(condition, [x, y])</h2><p>这里三个参数,其中必写参数是condition(判断条件),后边的x和y是可选参数.那么这三个参数都有怎样的要求呢?</p><p>condition：array_like，bool ,当为True时，产生x，否则产生y
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-c4ed22921112a0a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h2 id=numpypiecewisex-condlist-funclist-args-kw>numpy.piecewise(x, condlist, funclist, *args, **kw)</h2><p>参数一 x:表示要进行操作的对象
+参数二：condlist，表示要满足的条件列表，可以是多个条件构成的列表
+参数三：funclist，执行的操作列表，参数二与参数三是对应的，当参数二为true的时候，则执行相对应的操作函数。</p><p>返回值：返回一个array对象，和原始操作对象x具有完全相同的维度和形状</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>np.piecewise(t,[t&lt;1,t&lt;0.8,t&lt;0.3],
+</span></span><span style=display:flex><span>                    [lambda t : np.sin(2*np.pi *f1*t),
+</span></span><span style=display:flex><span>                     lambda t : np.sin(2 * np.pi * f2 * t),
+</span></span><span style=display:flex><span>                     lambda t : np.sin(2 * np.pi * f3 * t)])
+</span></span></code></pre></div><h3 id=argsort>argsort</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>x = np.array([3, 1, 2])
+</span></span><span style=display:flex><span>np.argsort(x)
+</span></span></code></pre></div><p>array([1, 2, 0])</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>x = np.array([[0, 3], 
+</span></span><span style=display:flex><span>            [2, 2]])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>np.argsort(x, axis=0)
+</span></span><span style=display:flex><span>    array([[0, 1],
+</span></span><span style=display:flex><span>           [1, 0]])
+</span></span><span style=display:flex><span>np.argsort(x, axis=1)
+</span></span><span style=display:flex><span>    array([[0, 1],
+</span></span><span style=display:flex><span>           [0, 1]])
+</span></span></code></pre></div></div><footer class=post-footer><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
+code-numpy</li><li class=post-copyright-author><strong>本文作者：</strong>
+Tomding</li><li class=post-copyright-link><strong>本文链接：</strong>
+<a id=post-cr-link href=/post/code-numpy/ title=code-numpy>/post/code-numpy/</a></li><li class=post-copyright-license><strong>版权声明：</strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class=followme><span>欢迎关注我的其它发布渠道</span><div class=social-list><div class=social-item><a target=_blank class=social-link href=/images/wechat_channel.jpg><span class=icon><i class="fab fa-weixin"></i></span>
+<span class=label>WeChat</span></a></div><div class=social-item><a target=_blank class=social-link href=/atom.xml><span class=icon><i class="fa fa-rss"></i></span>
+<span class=label>RSS</span></a></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/post/code-matplot/ rel=next title=code-matplot><i class="fa fa-chevron-left"></i> code-matplot</a></div><div class="post-nav-prev post-nav-item"><a href=/post/code-pandas/ rel=prev title=code-pandas>code-pandas
+<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
+<span itemprop=copyrightYear>2010 - 2023</span>
+<span class=with-love><i class="fa fa-heart"></i></span>
+<span class=author itemprop=copyrightHolder>Tomding</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":false,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.e34208af37d3db3a875e6fbad04c2f1c241185af925a9c6ebf79dd1ba2730cdd.js defer></script></body></html>

@@ -1,0 +1,222 @@
+<!doctype html><html lang=zh-cn data-theme=dark><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: dark)"><meta name=generator content="Hugo 0.107.0"><link rel="shortcut icon" type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="code-pandas"><meta itemprop=description content="Love and Peace"><meta itemprop=datePublished zgotmplz><meta itemprop=dateModified zgotmplz><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=keywords content="Hugo,NexT,主题,简单,强大"><meta property="og:type" content="article"><meta property="og:title" content="code-pandas"><meta property="og:description" content="Love and Peace"><meta property="og:image" content="/imgs/hugo_next_avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="/post/code-pandas/"><meta property="og:site_name" content="Tomding's Blog"><meta property="og:locale" content="zh-CN"><meta property="article:author" content="Tomding"><meta property="article:published_time" content="2023-01-01 14:28:53 +0800 CST"><meta property="article:modified_time" content="2023-01-01 14:28:53 +0800 CST"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.0ca97083b39f4eda7430d39b99194aa738d8f8db4090f00bc7e814013df699cb.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"code-pandas","permalink":"/post/code-pandas/","title":"code-pandas","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>code-pandas - Tomding's Blog</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Tomding's Blog</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Just do it!</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>首页</a></li><li class="menu-item menu-item-about"><a href=/about.html class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>126</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><ul><li><ul><li></li></ul></li></ul></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=Tomding src=/imgs/img-lazy-loading.gif data-src=/imgs/hugo_next_avatar.png><p class=site-author-name itemprop=name>Tomding</p><div class=site-description itemprop=description>Love and Peace</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>126</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>10</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>0</span>
+<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/ title="Github → https://github.com/" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span>
+<span class=links-of-social-item><a href=https://www.zhihu.com/hot title="知乎 → https://www.zhihu.com/hot" rel=noopener class=hvr-icon-pulse target=_blank><i class="fa fa-book fa-fw hvr-icon"></i>知乎</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt=共享知识></a></div><div class="links-of-blogroll site-overview-item animated"><div class=links-of-blogroll-title><i class="fa fa-globe fa-fw"></i>友情链接</div><ul class=links-of-blogroll-list><li class=links-of-blogroll-item><a href=https://gitee.com/hugo-next/hugo-theme-next title=https://gitee.com/hugo-next/hugo-theme-next target=_blank>Hugo-NexT</a></li><li class=links-of-blogroll-item><a href=https://lisenhui.cn title=https://lisenhui.cn target=_blank>凡梦星尘空间站</a></li></ul></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
+<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=2022-12-01T19:59:47+08:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=446699></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=958></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2023-01-01T14:28:53+08:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
+<span>0%</span></div></div><div class=reading-progress-bar></div><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=/post/code-pandas/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=name content="Tomding"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="Tomding"><meta itemprop=description content="Love and Peace"></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="code-pandas"><meta itemprop=description content="import pandas as pd a = [1, 2, 3, 4] p = [1, 2, 3, 4] r = [1, 2, 3, 4] f = [1, 2, 3, 4] df = pd.DataFrame({'a':a, 'p':p, 'r':r, 'f':f}, index=['LSTM_FCN', 'LSTM_MCNN', 'BiLSTM_FCN','BiLSTM_MCNN']) print(df) df.to_csv(&#34;./result/result.csv&#34;, index=True) result = all_metric(y_trues, y_preds, method_name=method_name) df = pd.read_csv('./result/result.csv', index_col=0) df.loc[method_name] = result print(df) df.to_csv(&#34;./result/result.csv&#34;, index=True) plot＿confusion_"></span><header class=post-header><h1 class=post-title itemprop="name headline">code-pandas
+<a href=https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/post/code-pandas.md rel="noopener external nofollow noreferrer" target=_blank class="exturl post-edit-link" title=编辑><i class="fa fa-pen-nib"></i></a></h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-01-01 14:28:53 +0800 CST" itemprop="dateCreated datePublished" datetime="2023-01-01 14:28:53 +0800 CST">2023-01-01</time></span>
+<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/code itemprop=url rel=index><span itemprop=name>code</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="far fa-file-word"></i></span>
+<span class=post-meta-item-text>字数：</span><span>4107</span></span>
+<span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="far fa-clock"></i></span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>9分钟</span></span>
+<span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
+<span class=post-meta-item-text>浏览：</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/post/code-pandas/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import pandas as pd
+</span></span><span style=display:flex><span>a = [1, 2, 3, 4]
+</span></span><span style=display:flex><span>p = [1, 2, 3, 4]
+</span></span><span style=display:flex><span>r = [1, 2, 3, 4]
+</span></span><span style=display:flex><span>f = [1, 2, 3, 4]
+</span></span><span style=display:flex><span>df = pd.DataFrame({&#39;a&#39;:a, &#39;p&#39;:p, &#39;r&#39;:r, &#39;f&#39;:f}, index=[&#39;LSTM_FCN&#39;, &#39;LSTM_MCNN&#39;, &#39;BiLSTM_FCN&#39;,&#39;BiLSTM_MCNN&#39;])
+</span></span><span style=display:flex><span>print(df)
+</span></span><span style=display:flex><span>df.to_csv(&#34;./result/result.csv&#34;, index=True)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>result = all_metric(y_trues, y_preds, method_name=method_name)
+</span></span><span style=display:flex><span>df = pd.read_csv(&#39;./result/result.csv&#39;, index_col=0)
+</span></span><span style=display:flex><span>df.loc[method_name] = result
+</span></span><span style=display:flex><span>print(df)
+</span></span><span style=display:flex><span>df.to_csv(&#34;./result/result.csv&#34;, index=True)
+</span></span><span style=display:flex><span>plot＿confusion_matrix(y_trues, y_preds, svg_name=&#39;./result/{}&#39;.format(method_name))
+</span></span></code></pre></div><h1 id=导入数据>导入数据</h1><ul><li>pd.read_csv(filename,encoding=&lsquo;gbk&rsquo;,sep=&rsquo;\t&rsquo;)：从CSV文件导入数据</li></ul><p>读取tsv文件
+<code>data = pd.read_csv(filename, sep='\t').values</code></p><ul><li>pd.read_table(filename)：从限定分隔符的文本文件导入数据</li><li>pd.read_excel(filename)：从Excel文件导入数据</li><li>pd.read_sql(query, connection_object)：从SQL表/库导入数据</li><li>pd.read_json(json_string)：从JSON格式的字符串导入数据</li><li>pd.read_html(url)：解析URL、字符串或者HTML文件，抽取其中的tables表格</li><li>pd.read_clipboard()：从你的粘贴板获取内容，并传给read_table()</li><li>pd.DataFrame(dict)：从字典对象导入数据，Key是列名，Value是数据</li></ul><h1 id=生成dataframe>生成DataFrame</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>iris_data = pd.DataFrame( iris.data, 
+</span></span><span style=display:flex><span>                          columns=iris.feature_names )
+</span></span><span style=display:flex><span>iris_data[&#39;species&#39;] = iris.target_names[iris.target]
+</span></span><span style=display:flex><span>iris_data.head(3).append(iris_data.tail(3))
+</span></span></code></pre></div><h1 id=分箱>分箱</h1><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-d2719f3e88f408c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>group_names = [&#39;不及格&#39;,&#39;及格&#39;,&#39;良&#39;,&#39;优秀&#39;]
+</span></span><span style=display:flex><span>cuts = pd.cut(scores,grades,labels=group_names)
+</span></span></code></pre></div><p>将成绩均匀的分在四个<strong>等长</strong>的箱子中，precision=2的选项将精度控制在两位</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>cuts = pd.cut(scores,4,precision=2)
+</span></span></code></pre></div><p>qcut()可以生成指定的箱子数，然后使每个箱子都具有相同数量的数据
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-ad5f446a6a601983.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><p>pandas.melt(frame, id_vars=None, value_vars=None, var_name=None, value_name=&lsquo;value&rsquo;, col_level=None)</p><blockquote><p>frame:要处理的数据集。
+id_vars:不需要被转换的列名。
+value_vars:需要转换的列名，如果剩下的列全部都要转换，就不用写了。
+var_name和value_name是自定义设置对应的列名。
+col_level :如果列是MultiIndex，则使用此级别。</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>d = {&#39;col1&#39;: [&#39;a&#39;,&#39;a&#39;,&#39;a&#39;,&#39;b&#39;,&#39;b&#39;], &#39;col2&#39;: [2,2,2,2,2],&#39;col3&#39;:[&#39;c&#39;,&#39;c&#39;,&#39;c&#39;,&#39;d&#39;,&#39;d&#39;]}
+</span></span><span style=display:flex><span>df = pd.DataFrame(data=d)
+</span></span><span style=display:flex><span>pd.melt(df,id_vars=[&#39;col2&#39;],value_vars=[&#39;col1&#39;],var_name=&#39;hi&#39;,value_name=&#39;hello&#39;)
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-168b049b21e595bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h1 id=取行列>取行、列</h1><p>loc函数：通过行索引 &ldquo;Index&rdquo; 中的具体值来取行数据（如取"Index"为"A"的行）
+iloc函数：通过行号来取行数据（如取第二行的数据）</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>data=pd.DataFrame(np.arange(16).reshape(4,4),index=list(&#39;abcd&#39;),columns=list(&#39;ABCD&#39;))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>取索引为&#39;a&#39;的行
+</span></span><span style=display:flex><span>In[2]: data.loc[&#39;a&#39;]
+</span></span><span style=display:flex><span>取第一行数据，索引为&#39;a&#39;的行就是第一行，所以结果相同
+</span></span><span style=display:flex><span>In[3]: data.iloc[0]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>取&#39;A&#39;列所有行，多取几列格式为 data.loc[:,[&#39;A&#39;,&#39;B&#39;]]
+</span></span><span style=display:flex><span>In[4]:data.loc[:,[&#39;A&#39;]] 
+</span></span><span style=display:flex><span>取第0列所有行，多取几列格式为 data.iloc[:,[0,1]]
+</span></span><span style=display:flex><span>In[5]:data.iloc[:,[0]] 
+</span></span></code></pre></div><h1 id=删除插入>删除插入</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>删除gender列，不改变原来的data数据，返回删除后的新表data_2。axis为1表示删除列，0表示删除行。inplace为True表示直接对原表修改。
+</span></span><span style=display:flex><span>data_2 = data.drop(&#39;gender&#39;, axis=1, inplace=False)
+</span></span><span style=display:flex><span>改变某一列的位置。如：先删除gender列，然后在原表data中第0列插入被删掉的列。
+</span></span><span style=display:flex><span>data.insert(0, &#39;性别&#39;,data.pop(&#39;gender&#39;))
+</span></span><span style=display:flex><span>pop返回删除的列，插入到第0列，并取新名为&#39;性别&#39;
+</span></span><span style=display:flex><span>直接在原数据上删除列
+</span></span><span style=display:flex><span>del data[&#39;性别&#39;]
+</span></span></code></pre></div><h1 id=one-hot>one-hot</h1><p>pd.get_dummies(
+data,
+prefix=None,
+prefix_sep=&rsquo;_&rsquo;,
+dummy_na=False,
+columns=None,
+sparse=False,
+drop_first=False,
+dtype=None,
+)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>pd.get_dummies(all_df[&#39;MSSubClass&#39;], prefix=&#39;MSSubClass&#39;).head()
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-9d78e4d363ae8c22.png?imageMogr2/auto-orient/strip%7CimageView2/2/ew/1240 alt></p><h1 id=pandasmeltframe-id_varsnone-value_varsnone-var_namenone-value_namevalue-col_levelnone>pandas.melt(frame, id_vars=None, value_vars=None, var_name=None, value_name=&lsquo;value&rsquo;, col_level=None)</h1><p>参数解释：
+frame:要处理的数据集。
+id_vars:不需要被转换的列名。
+value_vars:需要转换的列名，如果剩下的列全部都要转换，就不用写了。
+var_name和value_name是自定义设置对应的列名。
+col_level :如果列是MultiIndex，则使用此级别。
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-6b8b66c6ce774522.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>pd.melt(df,id_vars=[&#39;col2&#39;],value_vars=[&#39;col1&#39;],var_name=&#39;hi&#39;,value_name=&#39;hello&#39;)
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-0c007a280ea972d1?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h1 id=profile>profile</h1><p>数据整体概览、变量探索、相关性计算、缺失值情况和抽样展示</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>profile= pandas_profiling.ProfileReport(adult)
+</span></span><span style=display:flex><span>profile.to_file(outputfile = &#34;output_file.html&#34;)
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-1604c9299fdf19b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h1 id=合并>合并</h1><p><a href=https://blog.csdn.net/weixin_42782150/article/details/89546357 title=https://blog.csdn.net/weixin_42782150/article/details/89546357 rel="noopener external nofollow noreferrer" target=_blank class=exturl>https://blog.csdn.net/weixin_42782150/article/details/89546357
+<i class="fa fa-external-link-alt"></i></a></p><h6 id=pdconcatdf1df2sortfalse>pd.concat([df1,df2],sort=False)</h6><p>axis :默认为0，为按行拼接；1 为按列拼接
+ignore_index: 默认为False,会根据索引进行拼接；True 则会忽略原有索引，重建新索引
+join: 为拼接方式，包括 inner,outer
+sort: True 表示按索引排序
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-24ec28fcd08631b7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/100 alt>
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-73d272714742292f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000 alt></p><h6 id=merge函数>merge函数</h6><p>how：数据合并的方式。</p><blockquote><p>left：基于左dataframe列的数据合并；right：基于右dataframe列的数据合并；outer：基于列的数据外合并（取并集）；inner：基于列的数据内合并（取交集）；默认为&rsquo;inner&rsquo;。</p></blockquote><p>on：基于相同列的合并
+left_on/right_on：左/右dataframe合并的列名。
+left_index/right_index：是否以index作为数据合并的列名，True表示是。
+sort：根据dataframe合并的keys排序，默认是。
+suffixes：若有相同列且该列没有作为合并的列，可通过suffixes设置该列的后缀名，一般为元组和列表类型
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-551adec0b607cbcc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000 alt>
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-3b4cb84774c928c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000 alt></p><h1 id=groupby>Groupby</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>#创建一个DataFrame
+</span></span><span style=display:flex><span>import pandas as pd
+</span></span><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>rng=np.random.RandomState(0)
+</span></span><span style=display:flex><span>df=pd.DataFrame({&#39;key&#39;:list(&#39;ABCABC&#39;),
+</span></span><span style=display:flex><span>&#39;data1&#39;:range(6),
+</span></span><span style=display:flex><span>&#39;data2&#39;:rng.randint(0,10,6)})
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>#输出的结果是这样的
+</span></span></code></pre></div><blockquote><p>data1 data2 key
+0 5 A
+1 0 B
+2 3 C
+3 3 A
+4 7 B
+5 9 C</p></blockquote><p>然后我们分别用apply,agg,transform三个函数去处理分组对象:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>#创建一个分组的迭代器
+</span></span><span style=display:flex><span>grouped=df.groupby(&#39;key&#39;) 
+</span></span><span style=display:flex><span>#补充一下，如果大家想看grouped到底把原DataFrame分成什么样子了，可以试试以下代码（实际是一个含分组标签和分组DataFrame的元祖，括号使用的是元组的拆分属性）
+</span></span><span style=display:flex><span>for (key,group) in grouped:
+</span></span><span style=display:flex><span>	print(key)
+</span></span><span style=display:flex><span>	print(group)
+</span></span></code></pre></div><blockquote><p>A
+data1 data2 key
+0 0 5 A
+3 3 3 A
+B
+data1 data2 key
+1 1 0 B
+4 4 7 B
+C
+data1 data2 key
+2 2 3 C
+5 5 9 C</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>#使用apply
+</span></span><span style=display:flex><span>grouped.apply(sum)
+</span></span></code></pre></div><blockquote><p>key data1 data2 key<br>A 3 8 AA
+B 5 7 BB
+C 7 12 CC</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>#使用agg
+</span></span><span style=display:flex><span>grouped.agg(sum)
+</span></span></code></pre></div><blockquote><p>key data1 data2<br>A 3 8
+B 5 7
+C 7 12</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>#使用transform
+</span></span><span style=display:flex><span>grouped.transform(sum)
+</span></span></code></pre></div><blockquote><p>data1 data2
+3 8
+5 7
+7 12
+3 8
+5 7
+7 12</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>grouped[&#39;data1&#39;].count()
+</span></span></code></pre></div><blockquote><p>key
+A 2
+B 2
+C 2</p></blockquote><h1 id=sample>sample</h1><p>(n=None, frac=None, replace=False, weights=None, random_state=None, axis=None)
+n，要抽取的行数
+random_state，确保可重复性
+frac，抽取行的比例
+replace，是否为有放回抽样True:有放回抽样
+weights，字符索引或概率数组axis=0:为行字符索引或概率数组axis=1:为列字符索引或概率数组
+axis，选择抽取数据的行还是列axis=0:抽取行axis=1:抽取列</p><p>######导出数据
+df.to_csv(filename)：导出数据到CSV文件
+df.to_excel(filename)：导出数据到Excel文件
+df.to_sql(table_name, connection_object)：导出数据到SQL表
+df.to_json(filename)：以Json格式导出数据到文本文件
+######创建测试对象</p><p>pd.DataFrame(np.random.rand(20,5))：创建20行5列的随机数组成的DataFrame对象
+pd.Series(my_list)：从可迭代对象my_list创建一个Series对象
+df.index = pd.date_range(&lsquo;1900/1/30&rsquo;, periods=df.shape[0])：增加一个日期索引</p><p>######查看、检查数据
+df.head(n)：查看DataFrame对象的前n行
+df.tail(n)：查看DataFrame对象的最后n行
+df.shape：查看行数和列数
+df.info()：查看索引、数据类型和内存信息
+df.describe()：查看数值型列的汇总统计
+s.value_counts(dropna=False)：查看Series对象的唯一值和计数
+df.apply(pd.Series.value_counts)：查看DataFrame对象中每一列的唯一值和计数</p><p>######数据选取</p><p>s.iloc[0]：按位置选取数据
+s.loc[&lsquo;index_one&rsquo;]：按索引选取数据</p><p>df.query("(age==18)&(sex==&lsquo;male)")条件选取</p><p>######数据清理</p><p>df.columns = [&lsquo;a&rsquo;,&lsquo;b&rsquo;,&lsquo;c&rsquo;]：重命名列名
+pd.isnull()
+pd.notnull()
+df.dropna()：删除所有包含空值的行
+df.dropna(axis=1)：删除所有包含空值的列
+df.dropna(axis=1,thresh=n)：删除所有小于n个非空值的行
+df.fillna(x)：用x替换DataFrame对象中所有的空值
+s.astype(float)：将Series中的数据类型更改为float类型
+s.replace(1,&lsquo;one&rsquo;)：用‘one’代替所有等于1的值
+s.replace([1,3],[&lsquo;one&rsquo;,&rsquo;three&rsquo;])：用&rsquo;one&rsquo;代替1，用&rsquo;three&rsquo;代替3
+df.rename(columns=lambda x: x + 1)：批量更改列名
+df.rename(columns={&lsquo;old_name&rsquo;: &rsquo;new_ name&rsquo;})：选择性更改列名
+df.set_index(&lsquo;column_one&rsquo;)：更改索引列
+df.rename(index=lambda x: x + 1)：批量重命名索引</p><p>######数据处理：Filter、Sort和GroupBy
+s.T转置
+df[df[col] > 0.5]：选择col列的值大于0.5的行</p><p>df.sort_values(col1)：按照列col1排序数据，默认升序排列
+df.sort_values([col1,col2], ascending=[True,False])：先按列col1升序排列，后按col2降序排列数据</p><p>df.groupby(col)：返回一个按列col进行分组的Groupby对象
+df.groupby([col1,col2])：返回一个按多列进行分组的Groupby对象
+df.groupby(col1)[col2]：返回按列col1进行分组后，列col2的均值
+df.pivot_table(index=col1, values=[col2,col3], aggfunc=max)：创建一个按列col1进行分组，并计算col2和col3的最大值的数据透视表
+df.groupby(col1).agg(np.mean)：返回按列col1分组的所有列的均值
+data.apply(np.mean)：对DataFrame中的每一列应用函数np.mean
+data.apply(np.max,axis=1)：对DataFrame中的每一行应用函数np.max</p><p>######数据合并
+df.concat([df1, df2],axis=1)：将df2中的列添加到df1的尾部
+df1.join(df2,on=col1,how=&lsquo;inner&rsquo;)：对df1的列和df2的列执行SQL形式的join</p><p>######数据统计
+df.describe()：查看数据值列的汇总统计
+df.mean()：返回所有列的均值
+df.corr()：返回列与列之间的相关系数
+df.count()：返回每一列中的非空值的个数
+df.median()：返回每一列的中位数</p><p>df.unique()所有值
+df.cumsum()累加
+pd.cut(df.salary, bins=10)分桶</p></div><footer class=post-footer><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
+code-pandas</li><li class=post-copyright-author><strong>本文作者：</strong>
+Tomding</li><li class=post-copyright-link><strong>本文链接：</strong>
+<a id=post-cr-link href=/post/code-pandas/ title=code-pandas>/post/code-pandas/</a></li><li class=post-copyright-license><strong>版权声明：</strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class=followme><span>欢迎关注我的其它发布渠道</span><div class=social-list><div class=social-item><a target=_blank class=social-link href=/images/wechat_channel.jpg><span class=icon><i class="fab fa-weixin"></i></span>
+<span class=label>WeChat</span></a></div><div class=social-item><a target=_blank class=social-link href=/atom.xml><span class=icon><i class="fa fa-rss"></i></span>
+<span class=label>RSS</span></a></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/post/code-numpy/ rel=next title=code-numpy><i class="fa fa-chevron-left"></i> code-numpy</a></div><div class="post-nav-prev post-nav-item"><a href=/post/code-pytest/ rel=prev title=code-pytest>code-pytest
+<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
+<span itemprop=copyrightYear>2010 - 2023</span>
+<span class=with-love><i class="fa fa-heart"></i></span>
+<span class=author itemprop=copyrightHolder>Tomding</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":false,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.e34208af37d3db3a875e6fbad04c2f1c241185af925a9c6ebf79dd1ba2730cdd.js defer></script></body></html>

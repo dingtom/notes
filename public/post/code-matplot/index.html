@@ -1,0 +1,735 @@
+<!doctype html><html lang=zh-cn data-theme=dark><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: dark)"><meta name=generator content="Hugo 0.107.0"><link rel="shortcut icon" type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="code-matplot"><meta itemprop=description content="Love and Peace"><meta itemprop=datePublished zgotmplz><meta itemprop=dateModified zgotmplz><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=keywords content="Hugo,NexT,主题,简单,强大"><meta property="og:type" content="article"><meta property="og:title" content="code-matplot"><meta property="og:description" content="Love and Peace"><meta property="og:image" content="/imgs/hugo_next_avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="/post/code-matplot/"><meta property="og:site_name" content="Tomding's Blog"><meta property="og:locale" content="zh-CN"><meta property="article:author" content="Tomding"><meta property="article:published_time" content="2023-01-01 14:28:53 +0800 CST"><meta property="article:modified_time" content="2023-01-01 14:28:53 +0800 CST"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.0ca97083b39f4eda7430d39b99194aa738d8f8db4090f00bc7e814013df699cb.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"code-matplot","permalink":"/post/code-matplot/","title":"code-matplot","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>code-matplot - Tomding's Blog</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Tomding's Blog</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Just do it!</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>首页</a></li><li class="menu-item menu-item-about"><a href=/about.html class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>126</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><ul><li><ul><li></li></ul></li></ul></li></ul><ul><li><ul><li><a href=#子图>子图</a></li><li><a href=#坐标系>坐标系</a><ul><li></li></ul></li></ul></li></ul><ul><li><ul><li><a href=#用-pltrcparams-可查看上图的所有默认属性-非常多的属性值>用 plt.rcParams 可查看上图的所有默认属性 (非常多的属性值)。</a><ul><li></li></ul></li></ul></li></ul><ul><li><ul><li><ul><li></li></ul></li></ul></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=Tomding src=/imgs/img-lazy-loading.gif data-src=/imgs/hugo_next_avatar.png><p class=site-author-name itemprop=name>Tomding</p><div class=site-description itemprop=description>Love and Peace</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>126</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>10</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>0</span>
+<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/ title="Github → https://github.com/" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span>
+<span class=links-of-social-item><a href=https://www.zhihu.com/hot title="知乎 → https://www.zhihu.com/hot" rel=noopener class=hvr-icon-pulse target=_blank><i class="fa fa-book fa-fw hvr-icon"></i>知乎</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt=共享知识></a></div><div class="links-of-blogroll site-overview-item animated"><div class=links-of-blogroll-title><i class="fa fa-globe fa-fw"></i>友情链接</div><ul class=links-of-blogroll-list><li class=links-of-blogroll-item><a href=https://gitee.com/hugo-next/hugo-theme-next title=https://gitee.com/hugo-next/hugo-theme-next target=_blank>Hugo-NexT</a></li><li class=links-of-blogroll-item><a href=https://lisenhui.cn title=https://lisenhui.cn target=_blank>凡梦星尘空间站</a></li></ul></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
+<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=2022-12-01T19:59:47+08:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=446699></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=958></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2023-01-01T14:28:53+08:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
+<span>0%</span></div></div><div class=reading-progress-bar></div><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=/post/code-matplot/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=name content="Tomding"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="Tomding"><meta itemprop=description content="Love and Peace"></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="code-matplot"><meta itemprop=description content="柱形图 主要用于比较各组数据之间的差别或数据变化情况。 折线图 趋势分析 饼图 主要用于各部分占整体的多少说明。 散点图 查找变量之间的相关性。 雷达图 各项"></span><header class=post-header><h1 class=post-title itemprop="name headline">code-matplot
+<a href=https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/post/code-matplot.md rel="noopener external nofollow noreferrer" target=_blank class="exturl post-edit-link" title=编辑><i class="fa fa-pen-nib"></i></a></h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2023-01-01 14:28:53 +0800 CST" itemprop="dateCreated datePublished" datetime="2023-01-01 14:28:53 +0800 CST">2023-01-01</time></span>
+<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/code itemprop=url rel=index><span itemprop=name>code</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="far fa-file-word"></i></span>
+<span class=post-meta-item-text>字数：</span><span>5898</span></span>
+<span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="far fa-clock"></i></span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>12分钟</span></span>
+<span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
+<span class=post-meta-item-text>浏览：</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/post/code-matplot/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><table><thead><tr><th style=text-align:center></th><th style=text-align:center></th></tr></thead><tbody><tr><td style=text-align:center>柱形图</td><td style=text-align:center>主要用于比较各组数据之间的差别或数据变化情况。</td></tr><tr><td style=text-align:center>折线图</td><td style=text-align:center>趋势分析</td></tr><tr><td style=text-align:center>饼图</td><td style=text-align:center>主要用于各部分占整体的多少说明。</td></tr><tr><td style=text-align:center>散点图</td><td style=text-align:center>查找变量之间的相关性。</td></tr><tr><td style=text-align:center>雷达图</td><td style=text-align:center>各项指标整体情况分析。</td></tr><tr><td style=text-align:center>矩形树图</td><td style=text-align:center>各个子项目占整体的多少。</td></tr><tr><td style=text-align:center>桑基图</td><td style=text-align:center>电商进行流量来源去向分析</td></tr><tr><td style=text-align:center>漏斗图</td><td style=text-align:center>基于用户行为步骤，查看转化率情况。</td></tr><tr><td style=text-align:center>箱线图</td><td style=text-align:center>提供有关数据位置和分散情况的关键信息</td></tr></tbody></table><blockquote><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-c790fca5003a8055.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-6a8671ea6a2e9fd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-9521417629e3eca8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p></blockquote><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-c787f514bf4767ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-c2d69f34fd1ab865.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>RGB=220,38,36 Hex=#dc2624
+</span></span><span style=display:flex><span>RGB=43,71,80 Hex=#2b4750
+</span></span><span style=display:flex><span>RGB=69,160,162 Hex=#45a0a2
+</span></span><span style=display:flex><span>RGB=232,122,89 Hex=#e87a59
+</span></span><span style=display:flex><span>RGB=125,202,169 Hex=#7dcaa9
+</span></span><span style=display:flex><span>RGB=100,158,125 Hex=#649e7d 
+</span></span><span style=display:flex><span>RGB=220,128,24 Hex=#dc8018
+</span></span><span style=display:flex><span>RGB=200,159,145Hex=#c89f91
+</span></span><span style=display:flex><span>RGB=108,109,108 Hex=#6c6d6c 
+</span></span><span style=display:flex><span>RGB=79,98,104 Hex=#4f6268
+</span></span><span style=display:flex><span>RGB=199,204,207 Hex=#c7cccf
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-b9ec584723ad01df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h1 id=基础-primitives-类>基础 (primitives) 类：</h1><p>线 (line), 点 (marker), 文字 (text), 图例 (legend), 网格 (grid), 标题 (title), 图片 (image) 等。</p><h1 id=容器-containers-类>容器 (containers) 类：</h1><p>图 (figure), 坐标系 (axes), 坐标轴 (axis) 和刻度 (tick)</p><h1 id=显示中文>显示中文</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.rcParams[&#39;font.sans-serif&#39;] = [u&#39;SimHei&#39;]
+</span></span><span style=display:flex><span>plt.rcParams[&#39;axes.unicode_minus&#39;] = False
+</span></span></code></pre></div><h1 id=添加标题>添加标题</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.title(&#39;这是一个示例标题&#39;)
+</span></span></code></pre></div><h1 id=添加文字>添加文字</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.text(-2.5,30,&#39;function y=x*x&#39;)
+</span></span></code></pre></div><h1 id=添加注释>添加注释</h1><p>xy：为备注的坐标点。xytext：备注文字的坐标(默认为xy的位置)。arrowprops：在xy和xytext之间绘制一个箭头</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.annotate(&#39;这是一个示例注释&#39;,xy=(0,1),xytext=(-2,22),arrowprops={&#39;headwidth&#39;:10,&#39;facecolor&#39;:&#39;r&#39;})
+</span></span></code></pre></div><h1 id=设置坐标轴名称>设置坐标轴名称</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.xlabel(&#39;示例x轴&#39;)
+</span></span><span style=display:flex><span>plt.ylabel(&#39;示例y轴&#39;)
+</span></span></code></pre></div><h1 id=添加图例>添加图例</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.legend([&#39;生活&#39;,&#39;颜值&#39;,&#39;工作&#39;,&#39;金钱&#39;])
+</span></span></code></pre></div><h1 id=显示数学公式>显示数学公式</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.text(2,4,r&#39;$ \alpha \beta \pi \lambda \omega $&#39;,size=25)
+</span></span></code></pre></div><h1 id=显示网格>显示网格</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.grid(color=&#39;g&#39;,linewidth=&#39;1&#39;,linestyle=&#39;-.&#39;)
+</span></span></code></pre></div><h1 id=调整坐标轴刻度>调整坐标轴刻度</h1><p>同时调整x轴和y轴：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.locator_params(nbins=20)
+</span></span></code></pre></div><p>只调整x轴：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.locator_params(‘&#39;x&#39;,nbins=20)
+</span></span></code></pre></div><p>只调整y轴：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.locator_params(‘&#39;y&#39;,nbins=20)
+</span></span></code></pre></div><h1 id=x轴和y轴分别显示20个>x轴和y轴分别显示20个</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.locator_params(nbins=20)
+</span></span></code></pre></div><h1 id=调整坐标轴范围>调整坐标轴范围</h1><p>显示坐标轴，plt.axis(),4个数字分别代表x轴和y轴的最小坐标，最大坐标
+调整x为10到25
+<code>plt.xlim(xmin=10,xmax=25)</code></p><h1 id=调整日期自适应>调整日期自适应</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>x=pd.date_range(&#39;2020/01/01&#39;,periods=30)
+</span></span><span style=display:flex><span>y=np.arange(0,30,1)
+</span></span><span style=display:flex><span>plt.plot(x,y)
+</span></span><span style=display:flex><span>plt.gcf().autofmt_xdate()
+</span></span></code></pre></div><h1 id=添加双坐标轴>添加双坐标轴</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>y1=x*x
+</span></span><span style=display:flex><span>y2=np.log(x)
+</span></span><span style=display:flex><span>p1 = plt.plot(x,y1)
+</span></span><span style=display:flex><span># 添加一个坐标轴，默认0到1
+</span></span><span style=display:flex><span>plt.twinx()
+</span></span><span style=display:flex><span>p2 = plt.plot(x,y2,&#39;r&#39;)
+</span></span><span style=display:flex><span>plt.show()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt.legend(p1+p2, [&#39;pv&#39;, &#39;uv&#39;])
+</span></span></code></pre></div><h1 id=填充区域>填充区域</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>x=np.linspace(0,5*np.pi,1000)
+</span></span><span style=display:flex><span>y1=np.sin(x)
+</span></span><span style=display:flex><span>y2=np.sin(2*x)
+</span></span><span style=display:flex><span>plt.plot(x,y1)
+</span></span><span style=display:flex><span>plt.plot(x,y2)
+</span></span><span style=display:flex><span>plt.fill(x,y1,&#39;g&#39;)
+</span></span><span style=display:flex><span>plt.fill(x,y2,&#39;r&#39;)
+</span></span><span style=display:flex><span># fill_beween填充函数交叉区域
+</span></span><span style=display:flex><span>plt.fill_between(x,y1,y2,where=y1&gt;y2,interpolate=True)
+</span></span></code></pre></div><h1 id=切换样式matplotlib支持多种样式可以查看所有的样式>切换样式,matplotlib支持多种样式，可以查看所有的样式</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.style.available 
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.style.use(&#39;ggplot&#39;)
+</span></span></code></pre></div><h1 id=图>图</h1><h6 id=图中添加文字>图中添加文字</h6><p><code>plt.text(0.5, 0.5, 'Figure', ha='center', va='center', size=20, alpha=.5)</code></p><p>alpha 设置字体透明度 (0.5 是半透明)</p><h6 id=图中添加图片>图中添加图片</h6><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>from PIL import Image
+</span></span><span style=display:flex><span># Image.open() 将图片转成像素存在 ndarray 中
+</span></span><span style=display:flex><span>im = np.array(Image.open(&#39;Houston Rockets.png&#39;))
+</span></span><span style=display:flex><span>plt.imshow(im)
+</span></span></code></pre></div><h6 id=在图中可以添加基本元素折线>在图中可以添加基本元素「折线」。</h6><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.figure()
+</span></span><span style=display:flex><span>plt.plot([0,1],[0,1])
+</span></span><span style=display:flex><span>plt.show()
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-9de4d6936957be09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h1 id=坐标系--子图>坐标系 & 子图</h1><p>画东西，看起来是在图 (Figure) 里面进行的，实际上是在坐标系 (Axes) 里面进行的。<strong>一幅图中可以有多个坐标系</strong>，因此在坐标系里画东西更方便 (有些设置使用起来也更灵活)。</p><h3 id=子图>子图</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span> fig, axes=plt.subplots(nrows=1, ncols=2, figsize=(14,6))
+</span></span><span style=display:flex><span>axes[0].scatter(p_AMZN,p_BABA)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.subplot(2,1,1)
+</span></span><span style=display:flex><span>plt.xticks([]),plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.5,0.5,&#39;subplot(2,1,1)&#34;,ha=&#39;center&#39;,va=&#39;center&#39;,size=20,alpha=.5)
+</span></span><span style=display:flex><span>plt.subplot(2,1,2)
+</span></span><span style=display:flex><span>plt.xticks([]),plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.5,0.5,&#39;subplot(2,1,2)&#39;,ha=&#39;center&#39;,va=&#39;center&#39;,size=20,alpha=.5)
+</span></span><span style=display:flex><span>plt.show()
+</span></span></code></pre></div><h3 id=坐标系>坐标系</h3><p>坐标系比子图更通用，有两种生成方式
+用 gridspec 包加上 subplot()
+用 plt.axes()</p><h5 id=不规则网格>不规则网格</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import matplotlib.gridspec as gridspec
+</span></span><span style=display:flex><span>G = gridspec.GridSpec(3, 3)
+</span></span><span style=display:flex><span>ax1 = plt.subplot(G[0, :])
+</span></span><span style=display:flex><span>plt.xticks([]), plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.5, 0.5, &#39;Axes 1&#39;, ha=&#39;center&#39;, va=&#39;center&#39;, size=20, alpha=.5)
+</span></span><span style=display:flex><span>ax2 = plt.subplot(G[1, :-1])
+</span></span><span style=display:flex><span>plt.xticks([]), plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.5, 0.5, &#39;Axes 2&#39;, ha=&#39;center&#39;, va=&#39;center&#39;, size=20, alpha=.5)
+</span></span><span style=display:flex><span>ax3 = plt.subplot(G[1:, -1])
+</span></span><span style=display:flex><span>plt.xticks([]), plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.5,0.5,&#39;Axes 3&#39;, ha=&#39;center&#39;, va=&#39;center&#39;, size=20, alpha=.5)
+</span></span><span style=display:flex><span>ax4 = plt.subplot(G[-1, 0])
+</span></span><span style=display:flex><span>plt.xticks([]), plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.5, 0.5, &#39;Axes 4&#39;, ha=&#39;center&#39;, va=&#39;center&#39;, size=20, alpha=.5)
+</span></span><span style=display:flex><span>ax5 = plt.subplot(G[-1, -2])
+</span></span><span style=display:flex><span>plt.xticks([]), plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.5, 0.5, &#39;Axes 5&#39;, ha=&#39;center&#39;, va=&#39;center&#39;, size=20, alpha=.5)
+</span></span><span style=display:flex><span>plt.show()
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-5690dfecb9e8ce4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h5 id=大图套小图>大图套小图</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.axes([l,b,w,h]) 
+</span></span><span style=display:flex><span>其中 [l, b, w, h] 可以定义坐标系
+</span></span><span style=display:flex><span>l 代表坐标系左边到 Figure 左边的水平距离
+</span></span><span style=display:flex><span>b 代表坐标系底边到 Figure 底边的垂直距离
+</span></span><span style=display:flex><span>w 代表坐标系的宽度
+</span></span><span style=display:flex><span>h 代表坐标系的高度
+</span></span><span style=display:flex><span>如果 l, b, w, h 都小于 1，那它们是标准化 (normalized) 后的距离。比如 Figure 底边长度为 10， 坐标系底边到它的垂直距离是 2，那么 b = 2/10 = 0.2。
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.axes([0.1, 0.1, 0.8, 0.8])
+</span></span><span style=display:flex><span>plt.xticks([]), plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.6, 0.6, &#39;axes([0.1,0.1,0.8,0.8])&#39;, ha=&#39;center&#39;, va=&#39;center&#39;, size=20, alpha=.5)
+</span></span><span style=display:flex><span>plt.axes([0.2, 0.2, 0.3, 0.3])
+</span></span><span style=display:flex><span>plt.xticks([]), plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.5, 0.5, &#39;axes([0.2,0.2,0.3,0.3])&#39;, ha=&#39;center&#39;, va=&#39;center&#39;, size=11, alpha=.5)
+</span></span><span style=display:flex><span>plt.show()
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-181871f7556b9758.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=image.png></p><h5 id=重叠图>重叠图</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>plt.axes([0.1,0.1,0.5,0.5])
+</span></span><span style=display:flex><span>plt.xticks([]),plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.1,0.1,&#39;axes([0.1,0.1,0.5,0.5])&#39;,ha=&#39;left&#39;,va=&#39;center&#39;,size=16,alpha=.5)
+</span></span><span style=display:flex><span>plt.axes([0.2,0.2,0.5,0.5])
+</span></span><span style=display:flex><span>plt.xticks([]),plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.1, 0.1,&#39;axes([0.2,0.2,0.5,0.5])&#39;,ha=&#39;left&#39;,va=&#39;center&#39;,size=16,alpha=.5)
+</span></span><span style=display:flex><span>plt.axes([0.3,0.3,0.5,0.5])
+</span></span><span style=display:flex><span>plt.xticks([]),plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.1,0.1,&#39;axes([e.3,e.3,0.5,0.5])&#39;,ha=&#39;left&#39;,va=&#39;center&#39;,size=16,alpha=.5)
+</span></span><span style=display:flex><span>plt.axes([0.4,0.4,0.5,0.5])
+</span></span><span style=display:flex><span>plt.xticks([]),plt.yticks([])
+</span></span><span style=display:flex><span>plt.text(0.1,0.1,&#39;axes([0.4,0.4,0.5,0.5])&#39;,ha=&#39;left&#39;,va=&#39;center&#39;,size=16,alpha=.5)
+</span></span><span style=display:flex><span>plt.show()
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-5d875b555311de88.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h1 id=坐标轴>坐标轴</h1><p>个坐标系 (Axes)，通常是二维，有两条坐标轴 (Axis)：
+横轴：XAxis，纵轴：YAxis</p><p>每个坐标轴都包含两个元素：
+容器类元素「刻度」，该对象里还包含<strong>刻度本身和刻度标签</strong>
+基础类元素「标签」，该对象包含的是<strong>坐标轴标签</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>fig, ax = plt.subplots()
+</span></span><span style=display:flex><span>ax.set_xlabel(&#39;Label on x-axis&#39;)
+</span></span><span style=display:flex><span>ax.set_ylabel(&#39;Label on y-axis&#39;)
+</span></span><span style=display:flex><span>for label in ax.xaxis.get_ticklabels():
+</span></span><span style=display:flex><span>    # label is a Text instance
+</span></span><span style=display:flex><span>    label.set_color(&#39;teal&#39;)
+</span></span><span style=display:flex><span>    label.set_rotation(45)
+</span></span><span style=display:flex><span>    label.set_fontsize(20)
+</span></span><span style=display:flex><span>for line in ax.yaxis.get_ticklines():
+</span></span><span style=display:flex><span>    # line is a Line2D instance 
+</span></span><span style=display:flex><span>    line.set_color(&#39;r_hex)
+</span></span><span style=display:flex><span>    line.set_markersize(500)
+</span></span><span style=display:flex><span>    line.set_markeredgewidth(30)
+</span></span><span style=display:flex><span>    plt. show()
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-3e75e9ebb89e7124.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h1 id=刻度>刻度</h1><p>刻度 (Tick) 其实在坐标轴那节已经讲过了，它核心内容就是:
+一条短线 (刻度本身)
+一串字符 (刻度标签)</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import matplotlib.pyplot as plt
+</span></span><span style=display:flex><span>import matplotlib.ticker as ticker
+</span></span><span style=display:flex><span>fig, axes = plt. subplots(nrows=2, ncols=3, figsize=(8, 4))
+</span></span><span style=display:flex><span>axes[0, 0].set_title(&#39;original&#39;)
+</span></span><span style=display:flex><span># 隐藏刻度线
+</span></span><span style=display:flex><span>axes[0, 1].spines[&#39;right&#39;]. set_color(&#39;none&#39;)
+</span></span><span style=display:flex><span>axes[0, 1].spines[&#39;left&#39;]. set_color(&#39;none&#39;)
+</span></span><span style=display:flex><span>axes[0, 1].spines[&#39;top&#39;]. set_color(&#39;none&#39;)
+</span></span><span style=display:flex><span>axes[0, 1].set_title(&#39;Handle Spines&#39;)
+</span></span><span style=display:flex><span># 设置y轴没有刻度标签
+</span></span><span style=display:flex><span>axes[0, 2].yaxis.set_major_locator(ticker.NullLocator())
+</span></span><span style=display:flex><span># 设置x轴的刻度标签在刻度线下面
+</span></span><span style=display:flex><span>axes[0, 2].xaxis.set_ticks_position(&#39;bottom&#39;)
+</span></span><span style=display:flex><span>axes[0, 2].set_title(&#39;Handle Tick Labels&#39;)
+</span></span><span style=display:flex><span># 设置设置刻度长和宽
+</span></span><span style=display:flex><span>axes[1, 0].tick_params(which=&#39;major&#39;, width=2.00)
+</span></span><span style=display:flex><span>axes[1, 0].tick_params(which=&#39;major&#39;, length=10)
+</span></span><span style=display:flex><span># 
+</span></span><span style=display:flex><span>axes[1, 0].tick_params(which=&#39;minor&#39;, width=0.75)
+</span></span><span style=display:flex><span>axes[1, 0].tick_params(which=&#39; minor&#39;, length=2.5)
+</span></span><span style=display:flex><span>axes[1, 0].set_title(&#39;Handle Tick width/Length&#39;)
+</span></span><span style=display:flex><span># 设置刻度范围
+</span></span><span style=display:flex><span>axes[1, 1].set_xlim(0, 5)
+</span></span><span style=display:flex><span>axes[1, 1].set_ylim(0, 1)
+</span></span><span style=display:flex><span>axes[1, 1].set_title(&#39;Handle Axis Limit&#39;)
+</span></span><span style=display:flex><span># 设置背景
+</span></span><span style=display:flex><span>axes[1, 2].patch.set_color(&#39;black&#39;)
+</span></span><span style=display:flex><span>axes[1, 2].patch.set_alpha(0.3)
+</span></span><span style=display:flex><span>axes[1, 2].set_title(&#39;Handle Patch Color&#39;)
+</span></span><span style=display:flex><span>plt.tight_layout()
+</span></span><span style=display:flex><span>plt.show()
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-834112bd9fa8f591.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=" "></p><p>不同的 locator() 可以生成不同的刻度对象，我们来研究以下 8 种：</p><blockquote><p>NullLocator(): 空刻度
+MultipleLocator(a): 刻度间隔 = 标量 a
+FixedLocator(a): 刻度位置由数组 a 决定
+LinearLocator(a): 刻度数目 = a, a 是标量
+IndexLocator(b, o): 刻度间隔 = 标量 b，偏移量 = 标量 o
+AutoLocator(): 根据默认设置决定
+MaxNLocator(a): 最大刻度数目 = 标量 a
+LogLocator(b, n): 基数 = 标量 b，刻度数目 = 标量 n</p></blockquote><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-29471e158f1794fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=image.png></p><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-e03ffa57629e723b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=image.png>
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-40a148216a0bae6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=image.png>
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-c5c5b272bcc84022.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=image.png>
+上图其实包含 8 个子图，但只含有 x 轴，这也是为什么要先定一个 setup(ax) 函数来只保留 x 轴。</p><h3 id=用-pltrcparams-可查看上图的所有默认属性-非常多的属性值>用 plt.rcParams 可查看上图的所有默认属性 (非常多的属性值)。</h3><p><code>plt.rcParams</code>
+看完上面的属性值后，斯蒂文决定在图表尺寸 (figsize)，每英寸像素点 (dpi)，线条颜色 (color)，线条风格 (linestyle)，线条宽度 (linewidth)，横纵轴刻度 (xticks, yticks)，横纵轴边界 (xlim, ylim) 做改进。那就先看看它们的默认属性值是多少。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>print( &#39;figure size:&#39;, plt.rcParams[&#39;figure.figsize&#39;] )
+</span></span><span style=display:flex><span>print( &#39;figure dpi:&#39;,plt.rcParams[&#39;figure.dpi&#39;] )
+</span></span><span style=display:flex><span>print( &#39;line color:&#39;,plt.rcParams[&#39;lines.color&#39;] )
+</span></span><span style=display:flex><span>print( &#39;line style:&#39;,plt.rcParams[&#39;lines.linestyle&#39;] )
+</span></span><span style=display:flex><span>print( &#39;line width:&#39;,plt.rcParams[&#39;lines.linewidth&#39;] )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig = plt.figure()
+</span></span><span style=display:flex><span>ax = fig.add_subplot(1, 1, 1)
+</span></span><span style=display:flex><span>ax.plot()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>print( &#39;xticks:&#39;, ax.get_xticks() )
+</span></span><span style=display:flex><span>print( &#39;yticks:&#39;, ax.get_yticks() )
+</span></span><span style=display:flex><span>print( &#39;xlim:&#39;, ax.get_xlim() )
+</span></span><span style=display:flex><span>print( &#39;ylim:&#39;, ax.get_ylim() )
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-9851d6be960d91e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>fig=plt.figure(figsize=(16,6), dpi=100)
+</span></span><span style=display:flex><span>ax=fig.add_subplot(1,1,1)
+</span></span><span style=display:flex><span># x 是日期 (回顾 spx 是一个 DataFrame，行标签是日期)。
+</span></span><span style=display:flex><span>x=spx.index
+</span></span><span style=display:flex><span>y=spx.values
+</span></span><span style=display:flex><span>ax.plot(x,y, color=&#39;dt_hex&#39;, linewidth=2, linestyle=&#39;-&#39;)
+</span></span><span style=display:flex><span># 设置横轴的边界，下界是 - 1，上界是 len(x) +1。
+</span></span><span style=display:flex><span>ax.set_xlim(-1,len(x)+1)
+</span></span><span style=display:flex><span>ax.set_ylim(y.min()*0.8,y.max()*1.2)
+</span></span><span style=display:flex><span># 设置横轴「数值刻度」为 range(0,len(x), 40)，即 0, 40, 80, ....
+</span></span><span style=display:flex><span>ax.set_xticks(range(0, len(x), 40))
+</span></span><span style=display:flex><span># 刻度标签，即格式为 %Y-%m-%d 的日期。由于日期个数比较多，而且日期字符比较长，直接在图中显示出来会相互重叠非常难看。这里调节参数 rotation = 90 使得日期逆时针转了 90 度，看上图效果好多了。
+</span></span><span style=display:flex><span>ax.set_xticklabels([x[i]. strftime(&#39;%Y-%m-%d&#39;) for i in ax.get_xticks()], rotation=90)
+</span></span></code></pre></div><h5 id=同一副图两个坐标系>同一副图两个坐标系</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>fig=plt.figure(figsize=(16,6), dpi=180)
+</span></span><span style=display:flex><span>ax1=fig.add_subplot(1,1,1)
+</span></span><span style=display:flex><span>x=spx.index
+</span></span><span style=display:flex><span>y1=spx.values
+</span></span><span style=display:flex><span>y2=vix.values
+</span></span><span style=display:flex><span>ax1.plot(y1, color=&#39;dt_hex&#39;, linewidth=2, linestyle&#39;-&#39;,label=&#39;s8pse0&#39;)
+</span></span><span style=display:flex><span>ax1.set_xlim(-1, len(x)-1)
+</span></span><span style=display:flex><span>axl.setylim(np.vstack([y1,y2]).min()*0.8, np.vstack([y1,y2]). max()*1.2)
+</span></span><span style=display:flex><span>xtick-range(0, len(x),40)
+</span></span><span style=display:flex><span>x_label=[x[i]. strftime(&#39;%V-%m-%d&#39;) for i in xtick]
+</span></span><span style=display:flex><span>axl.set_xticks(x_tick)
+</span></span><span style=display:flex><span>ax1.set_xticklabels(x_label, rotation=90)
+</span></span><span style=display:flex><span>ax1.legend(loc=&#39;upper left&#39;, frameon=True)
+</span></span><span style=display:flex><span># Add a second axes 
+</span></span><span style=display:flex><span>ax2=ax1.twinx()
+</span></span><span style=display:flex><span>ax2.plot(y2, color=&#39;&#39;, linewidth=2, linestyle=&#39;-&#39;, label=&#39;VIx&#39;)
+</span></span><span style=display:flex><span>ax2.legend(loc=&#39; upper right&#39;, frameon=True)
+</span></span></code></pre></div><h5 id=某点设置标注>某点设置标注</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>fig=plt. figure(figsize=(16,6), dpi=100)
+</span></span><span style=display:flex><span>crisis_data=[(datetime(2007,10,11),&#39;Peak of bull market&#39;),
+</span></span><span style=display:flex><span>            (datetime(2008,3,12),&#39;8ear Stearns Fails&#39;),
+</span></span><span style=display:flex><span>            (datctime(2008,9,15),&#39; Lehman Bankruptcy&#39;),
+</span></span><span style=display:flex><span>            (datetime(2009,1,20),&#39; RBS Sell-off&#39;),
+</span></span><span style=display:flex><span>            (datetime(2009,4,2),&#39;620Summit&#39;)]
+</span></span><span style=display:flex><span>ax1=fig.add_subplot(1,1,1)
+</span></span><span style=display:flex><span>x=spx.index
+</span></span><span style=display:flex><span>y1=spx.values
+</span></span><span style=display:flex><span>axl.plot(y1, color=&#39;dt_hex&#39;, linewidth=2, linestyle=&#39;-&#39;, label=&#39;s&amp; ps8e&#39;)
+</span></span><span style=display:flex><span>ax1.set_xlim(1, len(x)+1)
+</span></span><span style=display:flex><span>ax1.setylim(np.vstack([y1,y2]). min()*0.8, np.vstack([y1,y2]). max()*1.2)
+</span></span><span style=display:flex><span>xtick=range(0, len(x),40)
+</span></span><span style=display:flex><span>x_1abel=[x[i].strftime(&#39;Y-m-d&#39;) for i in x_tick]
+</span></span><span style=display:flex><span>ax1.set_xticks(x_tick)
+</span></span><span style=display:flex><span>ax1.set_xticklabels(x_label, rotation=90)
+</span></span><span style=display:flex><span>ax1.legend(loc=&#39;upper 1eft&#39;,frameon=True)
+</span></span><span style=display:flex><span>for date,label in crisis_data:
+</span></span><span style=display:flex><span>    date=date.strftime(&#39;%Y-%m-%d&#39;)
+</span></span><span style=display:flex><span>    xi=x.get_loc(date)
+</span></span><span style=display:flex><span>    yi=spx.asof(date)
+</span></span><span style=display:flex><span>    axl.scatter(xi,yi,880,color=&#39;r_hex&#39;)
+</span></span><span style=display:flex><span>    axl.annotate(label,
+</span></span><span style=display:flex><span>                 xy=(xi,yi+60),
+</span></span><span style=display:flex><span>                 xytext=(xi,yi+300),
+</span></span><span style=display:flex><span>                 arrowprops=dict(facecolor=&#39;black&#39;,
+</span></span><span style=display:flex><span>                                 headwidth=4,
+</span></span><span style=display:flex><span>                                 width=1,
+</span></span><span style=display:flex><span>                                 headlength=6),
+</span></span><span style=display:flex><span>                 horizontalalignment=&#39;left&#39;,
+</span></span><span style=display:flex><span>                 verticalalignment=&#39;top&#39;)
+</span></span><span style=display:flex><span>init_tick=list(range(0,len(x),40))
+</span></span><span style=display:flex><span>impt_tick=[]
+</span></span><span style=display:flex><span>impt_date=[]
+</span></span><span style=display:flex><span>for i, label in enumerate(axl.get_xticklabels()): 
+</span></span><span style=display:flex><span>    if i&gt;=len(init_tick):
+</span></span><span style=display:flex><span>        label. set_color(&#39;r_hex&#39;)
+</span></span><span style=display:flex><span>        label. set_fontweight(&#39;bold&#34;)
+</span></span><span style=display:flex><span>    else:
+</span></span><span style=display:flex><span>        labe1.set_fontsize(9)
+</span></span></code></pre></div><p>金融数据练习
+【干货】一文掌握Matplotlib的使用方法</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> yahoofinancials <span style=color:#f92672>import</span> YahooFinancials
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> pandas <span style=color:#66d9ef>as</span> pd
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> matplotlib.pyplot <span style=color:#66d9ef>as</span> plt
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 从 API 获取数据，股票用的是股票代号 (stock code)，而货币用的该 API 要求的格式，</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 比如「欧元美元」用 EURUSD=X，而不是市场常见的 EURUSD，而「美元日元」用 JPY=X 而不是 USDJPY。</span>
+</span></span><span style=display:flex><span>start_date<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;2018-04-29&#39;</span>
+</span></span><span style=display:flex><span>end_date<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;2019-04-29&#39;</span>
+</span></span><span style=display:flex><span>stock_code<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;NVDA&#39;</span>,<span style=color:#e6db74>&#39;AMZN&#39;</span>,<span style=color:#e6db74>&#39;BABA&#39;</span>,<span style=color:#e6db74>&#39;FB&#39;</span>,<span style=color:#e6db74>&#39;AAPL&#39;</span>]
+</span></span><span style=display:flex><span>currency_code<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;EURUSD=X&#39;</span>,<span style=color:#e6db74>&#39;JPY=X&#39;</span>,<span style=color:#e6db74>&#39;CNY=X&#39;</span>]
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>stock<span style=color:#f92672>=</span>YahooFinancials(stock_code)
+</span></span><span style=display:flex><span>currency<span style=color:#f92672>=</span>YahooFinancials(currency_code)
+</span></span><span style=display:flex><span>stock_daily<span style=color:#f92672>=</span>stock<span style=color:#f92672>.</span>get_historical_price_data(start_date, end_date,<span style=color:#e6db74>&#39;daily&#39;</span>)
+</span></span><span style=display:flex><span>currency_daily<span style=color:#f92672>=</span>currency<span style=color:#f92672>.</span>get_historical_price_data(start_date, end_date,<span style=color:#e6db74>&#39;daily&#39;</span>)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>stock_daily
+</span></span></code></pre></div><p>把上面的「原始数据」转换成 DataFrame</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>data_converter</span>(price_data, code, asset):
+</span></span><span style=display:flex><span>    <span style=color:#75715e># convert raw data to dataframe </span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> asset<span style=color:#f92672>==</span><span style=color:#e6db74>&#39;FX&#39;</span>: 
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 如果 Asset 是股票类，直接用其股票代码；如果 Asset 是汇率类，一般参数写成 EURUSD 或 USDJPY</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 如果是 EURUSD，转换成 EURUSD=X</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># 如果是 USDJPY，转换成 JPY=X</span>
+</span></span><span style=display:flex><span>        code<span style=color:#f92672>=</span>str(code[<span style=color:#ae81ff>3</span>:] <span style=color:#66d9ef>if</span> code[:<span style=color:#ae81ff>3</span>]<span style=color:#f92672>==</span><span style=color:#e6db74>&#39;USD&#39;</span> <span style=color:#66d9ef>else</span> code)<span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;=X&#39;</span>
+</span></span><span style=display:flex><span>    columns<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;open&#39;</span>,<span style=color:#e6db74>&#39;close&#39;</span>,<span style=color:#e6db74>&#39;low&#39;</span>,<span style=color:#e6db74>&#39;high&#39;</span>] 
+</span></span><span style=display:flex><span>    price_dict<span style=color:#f92672>=</span>price_data[code][<span style=color:#e6db74>&#39;prices&#39;</span>]
+</span></span><span style=display:flex><span>    index<span style=color:#f92672>=</span>[ p[<span style=color:#e6db74>&#39;formatted_date&#39;</span>] <span style=color:#66d9ef>for</span> p <span style=color:#f92672>in</span> price_dict]
+</span></span><span style=display:flex><span>    price<span style=color:#f92672>=</span>[[p[c] <span style=color:#66d9ef>for</span> c <span style=color:#f92672>in</span> columns] <span style=color:#66d9ef>for</span> p <span style=color:#f92672>in</span> price_dict]
+</span></span><span style=display:flex><span>    data<span style=color:#f92672>=</span>pd<span style=color:#f92672>.</span>DataFrame(price, 
+</span></span><span style=display:flex><span>                      index<span style=color:#f92672>=</span>pd<span style=color:#f92672>.</span>Index(index, name<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;date&#39;</span>), 
+</span></span><span style=display:flex><span>                      columns<span style=color:#f92672>=</span>pd<span style=color:#f92672>.</span>Index(columns, name<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;OHLC&#39;</span>))
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> data
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>EURUSD<span style=color:#f92672>=</span>data_converter(currency_daily,<span style=color:#e6db74>&#39;EURUSD&#39;</span>,<span style=color:#e6db74>&#39;FX&#39;</span>)
+</span></span><span style=display:flex><span>EURUSD<span style=color:#f92672>.</span>head(<span style=color:#ae81ff>3</span>)<span style=color:#f92672>.</span>append(EURUSD<span style=color:#f92672>.</span>tail(<span style=color:#ae81ff>3</span>))
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-093753c575abe7d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=image.png></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>NVDA<span style=color:#f92672>=</span>data_converter(stock_daily,<span style=color:#e6db74>&#39;NVDA&#39;</span>,<span style=color:#e6db74>&#39;EQ&#39;</span>)
+</span></span><span style=display:flex><span>NVDA<span style=color:#f92672>.</span>head(<span style=color:#ae81ff>3</span>)<span style=color:#f92672>.</span>append(NVDA<span style=color:#f92672>.</span>tail(<span style=color:#ae81ff>3</span>))
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-984a2592a01201b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt=image.png></p><h5 id=直方图-histogram-chart又称质量分布图是一种统计报告图>直方图 (histogram chart)又称质量分布图，是一种统计报告图</h5><p><code>hist()</code> 里的参数有
+p_NVDA：Series，也可以是 list 或者 ndarray
+bins：分成多少堆
+colors：用之前定义的深青色</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>p_NVDA<span style=color:#f92672>=</span>NVDA[<span style=color:#e6db74>&#39;close&#39;</span>]
+</span></span><span style=display:flex><span>date<span style=color:#f92672>=</span>p_NVDA<span style=color:#f92672>.</span>index 
+</span></span><span style=display:flex><span>price<span style=color:#f92672>=</span>p_NVDA<span style=color:#f92672>.</span>values 
+</span></span><span style=display:flex><span>r_NVDA<span style=color:#f92672>=</span>pd<span style=color:#f92672>.</span>Series(np<span style=color:#f92672>.</span>log(price[<span style=color:#ae81ff>1</span>:]<span style=color:#f92672>/</span>price[:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]), index<span style=color:#f92672>=</span>date[<span style=color:#ae81ff>1</span>:])
+</span></span><span style=display:flex><span>fig<span style=color:#f92672>=</span>plt<span style=color:#f92672>.</span>figure(figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>8</span>,<span style=color:#ae81ff>4</span>))
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>hist(r_NVDA, bins<span style=color:#f92672>=</span><span style=color:#ae81ff>30</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>xlabel(<span style=color:#e6db74>&#39;Nvidia Price&#39;</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>ylabel(<span style=color:#e6db74>&#39;Number of Days Observed&#39;</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>title(<span style=color:#e6db74>&#39;Frequency Distribution of Nvidia Prices, Apr-2018 to Apr-2019&#39;</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><h5 id=散点图-scatter-chart--用两组数据构成多个坐标点>散点图 (scatter chart) 用两组数据构成多个坐标点</h5><p><code>scatter()</code>里的参数有
+p_AMZN (r_AMZN)：Series，也可以是 list 或者 ndarray
+p_BABA (r_BABA)：Series，也可以是 list 或者 ndarray
+colors：用之前定义的深青色和红色</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>AMZN<span style=color:#f92672>=</span>data_converter(stock_daily,<span style=color:#e6db74>&#39;AMZN&#39;</span>, <span style=color:#e6db74>&#39;EQ&#39;</span>) 
+</span></span><span style=display:flex><span>BABA<span style=color:#f92672>=</span>data_converter(stock_daily,<span style=color:#e6db74>&#39;BABA&#39;</span>,<span style=color:#e6db74>&#39;EQ&#39;</span>)
+</span></span><span style=display:flex><span>p_AMZN<span style=color:#f92672>=</span>AMZN[<span style=color:#e6db74>&#39;close&#39;</span>]
+</span></span><span style=display:flex><span>p_BABA<span style=color:#f92672>=</span>BABA[<span style=color:#e6db74>&#39;close&#39;</span>]
+</span></span><span style=display:flex><span>date<span style=color:#f92672>=</span>p_AMZN<span style=color:#f92672>.</span>index 
+</span></span><span style=display:flex><span>price<span style=color:#f92672>=</span>p_AMZN<span style=color:#f92672>.</span>values 
+</span></span><span style=display:flex><span>r_AMZN<span style=color:#f92672>=</span>pd<span style=color:#f92672>.</span>Series(np<span style=color:#f92672>.</span>log(price[<span style=color:#ae81ff>1</span>:]<span style=color:#f92672>/</span>price[:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]), index<span style=color:#f92672>=</span>date[<span style=color:#ae81ff>1</span>:])
+</span></span><span style=display:flex><span>date<span style=color:#f92672>=</span>p_BABA<span style=color:#f92672>.</span>index 
+</span></span><span style=display:flex><span>price<span style=color:#f92672>=</span>p_BABA<span style=color:#f92672>.</span>values 
+</span></span><span style=display:flex><span>r_BABA<span style=color:#f92672>=</span>pd<span style=color:#f92672>.</span>Series(np<span style=color:#f92672>.</span>log(price[<span style=color:#ae81ff>1</span>:]<span style=color:#f92672>/</span>price[:<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]), index<span style=color:#f92672>=</span>date[<span style=color:#ae81ff>1</span>:])
+</span></span></code></pre></div><h5 id=折线图-line-chart-显示随时间而变化的连续数据>折线图 (line chart) 显示随时间而变化的连续数据</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>fig, axes<span style=color:#f92672>=</span>plt<span style=color:#f92672>.</span>subplots(nrows<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>, ncols<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>, figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>14</span>,<span style=color:#ae81ff>6</span>))
+</span></span><span style=display:flex><span>axes[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>scatter(p_AMZN,p_BABA)
+</span></span><span style=display:flex><span>axes[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Amazon Price&#39;</span>)
+</span></span><span style=display:flex><span>axes[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;Daily Prices from Apr-2018 to Apr-2019&#39;</span>)
+</span></span><span style=display:flex><span>axes[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>scatter(r_AMZN,r_BABA)
+</span></span><span style=display:flex><span>axes[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_xlabel(<span style=color:#e6db74>&#39;Amazon Log-Return&#39;</span>)
+</span></span><span style=display:flex><span>axes[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_ylabel(<span style=color:#e6db74>&#39;Alibaba Log-Return&#39;</span>)
+</span></span><span style=display:flex><span>axes[<span style=color:#ae81ff>1</span>]<span style=color:#f92672>.</span>set_title(<span style=color:#e6db74>&#39;Daily Returns from Apr-2018 to Apr-2019&#39;</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span><span style=display:flex><span><span style=color:#75715e># 亚马逊和阿里巴巴在这端时期的表现正相关，如果做线性回归是一条斜率为正的线。</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>curr<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;EURUSD&#39;</span>
+</span></span><span style=display:flex><span>EURUSD<span style=color:#f92672>=</span>data_converter(currency_daily,curr,<span style=color:#e6db74>&#39;FX&#39;</span>)
+</span></span><span style=display:flex><span>rate<span style=color:#f92672>=</span>EURUSD[<span style=color:#e6db74>&#39;close&#39;</span>]
+</span></span><span style=display:flex><span>fig<span style=color:#f92672>=</span>plt<span style=color:#f92672>.</span>figure(figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>16</span>,<span style=color:#ae81ff>6</span>))
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>=</span>fig<span style=color:#f92672>.</span>add_subplot(<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_title(curr <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;-Moving Average&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_xticks(range(<span style=color:#ae81ff>0</span>, len(rate<span style=color:#f92672>.</span>index),<span style=color:#ae81ff>10</span>))
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_xticklabels([ rate<span style=color:#f92672>.</span>index[i] <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> ax<span style=color:#f92672>.</span>get_xticks()], rotation<span style=color:#f92672>=</span><span style=color:#ae81ff>90</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(rate, linewidth<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Close&#39;</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># 用 rolling(n) 函数对 rate 求 n 天移动均值。</span>
+</span></span><span style=display:flex><span>MA_20<span style=color:#f92672>=</span>rate<span style=color:#f92672>.</span>rolling(<span style=color:#ae81ff>20</span>)<span style=color:#f92672>.</span>mean() 
+</span></span><span style=display:flex><span>MA_60<span style=color:#f92672>=</span>rate<span style=color:#f92672>.</span>rolling(<span style=color:#ae81ff>60</span>)<span style=color:#f92672>.</span>mean()
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(MA_20, linewidth<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;MA20&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>plot(MA_60, linewidth<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;MA60&#39;</span>)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>legend(loc<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><h5 id=饼状图-pie-chart-是一个划分为几个扇形的圆形统计图表用于描述量频率或百分比之间的相对关系>饼状图 (pie chart) 是一个划分为几个扇形的圆形统计图表，用于描述量、频率或百分比之间的相对关系。</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 我们来看看如何画出一个股票投资组合在 2019 年 4 月 26 日的饼状图，假设组合里面有 100 股英伟达，20 股亚马逊，50 股阿里巴巴，30 股脸书和 40 股苹果 (一个科技股爱好者的组合 )。</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 算组合里五支股票在 2019 年 4 月 26 日的市值 (market value, MV)。</span>
+</span></span><span style=display:flex><span>stock_list<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;NVDA&#39;</span>,<span style=color:#e6db74>&#39;AMZN&#39;</span>,<span style=color:#e6db74>&#39;BABA&#39;</span>,<span style=color:#e6db74>&#39;FB&#39;</span>,<span style=color:#e6db74>&#39;AAPL&#39;</span>]
+</span></span><span style=display:flex><span>date<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;2019-04-26&#39;</span>
+</span></span><span style=display:flex><span>MV<span style=color:#f92672>=</span>[data_converter(stock_daily, code, <span style=color:#e6db74>&#39;EQ&#39;</span>)[<span style=color:#e6db74>&#39;close&#39;</span>][date] <span style=color:#66d9ef>for</span> code <span style=color:#f92672>in</span> stock_list ]
+</span></span><span style=display:flex><span>MV<span style=color:#f92672>=</span>np<span style=color:#f92672>.</span>array(MV)<span style=color:#f92672>*</span>np<span style=color:#f92672>.</span>array([<span style=color:#ae81ff>100</span>,<span style=color:#ae81ff>20</span>,<span style=color:#ae81ff>50</span>,<span style=color:#ae81ff>30</span>,<span style=color:#ae81ff>40</span>])
+</span></span><span style=display:flex><span><span style=color:#75715e># print(MV) # [17808.99963379 39012.60009766  9354.49981689  5744.70016479 8172.00012207]</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 首先按市值大小按升序排序。</span>
+</span></span><span style=display:flex><span>idx <span style=color:#f92672>=</span> MV<span style=color:#f92672>.</span>argsort()[::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]  <span style=color:#75715e># [1 0 2 4 3]</span>
+</span></span><span style=display:flex><span>MV <span style=color:#f92672>=</span> MV[idx] <span style=color:#75715e># idx为 np.ndarray 可直接生成新的数组</span>
+</span></span><span style=display:flex><span>stock_list <span style=color:#f92672>=</span> [ stock_list[i] <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> idx ]
+</span></span><span style=display:flex><span>fig<span style=color:#f92672>=</span>plt<span style=color:#f92672>.</span>figure(figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>16</span>,<span style=color:#ae81ff>6</span>))
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>=</span>fig<span style=color:#f92672>.</span>add_subplot(<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># startangle = 90 是说第一片扇形 counterclock = False 是说顺时针拜访每块扇形</span>
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>pie(MV, labels<span style=color:#f92672>=</span>stock_list,autopct<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;</span><span style=color:#e6db74>%.0f%%</span><span style=color:#e6db74>&#39;</span>,startangle<span style=color:#f92672>=</span><span style=color:#ae81ff>90</span>,counterclock<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>) 
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>fig<span style=color:#f92672>=</span>plt<span style=color:#f92672>.</span>figure(figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>8</span>,<span style=color:#ae81ff>6</span>))
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>=</span>fig<span style=color:#f92672>.</span>add_subplot(<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>pct_MV<span style=color:#f92672>=</span>MV<span style=color:#f92672>/</span>np<span style=color:#f92672>.</span>sum(MV)
+</span></span><span style=display:flex><span>index<span style=color:#f92672>=</span>np<span style=color:#f92672>.</span>arange(len(pct_MV))
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>bar(index,pct_MV)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_xticks(index)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_xticklabels(stock_list)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_ylim(<span style=color:#ae81ff>0</span>,np<span style=color:#f92672>.</span>max(pct_MV)<span style=color:#f92672>*</span><span style=color:#ae81ff>1.1</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> x,y <span style=color:#f92672>in</span> zip(index,pct_MV): 
+</span></span><span style=display:flex><span>    ax<span style=color:#f92672>.</span>text(x<span style=color:#f92672>+</span><span style=color:#ae81ff>0.04</span>,y<span style=color:#f92672>+</span><span style=color:#ae81ff>0.05</span><span style=color:#f92672>/</span><span style=color:#ae81ff>100</span>,<span style=color:#e6db74>&#39;</span><span style=color:#e6db74>{0:.0%}</span><span style=color:#e6db74>&#39;</span><span style=color:#f92672>.</span>format(y),ha<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;center&#39;</span>,va<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;bottom&#39;</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 如果柱状很多时，或者标签名字很长时，用横向柱状图 (horizontal bar chart)，函数为 ax.barh()。代码和上面非常类似，就是把横轴和纵轴的调换了一下。</span>
+</span></span><span style=display:flex><span>fig<span style=color:#f92672>=</span>plt<span style=color:#f92672>.</span>figure(figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>8</span>,<span style=color:#ae81ff>6</span>))
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>=</span>fig<span style=color:#f92672>.</span>add_subplot(<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>pct_MV<span style=color:#f92672>=</span>MV[::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>/</span>np<span style=color:#f92672>.</span>sum(MV)
+</span></span><span style=display:flex><span>index<span style=color:#f92672>=</span>np<span style=color:#f92672>.</span>arange(len(pct_MV))
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>barh(index,pct_MV)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_yticks(index)
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_yticklabels(stock_list[::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>])
+</span></span><span style=display:flex><span>ax<span style=color:#f92672>.</span>set_xlim(<span style=color:#ae81ff>0</span>,np<span style=color:#f92672>.</span>max(pct_MV)<span style=color:#f92672>*</span><span style=color:#ae81ff>1.1</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> x,y <span style=color:#f92672>in</span> zip(pct_MV, index): 
+</span></span><span style=display:flex><span>    ax<span style=color:#f92672>.</span>text(x<span style=color:#f92672>+</span><span style=color:#ae81ff>0.04</span>,y,<span style=color:#e6db74>&#39;</span><span style=color:#e6db74>{0:.0%}</span><span style=color:#e6db74>&#39;</span><span style=color:#f92672>.</span>format(x),ha<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;center&#39;</span>,va<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;bottom&#39;</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><h1 id=动画>动画</h1><h6 id=假>假</h6><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>import matplotlib
+</span></span><span style=display:flex><span>import matplotlib.pyplot as plt
+</span></span><span style=display:flex><span>import matplotlib.font_manager as fm
+</span></span><span style=display:flex><span>from mpl_toolkits.mplot3d import Axes3D
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 解决中文乱码问题
+</span></span><span style=display:flex><span># 查看字体包位置 fc-list :lang=zh | grep Songti
+</span></span><span style=display:flex><span>myfont = fm.FontProperties(fname=r&#34;C:/Windows/fonts/simsun.ttc&#34;, size=14)
+</span></span><span style=display:flex><span>matplotlib.rcParams[&#34;axes.unicode_minus&#34;] = False
+</span></span><span style=display:flex><span># plt.ion()：打开交互模式
+</span></span><span style=display:flex><span># plt.ioff()：关闭交互模式
+</span></span><span style=display:flex><span># plt.clf()：清除当前的Figure对象
+</span></span><span style=display:flex><span># plt.cla()：清除当前的Axes对象
+</span></span><span style=display:flex><span># plt.pause()：暂停功能
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def simple_plot():
+</span></span><span style=display:flex><span>    &#34;&#34;&#34;
+</span></span><span style=display:flex><span>    simple plot
+</span></span><span style=display:flex><span>    &#34;&#34;&#34;
+</span></span><span style=display:flex><span>    # 生成画布
+</span></span><span style=display:flex><span>    plt.figure(figsize=(8, 6), dpi=80)
+</span></span><span style=display:flex><span>    # 打开交互模式
+</span></span><span style=display:flex><span>    plt.ion()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    # 循环
+</span></span><span style=display:flex><span>    for index in range(100):
+</span></span><span style=display:flex><span>        # 清除原有图像
+</span></span><span style=display:flex><span>        plt.cla()
+</span></span><span style=display:flex><span>        # 设定标题等
+</span></span><span style=display:flex><span>        plt.title(&#34;动态曲线图&#34;, fontproperties=myfont)
+</span></span><span style=display:flex><span>        plt.grid(True)
+</span></span><span style=display:flex><span>        # 生成测试数据
+</span></span><span style=display:flex><span>        x = np.linspace(-np.pi + 0.1*index, np.pi+0.1*index, 256, endpoint=True)
+</span></span><span style=display:flex><span>        y_cos, y_sin = np.cos(x), np.sin(x)
+</span></span><span style=display:flex><span>        # 设置X轴
+</span></span><span style=display:flex><span>        plt.xlabel(&#34;X轴&#34;, fontproperties=myfont)
+</span></span><span style=display:flex><span>        plt.xlim(-4 + 0.1*index, 4 + 0.1*index)
+</span></span><span style=display:flex><span>        plt.xticks(np.linspace(-4 + 0.1*index, 4+0.1*index, 9, endpoint=True))
+</span></span><span style=display:flex><span>        # 设置Y轴
+</span></span><span style=display:flex><span>        plt.ylabel(&#34;Y轴&#34;, fontproperties=myfont)
+</span></span><span style=display:flex><span>        plt.ylim(-1.0, 1.0)
+</span></span><span style=display:flex><span>        plt.yticks(np.linspace(-1, 1, 9, endpoint=True))
+</span></span><span style=display:flex><span>        # 画两条曲线
+</span></span><span style=display:flex><span>        plt.plot(x, y_cos, &#34;b--&#34;, linewidth=2.0, label=&#34;cos示例&#34;)
+</span></span><span style=display:flex><span>        plt.plot(x, y_sin, &#34;g-&#34;, linewidth=2.0, label=&#34;sin示例&#34;)
+</span></span><span style=display:flex><span>        # 设置图例位置,loc可以为[upper, lower, left, right, center]
+</span></span><span style=display:flex><span>        plt.legend(loc=&#34;upper left&#34;, prop=myfont, shadow=True)
+</span></span><span style=display:flex><span>        # 暂停
+</span></span><span style=display:flex><span>        plt.pause(0.1)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    # 关闭交互模式
+</span></span><span style=display:flex><span>    plt.ioff()
+</span></span><span style=display:flex><span>    # 图形显示
+</span></span><span style=display:flex><span>    plt.show()
+</span></span><span style=display:flex><span>simple_plot()
+</span></span></code></pre></div><h5 id=funcanimation>FuncAnimation</h5><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span># fig 绘制动图的画布名称
+</span></span><span style=display:flex><span># func自定义动画函数，即下边程序定义的函数update
+</span></span><span style=display:flex><span># frames动画长度，一次循环包含的帧数（每一帧就是每一个画面），在函数运行时，其值会传递给函数update(n)的形参“n”，注意这个就是循环的基准参数，多次循环就是多个值的列表即可。
+</span></span><span style=display:flex><span># init_func自定义开始帧，即传入刚定义的函数init,初始化函数，如设置图标大小，刻度等
+</span></span><span style=display:flex><span># interval更新频率，以ms计
+</span></span><span style=display:flex><span># blit选择更新所有点（False），还是仅更新产生变化的点(True)，看情况设置，但mac用户请选择False，否则无法显示。
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>import matplotlib.pyplot as plt
+</span></span><span style=display:flex><span>from matplotlib.animation import FuncAnimation
+</span></span><span style=display:flex><span># 修改输出方式 还有就是保存的图片直接用pycharm打开是静态图，使用系统自带的图片编辑器打开是动态的。
+</span></span><span style=display:flex><span>import matplotlib
+</span></span><span style=display:flex><span>matplotlib.use(&#39;TkAgg&#39;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 用来正常显示中文标签
+</span></span><span style=display:flex><span>plt.rcParams[&#39;font.sans-serif&#39;] = [&#39;SimHei&#39;]
+</span></span><span style=display:flex><span># 用来正常显示负号
+</span></span><span style=display:flex><span>plt.rcParams[&#39;axes.unicode_minus&#39;] = False
+</span></span><span style=display:flex><span>fig, ax = plt.subplots()
+</span></span><span style=display:flex><span>ax.set_aspect(&#39;auto&#39;)  # 控制长宽比
+</span></span><span style=display:flex><span># ax.grid() # 是否要格子背景
+</span></span><span style=display:flex><span># 在30处设置基准线
+</span></span><span style=display:flex><span>ax.axhline(30, linestyle=&#39;--&#39;, color=&#39;black&#39;)
+</span></span><span style=display:flex><span># 设置图片标题
+</span></span><span style=display:flex><span>ax.set_title(&#39;横坐标动态更新的animation实现&#39;)
+</span></span><span style=display:flex><span># 设置横坐标名称
+</span></span><span style=display:flex><span>ax.set_xlabel(&#39;动态变化的横轴&#39;)
+</span></span><span style=display:flex><span>xdata = [0 for _ in range(0, 32)]  # -40-0
+</span></span><span style=display:flex><span>ydata = (np.zeros(32, dtype=int)).tolist()
+</span></span><span style=display:flex><span>ln, = ax.plot([], [], &#39;r-&#39;, animated=False)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def init():
+</span></span><span style=display:flex><span>    ax.set_ylim(-1, 1)
+</span></span><span style=display:flex><span>    ln.set_data([], [])
+</span></span><span style=display:flex><span>    return ln,
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def update(frame):
+</span></span><span style=display:flex><span>    del xdata[0]
+</span></span><span style=display:flex><span>    del ydata[0]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    xdata.append(frame)
+</span></span><span style=display:flex><span>    ydata.append(np.sin(frame))
+</span></span><span style=display:flex><span>    print(&#39;frame&#39;, frame, np.sin(frame))
+</span></span><span style=display:flex><span>    print(&#39;min(xdata), max(xdata)&#39;,min(xdata), max(xdata))
+</span></span><span style=display:flex><span>    print(&#39;xdata[0], ydata[0]&#39;,xdata[0], ydata[0])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    # 设置x轴的范围
+</span></span><span style=display:flex><span>    ax.set_xlim(min(xdata), max(xdata))  # -39 -1
+</span></span><span style=display:flex><span>    ticks = np.linspace(min(xdata), max(xdata)+1, 40).tolist()
+</span></span><span style=display:flex><span>    # 更新刻度，刻度只要早x轴的范围内就可以
+</span></span><span style=display:flex><span>    ax.set_xticks(ticks)
+</span></span><span style=display:flex><span>    # 设置刻度标签
+</span></span><span style=display:flex><span>    ax.set_xticklabels(ticks, rotation=90)
+</span></span><span style=display:flex><span>    # 重新渲染子图
+</span></span><span style=display:flex><span>    ax.figure.canvas.draw()
+</span></span><span style=display:flex><span>    ln.set_data(xdata, ydata)
+</span></span><span style=display:flex><span>    return ln,
+</span></span><span style=display:flex><span># fig 绘制动图的画布名称
+</span></span><span style=display:flex><span># func自定义动画函数，即下边程序定义的函数update
+</span></span><span style=display:flex><span># frames动画长度，一次循环包含的帧数（每一帧就是每一个画面），在函数运行时，其值会传递给函数update(n)的形参“n”，注意这个就是循环的基准参数，多次循环就是多个值的列表即可。
+</span></span><span style=display:flex><span># init_func自定义开始帧，即传入刚定义的函数init,初始化函数，如设置图标大小，刻度等
+</span></span><span style=display:flex><span># interval更新频率，以ms计
+</span></span><span style=display:flex><span># blit选择更新所有点（False），还是仅更新产生变化的点(True)，看情况设置，但mac用户请选择False，否则无法显示。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ani = FuncAnimation(fig,
+</span></span><span style=display:flex><span>                    update,
+</span></span><span style=display:flex><span>                    frames=np.linspace(0, 20, 128).tolist(),
+</span></span><span style=display:flex><span>                    interval=6,
+</span></span><span style=display:flex><span>                    blit=False,
+</span></span><span style=display:flex><span>                    init_func=init,
+</span></span><span style=display:flex><span>                    repeat=False)
+</span></span><span style=display:flex><span>plt.show()
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>import matplotlib.pyplot as plt
+</span></span><span style=display:flex><span>import matplotlib.animation as animation
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 修改输出方式 还有就是保存的图片直接用pycharm打开是静态图，使用系统自带的图片编辑器打开是动态的。
+</span></span><span style=display:flex><span>import matplotlib
+</span></span><span style=display:flex><span>matplotlib.use(&#39;TkAgg&#39;)
+</span></span><span style=display:flex><span># fig, ax = plt.subplots()  生成子图，相当于fig = plt.figure(),ax = fig.add_subplot()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 用来正常显示中文标签
+</span></span><span style=display:flex><span>plt.rcParams[&#39;font.sans-serif&#39;] = [&#39;SimHei&#39;]
+</span></span><span style=display:flex><span># 用来正常显示负号
+</span></span><span style=display:flex><span>plt.rcParams[&#39;axes.unicode_minus&#39;] = False
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig = plt.figure(figsize=(10, 4))
+</span></span><span style=display:flex><span>ax = fig.add_subplot(111, autoscale_on=False, xlim=(0, 40), ylim=(0, 40))
+</span></span><span style=display:flex><span>ax.set_aspect(&#39;auto&#39;)  # 控制长宽比
+</span></span><span style=display:flex><span># ax.grid() # 是否要格子背景
+</span></span><span style=display:flex><span># 在30处设置基准线
+</span></span><span style=display:flex><span>ax.axhline(30, linestyle=&#39;--&#39;, color=&#39;black&#39;)
+</span></span><span style=display:flex><span># 设置图片标题
+</span></span><span style=display:flex><span>ax.set_title(&#39;横坐标动态更新的animation实现&#39;)
+</span></span><span style=display:flex><span># 设置横坐标名称
+</span></span><span style=display:flex><span>ax.set_xlabel(&#39;动态变化的横轴&#39;)
+</span></span><span style=display:flex><span>ax.set_ylabel(r&#39;$Y\ data$&#39;)
+</span></span><span style=display:flex><span>line, = ax.plot([], [], &#39;o-&#39;, lw=2)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 由于animation必须先有指定的数据或者指定的数据大小，但是我们的数据是一个一个显示的，初期是么有数据的
+</span></span><span style=display:flex><span># 我们又必须提前填充指定个数的数据，这里我们填充x、y刻度以外的数据，然后想办法不显示
+</span></span><span style=display:flex><span># 我们如何不显示呢？由于这些数据本质上还是要输出的，只是不让我们看见，数据既然要输出我们就要正确的设置这些数据对应的刻度
+</span></span><span style=display:flex><span># 既然刻度不能做出改变，我们只能在刻度标签做手脚，我们让数据中x轴标签对应的刻度小于0时，标签显示空字符串
+</span></span><span style=display:flex><span>thisx = [i for i in range(-40, 0)]  # -40-0
+</span></span><span style=display:flex><span>thisy = (np.zeros(40, dtype=int) - 1).tolist()   # print(type(thisy),len(thisy))  # &lt;class &#39;list&#39;&gt; 40个0
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def init():
+</span></span><span style=display:flex><span>    line.set_data([], [])
+</span></span><span style=display:flex><span>    return line
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def update(*args):
+</span></span><span style=display:flex><span>    # 这种操作之前一定要确保len(thisy) = len(thisx)
+</span></span><span style=display:flex><span>    del thisx[0]
+</span></span><span style=display:flex><span>    del thisy[0]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    thisx.append(max(thisx) + 1)   # 0 -1 ... -39
+</span></span><span style=display:flex><span>    thisy.append(np.random.randint(0, 40, 1))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    # 设置x轴的范围
+</span></span><span style=display:flex><span>    ax.set_xlim(min(thisx), max(thisx))  # -39 -1
+</span></span><span style=display:flex><span>    ticks = [i for i in range(min(thisx), max(thisx)+1)]
+</span></span><span style=display:flex><span>    # 更新刻度，刻度只要早x轴的范围内就可以
+</span></span><span style=display:flex><span>    ax.set_xticks(ticks)
+</span></span><span style=display:flex><span>    # 设置刻度标签
+</span></span><span style=display:flex><span>    ax.set_xticklabels(ticks, rotation=320)
+</span></span><span style=display:flex><span>    # 重新渲染子图
+</span></span><span style=display:flex><span>    ax.figure.canvas.draw()
+</span></span><span style=display:flex><span>    line.set_data(thisx, thisy)
+</span></span><span style=display:flex><span>    return line
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ani = animation.FuncAnimation(fig,
+</span></span><span style=display:flex><span>                              update,
+</span></span><span style=display:flex><span>                              interval=600,
+</span></span><span style=display:flex><span>                              blit=False,
+</span></span><span style=display:flex><span>                              init_func=init)
+</span></span><span style=display:flex><span># ani.save(&#39;jieky_animation.gif&#39;, writer=&#39;pillow&#39;)
+</span></span><span style=display:flex><span>plt.show()
+</span></span></code></pre></div><p>机器学习可视化</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span># coding: utf-8
+</span></span><span style=display:flex><span>import tensorflow as tf
+</span></span><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>import matplotlib.pyplot as plt
+</span></span><span style=display:flex><span>import matplotlib.animation as animation
+</span></span><span style=display:flex><span>from scipy.interpolate import spline
+</span></span><span style=display:flex><span>import matplotlib
+</span></span><span style=display:flex><span>matplotlib.use(&#39;TkAgg&#39;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>training_epochs = 200
+</span></span><span style=display:flex><span>display_step = 10
+</span></span><span style=display:flex><span>train_X = np.linspace(0, 10, 1000)
+</span></span><span style=display:flex><span>noise = np.random.normal(0, 1, train_X.shape)
+</span></span><span style=display:flex><span>train_Y = train_X * 1 - 2 + noise
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>X = tf.placeholder(tf.float32)
+</span></span><span style=display:flex><span>Y = tf.placeholder(tf.float32)
+</span></span><span style=display:flex><span>W = tf.Variable(-1., name=&#34;weight&#34;)
+</span></span><span style=display:flex><span>b = tf.Variable(1., name=&#34;bias&#34;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>y = tf.add(tf.multiply(X, W), b)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>cost = tf.reduce_sum(tf.pow(y - Y, 2))
+</span></span><span style=display:flex><span>optimizer = tf.train.AdamOptimizer(learning_rate=0.99, beta1=0.9, beta2=0.99).minimize(cost)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>c_trace = []
+</span></span><span style=display:flex><span>W_trace = []
+</span></span><span style=display:flex><span>b_trace = []
+</span></span><span style=display:flex><span>y_trace = []
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>with tf.Session() as sess:
+</span></span><span style=display:flex><span>    sess.run(tf.global_variables_initializer())
+</span></span><span style=display:flex><span>    for epoch in range(training_epochs):
+</span></span><span style=display:flex><span>        sess.run(optimizer, feed_dict={X: train_X, Y: train_Y})
+</span></span><span style=display:flex><span>        if epoch % display_step == 0:
+</span></span><span style=display:flex><span>            c_tmp = sess.run(cost, feed_dict={X: train_X, Y: train_Y})
+</span></span><span style=display:flex><span>            W_tmp = sess.run(W)
+</span></span><span style=display:flex><span>            b_tmp = sess.run(b)
+</span></span><span style=display:flex><span>            y_tmp = sess.run(y, feed_dict={X: train_X})
+</span></span><span style=display:flex><span>            print(&#34;Epoch: %04d&#34; % (epoch + 1), &#34;cost=&#34;, &#34;{:.9f}&#34;.format(c_tmp), &#34;W=&#34;, W_tmp, &#34;b=&#34;, b_tmp)
+</span></span><span style=display:flex><span>            c_trace.append(c_tmp)
+</span></span><span style=display:flex><span>            W_trace.append(W_tmp)
+</span></span><span style=display:flex><span>            b_trace.append(b_tmp)
+</span></span><span style=display:flex><span>            y_trace.append(y_tmp)
+</span></span><span style=display:flex><span>    print(&#34;Optimization Finished!&#34;)
+</span></span><span style=display:flex><span>    print(&#34;cost=&#34;, sess.run(cost, feed_dict={X: train_X, Y: train_Y}), &#34;W=&#34;, sess.run(W), &#34;b=&#34;, sess.run(b))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>fig, ax = plt.subplots()
+</span></span><span style=display:flex><span>l1 = ax.scatter(train_X, train_Y, color=&#39;red&#39;, label=r&#39;$Original\ data$&#39;)
+</span></span><span style=display:flex><span>ax.set_xlabel(r&#39;$X\ data$&#39;)
+</span></span><span style=display:flex><span>ax.set_ylabel(r&#39;$Y\ data$&#39;)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def update(i):
+</span></span><span style=display:flex><span>    try:
+</span></span><span style=display:flex><span>        ax.lines.pop(0)
+</span></span><span style=display:flex><span>    except Exception:
+</span></span><span style=display:flex><span>        pass
+</span></span><span style=display:flex><span>    line, = ax.plot(train_X, y_trace[i], &#39;g--&#39;, label=r&#39;$Fitting\ line$&#39;, lw=2)
+</span></span><span style=display:flex><span>    if i == len(y_trace) - 1:
+</span></span><span style=display:flex><span>        xnew = np.linspace(0, 10, np.max(c_trace) - np.min(c_trace))
+</span></span><span style=display:flex><span>        # 插值  scipy.interpolate.spline(xk, yk, xnew）
+</span></span><span style=display:flex><span>        smooth = spline(np.linspace(0, 10, np.size(c_trace)), c_trace, xnew)
+</span></span><span style=display:flex><span>        twinax = ax.twinx()
+</span></span><span style=display:flex><span>        twinax.set_ylabel(r&#39;Cost&#39;)
+</span></span><span style=display:flex><span>        costline, = twinax.plot(xnew, smooth, &#39;b&#39;, label=r&#39;$Cost\ line$&#39;, lw=2)
+</span></span><span style=display:flex><span>        plt.text(5, 5, c_trace)
+</span></span><span style=display:flex><span>        plt.legend(handles=[l1, line, costline], loc=&#39;upper center&#39;)
+</span></span><span style=display:flex><span>    return line,
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ani = animation.FuncAnimation(fig, update, frames=len(y_trace), interval=100, repeat=False)
+</span></span><span style=display:flex><span>ani.save(&#39;linearregression.gif&#39;, writer=&#39;imagemagick&#39;)
+</span></span><span style=display:flex><span>plt.show()
+</span></span></code></pre></div><p>散点图
+<code>scatter(x, y, s=None, c=None, marker=None, cmap=None, norm=None, vmin=None, vmax=None, alpha=None, linewidths=None, verts=None, edgecolors=None, *, plotnonfinite=False, data=None, **kwargs)</code>
+柱状图
+<code>barh(y, width, height=0.8, left=None, *, align='center', **kwargs)</code>
+图片
+<code>imshow(X, cmap=None, norm=None, aspect=None, interpolation=None,alpha=None, vmin=None,vmax=None, origin=None,extent=None,shape=cbook.deprecation._deprecated_parameter,filternorm=1,filterrad=4.0,imlim=cbook.deprecation._deprecated_parameter,resample=None, url=None, *, data=None, **kwargs)</code></p><p><code>pcolormesh(X,Y,Z cmap=None, vmin=None, vmax=None)</code>
+X，Y：指的是二维网格面每一个点的横纵坐标
+Z:(X,Y)坐标处的颜色值</p><h1 id=三维图>三维图</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span># 3D绘图示意
+</span></span><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>import matplotlib.pyplot as plt
+</span></span><span style=display:flex><span>from mpl_toolkits.mplot3d import Axes3D
+</span></span><span style=display:flex><span>fig = plt.figure()
+</span></span><span style=display:flex><span>ax = Axes3D(fig)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>x = np.arange(-4, 4, 0.25)
+</span></span><span style=display:flex><span>y = np.arange(-4, 4, 0.25)
+</span></span><span style=display:flex><span>x, y = np.meshgrid(x, y)
+</span></span><span style=display:flex><span>r = np.sqrt(x**2 + y**2)
+</span></span><span style=display:flex><span>z = np.sin(r)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ax.plot_surface(x, y, z, rstride=1,   # row 行步长
+</span></span><span style=display:flex><span>                 cstride=2,           # colum 列步长
+</span></span><span style=display:flex><span>                 cmap=plt.cm.hot)      # 渐变颜色
+</span></span><span style=display:flex><span>ax.contourf(x, y, z,
+</span></span><span style=display:flex><span>            zdir=&#39;z&#39;,  # 使用数据方向
+</span></span><span style=display:flex><span>            offset=-2,  # 填充投影轮廓位置
+</span></span><span style=display:flex><span>            cmap=plt.cm.hot)
+</span></span><span style=display:flex><span>ax.set_zlim(-2, 2)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>plt.show()
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-3c5a2fa06b42737a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h1 id=cmap>cmap</h1><p>Sequential：顺序。通常使用单一色调，逐渐改变亮度和颜色渐渐增加。应该用于表示有顺序的信息。
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-19f890e483cafd5b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-40883c8855df2435.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-1ad5d6549bc53dd6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+Diverging：发散。改变两种不同颜色的亮度和饱和度，这些颜色在中间以不饱和的颜色相遇；当绘制的信息具有关键中间值（例如地形）或数据偏离零时，应使用此值
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-43b6cf8d49bd84d6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+Cyclic：循环。改变两种不同颜色的亮度，在中间和开始/结束时以不饱和的颜色相遇。应该用于在端点处环绕的值，例如相角，风向或一天中的时间。
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-83eef93cde25bba6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+Qualitative：定性。常是杂色，用来表示没有排序或关系的信息。
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-5a4dfd1f3aa24aa3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+Miscellaneous：杂色。
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-0cd4627cc7f0c8e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><h1 id=linestyle>linestyle</h1><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-624dffb7b7ee1d97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p></div><footer class=post-footer><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
+code-matplot</li><li class=post-copyright-author><strong>本文作者：</strong>
+Tomding</li><li class=post-copyright-link><strong>本文链接：</strong>
+<a id=post-cr-link href=/post/code-matplot/ title=code-matplot>/post/code-matplot/</a></li><li class=post-copyright-license><strong>版权声明：</strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class=followme><span>欢迎关注我的其它发布渠道</span><div class=social-list><div class=social-item><a target=_blank class=social-link href=/images/wechat_channel.jpg><span class=icon><i class="fab fa-weixin"></i></span>
+<span class=label>WeChat</span></a></div><div class=social-item><a target=_blank class=social-link href=/atom.xml><span class=icon><i class="fa fa-rss"></i></span>
+<span class=label>RSS</span></a></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/post/code-markdwon/ rel=next title=code-markdwon><i class="fa fa-chevron-left"></i> code-markdwon</a></div><div class="post-nav-prev post-nav-item"><a href=/post/code-numpy/ rel=prev title=code-numpy>code-numpy
+<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
+<span itemprop=copyrightYear>2010 - 2023</span>
+<span class=with-love><i class="fa fa-heart"></i></span>
+<span class=author itemprop=copyrightHolder>Tomding</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":false,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.e34208af37d3db3a875e6fbad04c2f1c241185af925a9c6ebf79dd1ba2730cdd.js defer></script></body></html>

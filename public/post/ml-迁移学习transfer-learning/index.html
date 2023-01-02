@@ -1,0 +1,717 @@
+<!doctype html><html lang=zh-cn data-theme=dark><head><meta charset=utf-8><meta name=viewport content="width=device-width"><meta name=theme-color content="#222" media="(prefers-color-scheme: dark)"><meta name=generator content="Hugo 0.107.0"><link rel="shortcut icon" type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/x-icon href=/imgs/icons/favicon.ico><link rel=icon type=image/png sizes=16x16 href=/imgs/icons/favicon_16x16_next.png><link rel=icon type=image/png sizes=32x32 href=/imgs/icons/favicon_32_32_next.png><link rel=apple-touch-icon sizes=180x180 href=/imgs/icons/apple_touch_icon_next.png><meta itemprop=name content="ml-迁移学习(Transfer-Learning)"><meta itemprop=description content="Love and Peace"><meta itemprop=datePublished zgotmplz><meta itemprop=dateModified zgotmplz><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=keywords content="Hugo,NexT,主题,简单,强大"><meta property="og:type" content="article"><meta property="og:title" content="ml-迁移学习(Transfer-Learning)"><meta property="og:description" content="Love and Peace"><meta property="og:image" content="/imgs/hugo_next_avatar.png"><meta property="og:image:width" content="312"><meta property="og:image:height" content="312"><meta property="og:image:type" content="image/jpeg/png/svg/jpg"><meta property="og:url" content="/post/ml-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0transfer-learning/"><meta property="og:site_name" content="Tomding's Blog"><meta property="og:locale" content="zh-CN"><meta property="article:author" content="Tomding"><meta property="article:published_time" content="2022-12-01 19:59:47 +0800 CST"><meta property="article:modified_time" content="2022-12-01 19:59:47 +0800 CST"><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/font-awesome/6.1.2/css/all.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/animate.css/3.1.1/animate.min.css><link type=text/css rel=stylesheet href=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.css><link rel=stylesheet href=/css/main.min.0ca97083b39f4eda7430d39b99194aa738d8f8db4090f00bc7e814013df699cb.css><style type=text/css>.post-footer,.flinks-list-footer hr:after{content:"~ 我可是有底线的哟 ~"}</style><script type=text/javascript>(function(){localDB={set:function(e,t,n){if(n===0)return;const s=new Date,o=n*864e5,i={value:t,expiry:s.getTime()+o};localStorage.setItem(e,JSON.stringify(i))},get:function(e){const t=localStorage.getItem(e);if(!t)return void 0;const n=JSON.parse(t),s=new Date;return s.getTime()>n.expiry?(localStorage.removeItem(e),void 0):n.value}},theme={active:function(){const e=localDB.get("theme");if(e==null)return;theme.toggle(e),window.matchMedia("(prefers-color-scheme: dark)").addListener(function(e){theme.toggle(e.matches?"dark":"light")})},toggle:function(e){document.documentElement.setAttribute("data-theme",e),localDB.set("theme",e,2);const t=document.querySelector("iframe.giscus-frame");if(t){const n={setConfig:{theme:e}};t.contentWindow.postMessage({giscus:n},"https://giscus.app")}}},theme.active()})(window)</script><script class=next-config data-name=page type=application/json>{"comments":false,"isHome":false,"isPage":true,"path":"ml-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0transfer-learning","permalink":"/post/ml-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0transfer-learning/","title":"ml-迁移学习(Transfer-Learning)","waline":{"js":[{"alias":"waline","alias_name":"@waline/client","file":"dist/pageview.js","name":"pageview","version":"2.13.0"},{"alias":"waline","alias_name":"@waline/client","file":"dist/comment.js","name":"comment","version":"2.13.0"}]}}</script><script type=text/javascript>document.addEventListener("DOMContentLoaded",()=>{var e=document.createElement("script");e.charset="UTF-8",e.src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js",e.async=!1,e.defer=!0,document.head.appendChild(e),e.onload=function(){NexT.utils.fmtBusuanzi()}})</script><title>ml-迁移学习(Transfer-Learning) - Tomding's Blog</title><noscript><link rel=stylesheet href=/css/noscript.css></noscript></head><body itemscope itemtype=http://schema.org/WebPage class=use-motion><div class=headband></div><main class=main><header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle aria-label=切换导航栏 role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Tomding's Blog</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Just do it!</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>首页</a></li><li class="menu-item menu-item-about"><a href=/about.html class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
+<span class=badge>126</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
+<span class=toggle-line></span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=Tomding src=/imgs/img-lazy-loading.gif data-src=/imgs/hugo_next_avatar.png><p class=site-author-name itemprop=name>Tomding</p><div class=site-description itemprop=description>Love and Peace</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>126</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>10</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>0</span>
+<span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/ title="Github → https://github.com/" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span>
+<span class=links-of-social-item><a href=https://www.zhihu.com/hot title="知乎 → https://www.zhihu.com/hot" rel=noopener class=hvr-icon-pulse target=_blank><i class="fa fa-book fa-fw hvr-icon"></i>知乎</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt=共享知识></a></div><div class="links-of-blogroll site-overview-item animated"><div class=links-of-blogroll-title><i class="fa fa-globe fa-fw"></i>友情链接</div><ul class=links-of-blogroll-list><li class=links-of-blogroll-item><a href=https://gitee.com/hugo-next/hugo-theme-next title=https://gitee.com/hugo-next/hugo-theme-next target=_blank>Hugo-NexT</a></li><li class=links-of-blogroll-item><a href=https://lisenhui.cn title=https://lisenhui.cn target=_blank>凡梦星尘空间站</a></li></ul></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
+<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=2022-12-01T19:59:47+08:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=446699></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=958></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2023-01-01T14:28:53+08:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
+<span>0%</span></div></div><div class=reading-progress-bar></div><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=/post/ml-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0transfer-learning/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=name content="Tomding"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="Tomding"><meta itemprop=description content="Love and Peace"></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="ml-迁移学习(Transfer-Learning)"><meta itemprop=description content="训练复杂的卷积神经网络需要非常多的标注数据。 所谓迁移学习，就是讲一个问题上训练好的模型通过简单的调整使其适用于一个新的问题。 根据论文DeCA"></span><header class=post-header><h1 class=post-title itemprop="name headline">ml-迁移学习(Transfer-Learning)
+<a href=https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/post/ml-%e8%bf%81%e7%a7%bb%e5%ad%a6%e4%b9%a0%28Transfer-Learning%29.md rel="noopener external nofollow noreferrer" target=_blank class="exturl post-edit-link" title=编辑><i class="fa fa-pen-nib"></i></a></h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
+<span class=post-meta-item-text>发表于：</span>
+<time title="发表于：2022-12-01 19:59:47 +0800 CST" itemprop="dateCreated datePublished" datetime="2022-12-01 19:59:47 +0800 CST">2022-12-01</time></span>
+<span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
+<span class=post-meta-item-text>分类于：</span>
+<span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/ml itemprop=url rel=index><span itemprop=name>ml</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="far fa-file-word"></i></span>
+<span class=post-meta-item-text>字数：</span><span>8371</span></span>
+<span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="far fa-clock"></i></span>
+<span class=post-meta-item-text>阅读：&ap;</span>
+<span>17分钟</span></span>
+<span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
+<span class=post-meta-item-text>浏览：</span>
+<span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/post/ml-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0transfer-learning/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><p><code>训练复杂的卷积神经网络需要非常多的标注数据。</code></p><p><code>所谓迁移学习，就是讲一个问题上训练好的模型通过简单的调整使其适用于一个新的问题。</code></p><p>根据论文DeCAF:A Deep Convolutional Activation Feature for Generic Visual Recognition中的结论，<code>可以保留训练好的Inception-v3模型中所有卷积层的参数，只是替换最后一层全连接层。在最后这一层全连接之前的网络层称之为瓶颈层（bottleneck）。</code></p><p><code>将新的图像通过训练好的卷积神经网络直到瓶颈处的过程可以看成事对图像进行特征提取的过程。</code>在训练好的Inception-v3模型中，因为将瓶颈处的输出再通过一个单层的全连接层神经网络可以很好地区分1000种类别的图像，<code>所以有理由认为瓶颈处输出的节点向量可以被作为任何图像的一个更加精简且表达能力更强的特征向量。</code></p><p><img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-af8e9229f8b647d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt>
+蓝色点，卷积层间有联合依赖和适应性，不能破坏
+<img src=/imgs/img-lazy-loading.gif data-src=https://upload-images.jianshu.io/upload_images/18339009-27bf894fcf3fe706.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240 alt></p><p>输入数据文件夹包含了5个子文件夹，每一个子文件的名称为一种花的名称，代表不同的类别。平均每一种花有734张图片，每一张图片都是RGB色彩模式的，大小也不相同。和之前的样例不同，在这一节中给出的程序将直接处理没有整理过的图像数据。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>import glob
+</span></span><span style=display:flex><span>import os.path
+</span></span><span style=display:flex><span>import random
+</span></span><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>import tensorflow as tf
+</span></span><span style=display:flex><span>from tensorflow.python.platform import gfile
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 模型和样本路径的设置
+</span></span><span style=display:flex><span>BOTTLENECK_TENSOR_SIZE = 2048
+</span></span><span style=display:flex><span>BOTTLENECK_TENSOR_NAME = &#39;pool_3/_reshape:0&#39;
+</span></span><span style=display:flex><span>JPEG_DATA_TENSOR_NAME = &#39;DecodeJpeg/contents:0&#39;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>MODEL_DIR = &#39;../../datasets/inception_dec_2015&#39;
+</span></span><span style=display:flex><span>MODEL_FILE= &#39;tensorflow_inception_graph.pb&#39;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>CACHE_DIR = &#39;../../datasets/bottleneck&#39;
+</span></span><span style=display:flex><span>INPUT_DATA = &#39;../../datasets/flower_photos&#39;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>VALIDATION_PERCENTAGE = 10
+</span></span><span style=display:flex><span>TEST_PERCENTAGE = 10
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 神经网络参数的设置
+</span></span><span style=display:flex><span>LEARNING_RATE = 0.01
+</span></span><span style=display:flex><span>STEPS = 4000
+</span></span><span style=display:flex><span>BATCH = 100
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 把样本中所有的图片列表并按训练、验证、测试数据分开
+</span></span><span style=display:flex><span>def create_image_lists(testing_percentage, validation_percentage):
+</span></span><span style=display:flex><span>    result = {}
+</span></span><span style=display:flex><span>    sub_dirs = [x[0] for x in os.walk(INPUT_DATA)]
+</span></span><span style=display:flex><span>    is_root_dir = True
+</span></span><span style=display:flex><span>    for sub_dir in sub_dirs:
+</span></span><span style=display:flex><span>        if is_root_dir:
+</span></span><span style=display:flex><span>            is_root_dir = False
+</span></span><span style=display:flex><span>            continue
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        extensions = [&#39;jpg&#39;, &#39;jpeg&#39;, &#39;JPG&#39;, &#39;JPEG&#39;]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        file_list = []
+</span></span><span style=display:flex><span>        dir_name = os.path.basename(sub_dir)
+</span></span><span style=display:flex><span>        for extension in extensions:
+</span></span><span style=display:flex><span>            file_glob = os.path.join(INPUT_DATA, dir_name, &#39;*.&#39; + extension)
+</span></span><span style=display:flex><span>            file_list.extend(glob.glob(file_glob))
+</span></span><span style=display:flex><span>        if not file_list: continue
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        label_name = dir_name.lower()
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        # 初始化
+</span></span><span style=display:flex><span>        training_images = []
+</span></span><span style=display:flex><span>        testing_images = []
+</span></span><span style=display:flex><span>        validation_images = []
+</span></span><span style=display:flex><span>        for file_name in file_list:
+</span></span><span style=display:flex><span>            base_name = os.path.basename(file_name)
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            # 随机划分数据
+</span></span><span style=display:flex><span>            chance = np.random.randint(100)
+</span></span><span style=display:flex><span>            if chance &lt; validation_percentage:
+</span></span><span style=display:flex><span>                validation_images.append(base_name)
+</span></span><span style=display:flex><span>            elif chance &lt; (testing_percentage + validation_percentage):
+</span></span><span style=display:flex><span>                testing_images.append(base_name)
+</span></span><span style=display:flex><span>            else:
+</span></span><span style=display:flex><span>                training_images.append(base_name)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        result[label_name] = {
+</span></span><span style=display:flex><span>            &#39;dir&#39;: dir_name,
+</span></span><span style=display:flex><span>            &#39;training&#39;: training_images,
+</span></span><span style=display:flex><span>            &#39;testing&#39;: testing_images,
+</span></span><span style=display:flex><span>            &#39;validation&#39;: validation_images,
+</span></span><span style=display:flex><span>            }
+</span></span><span style=display:flex><span>    return result
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 定义函数通过cache/input路径、类别名称、图片编号和所属数据集获取一张图片的bottleneck/input地址。
+</span></span><span style=display:flex><span>def get_image_path(image_lists, image_dir, label_name, index, category):
+</span></span><span style=display:flex><span>    label_lists = image_lists[label_name]
+</span></span><span style=display:flex><span>    category_list = label_lists[category]
+</span></span><span style=display:flex><span>    mod_index = index % len(category_list)
+</span></span><span style=display:flex><span>    base_name = category_list[mod_index]
+</span></span><span style=display:flex><span>    sub_dir = label_lists[&#39;dir&#39;]
+</span></span><span style=display:flex><span>    full_path = os.path.join(image_dir, sub_dir, base_name)
+</span></span><span style=display:flex><span>    return full_path
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>#  定义函数获取Inception-v3模型处理之后的特征向量的文件地址。
+</span></span><span style=display:flex><span>def get_bottleneck_path(image_lists, label_name, index, category):
+</span></span><span style=display:flex><span>    return get_image_path(image_lists, CACHE_DIR, label_name, index, category) + &#39;.txt&#39;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 定义函数使用加载的训练好的Inception-v3模型处理一张图片，得到这个图片的特征向量。
+</span></span><span style=display:flex><span>def process_image_to_bottleneck(sess, image_data, image_data_tensor, bottleneck_tensor):
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    bottleneck_values = sess.run(bottleneck_tensor, {image_data_tensor: image_data})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    bottleneck_values = np.squeeze(bottleneck_values)
+</span></span><span style=display:flex><span>    return bottleneck_values
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 定义函数先试图寻找已经计算且保存下来的特征向量，如果找不到则先计算这个特征向量，然后保存到文件。
+</span></span><span style=display:flex><span>def get_or_create_bottleneck(sess, image_lists, label_name, index, category, jpeg_data_tensor, bottleneck_tensor):
+</span></span><span style=display:flex><span>    # 得到子文件夹图像列表
+</span></span><span style=display:flex><span>    label_lists = image_lists[label_name]
+</span></span><span style=display:flex><span>    sub_dir = label_lists[&#39;dir&#39;]
+</span></span><span style=display:flex><span>    sub_dir_path = os.path.join(CACHE_DIR, sub_dir)
+</span></span><span style=display:flex><span>    # 如果cache文件夹中中不存在该子目录则新建
+</span></span><span style=display:flex><span>    if not os.path.exists(sub_dir_path): os.makedirs(sub_dir_path)
+</span></span><span style=display:flex><span>    # 获取Inception-v3模型处理之后的特征向量的文件地址
+</span></span><span style=display:flex><span>    bottleneck_path = get_bottleneck_path(image_lists, label_name, index, category)
+</span></span><span style=display:flex><span>    # 如果未处理过将原始图片数据送入模型进行处理;并将每个数据用逗号分开
+</span></span><span style=display:flex><span>    if not os.path.exists(bottleneck_path):
+</span></span><span style=display:flex><span>        image_path = get_image_path(image_lists, INPUT_DATA, label_name, index, category)
+</span></span><span style=display:flex><span>        image_data = gfile.FastGFile(image_path, &#39;rb&#39;).read()
+</span></span><span style=display:flex><span>        bottleneck_values = process_image_to_bottleneck(sess, image_data, jpeg_data_tensor, bottleneck_tensor)
+</span></span><span style=display:flex><span>        bottleneck_string = &#39;,&#39;.join(str(x) for x in bottleneck_values)
+</span></span><span style=display:flex><span>        with open(bottleneck_path, &#39;w&#39;) as bottleneck_file:
+</span></span><span style=display:flex><span>            bottleneck_file.write(bottleneck_string)
+</span></span><span style=display:flex><span>    # 如果处理过直接读取
+</span></span><span style=display:flex><span>    else:
+</span></span><span style=display:flex><span>        with open(bottleneck_path, &#39;r&#39;) as bottleneck_file:
+</span></span><span style=display:flex><span>            bottleneck_string = bottleneck_file.read()
+</span></span><span style=display:flex><span>        bottleneck_values = [float(x) for x in bottleneck_string.split(&#39;,&#39;)]
+</span></span><span style=display:flex><span>    return bottleneck_values
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 随机获取数据。
+</span></span><span style=display:flex><span>def get_random_cached_bottlenecks(sess, image_lists, n_classes, how_many, category, jpeg_data_tensor, bottleneck_tensor):
+</span></span><span style=display:flex><span>    &#34;&#34;&#34;
+</span></span><span style=display:flex><span>    label is subdir_name.lower()
+</span></span><span style=display:flex><span>    train,validate获取随机一个batch的图片,test获得全部图片
+</span></span><span style=display:flex><span>    &#34;&#34;&#34;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    bottlenecks = []
+</span></span><span style=display:flex><span>    ground_truths = []
+</span></span><span style=display:flex><span>    if category == &#39;testing&#39;:
+</span></span><span style=display:flex><span>        label_name_list = list(image_lists.keys())
+</span></span><span style=display:flex><span>        for label_index, label_name in enumerate(label_name_list):
+</span></span><span style=display:flex><span>            for image_index, _ in enumerate(image_lists[label_name][category]):
+</span></span><span style=display:flex><span>                 makedata()
+</span></span><span style=display:flex><span>    else:
+</span></span><span style=display:flex><span>        for _ in range(how_many):
+</span></span><span style=display:flex><span>            label_index = random.randrange(n_classes)
+</span></span><span style=display:flex><span>            label_name = list(image_lists.keys())[label_index]
+</span></span><span style=display:flex><span>            image_index = random.randrange(65536)
+</span></span><span style=display:flex><span>            makedata()
+</span></span><span style=display:flex><span>    def makedata():
+</span></span><span style=display:flex><span>        bottleneck = get_or_create_bottleneck(sess, image_lists, label_name, image_index, category, jpeg_data_tensor, bottleneck_tensor)
+</span></span><span style=display:flex><span>        ground_truth = np.zeros(n_classes, dtype=np.float32)
+</span></span><span style=display:flex><span>        ground_truth[label_index] = 1.0
+</span></span><span style=display:flex><span>        bottlenecks.append(bottleneck)
+</span></span><span style=display:flex><span>        ground_truths.append(ground_truth)
+</span></span><span style=display:flex><span>    return bottlenecks, ground_truths
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 定义主函数。
+</span></span><span style=display:flex><span>def main(_):
+</span></span><span style=display:flex><span>    # 整理好的数据
+</span></span><span style=display:flex><span>    image_lists = create_image_lists(TEST_PERCENTAGE, VALIDATION_PERCENTAGE)
+</span></span><span style=display:flex><span>    # 子文件夹的数量
+</span></span><span style=display:flex><span>    n_classes = len(image_lists.keys())
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    # 读取已经训练好的Inception-v3模型。
+</span></span><span style=display:flex><span>    # tf.gfile.FastGFile(path,decodestyle) 函数功能：实现对图片的读取。 函数参数：(1)path：图片所在路径 (2)decodestyle:图片的解码方式。(‘r’:UTF-8编码; ‘rb’:非UTF-8编码)
+</span></span><span style=display:flex><span>    with gfile.FastGFile(os.path.join(MODEL_DIR, MODEL_FILE), &#39;rb&#39;) as f:
+</span></span><span style=display:flex><span>        graph_def = tf.GraphDef()
+</span></span><span style=display:flex><span>        graph_def.ParseFromString(f.read())
+</span></span><span style=display:flex><span>    # 得到的与return_element中的名称相对应的操作和/或张量对象的列表
+</span></span><span style=display:flex><span>    bottleneck_tensor, jpeg_data_tensor = tf.import_graph_def(
+</span></span><span style=display:flex><span>        graph_def, return_elements=[BOTTLENECK_TENSOR_NAME, JPEG_DATA_TENSOR_NAME])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    # 定义新的神经网络输入
+</span></span><span style=display:flex><span>    bottleneck_input = tf.placeholder(tf.float32, [None, BOTTLENECK_TENSOR_SIZE], name=&#39;BottleneckInputPlaceholder&#39;)
+</span></span><span style=display:flex><span>    ground_truth_input = tf.placeholder(tf.float32, [None, n_classes], name=&#39;GroundTruthInput&#39;)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    # 定义一层全链接层
+</span></span><span style=display:flex><span>    with tf.name_scope(&#39;final_training_ops&#39;):
+</span></span><span style=display:flex><span>        weights = tf.Variable(tf.truncated_normal([BOTTLENECK_TENSOR_SIZE, n_classes], stddev=0.001))
+</span></span><span style=display:flex><span>        biases = tf.Variable(tf.zeros([n_classes]))
+</span></span><span style=display:flex><span>        logits = tf.matmul(bottleneck_input, weights) + biases
+</span></span><span style=display:flex><span>        final_tensor = tf.nn.softmax(logits)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>    # 定义交叉熵损失函数。
+</span></span><span style=display:flex><span>    cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits=logits, labels=ground_truth_input)
+</span></span><span style=display:flex><span>    cross_entropy_mean = tf.reduce_mean(cross_entropy)
+</span></span><span style=display:flex><span>    train_step = tf.train.GradientDescentOptimizer(LEARNING_RATE).minimize(cross_entropy_mean)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    # 计算正确率。
+</span></span><span style=display:flex><span>    with tf.name_scope(&#39;evaluation&#39;):
+</span></span><span style=display:flex><span>        correct_prediction = tf.equal(tf.argmax(final_tensor, 1), tf.argmax(ground_truth_input, 1))
+</span></span><span style=display:flex><span>        evaluation_step = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    with tf.Session() as sess:
+</span></span><span style=display:flex><span>        init = tf.global_variables_initializer()
+</span></span><span style=display:flex><span>        sess.run(init)
+</span></span><span style=display:flex><span>        # 训练过程。
+</span></span><span style=display:flex><span>        for i in range(STEPS):
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            train_bottlenecks, train_ground_truth = get_random_cached_bottlenecks(
+</span></span><span style=display:flex><span>                sess, image_lists, n_classes, BATCH, &#39;training&#39;, jpeg_data_tensor, bottleneck_tensor)
+</span></span><span style=display:flex><span>            sess.run(train_step, feed_dict={bottleneck_input: train_bottlenecks, ground_truth_input: train_ground_truth})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            if i % 100 == 0 or i + 1 == STEPS:
+</span></span><span style=display:flex><span>                validation_bottlenecks, validation_ground_truth = get_random_cached_bottlenecks(
+</span></span><span style=display:flex><span>                    sess, image_lists, n_classes, BATCH, &#39;validation&#39;, jpeg_data_tensor, bottleneck_tensor)
+</span></span><span style=display:flex><span>                validation_accuracy = sess.run(evaluation_step, feed_dict={
+</span></span><span style=display:flex><span>                    bottleneck_input: validation_bottlenecks, ground_truth_input: validation_ground_truth})
+</span></span><span style=display:flex><span>                print(&#39;After %d steps: Validation accuracy on random sampled %d examples = %.1f%%&#39; %
+</span></span><span style=display:flex><span>                    (i, BATCH, validation_accuracy * 100))
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>        # 在最后的测试数据上测试正确率。
+</span></span><span style=display:flex><span>        test_bottlenecks, test_ground_truth = get_random_cached_bottlenecks(
+</span></span><span style=display:flex><span>            sess, image_lists, n_classes, BATCH, &#39;testing&#39;, jpeg_data_tensor, bottleneck_tensor)
+</span></span><span style=display:flex><span>        test_accuracy = sess.run(evaluation_step, feed_dict={
+</span></span><span style=display:flex><span>            bottleneck_input: test_bottlenecks, ground_truth_input: test_ground_truth})
+</span></span><span style=display:flex><span>        print(&#39;Final test accuracy = %.1f%%&#39; % (test_accuracy * 100))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>if __name__ == &#39;__main__&#39;:
+</span></span><span style=display:flex><span>    main(_)
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>### 1. 定义需要使用到的常量
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>import glob
+</span></span><span style=display:flex><span>import os.path
+</span></span><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>import tensorflow as tf
+</span></span><span style=display:flex><span>from tensorflow.python.platform import gfile
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 原始输入数据的目录，这个目录下有5个子目录，每个子目录底下保存这属于该
+</span></span><span style=display:flex><span># 类别的所有图片。
+</span></span><span style=display:flex><span>INPUT_DATA = &#39;../../datasets/flower_photos&#39;
+</span></span><span style=display:flex><span># 输出文件地址。我们将整理后的图片数据通过numpy的格式保存。
+</span></span><span style=display:flex><span>OUTPUT_FILE = &#39;../../datasets/flower_processed_data.npy&#39;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 测试数据和验证数据比例。
+</span></span><span style=display:flex><span>VALIDATION_PERCENTAGE = 10
+</span></span><span style=display:flex><span>TEST_PERCENTAGE = 10
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>### 2. 定义数据处理过程
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 读取数据并将数据分割成训练数据、验证数据和测试数据。
+</span></span><span style=display:flex><span>def create_image_lists(sess, testing_percentage, validation_percentage):
+</span></span><span style=display:flex><span>    sub_dirs = [x[0] for x in os.walk(INPUT_DATA)]
+</span></span><span style=display:flex><span>    is_root_dir = True
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    # 初始化各个数据集。
+</span></span><span style=display:flex><span>    training_images = []
+</span></span><span style=display:flex><span>    training_labels = []
+</span></span><span style=display:flex><span>    testing_images = []
+</span></span><span style=display:flex><span>    testing_labels = []
+</span></span><span style=display:flex><span>    validation_images = []
+</span></span><span style=display:flex><span>    validation_labels = []
+</span></span><span style=display:flex><span>    current_label = 0
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    # 读取所有的子目录。
+</span></span><span style=display:flex><span>    for sub_dir in sub_dirs:
+</span></span><span style=display:flex><span>        if is_root_dir:
+</span></span><span style=display:flex><span>            is_root_dir = False
+</span></span><span style=display:flex><span>            continue
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        # 获取一个子目录中所有的图片文件。
+</span></span><span style=display:flex><span>        extensions = [&#39;jpg&#39;, &#39;jpeg&#39;, &#39;JPG&#39;, &#39;JPEG&#39;]
+</span></span><span style=display:flex><span>        file_list = []
+</span></span><span style=display:flex><span>        dir_name = os.path.basename(sub_dir)
+</span></span><span style=display:flex><span>        for extension in extensions:
+</span></span><span style=display:flex><span>            file_glob = os.path.join(INPUT_DATA, dir_name, &#39;*.&#39; + extension)
+</span></span><span style=display:flex><span>            file_list.extend(glob.glob(file_glob))
+</span></span><span style=display:flex><span>        if not file_list: continue
+</span></span><span style=display:flex><span>        print(&#34;processing:&#34;, dir_name)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        i = 0
+</span></span><span style=display:flex><span>        # 处理图片数据。
+</span></span><span style=display:flex><span>        for file_name in file_list:
+</span></span><span style=display:flex><span>            i += 1
+</span></span><span style=display:flex><span>            # 读取并解析图片，将图片转化为299*299以方便inception-v3模型来处理。
+</span></span><span style=display:flex><span>            image_raw_data = gfile.FastGFile(file_name, &#39;rb&#39;).read()
+</span></span><span style=display:flex><span>            image = tf.image.decode_jpeg(image_raw_data)
+</span></span><span style=display:flex><span>            if image.dtype != tf.float32:
+</span></span><span style=display:flex><span>                image = tf.image.convert_image_dtype(image, dtype=tf.float32)
+</span></span><span style=display:flex><span>            image = tf.image.resize_images(image, [299, 299])
+</span></span><span style=display:flex><span>            image_value = sess.run(image)
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            # 随机划分数据聚。
+</span></span><span style=display:flex><span>            chance = np.random.randint(100)
+</span></span><span style=display:flex><span>            if chance &lt; validation_percentage:
+</span></span><span style=display:flex><span>                validation_images.append(image_value)
+</span></span><span style=display:flex><span>                validation_labels.append(current_label)
+</span></span><span style=display:flex><span>            elif chance &lt; (testing_percentage + validation_percentage):
+</span></span><span style=display:flex><span>                testing_images.append(image_value)
+</span></span><span style=display:flex><span>                testing_labels.append(current_label)
+</span></span><span style=display:flex><span>            else:
+</span></span><span style=display:flex><span>                training_images.append(image_value)
+</span></span><span style=display:flex><span>                training_labels.append(current_label)
+</span></span><span style=display:flex><span>            if i % 200 == 0:
+</span></span><span style=display:flex><span>                print(i, &#34;images processed.&#34;)
+</span></span><span style=display:flex><span>        current_label += 1
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    # 将训练数据随机打乱以获得更好的训练效果。
+</span></span><span style=display:flex><span>    state = np.random.get_state()
+</span></span><span style=display:flex><span>    np.random.shuffle(training_images)
+</span></span><span style=display:flex><span>    np.random.set_state(state)
+</span></span><span style=display:flex><span>    np.random.shuffle(training_labels)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    return np.asarray([training_images, training_labels,
+</span></span><span style=display:flex><span>                       validation_images, validation_labels,
+</span></span><span style=display:flex><span>                       testing_images, testing_labels])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>### 3. 运行数据处理过程
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>with tf.Session() as sess:
+</span></span><span style=display:flex><span>    processed_data = create_image_lists(sess, TEST_PERCENTAGE, VALIDATION_PERCENTAGE)
+</span></span><span style=display:flex><span>    # 通过numpy格式保存处理后的数据。
+</span></span><span style=display:flex><span>    np.save(OUTPUT_FILE, processed_data)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>### 1. 定义训练过程中将要使用到的常量。
+</span></span><span style=display:flex><span>`因为GitHub无法保存大于100M的文件，所以在运行时需要先自行从Google下载inception_v3.ckpt文件。`
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>import glob
+</span></span><span style=display:flex><span>import os.path
+</span></span><span style=display:flex><span>import numpy as np
+</span></span><span style=display:flex><span>import tensorflow as tf
+</span></span><span style=display:flex><span>from tensorflow.python.platform import gfile
+</span></span><span style=display:flex><span>import tensorflow.contrib.slim as slim
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 加载通过TensorFlow-Slim定义好的inception_v3模型。
+</span></span><span style=display:flex><span>import tensorflow.contrib.slim.python.slim.nets.inception_v3 as inception_v3
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 处理好之后的数据文件。
+</span></span><span style=display:flex><span>INPUT_DATA = &#39;../../datasets/flower_processed_data.npy&#39;
+</span></span><span style=display:flex><span># 保存训练好的模型的路径。
+</span></span><span style=display:flex><span>TRAIN_FILE = &#39;train_dir/model&#39;
+</span></span><span style=display:flex><span># 谷歌提供的训练好的模型文件地址。因为GitHub无法保存大于100M的文件，所以
+</span></span><span style=display:flex><span># 在运行时需要先自行从Google下载inception_v3.ckpt文件。
+</span></span><span style=display:flex><span>CKPT_FILE = &#39;../../datasets/inception_v3.ckpt&#39;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 定义训练中使用的参数。
+</span></span><span style=display:flex><span>LEARNING_RATE = 0.0001
+</span></span><span style=display:flex><span>STEPS = 300
+</span></span><span style=display:flex><span>BATCH = 32
+</span></span><span style=display:flex><span>N_CLASSES = 5
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 不需要从谷歌训练好的模型中加载的参数。
+</span></span><span style=display:flex><span>CHECKPOINT_EXCLUDE_SCOPES = &#39;InceptionV3/Logits,InceptionV3/AuxLogits&#39;
+</span></span><span style=display:flex><span># 需要训练的网络层参数明层，在fine-tuning的过程中就是最后的全联接层。
+</span></span><span style=display:flex><span>TRAINABLE_SCOPES=&#39;InceptionV3/Logits,InceptionV3/AuxLogit&#39;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>### 2. 获取所有需要从谷歌训练好的模型中加载的参数。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def get_tuned_variables():
+</span></span><span style=display:flex><span>    # 不需要从谷歌训练好的模型中加载的参数。
+</span></span><span style=display:flex><span>    exclusions = [scope.strip() for scope in CHECKPOINT_EXCLUDE_SCOPES.split(&#39;,&#39;)]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    variables_to_restore = []
+</span></span><span style=display:flex><span>    # 枚举inception-v3模型中所有的参数，然后判断是否需要从加载列表中移除。
+</span></span><span style=display:flex><span>    for var in slim.get_model_variables():
+</span></span><span style=display:flex><span>        excluded = False
+</span></span><span style=display:flex><span>        for exclusion in exclusions:
+</span></span><span style=display:flex><span>            if var.op.name.startswith(exclusion):
+</span></span><span style=display:flex><span>                excluded = True
+</span></span><span style=display:flex><span>                break
+</span></span><span style=display:flex><span>        if not excluded:
+</span></span><span style=display:flex><span>            variables_to_restore.append(var)
+</span></span><span style=display:flex><span>    return variables_to_restore
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>### 3. 获取所有需要训练的变量列表。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def get_trainable_variables():    
+</span></span><span style=display:flex><span>    scopes = [scope.strip() for scope in TRAINABLE_SCOPES.split(&#39;,&#39;)]
+</span></span><span style=display:flex><span>    variables_to_train = []
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    # 枚举所有需要训练的参数前缀，并通过这些前缀找到所有需要训练的参数。
+</span></span><span style=display:flex><span>    for scope in scopes:
+</span></span><span style=display:flex><span>        variables = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, scope)
+</span></span><span style=display:flex><span>        variables_to_train.extend(variables)
+</span></span><span style=display:flex><span>    return variables_to_train
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>### 4. 定义训练过程。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>def main():
+</span></span><span style=display:flex><span>    # 加载预处理好的数据。
+</span></span><span style=display:flex><span>    processed_data = np.load(INPUT_DATA)
+</span></span><span style=display:flex><span>    training_images = processed_data[0]
+</span></span><span style=display:flex><span>    n_training_example = len(training_images)
+</span></span><span style=display:flex><span>    training_labels = processed_data[1]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    validation_images = processed_data[2]
+</span></span><span style=display:flex><span>    validation_labels = processed_data[3]
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    testing_images = processed_data[4]
+</span></span><span style=display:flex><span>    testing_labels = processed_data[5]
+</span></span><span style=display:flex><span>    print(&#34;%d training examples, %d validation examples and %d testing examples.&#34; % (
+</span></span><span style=display:flex><span>        n_training_example, len(validation_labels), len(testing_labels)))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    # 定义inception-v3的输入，images为输入图片，labels为每一张图片对应的标签。
+</span></span><span style=display:flex><span>    images = tf.placeholder(tf.float32, [None, 299, 299, 3], name=&#39;input_images&#39;)
+</span></span><span style=display:flex><span>    labels = tf.placeholder(tf.int64, [None], name=&#39;labels&#39;)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    # 定义inception-v3模型。因为谷歌给出的只有模型参数取值，所以这里
+</span></span><span style=display:flex><span>    # 需要在这个代码中定义inception-v3的模型结构。虽然理论上需要区分训练和
+</span></span><span style=display:flex><span>    # 测试中使用到的模型，也就是说在测试时应该使用is_training=False，但是
+</span></span><span style=display:flex><span>    # 因为预先训练好的inception-v3模型中使用的batch normalization参数与
+</span></span><span style=display:flex><span>    # 新的数据会有出入，所以这里直接使用同一个模型来做测试。
+</span></span><span style=display:flex><span>    with slim.arg_scope(inception_v3.inception_v3_arg_scope()):
+</span></span><span style=display:flex><span>        logits, _ = inception_v3.inception_v3(
+</span></span><span style=display:flex><span>            images, num_classes=N_CLASSES, is_training=True)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    trainable_variables = get_trainable_variables()
+</span></span><span style=display:flex><span>    # 定义损失函数和训练过程。
+</span></span><span style=display:flex><span>    tf.losses.softmax_cross_entropy(tf.one_hot(labels, N_CLASSES), logits, weights=1.0)
+</span></span><span style=display:flex><span>    total_loss = tf.losses.get_total_loss()
+</span></span><span style=display:flex><span>    train_step = tf.train.RMSPropOptimizer(LEARNING_RATE).minimize(total_loss)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    # 计算正确率。
+</span></span><span style=display:flex><span>    with tf.name_scope(&#39;evaluation&#39;):
+</span></span><span style=display:flex><span>        correct_prediction = tf.equal(tf.argmax(logits, 1), labels)
+</span></span><span style=display:flex><span>        evaluation_step = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>    # 定义加载Google训练好的Inception-v3模型的Saver。
+</span></span><span style=display:flex><span>    load_fn = slim.assign_from_checkpoint_fn(
+</span></span><span style=display:flex><span>      CKPT_FILE,
+</span></span><span style=display:flex><span>      get_tuned_variables(),
+</span></span><span style=display:flex><span>      ignore_missing_vars=True)
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    # 定义保存新模型的Saver。
+</span></span><span style=display:flex><span>    saver = tf.train.Saver()
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    with tf.Session() as sess:
+</span></span><span style=display:flex><span>        # 初始化没有加载进来的变量，一定要在模型加载之前否则会重新赋值
+</span></span><span style=display:flex><span>        init = tf.global_variables_initializer()
+</span></span><span style=display:flex><span>        sess.run(init)
+</span></span><span style=display:flex><span>        
+</span></span><span style=display:flex><span>        # 加载谷歌已经训练好的模型。
+</span></span><span style=display:flex><span>        print(&#39;Loading tuned variables from %s&#39; % CKPT_FILE)
+</span></span><span style=display:flex><span>        load_fn(sess)
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>        start = 0
+</span></span><span style=display:flex><span>        end = BATCH
+</span></span><span style=display:flex><span>        for i in range(STEPS):            
+</span></span><span style=display:flex><span>            _, loss = sess.run([train_step, total_loss], feed_dict={
+</span></span><span style=display:flex><span>                images: training_images[start:end], 
+</span></span><span style=display:flex><span>                labels: training_labels[start:end]})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            if i % 30 == 0 or i + 1 == STEPS:
+</span></span><span style=display:flex><span>                saver.save(sess, TRAIN_FILE, global_step=i)
+</span></span><span style=display:flex><span>                
+</span></span><span style=display:flex><span>                validation_accuracy = sess.run(evaluation_step, feed_dict={
+</span></span><span style=display:flex><span>                    images: validation_images, labels: validation_labels})
+</span></span><span style=display:flex><span>                print(&#39;Step %d: Training loss is %.1f Validation accuracy = %.1f%%&#39; % (
+</span></span><span style=display:flex><span>                    i, loss, validation_accuracy * 100.0))
+</span></span><span style=display:flex><span>                            
+</span></span><span style=display:flex><span>            start = end
+</span></span><span style=display:flex><span>            if start == n_training_example:
+</span></span><span style=display:flex><span>                start = 0
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>            end = start + BATCH
+</span></span><span style=display:flex><span>            if end &gt; n_training_example: 
+</span></span><span style=display:flex><span>                end = n_training_example
+</span></span><span style=display:flex><span>            
+</span></span><span style=display:flex><span>        # 在最后的测试数据上测试正确率。
+</span></span><span style=display:flex><span>        test_accuracy = sess.run(evaluation_step, feed_dict={
+</span></span><span style=display:flex><span>            images: testing_images, labels: testing_labels})
+</span></span><span style=display:flex><span>        print(&#39;Final test accuracy = %.1f%%&#39; % (test_accuracy * 100))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>### 5. 运行训练过程。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>if __name__ == &#39;__main__&#39;:
+</span></span><span style=display:flex><span>    main()
+</span></span></code></pre></div><p>迁移学习，是指利用数据、任务、或模型之间的相似性，将在旧领域学习过的模型，应用于新领域的一种学习过程。</p><p>迁移学习最权威的综述文章是香港科技大学杨强教授团队的A survey on transfer learning[Pan and Yang, 2010]。</p><h1 id=大数据与少标注之间的矛盾>大数据与少标注之间的矛盾。</h1><p>尽管我们可以获取到海量的数据，这些数据往往是很初级的原始形态，很少有数据被加以正确的人工标注。数据的标注是一个耗时且昂贵的操作，目前为止，尚未有行之有效的方式来解决这一问题。这给机器学习和深度学习的模型训练和更新带来了挑战。反过来说，特定的领域，因为没有足够的标定数据用来学习，使得这些领域一直不能很好的发展。</p><p><code>迁移数据标注，利用迁移学习的思想，我们可以寻找一些与目标数据相近的有标注的数据，从而利用这</code>
+<code>些数据来构建模型，增加我们目标数据的标注。</code></p><h1 id=大数据与弱计算之间的矛盾>大数据与弱计算之间的矛盾。</h1><p>绝大多数普通用户是不可能具有这些强计算能力的。这就引发了大数据和弱计算之间的矛盾。</p><p><code>模型迁移，利用迁移学习的思想，我们可以将那些大公司在大数据上训练好的模型，迁移到我们的任务中。针对于我们的任务进行微调，从而我们也可以拥有在大数据上训练好的模型。</code></p><h1 id=普适化模型与个性化需求之间的矛盾>普适化模型与个性化需求之间的矛盾。</h1><p>目前的情况是，我们对于每一个通用的任务都构建了一个通用的模型。这个模型可以解决绝大多数的公共问题。但是具体到每个个体、每个需求，都存在其唯一性和特异性，一个普适化的通用模型根本无法满足。</p><p><code>自适应学习，我们利用迁移学习的思想，进行自适应的学习。考虑到不同用户之间的相似性和差异性，我们对普适化模型进行灵活的调整，以便完成我们的任务。</code></p><h1 id=特定应用的需求>特定应用的需求。</h1><p>比如推荐系统的冷启动问题。一个新的推荐系统，没有足够
+的用户数据，如何进行精准的推荐? 一个崭新的图片标注系统，没有足够的标签，如何进行
+精准的服务？现实世界中的应用驱动着我们去开发更加便捷更加高效的机器学习方法来加
+以解决。</p><p><code>为了满足特定领域应用的需求，我们可以利用上述介绍过的手段，从数据和模型方法上</code>
+<code>进行迁移学习。</code></p><table><thead><tr><th>比较项目</th><th>传统机器学习</th><th>迁移学习</th></tr></thead><tbody><tr><td>数据分布</td><td>训练和测试数据服从相同的分布</td><td>训练和测试数据服从不同的分布</td></tr><tr><td>数据标注</td><td>需要足够的数据标注来训练模型</td><td>不需要足够的数据标注</td></tr><tr><td>模型</td><td>每个任务分别建模模型</td><td>可以在不同任务之间迁移</td></tr></tbody></table><ul><li>按照目标领域有无标签，迁移学习可以分为以下三个大类：</li></ul><ol><li>监督迁移学习(Supervised Transfer Learning)</li><li>半监督迁移学习(Semi-Supervised Transfer Learning)</li><li>无监督迁移学习(Unsupervised Transfer Learning)</li></ol><ul><li>按学习方法的分类形式，最早在迁移学习领域的权威综述文章[Pan and Yang, 2010] 给出定义。它将迁移学习方法分为以下四个大类：</li></ul><ol><li>基于样本的迁移学习方法(Instance based Transfer Learning)，简单来说就是通过权重重用，对源域和目标域的样例进行迁移。就是说直接对不同的样本赋予不同权重，比如说相似的样本，我就给它高权重，这样我就完成了迁移，非常简单非常非常直接。</li><li>基于特征的迁移学习方法(Feature based Transfer Learning)，，就是更进一步对特征进行变换。意思是说，假设源域和目标域的特征原来不在一个空间，或者说它们在原来那个空间上不相似，那我们就想办法把它们变换到一个空间里面，那这些特征不就相似了？这个思路也非常直接。这个方法是用得非常多的，一直在研究，目前是感觉是研究最热的。</li><li>基于模型的迁移学习方法(Model based Transfer Learning)，就是说构建参数共享的模型。这个主要就是在神经网络里面用的特别多，因为神经网络的结构可以直接进行迁移。比如说神经网络最经典的finetune 就是模型参数迁移的很好的体现。</li><li>基于关系的迁移学习方法(Relation based Transfer Learning)，，这个方法用的比较少，这个主要就是说挖掘和利用关系进行类比迁移。比如老师上课、学生听课就可以类比为公司开会的场景。</li></ol><ul><li>按照特征的属性进行分类，也是一种常用的分类方法。这在最近的迁移学习综述[Weiss et al., 2016]
+中给出。按照特征属性，迁移学习可以分为两个大类：</li></ul><ol><li>同构迁移学习(Homogeneous Transfer Learning)</li><li>异构迁移学习(Heterogeneous Transfer Learning)</li></ol><p>如果特征语义和维度都相同，那么就是同构；反之，如果特征完全不相同，那么就是异构。举个例子来说，不同图片的迁移，就可以认为是同构；而图片到文本的迁移，则是异构的。</p><p><code>时间序列行为识别(Activity Recognition) 主要通过佩戴在用户身体上的传感器，研究用户的行</code>
+<code>为。行为数据是一种时间序列数据。不同用户、不同环境、不同位置、不同设备，都会导致</code>
+<code>时间序列数据的分布发生变化。此时，也需要进行迁移学习。图12展示了同一用户不同位</code>
+<code>置的信号差异性。在这个领域，华盛顿州立大学的Diane Cook 等人在2013 年发表的关于</code>
+<code>迁移学习在行为识别领域的综述文章[Cook et al., 2013] 是很好的参考资料。</code></p><p>领域(Domain): 是进行学习的主体。领域主要由两部分构成：数据和生成这些数据的概率分布。通常我们用花体D 来表示一个domain，用大写斜体P 来表示一个概率分布。</p><p>任务(Task): 是学习的目标。任务主要由两部分组成：标签和标签对应的函数。通常我们用花体Y 来表示一个标签空间，用f(*) 来表示一个学习函数。</p><p>找到相似性(不变量)，是进行迁移学习的核心。有了这种相似性后，下一步工作就是，如何度量和利用这种相似性。度量工作的目标有两点：一是很好地度量两个领域的相似性，不仅定性地告诉我们它们是否相似，更定量地给出相似程度。二是以度量为准则，通过我们所要采用的学习手段，增大两个领域之间的相似性，从而完成迁移学习。</p><h1 id=深度迁移学习>深度迁移学习</h1><p>由于深度学习直接对原始数据进行学习，所以其对比非深度方法还有两个优势：自动化
+地提取更具表现力的特征，以及满足了实际应用中的端到端(End-to-End) 需求。.</p><p>深度迁移学习方法(BA、DDC、DAN) 对比传统迁移学习方法(TCA、GFK 等)，在精度上具有无可匹敌的优势。</p><p>深度神经网络前面几层都学习到的是通用的特征（general feature）；随着网络层次的加深，后面的网络更偏重于学习任务特定的特征（specific feature）。这非常好理解，我们也都很好接受。那么问题来了：如何得知哪些层能够学习到general feature，哪些层能够学习到specific feature。更进一步：如果应用于迁移学习，如何决定该迁移哪些层、固定哪些层？</p><p>#一个典型的迁移学习过程是这样的。<code>首先通过transfer learning对新的数据集进行训练，训练过一定epoch之后，改用fine tune方法继续训练，同时降低学习率</code>。这样做是因为如果一开始就采用fine tune方法的话，网络还没有适应新的数据，那么在进行参数更新的时候，比较大的梯度可能会导致原本训练的比较好的参数被污染，反而导致效果下降。借助setup_to_transfer_learning与setup_to_fine_tune这两个函数，我们先只训练模型的顶层，再训练模型的大多数层，进而在提高模型训练效果的同时，降低训练时间。</p><h1 id=例子httpsblogcsdnnetjuezhananglearticledetails78747252><a href=https://blog.csdn.net/juezhanangle/article/details/78747252 title=例子 rel="noopener external nofollow noreferrer" target=_blank class=exturl>例子
+<i class="fa fa-external-link-alt"></i></a></h1><p>第一种即所谓的<code>transfer learning</code>，迁移训练时，移掉最顶层，<em>比如ImageNet训练任务的顶层就是一个1000输出的全连接层，换上新的顶层</em>，<em>比如输出为10的全连接层，然后`训练的时候，只训练最后两层，即原网络的倒数第二层和新换的全连接输出层</em>。可以说transfer learning将底层的网络当做了一个特征提取器来使用。</p><p>第二种叫做<code>fine tune</code>，和transfer learning一样，<em>换一个新的顶层，但是这一次在训练的过程中，所有的（或大部分）其它层都会经过训练。也就是底层的权重也会随着训练进行调整。</em></p><p>模型的预训练权重将下载到~/.keras/models/并在载入模型时自动载入。模型的官方下载路径：https://github.com/fchollet/deep-learning-models/releases</p><p><code>notop</code>：指模型不包含最后的3个全连接层。用来做fine-tuning专用，专门开源了这类模型。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>keras<span style=color:#f92672>.</span>applications<span style=color:#f92672>.</span> mobilenet<span style=color:#f92672>.</span> MobileNet (
+</span></span><span style=display:flex><span>	include_top<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,   <span style=color:#75715e># 是否保留顶层的3个全连接网络  pop函数，去掉最后一层。1old_model.layers.pop()</span>
+</span></span><span style=display:flex><span>	weights<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;imagenet&#39;</span>,  <span style=color:#75715e># None代表随机初始化，即不加载预训练权重。&#39;imagenet&#39;代表加载预训练权重</span>
+</span></span><span style=display:flex><span>    input_tensor<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>,  <span style=color:#75715e># 可填入Keras tensor作为模型的图像输出tensor</span>
+</span></span><span style=display:flex><span>    input_shape<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>,  <span style=color:#75715e># 可选，仅当include_top=False有效，应为长为3的tuple，指明输入图片的shape，图片的宽高必须大于71，如(150,150,3)</span>
+</span></span><span style=display:flex><span>    pooling<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>,   <span style=color:#75715e># 当include_top=False时，该参数指定了池化方式。None代表不池化，最后一个卷积层的输出为4D张量。‘avg’代表全局平均池化，‘max’代表全局最大值池化。</span>
+</span></span><span style=display:flex><span>    classes<span style=color:#f92672>=</span><span style=color:#ae81ff>1000</span>  <span style=color:#75715e># 可选，图片分类的类别数，仅当include_top=True并且不加载预训练权重时可用。)</span>
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> keras.applications.mobilenet <span style=color:#f92672>import</span> MobileNet
+</span></span><span style=display:flex><span><span style=color:#75715e>##方式（1）</span>
+</span></span><span style=display:flex><span>base_model <span style=color:#f92672>=</span> MobileNet(weights<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;imagenet&#39;</span>,include_top<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e>##方式（2）</span>
+</span></span><span style=display:flex><span>base_model <span style=color:#f92672>=</span> MobileNet(weights<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;G:\mobilenet_1_0_128_tf_no_top.h5&#39;</span>)
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> base_model<span style=color:#f92672>.</span>output
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> GlobalAveragePooling2D()(x)
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> Dense(<span style=color:#ae81ff>1024</span>,activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;relu&#39;</span>)(x) <span style=color:#75715e>#we add dense layers so that the model can learn more complex functions and classify for better results.</span>
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> Dense(<span style=color:#ae81ff>1024</span>,activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;relu&#39;</span>)(x) <span style=color:#75715e>#dense layer 2</span>
+</span></span><span style=display:flex><span>x <span style=color:#f92672>=</span> Dense(<span style=color:#ae81ff>512</span>,activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;relu&#39;</span>)(x) <span style=color:#75715e>#dense layer 3</span>
+</span></span><span style=display:flex><span>preds <span style=color:#f92672>=</span> Dense(<span style=color:#ae81ff>3</span>,activation<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;softmax&#39;</span>)(x) <span style=color:#75715e>#final layer with softmax activation</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> Model(inputs<span style=color:#f92672>=</span>base_model<span style=color:#f92672>.</span>input,outputs<span style=color:#f92672>=</span>preds)
+</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>summary()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>print(len(model<span style=color:#f92672>.</span>layers))
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> layer <span style=color:#f92672>in</span> model<span style=color:#f92672>.</span>layers[:<span style=color:#ae81ff>20</span>]:
+</span></span><span style=display:flex><span>    layer<span style=color:#f92672>.</span>trainable<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> layer <span style=color:#f92672>in</span> model<span style=color:#f92672>.</span>layers[<span style=color:#ae81ff>20</span>:]:
+</span></span><span style=display:flex><span>    layer<span style=color:#f92672>.</span>trainable<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> keras.preprocessing.image <span style=color:#f92672>import</span> img_to_array, array_to_img
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>preprocess_input_new</span>(x):
+</span></span><span style=display:flex><span>    img <span style=color:#f92672>=</span> preprocess_input(img_to_array(x))
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> array_to_img(img)
+</span></span><span style=display:flex><span><span style=color:#75715e># train_datagen = ImageDataGenerator(rescale = 1./255,horizontal_flip = True,fill_mode = &#34;nearest&#34;,zoom_range = 0.3,width_shift_range = 0.3,height_shift_range=0.3,rotation_range=30)</span>
+</span></span><span style=display:flex><span>train_datagen<span style=color:#f92672>=</span>ImageDataGenerator(preprocessing_function<span style=color:#f92672>=</span>preprocess_input_new) 
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#included in our dependencies</span>
+</span></span><span style=display:flex><span>train_generator<span style=color:#f92672>=</span>train_datagen<span style=color:#f92672>.</span>flow_from_directory(<span style=color:#e6db74>&#39;./train/&#39;</span>, <span style=color:#75715e>#  data folder</span>
+</span></span><span style=display:flex><span>                                                 target_size<span style=color:#f92672>=</span>(<span style=color:#ae81ff>224</span>,<span style=color:#ae81ff>224</span>),
+</span></span><span style=display:flex><span>                                                 color_mode<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;rgb&#39;</span>,
+</span></span><span style=display:flex><span>                                                 batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>32</span>,
+</span></span><span style=display:flex><span>                                                 class_mode<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;categorical&#39;</span>,
+</span></span><span style=display:flex><span>                                                 shuffle<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>test_generator <span style=color:#f92672>=</span> gen<span style=color:#f92672>.</span>flow_from_directory(<span style=color:#e6db74>&#34;test&#34;</span>, 
+</span></span><span style=display:flex><span>                                         image_size, 
+</span></span><span style=display:flex><span>                                         shuffle<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
+</span></span><span style=display:flex><span>                                         batch_size<span style=color:#f92672>=</span>batch_size, 
+</span></span><span style=display:flex><span>                                         class_mode<span style=color:#f92672>=</span><span style=color:#66d9ef>None</span>)  <span style=color:#75715e># 测试集由于没有label，生成test_generator的函数需加参数class_mode=None。</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 早停法是一种被广泛使用的方法，在很多案例上都比正则化的方法要好。是在训练中计算模型在验证集上的表现，当模型在验证集上的表现开始下降的时候，停止训练，这样就能避免继续训练导致过拟合的问题。其主要步骤如下：</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 1. 将原始的训练数据集划分成训练集和验证集</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 2. 只在训练集上进行训练，并每隔一个周期计算模型在验证集上的误差</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 3. 当模型在验证集上（权重的更新低于某个阈值；预测的错误率低于某个阈值；达到一定的迭代次数），则停止训练</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 4. 使用上一次迭代结果中的参数作为模型的最终参数</span>
+</span></span><span style=display:flex><span>checkpoint <span style=color:#f92672>=</span> ModelCheckpoint(<span style=color:#e6db74>&#34;vgg16_1.h5&#34;</span>,
+</span></span><span style=display:flex><span>                             monitor<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;val_acc&#39;</span>,
+</span></span><span style=display:flex><span>                             verbose<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>, 
+</span></span><span style=display:flex><span>                             save_best_only<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
+</span></span><span style=display:flex><span>                             save_weights_only<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>, 
+</span></span><span style=display:flex><span>                             mode<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;auto&#39;</span>, 
+</span></span><span style=display:flex><span>                             period<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>early <span style=color:#f92672>=</span> EarlyStopping(monitor<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;val_acc&#39;</span>, 
+</span></span><span style=display:flex><span>                      min_delta<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>, 
+</span></span><span style=display:flex><span>                      patience<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>, 
+</span></span><span style=display:flex><span>                      verbose<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>, 
+</span></span><span style=display:flex><span>                      mode<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;auto&#39;</span>)    
+</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>compile(optimizer<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;Adam&#39;</span>,loss<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;categorical_crossentropy&#39;</span>,metrics<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#39;accuracy&#39;</span>])
+</span></span><span style=display:flex><span>step_size_train<span style=color:#f92672>=</span>train_generator<span style=color:#f92672>.</span>n<span style=color:#f92672>//</span>train_generator<span style=color:#f92672>.</span>batch_size
+</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>fit_generator(generator<span style=color:#f92672>=</span>train_generator,
+</span></span><span style=display:flex><span>                   steps_per_epoch<span style=color:#f92672>=</span>step_size_train,
+</span></span><span style=display:flex><span>                   epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span><span style=color:#960050;background-color:#1e0010>，</span>
+</span></span><span style=display:flex><span>                   validation_data <span style=color:#f92672>=</span> validation_generator,
+</span></span><span style=display:flex><span>                   callbacks <span style=color:#f92672>=</span> [checkpoint, early])
+</span></span></code></pre></div><h1 id=借助setup_to_transfer_learning与setup_to_fine_tune这两个函数我们先只训练模型的顶层再训练模型的大多数层进而在提高模型训练效果的同时降低训练时间>借助setup_to_transfer_learning与setup_to_fine_tune这两个函数，我们先只训练模型的顶层，再训练模型的大多数层，进而在提高模型训练效果的同时，降低训练时间。</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>def setup_to_transfer_learning(model,base_model):
+</span></span><span style=display:flex><span>	# 这个函数将base_model的所有层都设置为不可训练，顶层默认为可训练。
+</span></span><span style=display:flex><span>    for layer in base_model.layers:
+</span></span><span style=display:flex><span>         layer.trainable = False
+</span></span><span style=display:flex><span>     model.compile(optimizer=&#39;adam&#39;,
+</span></span><span style=display:flex><span>                   loss=&#39;categorical_crossentropy&#39;,
+</span></span><span style=display:flex><span>                   metrics=[&#39;accuracy&#39;])
+</span></span><span style=display:flex><span> 
+</span></span><span style=display:flex><span>def setup_to_fine_tune(model,base_model):
+</span></span><span style=display:flex><span>	# 这个函数将base_model中的前几层设置为不可训练，后面的所有层都设置为可训练。具体应确定到第几层，还需通过模型结构与不断调试来确定。
+</span></span><span style=display:flex><span>	GAP_LAYER = 17 
+</span></span><span style=display:flex><span>    for layer in base_model.layers[:GAP_LAYER+1]:
+</span></span><span style=display:flex><span>    	layer.trainable = False
+</span></span><span style=display:flex><span>    for layer in base_model.layers[GAP_LAYER+1:]:
+</span></span><span style=display:flex><span>        layer.trainable = True
+</span></span><span style=display:flex><span>    model.compile(optimizer=Adagrad(lr=0.0001),
+</span></span><span style=display:flex><span>                  loss=&#39;categorical_crossentropy&#39;,
+</span></span><span style=display:flex><span>                  metrics=[&#39;accuracy&#39;])
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>setup_to_transfer_learning(model,base_model)
+</span></span><span style=display:flex><span>history_tl = model.fit_generator(generator=train_generator,
+</span></span><span style=display:flex><span>                                 steps_per_epoch=800,
+</span></span><span style=display:flex><span>                                 epochs=2,
+</span></span><span style=display:flex><span>                                 validation_data=val_generator,
+</span></span><span style=display:flex><span>                                 validation_steps=12,
+</span></span><span style=display:flex><span>                                 class_weight=&#39;auto&#39;)
+</span></span><span style=display:flex><span>model.save(&#39;./flowers17_iv3_tl.h5&#39;)
+</span></span><span style=display:flex><span>setup_to_fine_tune(model,base_model)
+</span></span><span style=display:flex><span>history_ft = model.fit_generator(generator=train_generator,
+</span></span><span style=display:flex><span>                                 steps_per_epoch=800,
+</span></span><span style=display:flex><span>                                 epochs=2,
+</span></span><span style=display:flex><span>                                 validation_data=val_generator,
+</span></span><span style=display:flex><span>                                 validation_steps=1,
+</span></span><span style=display:flex><span>                                 class_weight=&#39;auto&#39;)
+</span></span><span style=display:flex><span>model.save(&#39;./flowers17_iv3_ft.h5&#39;)
+</span></span></code></pre></div><p>（2）加载权重到不同的网络结构</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#old model</span>
+</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> Sequential()
+</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>add(Dense(<span style=color:#ae81ff>2</span>, input_dim<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>, name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;dense_1&#34;</span>))
+</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>add(Dense(<span style=color:#ae81ff>3</span>, name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;dense_2&#34;</span>))
+</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>save_weights(fname)
+</span></span><span style=display:flex><span><span style=color:#75715e># new model</span>
+</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> Sequential()
+</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>add(Dense(<span style=color:#ae81ff>2</span>, input_dim<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>, name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;dense_1&#34;</span>))  <span style=color:#75715e># will be loaded</span>
+</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>add(Dense(<span style=color:#ae81ff>10</span>, name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;new_dense&#34;</span>))  <span style=color:#75715e># will not be loaded</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># load weights from first model; will only affect the first layer, dense_1.</span>
+</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>load_weights(fname, by_name<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>layer_dict <span style=color:#f92672>=</span> dict([(layer<span style=color:#f92672>.</span>name, layer) <span style=color:#66d9ef>for</span> layer <span style=color:#f92672>in</span> model<span style=color:#f92672>.</span>layers])
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> h5py
+</span></span><span style=display:flex><span>weights_path <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;vgg19_weights.h5&#39;</span> 
+</span></span><span style=display:flex><span><span style=color:#75715e># (&#39;https://github.com/fchollet/deep-learning-models/releases/download/v0.1/vgg19_weights_tf_dim_ordering_tf_kernels.h5)</span>
+</span></span><span style=display:flex><span>f <span style=color:#f92672>=</span> h5py<span style=color:#f92672>.</span>File(weights_path)
+</span></span><span style=display:flex><span>list(f[<span style=color:#e6db74>&#34;model_weights&#34;</span>]<span style=color:#f92672>.</span>keys())
+</span></span><span style=display:flex><span>layer_names <span style=color:#f92672>=</span> [layer<span style=color:#f92672>.</span>name <span style=color:#66d9ef>for</span> layer <span style=color:#f92672>in</span> model<span style=color:#f92672>.</span>layers]
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> layer_dict<span style=color:#f92672>.</span>keys():
+</span></span><span style=display:flex><span>    weight_names <span style=color:#f92672>=</span> f[<span style=color:#e6db74>&#34;model_weights&#34;</span>][i]<span style=color:#f92672>.</span>attrs[<span style=color:#e6db74>&#34;weight_names&#34;</span>]
+</span></span><span style=display:flex><span>    weights <span style=color:#f92672>=</span> [f[<span style=color:#e6db74>&#34;model_weights&#34;</span>][i][j] <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> weight_names]
+</span></span><span style=display:flex><span>    index <span style=color:#f92672>=</span> layer_names<span style=color:#f92672>.</span>index(i)
+</span></span><span style=display:flex><span>    model<span style=color:#f92672>.</span>layers[index]<span style=color:#f92672>.</span>set_weights(weights)
+</span></span></code></pre></div><p><code>新数据集较小，和原数据集相似</code>，如果我们尝试训练整个网络，容易导致过拟合。由于新数据和原数据相似，因此我们期望卷积网络中的高层特征和新数据集相关。因此，建议冻结所有卷积层，只训练分类器（比如，线性分类器）：</p><p>for layer in model.layers:</p><pre><code>layer.trainable = False
+</code></pre><p><code>新数据集较大，和原数据集相似</code>，由于我们有更多数据，我们更有自信，如果尝试对整个网络进行精细调整，不会导致过拟合。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>for layer in model.layers:   
+</span></span><span style=display:flex><span>	layer.trainable = True  # 其实默认值就是True
+</span></span></code></pre></div><p><code>新数据集很小，但和原数据很不一样</code>，由于数据集很小，我们大概想要从靠前的层提取特征，然后在此之上训练一个分类器：（假定你对h5py有所了解）</p><p><code>新数据集很大，和原数据很不一样</code>，由于你有一个很大的数据集，你可以设计你自己的网络，或者使用现有的网络。你可以基于随机初始化权重或预训练网络权重初始化训练网络。一般选择后者。</p><h1 id=keras-样例由imagenet花到猫狗>keras 样例由imagenet花到猫狗</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span># 基于VGG16迁移学习
+</span></span><span style=display:flex><span># 通过Keras的ImageDataGenerator加载数据集
+</span></span><span style=display:flex><span># 加载VGG16模型但是不包括输出层
+</span></span><span style=display:flex><span>input_tensor = keras.Input(shape=(64, 64, 3))
+</span></span><span style=display:flex><span>vgg_model = keras.applications.VGG16(weights=&#39;imagenet&#39;, include_top=False, input_tensor=input_tensor)
+</span></span><span style=display:flex><span>layer_dict = dict([(layer.name, layer) for layer in vgg_model.layers])
+</span></span><span style=display:flex><span>print(len(layer_dict))
+</span></span><span style=display:flex><span>vgg_model.summary()
+</span></span><span style=display:flex><span>num_classes = 3
+</span></span><span style=display:flex><span>data_generator = keras.preprocessing.image.ImageDataGenerator(
+</span></span><span style=display:flex><span>        rescale=1./255,
+</span></span><span style=display:flex><span>        shear_range=0.2,
+</span></span><span style=display:flex><span>        zoom_range=0.2,
+</span></span><span style=display:flex><span>        horizontal_flip=True)
+</span></span><span style=display:flex><span>train_generator = data_generator.flow_from_directory(
+</span></span><span style=display:flex><span>        &#39;/content/drive/My Drive/transferlearndata/train&#39;,
+</span></span><span style=display:flex><span>        target_size=(64, 64),
+</span></span><span style=display:flex><span>        batch_size=4,
+</span></span><span style=display:flex><span>        shuffle=True,
+</span></span><span style=display:flex><span>        class_mode=&#39;categorical&#39;)
+</span></span><span style=display:flex><span>print(train_generator.classes)
+</span></span><span style=display:flex><span>print(train_generator.class_indices)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>data_generator = keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
+</span></span><span style=display:flex><span>validation_generator = data_generator.flow_from_directory(
+</span></span><span style=display:flex><span>        &#39;/content/drive/My Drive/transferlearndata/validate&#39;,
+</span></span><span style=display:flex><span>        target_size=(64, 64),
+</span></span><span style=display:flex><span>        batch_size=4,
+</span></span><span style=display:flex><span>        class_mode=&#39;categorical&#39;)
+</span></span><span style=display:flex><span># 构建迁移学习网络使用VGG6的前面两个权重block，
+</span></span><span style=display:flex><span># 依赖block2_pool的输出，输入张量（64x64x3）
+</span></span><span style=display:flex><span># 构建网络的层
+</span></span><span style=display:flex><span>x = vgg_model.output
+</span></span><span style=display:flex><span>x = keras.layers.BatchNormalization()(x)
+</span></span><span style=display:flex><span>x = keras.layers.Flatten()(x)
+</span></span><span style=display:flex><span>x = keras.layers.Dense(4096, activation=&#39;relu&#39;)(x)
+</span></span><span style=display:flex><span>x = keras.layers.Dropout(0.25)(x)
+</span></span><span style=display:flex><span>x = keras.layers.Dense(num_classes, activation=tf.nn.softmax)(x)
+</span></span><span style=display:flex><span>my_model = keras.Model(inputs=vgg_model.input, outputs=x)
+</span></span><span style=display:flex><span>my_model.summary()
+</span></span><span style=display:flex><span># 是否fine-tuning整个网络或者几层
+</span></span><span style=display:flex><span>for layer in my_model.layers[:-10]:
+</span></span><span style=display:flex><span>    layer.trainable = False
+</span></span><span style=display:flex><span># 编译与训练
+</span></span><span style=display:flex><span>my_model.compile(
+</span></span><span style=display:flex><span>    loss=&#39;categorical_crossentropy&#39;,
+</span></span><span style=display:flex><span>    optimizer=keras.optimizers.Adam(0.0001),
+</span></span><span style=display:flex><span>    metrics=[&#39;accuracy&#39;])
+</span></span><span style=display:flex><span>my_model.fit_generator(train_generator, epochs=10, validation_data=validation_generator)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span># 保存整个模型
+</span></span><span style=display:flex><span>my_model.save(&#34;my_transfer_vgg.h5&#34;)
+</span></span><span style=display:flex><span># 加载与使用
+</span></span><span style=display:flex><span>flower_dict = [&#39;cats&#39;, &#39;dogs&#39;, &#39;horses&#39;]
+</span></span><span style=display:flex><span>new_model = keras.models.load_model(&#34;my_transfer_vgg.h5&#34;)
+</span></span><span style=display:flex><span>root_dir = &#34;/content/drive/My Drive/transferlearndata/test&#34;
+</span></span><span style=display:flex><span>for file in os.listdir(root_dir):
+</span></span><span style=display:flex><span>    src = cv2.imread(os.path.join(root_dir, file))
+</span></span><span style=display:flex><span>    img = cv2.resize(src, (64, 64))
+</span></span><span style=display:flex><span>    img = np.expand_dims(img, 0)
+</span></span><span style=display:flex><span>    result = new_model.predict(img)
+</span></span><span style=display:flex><span>    index = np.argmax(result)
+</span></span><span style=display:flex><span>    print(result.shape, index, flower_dict[index])
+</span></span><span style=display:flex><span>    cv2.putText(src, flower_dict[index],(50, 50), cv2.FONT_HERSHEY_PLAIN, 2.0, (0, 0, 255), 2, 8)
+</span></span><span style=display:flex><span>    cv2.imshow(&#34;input&#34;, src)
+</span></span><span style=display:flex><span>    cv2.waitKey(0)
+</span></span><span style=display:flex><span>cv2.destroyAllWindows()
+</span></span></code></pre></div></div><footer class=post-footer><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
+ml-迁移学习(Transfer-Learning)</li><li class=post-copyright-author><strong>本文作者：</strong>
+Tomding</li><li class=post-copyright-link><strong>本文链接：</strong>
+<a id=post-cr-link href=/post/ml-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0transfer-learning/ title=ml-迁移学习(Transfer-Learning)>/post/ml-%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0transfer-learning/</a></li><li class=post-copyright-license><strong>版权声明：</strong>
+本博客所有文章除特别声明外，均采用 <i class="fab fa-fw fa-creative-commons"></i><a target=_blank href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>BY-NC-SA</a> 许可协议。转载请注明出处！</li></ul></div><div class=followme><span>欢迎关注我的其它发布渠道</span><div class=social-list><div class=social-item><a target=_blank class=social-link href=/images/wechat_channel.jpg><span class=icon><i class="fab fa-weixin"></i></span>
+<span class=label>WeChat</span></a></div><div class=social-item><a target=_blank class=social-link href=/atom.xml><span class=icon><i class="fa fa-rss"></i></span>
+<span class=label>RSS</span></a></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=/post/ml-%E6%8F%92%E5%80%BC/ rel=next title=ml-插值><i class="fa fa-chevron-left"></i> ml-插值</a></div><div class="post-nav-prev post-nav-item"><a href=/post/ml-%E7%94%9F%E6%88%90%E5%AF%B9%E6%8A%97%E7%BD%91%E7%BB%9Cgan/ rel=prev title=ml-生成对抗网络(GAN)>ml-生成对抗网络(GAN)
+<i class="fa fa-chevron-right"></i></a></div></div></footer></article></div></div></main><footer class=footer><div class=footer-inner><div class=copyright>&copy;
+<span itemprop=copyrightYear>2010 - 2023</span>
+<span class=with-love><i class="fa fa-heart"></i></span>
+<span class=author itemprop=copyrightHolder>Tomding</span></div></div></footer><script type=text/javascript src=https://cdn.staticfile.org/animejs/3.2.1/anime.min.js defer></script>
+<script type=text/javascript src=https://cdn.staticfile.org/viewerjs/1.11.0/viewer.min.js defer></script>
+<script class=next-config data-name=main type=application/json>{"bookmark":{"color":"#222","enable":false,"save":"manual"},"busuanzi":{"pageview":true},"copybtn":true,"darkmode":true,"giscus":{"cfg":{"category":"Comments","categoryid":null,"emit":false,"inputposition":"top","mapping":"title","reactions":false,"repo":"username/repo-name","repoid":null,"theme":"preferred_color_scheme"},"js":"https://giscus.app/client.js"},"hostname":"/","i18n":{"ds_day":" 天前","ds_days":" 天 ","ds_hour":" 小时前","ds_hours":" 小时 ","ds_just":"刚刚","ds_min":" 分钟前","ds_mins":" 分钟","ds_month":" 个月前","ds_years":" 年 ","empty":"没有找到任何搜索结果：${query}","hits":"","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","placeholder":"搜索..."},"lang":"zh-CN","lazyload":false,"localSearch":{"enable":true,"path":"/searchindexes.xml","preload":false,"topnperarticle":-1,"trigger":"auto","unescape":false},"motion":{"async":true,"enable":true,"transition":{"collheader":"fadeInLeft","postblock":"fadeIn","postbody":"fadeInDown","postheader":"fadeInDown","sidebar":"fadeInUp"}},"root":"/","scheme":"Gemini","sidebar":{"display":"post","offset":12,"padding":18,"position":"left","width":256},"statis":{"enable":true,"plugin":"busuanzi"},"vendor":{"plugins":"qiniu","router":"https://cdn.staticfile.org"},"version":"4.4.1","waline":{"cfg":{"comment":true,"emoji":false,"imguploader":false,"pageview":true,"placeholder":"请文明发言哟 ヾ(≧▽≦*)o","reaction":true,"reactiontext":["点赞","踩一下","得意","不屑","尴尬","睡觉"],"reactiontitle":"你认为这篇文章怎么样？","requiredmeta":["nick","mail"],"serverurl":null,"sofa":"快来发表你的意见吧 (≧∀≦)ゞ","wordlimit":200},"css":{"alias":"waline","file":"dist/waline.css","name":"@waline/client","version":"2.13.0"},"js":{"alias":"waline","file":"dist/waline.js","name":"@waline/client","version":"2.13.0"}}}</script><script type=text/javascript src=/js/main.min.e34208af37d3db3a875e6fbad04c2f1c241185af925a9c6ebf79dd1ba2730cdd.js defer></script></body></html>

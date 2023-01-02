@@ -373,7 +373,7 @@ m = cv2.bitwise_not(mask)
 #选择dog添加logo的位置
 roi = dog[0:200, 0:200]
 #与m进行与操作
-tmp = cv2.bitwise_and(roi, roi, mask = m)
+tmp = cv2.bitwise_and(roi, roi, mask=m)
 ```
 
 ## 二值化
@@ -384,7 +384,7 @@ tmp = cv2.bitwise_and(roi, roi, mask = m)
 # 全局阈值
 thresh, dst = cv2.threshold(src, thresh, maxVal, type)
 # type: cv2.THRESH_BINARY 大于阈值的为maxVal,小于的为0  cv2.THRESH_BINARY_INV 小于阈值的为maxVal,大于的为0 
-
+ret,thresh = cv2.threshold(gray,0,255,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU) # 自适应
 
 # 由于光照不均匀以及阴影的存在，只有一个间值会使得在阴影处的白色被二值化成黑色
 # 自适应阈值
@@ -607,11 +607,15 @@ dst = cv.warpAffine(img,M,(cols,rows))
 
 ```python
 # 透射变换
+
+# 源图像上四个点的坐标构成的矩阵，要求其中任意三点不共线
 pts1 = np.float32([[56,65],[368,52],[28,387],[389,390]]) 
+#目标图像上四个点的坐标构成的矩阵，要求其中任意三个点不共线，且每个点与src的对应点对应
 pts2 = np.float32([[100,145],[300,100],[80,290],[310,300]])
+# 根据源图像和目标图像上的四对点坐标来计算从原图像透视变换到目标头像的透视变换矩阵。
 T = cv.getPerspectiveTransform(pts1,pts2)
-# 2.2 进行变换
-dst = cv.warpPerspective(img,T,(cols,rows))
+# 进行透视变换
+dst = cv.warpPerspective(img,T,(width,hight))
 ```
 
 ###  图像金字塔
@@ -979,7 +983,7 @@ plt.show()
 
 在角点的地方，无论你向哪个方向移动小图，结果都会有很大的不同。所以可以把它们当 成一个好的特征。
 
-## Harris和Shi-Tomas算法
+### Harris/Shi-Tomas
 
 `Harris`
 
@@ -1074,7 +1078,7 @@ plt.show()
 
 
 
-## SIFT/SURF算法
+### SIFT/SURF/ORB
 
 Harris和Shi-Tomasi角点检测算法，这两种算法具有旋转不变性，但不具有尺度不变性（缩放后，原来的角点有可能就不是角点了）
 
@@ -1106,7 +1110,7 @@ ORB=Oriented FAST+Rotated BRIEF
 
 ```python
 # 1.实例化sift
-sift = cv.xfeatures2d.SIFT_create()
+sift = cv.SIFT_create()
 
 # 2.利用sift.detectAndCompute()检测关键点并计算
 kp,des = sift.detectAndCompute(gray,None)
@@ -1161,34 +1165,37 @@ plt.show()
 # kp, des = orb.detectAndCompute(gray, None)
 # 绘制keypoints
 # cv2.drawKeypoints(gray, kp, img)
-
-
-
 ```
 
+shift
+
+![shift](https://gitee.com/tomding1995/picture/raw/master/2023-01-02/2023-01-02_15-55-29-127.png)
 
 
-暴力特征匹配原理
+
+orb
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-02/2023-01-02_16-42-55-172.png)
+
+
+
+## 匹配原理
+
+### BF(Brute-Force)暴力特征匹配
+
 它使用第一组中的每个特征的描述子；与第二组中的所有特征描术子进行匹配；计算它们之间的差距，然后将最接近一个匹配返回
 
+速度慢，精度高
+
+### 最快邻近区特征匹配
 
 
-FLANN
+
 在进行批量特征匹配时，FLANN速度更快
 由于它使用的是邻近近似值，所以精度较差
 
-
-
-
-
-图像查找
-特征匹配+单应性矩阵（）
-
-![](https://gitee.com/tomding1995/picture/raw/master/2022-12-28/2022-12-28_10-46-50-646.png)
-
-
-
 ```python
+# ------------------------------------------BF
 img1 = cv2.imread('opencv_search.png')
 img2 = cv2.imread('opencv_orig.png')
 g1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
@@ -1202,16 +1209,69 @@ bf = cv2.BFMatcher(cv2.NORM_L1)
 #crossCheck:是否进行交叉匹配，默认为false
 # 2.特征匹配
 match = bf.match(des1, des2)
-# 3.绘制匹配点+
+# 3.绘制匹配点
 img3 = cv2.drawMatches(img1, kp1, img2, kp2, match, None)
 #搜索img,kp
 #匹配图img,kp
 #match方法返回的匹配结果
 
 
+# ------------------------------------------FLANN
+import cv2
+import numpy as np
+
+img1 = cv2.imread('opencv_search.png')
+img2 = cv2.imread('opencv_orig.png')
+g1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+g2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+sift = cv2.xfeatures2d.SIFT_create()
+kp1, des1 = sift.detectAndCompute(g1, None)
+kp2, des2 = sift.detectAndCompute(g2, None)
+
+# 创建匹配器
+index_params = dict(algorithm=1, trees=5)
+search_params = dict(checks=50)
+# index_params字典：匹配算法KDTREE=1、LSH
+# search_params字典：指定KDTREE算法中遍历树的次数
+flann = cv2.FlannBasedMatcher(index_params, search_params)
+# 对描述子进行匹配计算
+matchs = flann.knnMatch(des1, des2, k=2)
+# 参数为SIFT、SURF、ORB等计算的描述子
+# k,表示取欧式距离最近的前k个关键点
+# 返回对象：distance,描述子之间的距离，值越低越好
+# queryIdx,第一个图像的描述子索引值
+# trainIdx,第二个图的描述子索引值
+# imgIdx,第二个图的索引值
+good = []
+for i, (m, n) in enumerate(matchs):
+    if m.distance < 0.7 * n.distance:
+        good.append(m)
+
+# 绘制匹配点
+ret = cv2.drawMatchesKnn(img1, kp1, img2, kp2, [good], None)
+
+cv2.imshow('result', ret)
+cv2.waitKey()
+
+```
+
+BF
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-02/2023-01-02_14-56-15-195.png)
+
+FLANN
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-02/2023-01-02_14-55-1 5-154.png)
+
+## 图像查找
+
+特征匹配+单应性矩(再透视变换，可以找到图中想找的部分)
+
+![](https://gitee.com/tomding1995/picture/raw/master/2022-12-28/2022-12-28_10-46-50-646.png)
 
 
 
+```python
 import cv2
 import numpy as np
 
@@ -1262,8 +1322,94 @@ ret = cv2.drawMatchesKnn(img1, kp1, img2, kp2, [good], None)
 
 cv2.imshow('result', ret)
 cv2.waitKey()
-
 ```
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-02/2023-01-02_16-50-14-420.png)
+
+
+
+## 图像分割
+
+#### 分水岭法
+
+标记背景、标记前景、标记未知域、进行分割
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-02/2023-01-02_21-48-11-674.png)
+
+```python
+import cv2
+import numpy as np
+from matplotlib import pyplot as plt
+
+# 获取背景
+# 1. 通过二值法得到黑白图片
+# 2. 通过形态学获取背景
+
+img = cv2.imread('water_coins.jpeg')
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+# 开运算
+kernel = np.ones((3, 3), np.int8)
+open1 = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations=2)
+# 膨胀
+bg = cv2.dilate(open1, kernel, iterations=1)
+# 获取前景物体
+# 非零值到离他最近的零值的距离
+# distanceTransform(img,distanceType,maskSize)
+# distanceType:DIST_L1,DIST_L2
+# naskSize:L1用3、L2用5
+dist = cv2.distanceTransform(open1, cv2.DIST_L2, 5)
+ret, fg = cv2.threshold(dist, 0.7 * dist.max(), 255, cv2.THRESH_BINARY)
+# plt.imshow(dist, cmap='gray')
+# plt.show()
+# exit()
+
+# 获取未知区域
+fg = np.uint8(fg)
+unknow = cv2.subtract(bg, fg)
+
+# 创建连通域
+# 求连通域
+# connectedComponents(img,connectivity)
+# connectivity:4,8（默认）
+ret, marker = cv2.connectedComponents(fg)
+
+marker = marker + 1  # 设置背景
+marker[unknow == 255] = 0  # 设置未知
+
+# 进行图像分割
+result = cv2.watershed(img, marker)
+# marker前景、背景设置不同的值用以区分它们
+img[result == -1] = [0, 0, 255]
+
+cv2.imshow("img", img)
+cv2.imshow("unknow", unknow)
+cv2.imshow("fg", fg)
+cv2.imshow("bg", bg)
+cv2.imshow("thresh", thresh)
+cv2.waitKey()
+```
+
+#### GrabCut法
+
+通过交互的方式获得前景物体
+
+- 用户指定前景的大体区域，剩下的为背景区域
+- 用户还可以明确指定某些地方为前景或背景
+- GrabCut采用分段迭代的方法分析前景物体形成模型柄
+- 最后根据权重决定某个像素是前影还是背景
+
+
+
+#### MeanShift法
+
+
+
+
+
+#### 背景扣除
+
+
 
 
 
