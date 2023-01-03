@@ -1390,6 +1390,8 @@ cv2.imshow("thresh", thresh)
 cv2.waitKey()
 ```
 
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-03/2023-01-03_00-36-02-020.png)
+
 #### GrabCut法
 
 通过交互的方式获得前景物体
@@ -1399,19 +1401,96 @@ cv2.waitKey()
 - GrabCut采用分段迭代的方法分析前景物体形成模型柄
 - 最后根据权重决定某个像素是前影还是背景
 
+```python
 
+```
+
+
+
+
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-03/2023-01-03_00-36-38-832.png)
 
 #### MeanShift法
 
+严格来说该方法并不是用来对图像分割的，而是在色彩层面的平滑滤波
+它会中和色彩分布相近的颜色，平滑色彩细节，侵蚀掉面积较小的区域
+它以图像上任一点P为圆心，半径为sp，色彩幅值为sr进行不断的迭代
 
 
 
+```python
+img = cv2.imread('key.png')
+# pyrMeanShiftFiltering (img，dbuble sp，double sr
+# sp:半径      Sr： 色彩幅值
+mean_img = cv2.pyrMeanShiftFiltering(img, 20, 30)
+imgcanny = cv2.Canny(mean_img, 150, 300)
+contours, _ = cv2.findContours(imgcanny, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+cv2.drawContours(img, contours, -1, (0, 0, 255), 2)
+cv2.imshow('img', img)
+cv2.imshow('mean_img', mean_img)
+cv2.imshow('canny', imgcanny)
+cv2.waitKey()
+```
 
-#### 背景扣除
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-03/2023-01-03_00-34-47-906.png)
+
+## 视频背景抠除
+
+视频是一组连续的帧（一幅幅图组成）
+帧与帧之间关系密切(GOP)
+在GOP中，背景几乎是不变的
 
 
 
+```python
+# ======================MOG去背景
+# 混合高斯模型为基础的前景/背景分割算法
+#createBackgroundSubtractorMOG(history,//默认200ms,建模需要多长时间的帧
+#                              nmixtures,//高斯范围值，默认5，把图片分成5*5块
+#                              backgroundRatio,//背景比率，默认0.7，
+#                              noiseSigma//默认0，自动降噪）
 
+cap = cv2.VideoCapture('./vtest.avi')
+mog = cv2.bgsegm.createBackgroundSubtractorMOG()
+while True:
+    ret, frame = cap.read()
+    fgmask = mog.apply(frame)
+    cv2.imshow('img', fgmask)
+    k = cv2.waitKey(10)
+    if k == 27:
+        break
+cap.release()
+cv2.destroyAllWindows()
+
+## ======================MOG2去背景
+# 同MOG类似，不过对亮度产生的阴影有更好的识别,但是会产生很多噪点
+# cv2.createBackgroundSubtractorMOG2(history,//默认500ms,建模需要多长时间的帧
+#                              detectShadows//是否检测阴影，True)）
+
+## ======================GMG去背景
+#静态背景图像估计和每个像素的贝叶斯分割,可算出阴影而且抗噪性更强,但是初始帧数大刚开始很长时间不显示
+# cv2.bgsegm.createBackgroundSubtractorGMG(initializationFrames,/初始帧数，120)
+```
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-03/2023-01-03_00-41-13-027.png)
+
+## 图像修复
+
+```python
+#inpaint(img,mask,
+#            inpaintRadius,//每个点的圆形邻域半径
+#            flags //INPAINT_NS,INPAINT_TELEA 破损半径内的加权平均
+
+img = cv2.imread('inpaint.png')
+mask = cv2.imread('inpaint_mask.png', 0)
+dst = cv2.inpaint(img, mask, 5, cv2.INPAINT_TELEA)
+cv2.imshow('dst', dst)
+cv2.imshow('img', img)
+cv2.waitKey()
+```
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-03/2023-01-03_00-37-48-726.png)
 
 
 
@@ -1469,6 +1548,36 @@ vw.release()
 #vw.release()
 cv2.destroyAllWindows()
 ```
+
+## 使用网络摄像头
+
+```python
+import cv2
+import time
+
+# 这里使用了网络摄像头，可换为ipconf=0使用笔记本摄像头
+ipconf = 'http://192.168.68.221:4747/mjpegfeed?1920x1080'
+cap = cv2.VideoCapture(ipconf)
+assert cap.isOpened(), 'Wrong!'
+settings = {'fps': 20, 'size': (1280, 720)}
+while cap.isOpened():
+    ret, frame = cap.read()
+    assert ret, 'Fail to get frames!'
+    frame = cv2.resize(frame, settings['size'])
+    # frame = cv2.flip(frame, 0)
+    h, w, ch = frame.shape
+    M = cv2.getRotationMatrix2D((w/2, h/2), 270, 1.0)
+    frame = cv2.warpAffine(frame, M, (w, h))
+
+    cv2.imshow('window', frame)
+    cv2.waitKey(1)
+```
+
+
+
+
+
+# 应用
 
 ## 视频追踪
 
@@ -1552,35 +1661,6 @@ cap.release()
 cv.destroyAllWindows()
 ```
 
-## 视频追踪
-
-meanshift算法除了应用在视频追踪当中，在聚类，平滑等等各种涉及到数据以及非监督学习的场合当中均有重要应用，是一个应用广泛的算法。
-
-图像是一个矩阵信息，如何在一个视频当中使用meanshift算法来追踪一个运动的物体呢？ 大致流程如下：
-
-1. 首先在图像上选定一个目标区域
-
-2. 计算选定区域的直方图分布，一般是HSV色彩空间的直方图。
-
-3. 对下一帧图像b同样计算直方图分布。
-
-4. 计算图像b当中与选定区域直方图分布最为相似的区域，使用meanshift算法将选定区域沿着最为相似的部分进行移动，直到找到最相似的区域，便完成了在图像b中的目标追踪。
-
-5. 重复3到4的过程，就完成整个视频目标追踪。
-
-   通常情况下我们使用直方图反向投影得到的图像和第一帧目标对象的起始位置，当目标对象的移动会反映到直方图反向投影图中，meanshift 算法就把我们的窗口移动到反向投影图像中灰度密度最大的区域了。
-
-直方图反向投影的流程是：
-
-假设我们有一张100x100的输入图像，有一张10x10的模板图像，查找的过程是这样的：
-
-1. 从输入图像的左上角(0,0)开始，切割一块(0,0)至(10,10)的临时图像；
-2. 生成临时图像的直方图；
-3. 用临时图像的直方图和模板图像的直方图对比，对比结果记为c；
-4. 直方图对比结果c，就是结果图像(0,0)处的像素值；
-5. 切割输入图像从(0,1)至(10,11)的临时图像，对比直方图，并记录到结果图像；
-6. 重复1～5步直到输入图像的右下角，就形成了直方图的反向投影。
-
 
 
 ```python
@@ -1661,7 +1741,11 @@ pts = np.int0(pts)
 img2 = cv.polylines(frame,[pts],True, 255,2)
 ```
 
-# 人脸识别
+## 人脸识别
+
+```
+haar_face_detect.py
+```
 
 Haar 特征会被使用，就像我们的卷积核，每一个特征是一 个值，这个值等于黑色矩形中的像素值之后减去白色矩形中的像素值之和。
 
@@ -1671,181 +1755,15 @@ Haar特征可用于于图像任意位置，大小也可以任意改变，所以�
 
 ![quicker_383542f0-ddd8-4efe-b52d-9ca4003ccad6.png](https://s2.loli.net/2022/05/06/UkcsVhFrXRaQoq2.png)
 
-```python
-# 训练好的检测器，包括面部，眼睛，猫脸等，都保存在XML文件中，我们可以通过以下程序找到他们：
-import cv2 as cv
-print(cv.__file__)
-
-# 实例化人脸和眼睛检测的分类器对象
-# 实例化级联分类器
-classifier =cv.CascadeClassifier( "haarcascade_frontalface_default.xml" ) 
-# 加载分类器
-classifier.load('haarcascade_frontalface_default.xml')
-# 进行人脸和眼睛的检测
-
-rect = classifier.detectMultiScale(gray, scaleFactor, minNeighbors, minSize,maxsize)
-Gray: 要进行检测的人脸图像
-scaleFactor: 前后两次扫描中，搜索窗口的比例系数
-minneighbors：目标至少被检测到minNeighbors次才会被认为是目标
-minsize和maxsize: 目标的最小尺寸和最大尺寸
-    
-import cv2 as cv
-import matplotlib.pyplot as plt
-# 1.以灰度图的形式读取图片
-img = cv.imread("16.jpg")
-gray = cv.cvtColor(img,cv.COLOR_BGR2GRAY)
-
-# 2.实例化OpenCV人脸和眼睛识别的分类器 
-face_cas = cv.CascadeClassifier( "haarcascade_frontalface_default.xml" ) 
-face_cas.load('haarcascade_frontalface_default.xml')
-
-eyes_cas = cv.CascadeClassifier("haarcascade_eye.xml")
-eyes_cas.load("haarcascade_eye.xml")
-
-# 3.调用识别人脸 
-faceRects = face_cas.detectMultiScale( gray, scaleFactor=1.2, minNeighbors=3, minSize=(32, 32)) 
-for faceRect in faceRects: 
-    x, y, w, h = faceRect 
-    # 框出人脸 
-    cv.rectangle(img, (x, y), (x + h, y + w),(0,255,0), 3) 
-    # 4.在识别出的人脸中进行眼睛的检测
-    roi_color = img[y:y+h, x:x+w]
-    roi_gray = gray[y:y+h, x:x+w]
-    eyes = eyes_cas.detectMultiScale(roi_gray) 
-    for (ex,ey,ew,eh) in eyes:
-        cv.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
-# 5. 检测结果的绘制
-plt.figure(figsize=(8,6),dpi=100)
-plt.imshow(img[:,:,::-1]),plt.title('检测结果')
-plt.xticks([]), plt.yticks([])
-plt.show()    
 
 
+## 测距
 
-# 我们也可在视频中对人脸进行检测：
-
-import cv2 as cv
-import matplotlib.pyplot as plt
-# 1.读取视频
-cap = cv.VideoCapture("movie.mp4")
-# 2.在每一帧数据中进行人脸识别
-while(cap.isOpened()):
-    ret, frame = cap.read()
-    if ret==True:
-        gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-        # 3.实例化OpenCV人脸识别的分类器 
-        face_cas = cv.CascadeClassifier( "haarcascade_frontalface_default.xml" ) 
-        face_cas.load('haarcascade_frontalface_default.xml')
-        # 4.调用识别人脸 
-        faceRects = face_cas.detectMultiScale(gray, scaleFactor=1.2, minNeighbors=3, minSize=(32, 32)) 
-        for faceRect in faceRects: 
-            x, y, w, h = faceRect 
-            # 框出人脸 
-            cv.rectangle(frame, (x, y), (x + h, y + w),(0,255,0), 3) 
-        cv.imshow("frame",frame)
-        if cv.waitKey(1) & 0xFF == ord('q'):
-            break
-# 5. 释放资源
-cap.release()  
-cv.destroyAllWindows()
 ```
-
-# 测距
-
-```python
-import cv2
-
-# 焦距/物距=像宽/物宽
-win_width = 1920
-win_height = 1080
-mid_width = int(win_width / 2)
-mid_height = int(win_height / 2)
-
-focal_distance = 2810.0
-real_width = 11.69
-image_width = 1
-
-capture = cv2.VideoCapture(0)
-capture.set(3, win_width)
-capture.set(4, win_height)
-
-while True:
-    ret, frame = capture.read()
-    frame = cv2.flip(frame, 1)
-    if not ret:
-        break
-
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    gray = cv2.GaussianBlur(gray, (5, 5), 0)
-    ret, binary = cv2.threshold(gray, 127, 255, 0)
-    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
-    binary = cv2.dilate(binary, kernel, iterations=2)  # 形态学膨胀
-    contours, hierarchy = cv2.findContours(binary, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    # cv2.drawContours(frame, contours, -1, (0, 255, 0), 2)
-    for c in contours:
-        if cv2.contourArea(c) < 2000:  # 对于矩形区域，只显示大于给定阈值的轮廓，所以一些微小的变化不会显示。对于光照不变和噪声低的摄像头可不设定轮廓最小尺寸的阈值
-            continue
-
-        x, y, w, h = cv2.boundingRect(c)  # 该函数计算矩形的边界框
-
-        if x > mid_width or y > mid_height:
-            continue
-        if (x + w) < mid_width or (y + h) < mid_height:
-            continue
-        if h > w:
-            continue
-        if x == 0 or y == 0:
-            continue
-        if x == win_width or y == win_height:
-            continue
-
-        image_width = w
-        cv2.rectangle(frame, (x + 1, y + 1), (x + image_width - 1, y + h - 1), (0, 255, 0), 2)
-
-    dis_inch = (real_width * focal_distance) / (image_width - 2)
-    dis_cm = dis_inch * 2.54
-    # os.system("cls")
-    # print("Distance : ", dis_cm, "cm")
-    frame = cv2.putText(frame, "%.2fcm" % (dis_cm), (5, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-    frame = cv2.putText(frame, "+", (mid_width, mid_height), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0), 2)
-
-    cv2.namedWindow('res', 0)
-    cv2.namedWindow('gray', 0)
-    cv2.resizeWindow('res', win_width, win_height)
-    cv2.resizeWindow('gray', win_width, win_height)
-    cv2.imshow('res', frame)
-    cv2.imshow('gray', binary)
-
-    key = cv2.waitKey(100) & 0xFF
-    if key == ord('q'):
-        break
-
-cv2.destroyAllWindows()
+distance_measure.py
 ```
 
 
 
-# 使用网络摄像头
 
-```python
-import cv2
-import time
-
-# 这里使用了网络摄像头，可换为ipconf=0使用笔记本摄像头
-ipconf = 'http://192.168.68.221:4747/mjpegfeed?1920x1080'
-cap = cv2.VideoCapture(ipconf)
-assert cap.isOpened(), 'Wrong!'
-settings = {'fps': 20, 'size': (1280, 720)}
-while cap.isOpened():
-    ret, frame = cap.read()
-    assert ret, 'Fail to get frames!'
-    frame = cv2.resize(frame, settings['size'])
-    # frame = cv2.flip(frame, 0)
-    h, w, ch = frame.shape
-    M = cv2.getRotationMatrix2D((w/2, h/2), 270, 1.0)
-    frame = cv2.warpAffine(frame, M, (w, h))
-
-    cv2.imshow('window', frame)
-    cv2.waitKey(1)
-```
 

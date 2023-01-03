@@ -2,6 +2,9 @@ import os
 import re
 import argparse
 from tqdm import tqdm
+"""
+用ffmpg进行格式转换
+"""
 parser = argparse.ArgumentParser()
 parser.add_argument('--i', type=str, default='', help='input_path')
 parser.add_argument('--out', type=str, default='', help='output_path if '' set it with the value of input_path')
