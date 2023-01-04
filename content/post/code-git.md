@@ -320,46 +320,39 @@ git push origin :refs/tags/v0.9
 要看看是否真的从远程库删除了标签，可以登陆GitHub查看。
 ```
 # 忽略文件
+
+.gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。所以一定要养成在项目开始就创建.gitignore文件的习惯。
+
 ```shell
 touch .gitignore
-所有配置文件可以直接在线浏览：https://github.com/github/gitignore
-
-# .gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。所以一定要养成在项目开始就创建.gitignore文件的习惯。
+# 所有配置文件可以直接在线浏览：https://github.com/github/gitignore
 ```
 
 ## 忽略已经提交到github的文件
 
 ```shell
 方法一：
-1.先把项目备份，以防万一。
-2.git rm --cached app.iml 
-//从版本库中rm 文件，working dicrectory中仍然保留，如果要删除目录下所有文件包括子目录中的 git rm -r --cached directory_name
-3.在.gitignore中添加要忽略的文件
-4.把修改的文件commit并且push到服务端
-5.从git上重新拉取这个项目。
+# 先把项目备份，以防万一。
+git rm --cached app.iml 
+#从版本库中rm 文件，working dicrectory中仍然保留，
+#如果要删除目录下所有文件包括子目录中的 git rm -r --cached directory_name
+在.gitignore中添加要忽略的文件
 
-方法二：
-1.直接在远程仓库上把这个文件删除
-2.先把本地文件备份一下，再把pull一下远程分支
-3.这时候本地要忽略文件已经被删除掉，再把原来备份文件拷过来
-4.这时候千万不要把刚拷贝过来的文件添加到git中
-5.把刚拷贝的文件添加到.gitignore文件中
-5.再推到远程仓库即可
-```
 
-文件被.gitignore忽略了：可以用-f强制添加到Git：
-
-```shell
+#文件被.gitignore忽略了：可以用-f强制添加到Git：
 git add -f App.class
-```
 
-或者你发现，可能是.gitignore写得有问题，需要找出来到底哪个规则写错了，可以用git check-ignore命令检查：
-```shell
+
+#或者你发现，可能是.gitignore写得有问题，需要找出来到底哪个规则写错了，可以用git check-ignore命令检查：
 git check-ignore -v App.class 
 
-.gitignore:3:*.class App.class
+#.gitignore:3:*.class App.class
+#Git会告诉我们，.gitignore的第3行规则忽略了该文件，于是我们就可以知道应该修订哪个规则。
 ```
-Git会告诉我们，.gitignore的第3行规则忽略了该文件，于是我们就可以知道应该修订哪个规则。
+
+
+
+
 
 ```shell
 glob模式

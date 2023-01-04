@@ -205,10 +205,8 @@
 </span></span><span style=display:flex><span>然后，从远程删除。删除命令也是push，但是格式如下：
 </span></span><span style=display:flex><span>git push origin :refs/tags/v0.9
 </span></span><span style=display:flex><span>要看看是否真的从远程库删除了标签，可以登陆GitHub查看。
-</span></span></code></pre></div><h1 id=忽略文件>忽略文件</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=display:flex><span>touch .gitignore
-</span></span><span style=display:flex><span>所有配置文件可以直接在线浏览：https://github.com/github/gitignore
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># .gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。所以一定要养成在项目开始就创建.gitignore文件的习惯。</span>
+</span></span></code></pre></div><h1 id=忽略文件>忽略文件</h1><p>.gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。所以一定要养成在项目开始就创建.gitignore文件的习惯。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=display:flex><span>touch .gitignore
+</span></span><span style=display:flex><span><span style=color:#75715e># 所有配置文件可以直接在线浏览：https://github.com/github/gitignore</span>
 </span></span></code></pre></div><h2 id=忽略已经提交到github的文件>忽略已经提交到github的文件</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-shell data-lang=shell><span style=display:flex><span>方法一：
 </span></span><span style=display:flex><span>1.先把项目备份，以防万一。
 </span></span><span style=display:flex><span>2.git rm --cached app.iml 
