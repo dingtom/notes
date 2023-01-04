@@ -331,12 +331,10 @@ touch .gitignore
 ## 忽略已经提交到github的文件
 
 ```shell
-方法一：
 # 先把项目备份，以防万一。
-git rm --cached app.iml 
-#从版本库中rm 文件，working dicrectory中仍然保留，
-#如果要删除目录下所有文件包括子目录中的 git rm -r --cached directory_name
+git rm --cached app.iml      #从版本库中rm 文件，working dicrectory中仍然保留，
 在.gitignore中添加要忽略的文件
+#如果要删除目录下所有文件包括子目录中的 git rm -r --cached directory_name
 
 
 #文件被.gitignore忽略了：可以用-f强制添加到Git：
@@ -348,21 +346,9 @@ git check-ignore -v App.class
 
 #.gitignore:3:*.class App.class
 #Git会告诉我们，.gitignore的第3行规则忽略了该文件，于是我们就可以知道应该修订哪个规则。
-```
 
 
-
-
-
-```shell
-glob模式
-所谓的 glob 模式是指 shell 所使用的简化了的正则表达式，匹配规则如下：
-"*"：星号匹配零个或多个任意字符
-[]：匹配任何一个列在方括号中的字符，如[ab]匹配a或者匹配b
-"?"：问号匹配一个任意字符
-[n-m]：匹配所有在这两个字符范围内的字符，如[0-9]表示匹配所有0到9的数字
-
-匹配示例
+#glob模式匹配示例
 logs/：忽略当前路径下的logs目录，包含logs下的所有子目录和文件
 /logs.txt：忽略根目录下的logs.txt文件
 *.class：忽略所有后缀为.class的文件
