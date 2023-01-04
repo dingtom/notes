@@ -90,7 +90,6 @@ while True:
     else:
         print(key)
 cv2.destroyAllWindows()
-        
 ```
 
 ## 图片采集脚本
@@ -281,30 +280,17 @@ while True:
         break
 
 cv2.destroyAllWindows()
+
+
+# 通道分割合并
+b, g, r = cv2.split(img)  # 有时需要在B，G，R通道图像上单独工作。
+img2 = cv2.merge((b, g, r))
+
 ```
 
-## numpy
+## 图像属性
 
 ```python
-#通过array定义矩阵
-# b = np.array([[1, 2, 3], [4, 5, 6]])
-#定义zeros矩阵
-img = np.zeros((480, 640, 3), np.uint8)
-#定义ones矩阵
-#d = np.ones((8,8), np.uint8)
-#定义full矩阵
-# e = np.full((8,8), 10, np.uint8)
-#定义单位矩阵identity
-# f = np.identity(8)
-# g= np.eye(5, 7, k=1)
-
-
-img = cv2.imread('RMB.jpeg')
-# 浅拷贝
-img2 = img
-# 深拷贝
-img3 = img.copy()
-
 # Mat属性
 
 # dims维度
@@ -322,9 +308,25 @@ print(img.shape)
 # 高度 * 长度 * 通道数
 print(img.size)
 
-# 通道分割合并
-b, g, r = cv2.split(img)
-img2 = cv2.merge((b, g, r))
+
+```
+
+
+
+## numpy
+
+```python
+#通过array定义矩阵
+# b = np.array([[1, 2, 3], [4, 5, 6]])
+#定义zeros矩阵
+img = np.zeros((480, 640, 3), np.uint8)
+#定义ones矩阵
+#d = np.ones((8,8), np.uint8)
+#定义full矩阵
+# e = np.full((8,8), 10, np.uint8)
+#定义单位矩阵identity
+# f = np.identity(8)
+# g= np.eye(5, 7, k=1)
 
 ```
 
@@ -341,13 +343,16 @@ import numpy as np
 img = np.zeros((480, 640, 3), np.uint8)
 
 # 画线，坐标点为（x, y）
-# cv2.line(img, (10, 20), (300, 400), (0, 0, 255), 5, 4)
-# line(img,开始点，结束点grep 'COLOR_BGR2RGBA' * -rn  | grep '\.hpp'，颜色、线宽、线形)
+cv2.line(img, (10, 20), (300, 400), (0, 0, 255), 5, 4)
+# line(img,开始点，结束点，颜色、线宽、线形)
 # 画矩形
 # cv2.rectangle(img, (10,10), (100, 100), (0, 0, 255), -1)
 
 # 画圆
-# cv2.circle(img, (320, 240), 100, (0, 0, 255))
+# cv2.circle(img:要绘制圆形的图像
+#            Centerpoint, r: 圆心和半径
+#            color: 线条的颜色
+#            Thickness: 线条宽度，为-1时生成闭合图案并填充颜色)
 cv2.circle(img, (320, 240), 5, (0, 0, 255), -1)
 
 # 画椭圆
@@ -355,6 +360,13 @@ cv2.circle(img, (320, 240), 5, (0, 0, 255), -1)
 # 0度是从左侧开始的
 cv2.ellipse(img, (320, 240), (100, 50), 15, 0, 360, (0, 0, 255), -1)
 # 中心点，长、宽的一半，角度，从哪个角度开始，到哪个角度结束
+
+# 矩形
+#cv.rectangle(img:要绘制矩形的图像
+#            Leftupper, rightdown: 矩形的左上角和右下角坐标
+#            color: 线条的颜色
+#            Thickness: 线条宽度
+
 # 画多边形
 pts = np.array([(300, 10), (150, 100), (450, 100)], np.int32)
 cv2.polylines(img, [pts], True, (0, 0, 255))
@@ -534,9 +546,7 @@ print( x+y )          # 250+10 = 260 % 256 = 4
 img3 = cv.addWeighted(img1,α,img2,β,γ)
 ```
 
-### 图像旋转
-
-<img src='https://s2.loli.net/2022/04/28/WyLYjn6C1Z2OBh4.png' title='quicker_d8c220b4-a82b-432e-a585-c7a8ac798020.png' />
+### 图像缩放、翻转、平移
 
 ```python
 # 图像缩放
@@ -557,26 +567,46 @@ cv2.flip(img,flipCode)
 # 图像平移
 M = np.float32([[1,0,100],[0,1,50]])# 将图像的像素点移动(50,100)的距离：
 dst = cv.warpAffine(img1,M,dsize=(cols,rows)，borderValue=(0,0,0))
+#warpAffine(src,M,dsize,flags,mode,value)
 #img: 输入图像
 #M： 2*3移动矩阵
 #dsize: 输出图像的大小，它应该是(宽度，高度)的形式。请记住,width=列数，height=行数。
 #borderValue为边界填充颜色（注意是BGR顺序，( 0 , 0 , 0 ) (0,0,0)(0,0,0)代表黑色）:
+#flag:与resize中的插值算法一致
+#mode:边界外推法标志
+#vaue:填充边界的值
 
+```
+
+对于(x,y)处的像素点，要把它移动到$(x+t_x , y+t_y)$处时，M矩阵应如下设置：
+
+$M=\begin{bmatrix} 1&0&t_x\\ 0&1&t_y\\ \end{bmatrix}$
+
+注意：将M设置为np.float32类型的Numpy数组。
+
+### 图像旋转
+
+图像旋转是指图像按照某个位置转动一定角度的过程，旋转中图像仍保持这原始尺寸。图像旋转后图像的水平对称轴、垂直对称轴及中心坐标原点都可能会发生变换，因此需要对图像旋转中的坐标进行相应转换。
+
+那图像是怎么进行旋转的呢？如下图所示：
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-04/2023-01-04_16-53-35-325.png)
+
+```python
 #  图像旋转
 #旋转中图像仍保持这原始尺寸。图像旋转后图像的水平对称轴、垂直对称轴及中心坐标原点都可能会发生变换，因此需要对图像旋转中的坐标进行相应转换。
 # 生成旋转矩阵
 h, w, ch = dog.shape
-M = cv2.getRotationMatrix2D((w/2, h/2), 90, 1.0)# center：旋转中心；angle：逆时针旋转角度；scale：缩放比例
-
+M = cv2.getRotationMatrix2D((w/2, h/2), 90, 1.0)
+# cv2.getRotationMatrix2D(center, angle, scale)
+# center：旋转中心；angle：逆时针旋转角度；scale：缩放比例
 # 进行旋转变换
 dst = cv.warpAffine(img,M,(cols,rows))
-#warpAffine(src,M,dsize,flags,mode,value)
-#M:变换矩阵，
-#dsize输出尺寸
-#flag:与resize中的插值算法一致
-#mode:边界外推法标志
-#vaue:填充边界的值
 ```
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-04/2023-01-04_17-06-59-000.png)
+
+
 
 ### 仿射变换
 
@@ -599,9 +629,11 @@ dst = cv.warpAffine(img,M,(cols,rows))
 #平移向量为2x1的向量，所在平移矩阵为2x3矩阵
 ```
 
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-04/2023-01-04_17-07-38-415.png)
+
 ### 透射变换
 
-将一种坐标系转换为两一种坐标系
+`将一种坐标系转换为另一种坐标系`
 
 ![quicker_c19ebd8f-9b86-42d7-b372-dbc223a209a4.png](https://s2.loli.net/2022/04/28/awiPEVFmDq3LJsc.png)
 
@@ -614,9 +646,22 @@ pts1 = np.float32([[56,65],[368,52],[28,387],[389,390]])
 pts2 = np.float32([[100,145],[300,100],[80,290],[310,300]])
 # 根据源图像和目标图像上的四对点坐标来计算从原图像透视变换到目标头像的透视变换矩阵。
 T = cv.getPerspectiveTransform(pts1,pts2)
-# 进行透视变换
 dst = cv.warpPerspective(img,T,(width,hight))
+
+
+srcPts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
+dstPts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
+# 单应性矩阵
+H, _ = cv2.findHomography(srcPts, dstPts, cv2.RANSAC, 5.0)
+# 错误匹配过滤，随机抽样抑制算法；阀值
+h, w = img1.shape[:2]
+
+pts = np.float32([[0, 0], [0, h - 1], [w - 1, h - 1], [w - 1, 0]]).reshape(-1, 1, 2)
+# vector 进行透视变换
+dst = cv2.perspectiveTransform(pts, H)
 ```
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-04/2023-01-04_17-08-09-241.png)
 
 ###  图像金字塔
 
@@ -627,6 +672,8 @@ dst = cv.warpPerspective(img,T,(width,hight))
 cv.pyrUp(img)      #对图像进行上采样
 cv.pyrDown(img)        #对图像进行下采样
 ```
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-04/2023-01-04_17-11-50-907.png)
 
 ## 形态学操作
 
@@ -906,7 +953,8 @@ ldst = cv2.Laplacian(img, cv2.CV_64F, ksize=5)
 cv2.imshow('img', img)
 
 
-# canny检测
+# canny检测 
+0
 canny = cv2.Canny(image, threshold1, threshold2)
 #image:灰度图，
 #threshold1: minval，较小的阈值将间断的边缘连接起来
@@ -1261,7 +1309,7 @@ BF
 
 FLANN
 
-![](https://gitee.com/tomding1995/picture/raw/master/2023-01-02/2023-01-02_14-55-1 5-154.png)
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-02/2023-01-02_14-55-15-154.png)
 
 ## 图像查找
 
@@ -1309,8 +1357,9 @@ if len(good) >= 4:
     H, _ = cv2.findHomography(srcPts, dstPts, cv2.RANSAC, 5.0)
     # 错误匹配过滤，随机抽样抑制算法；阀值
     h, w = img1.shape[:2]
-    # 透视变换
+
     pts = np.float32([[0, 0], [0, h - 1], [w - 1, h - 1], [w - 1, 0]]).reshape(-1, 1, 2)
+    # vector 进行透视变换
     dst = cv2.perspectiveTransform(pts, H)
 
     cv2.polylines(img2, [np.int32(dst)], True, (0, 0, 255))
