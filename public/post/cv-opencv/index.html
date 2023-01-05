@@ -3,12 +3,12 @@
 <span class=toggle-line></span></div></div><div class=site-meta><a href=/ class=brand rel=start><i class=logo-line></i><h1 class=site-title>Tomding's Blog</h1><i class=logo-line></i></a><p class=site-subtitle itemprop=description>Just do it!</p></div><div class=site-nav-right><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul class="main-menu menu"><li class="menu-item menu-item-home"><a href=/ class=hvr-icon-pulse rel=section><i class="fa fa-home hvr-icon"></i>首页</a></li><li class="menu-item menu-item-about"><a href=/about.html class=hvr-icon-pulse rel=section><i class="fa fa-user hvr-icon"></i>关于</a></li><li class="menu-item menu-item-archives"><a href=/archives/ class=hvr-icon-pulse rel=section><i class="fa fa-archive hvr-icon"></i>归档
 <span class=badge>109</span></a></li><li class="menu-item menu-item-search"><a role=button class="popup-trigger hvr-icon-pulse"><i class="fa fa-search fa-fw hvr-icon"></i>搜索</a></li></ul></nav><div class=search-pop-overlay><div class="popup search-popup"><div class=search-header><span class=search-icon><i class="fa fa-search"></i></span><div class=search-input-container><input autocomplete=off autocapitalize=off maxlength=80 placeholder=搜索... spellcheck=false type=search class=search-input></div><span class=popup-btn-close role=button><i class="fa fa-times-circle"></i></span></div><div class="search-result-container no-result"><div class=search-result-icon><i class="fa fa-spinner fa-pulse fa-5x"></i></div></div></div></div></div><div class="toggle sidebar-toggle" role=button><span class=toggle-line></span>
 <span class=toggle-line></span>
-<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><a href=#图片采集脚本>图片采集脚本</a></li><li><a href=#鼠标>鼠标</a></li><li><a href=#色相>色相</a></li><li><a href=#图像属性>图像属性</a></li><li><a href=#numpy>numpy</a></li></ul><ul><li><a href=#绘制直线圆>绘制直线、圆</a></li><li><a href=#二值化>二值化</a></li><li><a href=#寻找轮廓>寻找轮廓</a></li><li><a href=#几何变换>几何变换</a><ul><li><a href=#图像缩放翻转平移>图像缩放、翻转、平移</a></li><li><a href=#图像旋转>图像旋转</a></li><li><a href=#仿射变换>仿射变换</a></li><li><a href=#透射变换>透射变换</a></li><li><a href=#图像金字塔>图像金字塔</a></li></ul></li><li><a href=#形态学操作>形态学操作</a><ul><li><a href=#连通性>连通性</a></li><li><a href=#腐蚀膨胀>腐蚀、膨胀</a></li><li><a href=#礼帽和黑帽>礼帽和黑帽</a></li></ul></li><li><a href=#图像平滑滤波>图像平滑（滤波)</a></li><li><a href=#直方图>直方图</a></li><li><a href=#边缘检测>边缘检测</a></li><li><a href=#模板匹配和霍夫变换>模板匹配和霍夫变换</a></li></ul><ul><li><a href=#角点特征>角点特征</a><ul><li><a href=#harrisshi-tomas>Harris/Shi-Tomas</a></li><li><a href=#siftsurforb>SIFT/SURF/ORB</a></li></ul></li><li><a href=#匹配原理>匹配原理</a><ul><li><a href=#bfbrute-force暴力特征匹配>BF(Brute-Force)暴力特征匹配</a></li><li><a href=#最快邻近区特征匹配>最快邻近区特征匹配</a></li></ul></li><li><a href=#图像查找>图像查找</a></li><li><a href=#图像分割>图像分割</a><ul><li><ul><li><a href=#分水岭法>分水岭法</a></li><li><a href=#grabcut法>GrabCut法</a></li><li><a href=#meanshift法>MeanShift法</a></li></ul></li></ul></li><li><a href=#视频背景抠除>视频背景抠除</a></li><li><a href=#图像修复>图像修复</a></li></ul><ul><li><a href=#使用网络摄像头>使用网络摄像头</a></li></ul><ul><li><a href=#视频追踪>视频追踪</a></li><li><a href=#人脸识别>人脸识别</a></li><li><a href=#测距>测距</a></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=Tomding src=/imgs/img-lazy-loading.gif data-src=/imgs/hugo_next_avatar.png><p class=site-author-name itemprop=name>Tomding</p><div class=site-description itemprop=description>Love and Peace</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>109</span>
+<span class=toggle-line></span></div><aside class=sidebar><div class="sidebar-inner sidebar-nav-active sidebar-toc-active"><ul class=sidebar-nav><li class=sidebar-nav-toc>文章目录</li><li class=sidebar-nav-overview>站点概览</li></ul><div class=sidebar-panel-container><div class="post-toc-wrap sidebar-panel"><div class="post-toc animated"><nav id=TableOfContents><ul><li><a href=#鼠标>鼠标</a></li><li><a href=#色相>色相</a></li><li><a href=#图像属性>图像属性</a></li><li><a href=#numpy>numpy</a></li></ul><ul><li><a href=#绘制直线圆>绘制直线、圆</a></li><li><a href=#二值化>二值化</a></li><li><a href=#寻找轮廓>寻找轮廓</a></li><li><a href=#几何变换>几何变换</a><ul><li><a href=#图像缩放翻转平移>图像缩放、翻转、平移</a></li><li><a href=#图像旋转>图像旋转</a></li><li><a href=#仿射变换>仿射变换</a></li><li><a href=#透射变换>透射变换</a></li><li><a href=#图像金字塔>图像金字塔</a></li></ul></li><li><a href=#形态学操作>形态学操作</a><ul><li><a href=#连通性>连通性</a></li><li><a href=#腐蚀膨胀>腐蚀、膨胀</a></li><li><a href=#礼帽和黑帽>礼帽和黑帽</a></li></ul></li><li><a href=#图像平滑滤波>图像平滑（滤波)</a></li><li><a href=#直方图>直方图</a><ul><li><a href=#直方图均衡化>直方图均衡化</a></li><li><a href=#自适应的直方图均衡化>自适应的直方图均衡化</a></li></ul></li><li><a href=#边缘检测>边缘检测</a><ul><li><a href=#sobel算子>Sobel算子</a></li><li><a href=#laplacian算子>Laplacian算子</a></li><li><a href=#canny-算法>Canny 算法</a></li></ul></li></ul><ul><li><a href=#模板匹配>模板匹配</a></li><li><a href=#霍夫变换>霍夫变换</a></li><li><a href=#角点特征>角点特征</a><ul><li><a href=#harris>Harris</a></li><li><a href=#shi-tomasi>Shi-Tomasi</a></li><li><a href=#siftsurforb>SIFT/SURF/ORB</a></li></ul></li><li><a href=#匹配原理>匹配原理</a><ul><li><a href=#bfbrute-force暴力特征匹配>BF(Brute-Force)暴力特征匹配</a></li><li><a href=#最快邻近区特征匹配>最快邻近区特征匹配</a></li></ul></li><li><a href=#图像查找>图像查找</a></li><li><a href=#图像分割>图像分割</a><ul><li><ul><li><a href=#分水岭法>分水岭法</a></li><li><a href=#grabcut法>GrabCut法</a></li><li><a href=#meanshift法>MeanShift法</a></li></ul></li></ul></li><li><a href=#视频背景抠除>视频背景抠除</a></li><li><a href=#图像修复>图像修复</a></li></ul><ul><li><a href=#使用网络摄像头>使用网络摄像头</a></li><li><a href=#视频追踪>视频追踪</a></li></ul></nav></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author site-overview-item animated" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image alt=Tomding src=/imgs/img-lazy-loading.gif data-src=/imgs/hugo_next_avatar.png><p class=site-author-name itemprop=name>Tomding</p><div class=site-description itemprop=description>Love and Peace</div></div><div class="site-state-wrap site-overview-item animated"><nav class=site-state><div class="site-state-item site-state-posts"><a href=/archives/><span class=site-state-item-count>109</span>
 <span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>7</span>
 <span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>0</span>
 <span class=site-state-item-name>标签</span></a></div></nav></div><div class="links-of-social site-overview-item animated"><span class=links-of-social-item><a href=https://github.com/ title="Github → https://github.com/" rel=noopener class=hvr-icon-pulse target=_blank><i class="fab fa-github fa-fw hvr-icon"></i>Github</a></span>
 <span class=links-of-social-item><a href=https://www.zhihu.com/hot title="知乎 → https://www.zhihu.com/hot" rel=noopener class=hvr-icon-pulse target=_blank><i class="fa fa-book fa-fw hvr-icon"></i>知乎</a></span></div><div class="cc-license animated" itemprop=license><a href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh class=cc-opacity rel=noopener target=_blank title=共享知识><img src=/imgs/img-lazy-loading.gif data-src=/imgs/cc/big/by_nc_sa.svg alt=共享知识></a></div><div class="links-of-blogroll site-overview-item animated"><div class=links-of-blogroll-title><i class="fa fa-globe fa-fw"></i>友情链接</div><ul class=links-of-blogroll-list><li class=links-of-blogroll-item><a href=https://gitee.com/hugo-next/hugo-theme-next title=https://gitee.com/hugo-next/hugo-theme-next target=_blank>Hugo-NexT</a></li><li class=links-of-blogroll-item><a href=https://lisenhui.cn title=https://lisenhui.cn target=_blank>凡梦星尘空间站</a></li></ul></div></div></div></div><div id=siteinfo-card-widget class=sidebar-card-widget><div class=item-headline><i class="fas fa-chart-line"></i>
-<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=2022-12-01T19:59:47+08:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=413242></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=884></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2023-01-01T14:28:53+08:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
+<span>网站资讯</span></div><div class=siteinfo><div class=siteinfo-item><div class=item-name><i class="fa-solid fa-calendar-check"></i>已运行：</div><div class=item-count id=runTimes data-publishdate=2022-12-01T19:59:47+08:00></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-user"></i>总访客数：</div><div class=item-count id=busuanzi_value_site_uv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fas fa fa-eye"></i>页面浏览：</div><div class=item-count id=busuanzi_value_site_pv><i class="fa fa-sync fa-spin"></i></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-font"></i>总字数：</div><div class=item-count id=wordsCount data-count=412496></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-mug-hot"></i>阅读约：</div><div class=item-count id=readTimes data-times=882></div></div><div class=siteinfo-item><div class=item-name><i class="fa fa-clock-rotate-left"></i>最后更新于：</div><div class=item-count id=last-push-date data-lastpushdate=2023-01-01T14:28:53+08:00></div></div></div></div></aside><div class=sidebar-dimmer></div></header><div class=tool-buttons><div id=toggle-theme class=button title=深浅模式切换><i class="fas fa-adjust"></i></div><div class=back-to-top role=button title=返回顶部><i class="fa fa-arrow-up"></i>
 <span>0%</span></div></div><div class=reading-progress-bar></div><noscript><div class=noscript-warning>Theme NexT works best with JavaScript enabled</div></noscript><div class="main-inner post posts-expand"><div class=post-block><article itemscope itemtype=http://schema.org/Article class=post-content lang><link itemprop=mainEntityOfPage href=/post/cv-opencv/><span hidden itemprop=author itemscope itemtype=http://schema.org/Person><meta itemprop=image content="/imgs/hugo_next_avatar.png"><meta itemprop=name content="Tomding"></span><span hidden itemprop=publisher itemscope itemtype=http://schema.org/Organization><meta itemprop=name content="Tomding"><meta itemprop=description content="Love and Peace"></span><span hidden itemprop=post itemscope itemtype=http://schema.org/CreativeWork><meta itemprop=name content="cv-OpenCV"><meta itemprop=description content="图像处理中的坐标系，水平向右为x轴正方向，竖直向下为y轴正方向。 #找源码 grep 'COLOR_BGR2RGBA' * -rn | grep '\.hpp' 安装OpenCV-Python, pip install opencv-python==3.4.2.17 要利用SIFT和"></span><header class=post-header><h1 class=post-title itemprop="name headline">cv-OpenCV
 <a href=https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/post/cv-OpenCV.md rel="noopener external nofollow noreferrer" target=_blank class="exturl post-edit-link" title=编辑><i class="fa fa-pen-nib"></i></a></h1><div class=post-meta-container><div class=post-meta-items><span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-calendar"></i></span>
 <span class=post-meta-item-text>发表于：</span>
@@ -16,23 +16,17 @@
 <span class=post-meta-item><span class=post-meta-item-icon><i class="far fa-folder-open"></i></span>
 <span class=post-meta-item-text>分类于：</span>
 <span itemprop=about itemscope itemtype=http://schema.org/Thing><a href=/categories/cv itemprop=url rel=index><span itemprop=name>cv</span></a></span></span></div><div class=post-meta-items><span class=post-meta-item title=字数><span class=post-meta-item-icon><i class="far fa-file-word"></i></span>
-<span class=post-meta-item-text>字数：</span><span>17117</span></span>
+<span class=post-meta-item-text>字数：</span><span>16525</span></span>
 <span class=post-meta-item title=阅读><span class=post-meta-item-icon><i class="far fa-clock"></i></span>
 <span class=post-meta-item-text>阅读：&ap;</span>
-<span>35分钟</span></span>
+<span>33分钟</span></span>
 <span class=post-meta-item title=浏览><span class=post-meta-item-icon><i class="far fa-eye"></i></span>
 <span class=post-meta-item-text>浏览：</span>
 <span id=busuanzi_value_page_pv class=waline-pageview-count data-path=/post/cv-opencv/><i class="fa fa-sync fa-spin"></i></span></span></div></div></header><div class="post-body autonumber" itemprop=articleBody><p><code>图像处理中的坐标系，水平向右为x轴正方向，竖直向下为y轴正方向</code>。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#找源码</span>
 </span></span><span style=display:flex><span>grep <span style=color:#e6db74>&#39;COLOR_BGR2RGBA&#39;</span> <span style=color:#f92672>*</span> <span style=color:#f92672>-</span>rn  <span style=color:#f92672>|</span> grep <span style=color:#e6db74>&#39;\.hpp&#39;</span>
 </span></span></code></pre></div><p>安装OpenCV-Python,</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=display:flex><span>pip install opencv-python<span style=color:#f92672>==</span>3.4.2.17
 </span></span></code></pre></div><p>要利用SIFT和SURF等进行特征提取时，还需要安装：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-bash data-lang=bash><span style=display:flex><span>pip install opencv-contrib-python<span style=color:#f92672>==</span>3.4.2.17
-</span></span></code></pre></div><p>core、highgui、imgproc是最基础的模块，该课程主要是围绕这几个模块展开的，分别介绍如下：</p><ul><li><code>core模块</code>实现了最核心的数据结构及其基本运算，如绘图函数、数组操作相关函数等。</li><li><code>highgui模块</code>实现了视频与图像的读取、显示、存储等接口。</li><li><code>imgproc模块</code>实现了图像处理的基础方法，包括图像滤波、图像的几何变换、平滑、阈值分割、形态学处理、边缘检测、目标检测、运动分析和对象跟踪等。</li></ul><p>对于图像处理其他更高层次的方向及应用，OpenCV也有相关的模块实现</p><ul><li><code>features2d模块</code>用于提取图像特征以及特征匹配，nonfree模块实现了一些专利算法，如sift特征。</li><li><code>objdetect模块</code>实现了一些目标检测的功能，经典的基于Haar、LBP特征的人脸检测，基于HOG的行人、汽车等目标检测，分类器使用Cascade Classification（级联分类）和Latent SVM等。</li><li><code>stitching模块</code>实现了图像拼接功能。</li><li><code>FLANN模块</code>（Fast Library for Approximate Nearest Neighbors），包含快速近似最近邻搜索FLANN 和聚类Clustering算法。</li><li><code>ml模块</code>机器学习模块（SVM，决策树，Boosting等等）。</li><li><code>photo模块</code>包含图像修复和图像去噪两部分。</li><li><code>video模块</code>针对视频处理，如背景分离，前景检测、对象跟踪等。</li><li><code>calib3d模块</code>即Calibration（校准）3D，这个模块主要是相机校准和三维重建相关的内容。包含了基本的多视角几何算法，单个立体摄像头标定，物体姿态估计，立体相似性算法，3D信息的重建等等。</li><li><code>G-API模块</code>包含超高效的图像处理pipeline引擎</li></ul><p>opencv 的接口使用BGR模式，而 matplotlib.pyplot 接口使用的是RGB模式</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-PYTHON data-lang=PYTHON><span style=display:flex><span>b, g, r <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>split(srcImage)
-</span></span><span style=display:flex><span>srcImage_new <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>merge([r, g, b])
-</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>imshow(srcImage_new)
-</span></span><span style=display:flex><span><span style=color:#75715e># 通道变换之后对灰度图进行输出的图片颜色仍然为绿色,这是因为我们还是直接使用plt显示图像，它默认使用三通道显示图像</span>
-</span></span><span style=display:flex><span>grayImage <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>cvtColor(img2, cv2<span style=color:#f92672>.</span>COLOR_BGR2GRAY)  <span style=color:#75715e># 灰度变换</span>
-</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>imshow(grayImage, cmap<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gray&#34;</span>)
-</span></span></code></pre></div><h1 id=基本操作>基本操作</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> cv2
+</span></span></code></pre></div><p>core、highgui、imgproc是最基础的模块，该课程主要是围绕这几个模块展开的，分别介绍如下：</p><ul><li><code>core模块</code>实现了最核心的数据结构及其基本运算，如绘图函数、数组操作相关函数等。</li><li><code>highgui模块</code>实现了视频与图像的读取、显示、存储等接口。</li><li><code>imgproc模块</code>实现了图像处理的基础方法，包括图像滤波、图像的几何变换、平滑、阈值分割、形态学处理、边缘检测、目标检测、运动分析和对象跟踪等。</li></ul><p>对于图像处理其他更高层次的方向及应用，OpenCV也有相关的模块实现</p><ul><li><code>features2d模块</code>用于提取图像特征以及特征匹配，nonfree模块实现了一些专利算法，如sift特征。</li><li><code>objdetect模块</code>实现了一些目标检测的功能，经典的基于Haar、LBP特征的人脸检测，基于HOG的行人、汽车等目标检测，分类器使用Cascade Classification（级联分类）和Latent SVM等。</li><li><code>stitching模块</code>实现了图像拼接功能。</li><li><code>FLANN模块</code>（Fast Library for Approximate Nearest Neighbors），包含快速近似最近邻搜索FLANN 和聚类Clustering算法。</li><li><code>ml模块</code>机器学习模块（SVM，决策树，Boosting等等）。</li><li><code>photo模块</code>包含图像修复和图像去噪两部分。</li><li><code>video模块</code>针对视频处理，如背景分离，前景检测、对象跟踪等。</li><li><code>calib3d模块</code>即Calibration（校准）3D，这个模块主要是相机校准和三维重建相关的内容。包含了基本的多视角几何算法，单个立体摄像头标定，物体姿态估计，立体相似性算法，3D信息的重建等等。</li><li><code>G-API模块</code>包含超高效的图像处理pipeline引擎</li></ul><h1 id=基本>基本</h1><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> cv2
 </span></span><span style=display:flex><span>cv2<span style=color:#f92672>.</span>namedWindow(<span style=color:#e6db74>&#39;img&#39;</span>, cv2<span style=color:#f92672>.</span>WINDOW_NORMAL)
 </span></span><span style=display:flex><span>cv2<span style=color:#f92672>.</span>resizeWindow(<span style=color:#e6db74>&#39;img&#39;</span>, <span style=color:#ae81ff>320</span>, <span style=color:#ae81ff>240</span>)
 </span></span><span style=display:flex><span>img <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>imread(<span style=color:#e6db74>&#34;perspective.jpeg&#34;</span>)
@@ -51,109 +45,6 @@
 </span></span><span style=display:flex><span>        cv2<span style=color:#f92672>.</span>imwrite(<span style=color:#e6db74>&#34;123.png&#34;</span>, img)
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
 </span></span><span style=display:flex><span>        print(key)
-</span></span><span style=display:flex><span>cv2<span style=color:#f92672>.</span>destroyAllWindows()
-</span></span></code></pre></div><h2 id=图片采集脚本>图片采集脚本</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#e6db74>&#39;&#39;&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>“N”  新建文件夹 data/  用来存储图像
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;S&#34;   开始采集图像，将采集到的图像放到 data/ 路径下
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>“Q”   退出窗口
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#39;&#39;&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np  <span style=color:#75715e># 数据处理的库 Numpy</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> cv2  <span style=color:#75715e># 图像处理的库 OpenCv</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os  <span style=color:#75715e># 读写文件</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> PIL <span style=color:#f92672>import</span> Image, ImageDraw, ImageFont
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># # OpenCv 调用摄像头 / Use camera</span>
-</span></span><span style=display:flex><span>cap <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>VideoCapture(<span style=color:#ae81ff>0</span>)
-</span></span><span style=display:flex><span>cap<span style=color:#f92672>.</span>set(cv2<span style=color:#f92672>.</span>CAP_PROP_FRAME_WIDTH, <span style=color:#ae81ff>1920</span>)
-</span></span><span style=display:flex><span>cap<span style=color:#f92672>.</span>set(cv2<span style=color:#f92672>.</span>CAP_PROP_FRAME_HEIGHT, <span style=color:#ae81ff>1080</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>&#39;&#39;&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>#功能函数，只是用来往图片中显示汉字
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>#示例 img = cv2ImgAddText(cv2.imread(&#39;img1.jpg&#39;), &#34;大家好，我是片天边的云彩&#34;, 10, 65, (0, 0, 139), 20)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>参数说明：
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>img：OpenCV图片格式的图片
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>text：要写入的汉字
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>left：字符坐标x值
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>top：字符坐标y值
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>textColor：字体颜色
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>：textSize：字体大小
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#39;&#39;&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>cv2ImgAddText</span>(img, text, left, top, textColor<span style=color:#f92672>=</span>(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>, <span style=color:#ae81ff>0</span>), textSize<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>):
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (isinstance(img, np<span style=color:#f92672>.</span>ndarray)):  <span style=color:#75715e># 判断是否OpenCV图片类型</span>
-</span></span><span style=display:flex><span>        img <span style=color:#f92672>=</span> Image<span style=color:#f92672>.</span>fromarray(cv2<span style=color:#f92672>.</span>cvtColor(img, cv2<span style=color:#f92672>.</span>COLOR_BGR2RGB))
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 创建一个可以在给定图像上绘图的对象</span>
-</span></span><span style=display:flex><span>    draw <span style=color:#f92672>=</span> ImageDraw<span style=color:#f92672>.</span>Draw(img)
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 字体的格式</span>
-</span></span><span style=display:flex><span>    fontStyle <span style=color:#f92672>=</span> ImageFont<span style=color:#f92672>.</span>truetype(
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;font/simsun.ttc&#34;</span>, textSize, encoding<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;utf-8&#34;</span>)
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 绘制文本</span>
-</span></span><span style=display:flex><span>    draw<span style=color:#f92672>.</span>text((left, top), text, textColor, font<span style=color:#f92672>=</span>fontStyle)
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 转换回OpenCV格式</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> cv2<span style=color:#f92672>.</span>cvtColor(np<span style=color:#f92672>.</span>asarray(img), cv2<span style=color:#f92672>.</span>COLOR_RGB2BGR)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 存储图像的文件夹 </span>
-</span></span><span style=display:flex><span>current_dir <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 保存  图像 的路径 </span>
-</span></span><span style=display:flex><span>path_photos_from_camera <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;data/&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>press_n_flag <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-</span></span><span style=display:flex><span>cnt_ss <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>while</span> cap<span style=color:#f92672>.</span>isOpened():
-</span></span><span style=display:flex><span>    flag, img_rd <span style=color:#f92672>=</span> cap<span style=color:#f92672>.</span>read()
-</span></span><span style=display:flex><span>    <span style=color:#75715e># print(img_rd.shape)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    kk <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>waitKey(<span style=color:#ae81ff>2</span>)
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 待会要写的字体 / Font to write</span>
-</span></span><span style=display:flex><span>    font <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>FONT_ITALIC
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 4. 按下 &#39;n&#39; 新建存储人脸的文件夹 / press &#39;n&#39; to create the folders for saving faces</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> kk <span style=color:#f92672>==</span> ord(<span style=color:#e6db74>&#39;N&#39;</span>) <span style=color:#f92672>or</span> kk <span style=color:#f92672>==</span> ord(<span style=color:#e6db74>&#39;n&#39;</span>):
-</span></span><span style=display:flex><span>        current_dir <span style=color:#f92672>=</span> path_photos_from_camera
-</span></span><span style=display:flex><span>        <span style=color:#75715e># os.makedirs(current_dir)</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>isdir(current_dir):
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>pass</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>:
-</span></span><span style=display:flex><span>            os<span style=color:#f92672>.</span>mkdir(current_dir)
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#39;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#39;</span>)
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;新建的保存图像的文件夹 / Create folders: &#34;</span>, current_dir)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        press_n_flag <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>  <span style=color:#75715e># 已经按下 &#39;n&#39; / have pressed &#39;n&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 5. 按下 &#39;s&#39; 保存摄像头中的图像到本地 / Press &#39;s&#39; to save image into local images</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> kk <span style=color:#f92672>==</span> ord(<span style=color:#e6db74>&#39;S&#39;</span>) <span style=color:#f92672>or</span> kk <span style=color:#f92672>==</span> ord(<span style=color:#e6db74>&#39;s&#39;</span>):
-</span></span><span style=display:flex><span>        <span style=color:#75715e># 检查有没有先按&#39;n&#39;新建文件夹 / check if you have pressed &#39;n&#39;</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> press_n_flag:
-</span></span><span style=display:flex><span>            cnt_ss <span style=color:#f92672>+=</span> <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>            cv2<span style=color:#f92672>.</span>imwrite(current_dir <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;/img_&#34;</span> <span style=color:#f92672>+</span> str(cnt_ss) <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;.jpg&#34;</span>, img_rd)
-</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;写入本地 / Save into：&#34;</span>, str(current_dir) <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;/img_face_&#34;</span> <span style=color:#f92672>+</span> str(cnt_ss) <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;.jpg&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>:
-</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;请在按 &#39;S&#39; 之前先按 &#39;N&#39; 来建文件夹 / Please press &#39;N&#39; before &#39;S&#39;&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 添加说明 / Add some statements</span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># cv2.putText(img_rd, &#34;Face Register&#34;, (20, 40), font, 1, (0, 255, 0), 1, cv2.LINE_AA)</span>
-</span></span><span style=display:flex><span>    img_rd <span style=color:#f92672>=</span> cv2ImgAddText(img_rd, <span style=color:#e6db74>&#34;图片采集系统&#34;</span>, <span style=color:#ae81ff>160</span>, <span style=color:#ae81ff>25</span>, (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>, <span style=color:#ae81ff>0</span>), <span style=color:#ae81ff>30</span>)
-</span></span><span style=display:flex><span>    <span style=color:#75715e># cv2.putText(img_rd, &#34;N: Create face folder&#34;, (20, 350), font, 0.8, (0, 255, 0), 1, cv2.LINE_AA)</span>
-</span></span><span style=display:flex><span>    img_rd <span style=color:#f92672>=</span> cv2ImgAddText(img_rd, <span style=color:#e6db74>&#34;N: 创建保存图像文件夹&#34;</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>350</span>, (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>, <span style=color:#ae81ff>0</span>), <span style=color:#ae81ff>20</span>)
-</span></span><span style=display:flex><span>    <span style=color:#75715e># cv2.putText(img_rd, &#34;S: Save current face&#34;, (20, 400), font, 0.8, (0, 255, 0), 1, cv2.LINE_AA)</span>
-</span></span><span style=display:flex><span>    img_rd <span style=color:#f92672>=</span> cv2ImgAddText(img_rd, <span style=color:#e6db74>&#34;S: 保存当前图片&#34;</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>400</span>, (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>, <span style=color:#ae81ff>0</span>), <span style=color:#ae81ff>20</span>)
-</span></span><span style=display:flex><span>    <span style=color:#75715e># cv2.putText(img_rd, &#34;Q: Quit&#34;, (20, 450), font, 0.8, (0, 0, 0), 1, cv2.LINE_AA)</span>
-</span></span><span style=display:flex><span>    img_rd <span style=color:#f92672>=</span> cv2ImgAddText(img_rd, <span style=color:#e6db74>&#34;Q: 退出&#34;</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>450</span>, (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>, <span style=color:#ae81ff>0</span>), <span style=color:#ae81ff>20</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 6. 按下 &#39;Q&#39; 键退出 / Press &#39;q&#39; to exit</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> kk <span style=color:#f92672>==</span> ord(<span style=color:#e6db74>&#39;Q&#39;</span>) <span style=color:#f92672>or</span> kk <span style=color:#f92672>==</span> ord(<span style=color:#e6db74>&#39;q&#39;</span>):
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>break</span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 如果需要摄像头窗口大小可调 / Uncomment this line if you want the camera window is resizeable</span>
-</span></span><span style=display:flex><span>    cv2<span style=color:#f92672>.</span>namedWindow(<span style=color:#e6db74>&#34;camera&#34;</span>, <span style=color:#ae81ff>0</span>)
-</span></span><span style=display:flex><span>    cv2<span style=color:#f92672>.</span>imshow(<span style=color:#e6db74>&#34;camera&#34;</span>, img_rd)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 释放摄像头 / Release camera and destroy all windows</span>
-</span></span><span style=display:flex><span>cap<span style=color:#f92672>.</span>release()
 </span></span><span style=display:flex><span>cv2<span style=color:#f92672>.</span>destroyAllWindows()
 </span></span></code></pre></div><h2 id=鼠标>鼠标</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>setMouseCallback(winname,callback,userdata)
 </span></span><span style=display:flex><span>callback(event,x,y,flags,userdata)
@@ -178,7 +69,13 @@
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> key <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFF</span> <span style=color:#f92672>==</span> ord(<span style=color:#e6db74>&#39;q&#39;</span>):
 </span></span><span style=display:flex><span>        <span style=color:#66d9ef>break</span>
 </span></span><span style=display:flex><span>cv2<span style=color:#f92672>.</span>destroyAllWindows()
-</span></span></code></pre></div><h2 id=色相>色相</h2><p><code>HSV</code></p><p>Hue:色相，即色彩，如红色，蓝色
+</span></span></code></pre></div><h2 id=色相>色相</h2><p>opencv 的接口使用BGR模式，而 matplotlib.pyplot 接口使用的是RGB模式</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-PYTHON data-lang=PYTHON><span style=display:flex><span>b, g, r <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>split(srcImage)
+</span></span><span style=display:flex><span>srcImage_new <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>merge([r, g, b])
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>imshow(srcImage_new)
+</span></span><span style=display:flex><span><span style=color:#75715e># 通道变换之后对灰度图进行输出的图片颜色仍然为绿色,这是因为我们还是直接使用plt显示图像，它默认使用三通道显示图像</span>
+</span></span><span style=display:flex><span>grayImage <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>cvtColor(img2, cv2<span style=color:#f92672>.</span>COLOR_BGR2GRAY)  <span style=color:#75715e># 灰度变换</span>
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>imshow(grayImage, cmap<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gray&#34;</span>)
+</span></span></code></pre></div><p><code>HSV</code></p><p>Hue:色相，即色彩，如红色，蓝色
 Saturation:饱和度，颜色的纯度
 Value:明度</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2022-12-15/2022-12-15_00-10-16-967.png alt></p><p><code>HUV</code>主要用在视频中</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2022-12-15/2022-12-15_00-17-37-568.png alt></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>callback</span>(userdata):
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>pass</span>
@@ -274,6 +171,7 @@ Value:明度</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.co
 </span></span><span style=display:flex><span>pts <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>array([(<span style=color:#ae81ff>300</span>, <span style=color:#ae81ff>10</span>), (<span style=color:#ae81ff>150</span>, <span style=color:#ae81ff>100</span>), (<span style=color:#ae81ff>450</span>, <span style=color:#ae81ff>100</span>)], np<span style=color:#f92672>.</span>int32)
 </span></span><span style=display:flex><span>cv2<span style=color:#f92672>.</span>polylines(img, [pts], <span style=color:#66d9ef>True</span>, (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>))
 </span></span><span style=display:flex><span><span style=color:#75715e># 点集、是否闭环、颜色</span>
+</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># 填充多边形</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># cv2.fillPoly(img, [pts], (255, 255, 0))</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># 点集、颜色</span>
@@ -345,13 +243,16 @@ Value:明度</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.co
 </span></span><span style=display:flex><span>            cv2<span style=color:#f92672>.</span>line(src, (x, y), (x1, y1), (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>), <span style=color:#ae81ff>3</span>)
 </span></span><span style=display:flex><span>        i <span style=color:#f92672>=</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#最小外接矩形</span>
-</span></span><span style=display:flex><span>minAreaRect(points)
+</span></span><span style=display:flex><span><span style=color:#75715e># -------------最小外接旋转矩形</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># minAreaRect(points)</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># points:轮廓返回值：RotatedRect  x,y width,height angle   包含角度</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#最大外接矩形</span>
-</span></span><span style=display:flex><span>boundingRect(array)
-</span></span><span style=display:flex><span><span style=color:#75715e>#array::轮廓 返回值：Rect x,y width,height  无角度</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># -------------最小外接正矩形</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># boundingRect(array)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># array::轮廓 返回值：Rect x,y width,height  无角度</span>
 </span></span><span style=display:flex><span>r <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>minAreaRect(contours[<span style=color:#ae81ff>1</span>])
+</span></span><span style=display:flex><span><span style=color:#75715e>#--------------求最小外接旋转矩形的四个顶点</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 输入：rect = （（center_x, center_y）， (w, h), angle）</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 输出：box = ((x1, y1), (x2,y2), (x3, y3), (x4, y4))</span>
 </span></span><span style=display:flex><span>box <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>boxPoints(r)
 </span></span><span style=display:flex><span>box <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>int0(box)
 </span></span><span style=display:flex><span>cv2<span style=color:#f92672>.</span>drawContours(img, [box], <span style=color:#ae81ff>0</span>, (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>), <span style=color:#ae81ff>2</span>)
@@ -530,27 +431,35 @@ normalize=false,a=1</p><p>当normalize=true时方盒滤波=平均滤波</p><p><c
 </span></span><span style=display:flex><span><span style=color:#75715e>#ksize：卷积核的大小</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># 双边滤波</span>
 </span></span><span style=display:flex><span>dst <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>bilateralFilter(img, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>50</span>)
-</span></span></code></pre></div><h2 id=直方图>直方图</h2><p>图像直方图（Image Histogram）是用以表示数字图像中亮度分布的直方图，标绘了图像中<code>每个亮度值的像素个数</code>。这种直方图中，横坐标的左侧为较暗的区域，而右侧为较亮的区域。因此一张较暗图片的直方图中的数据多集中于左侧和中间部分，而整体明亮、只有少量阴影的图像则相反。</p><p>“直方图均衡化”是把原始图像的灰度直方图<code>从比较集中的某个灰度区间变成在更广泛灰度范围内的分布</code>。直方图均衡化就是对图像进行非线性拉伸，重新分配图像像素值，使一定灰度范围内的像素数量大致相同。</p><p>这种方法<code>提高图像整体的对比度</code>，特别是有用数据的像素值分布比较接近时，<code>在X光图像中使用广泛，可以提高骨架结构的显示</code>，另外在<code>曝光过度或不足</code>的图像中可以更好的突出细节。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/01/fuIqpZUwlSbF7N4.png alt=quicker_d57c8302-46c3-428d-8206-ca7e1476b7ab.png></p><p>上述的直方图均衡，我们考虑的是图像的全局对比度。 的确在进行完直方图均衡化之后，图片背景的对比度被改变了，在猫腿这里太暗，我们丢失了很多信息，所以在许多情况下，这样做的效果并不好。</p><p>需要使用自适应的直方图均衡化</p><p>整幅图像会被分成很多小块，这些小块被称为“tiles”（在 OpenCV 中 tiles 的 大小默认是 8x8），然后再对<code>每一个小块分别进行直方图均衡化</code>。 所以在每一个的区域中， 直方图会集中在某一个小的区域中）。<code>如果有噪声的话，噪声会被放大。为了避免这种情况的出现要使用对比度限制</code>。对于每个小块来说，<code>如果直方图中的 bin 超过对比度的上限的话，就把其中的像素点均匀分散到其他 bins 中，然后在进行直方图均衡化。</code>最后，为了 去除每一个小块之间的边界，再使用双线性差值，对每一小块进行拼接。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 直方图</span>
+</span></span></code></pre></div><h2 id=直方图>直方图</h2><p>图像直方图（Image Histogram）是用以表示数字图像中亮度分布的直方图，标绘了图像中<code>每个亮度值的像素个数</code>。</p><p>这种直方图中，横坐标的左侧为较暗的区域，而右侧为较亮的区域。因此一张较暗图片的直方图中的数据多集中于左侧和中间部分，而整体明亮、只有少量阴影的图像则相反。</p><h3 id=直方图均衡化>直方图均衡化</h3><p>是把原始图像的灰度直方图<code>从比较集中的某个灰度区间变成在更广泛灰度范围内的分布</code>。</p><p>这种方法<code>提高图像整体的对比度</code>，特别是有用数据的像素值分布比较接近时，<code>在X光图像中使用广泛，可以提高骨架结构的显示</code></p><p>另外在<code>曝光过度或不足</code>的图像中可以更好的突出细节。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 直方图</span>
 </span></span><span style=display:flex><span>cv2<span style=color:#f92672>.</span>calcHist(images,channels,mask,histSize,ranges[,hist[,accumulate]])
-</span></span><span style=display:flex><span>images: 原图像<span style=color:#960050;background-color:#1e0010>。</span>当传入函数时应该用中括号 [] 括起来<span style=color:#960050;background-color:#1e0010>，</span>例如<span style=color:#960050;background-color:#1e0010>：</span>[img]<span style=color:#960050;background-color:#1e0010>。</span>
-</span></span><span style=display:flex><span>channels: 如果输入图像是灰度图<span style=color:#960050;background-color:#1e0010>，</span>它的值就是 [<span style=color:#ae81ff>0</span>]<span style=color:#960050;background-color:#1e0010>；</span>如果是彩色图像的话<span style=color:#960050;background-color:#1e0010>，</span>传入的参数可以是 [<span style=color:#ae81ff>0</span>]<span style=color:#960050;background-color:#1e0010>，</span>[<span style=color:#ae81ff>1</span>]<span style=color:#960050;background-color:#1e0010>，</span>[<span style=color:#ae81ff>2</span>] 它们分别对应着通道 B<span style=color:#960050;background-color:#1e0010>，</span>G<span style=color:#960050;background-color:#1e0010>，</span>R<span style=color:#960050;background-color:#1e0010>。</span> <span style=color:#960050;background-color:#1e0010>　　</span>
-</span></span><span style=display:flex><span>mask: 掩模图像<span style=color:#960050;background-color:#1e0010>。</span>要统计整幅图像的直方图就把它设为 <span style=color:#66d9ef>None</span><span style=color:#960050;background-color:#1e0010>。</span>但是如果你想统计图像某一部分的直方图的话<span style=color:#960050;background-color:#1e0010>，</span>你就需要制作一个掩模图像<span style=color:#960050;background-color:#1e0010>，</span>并使用它<span style=color:#960050;background-color:#1e0010>。（</span>后边有例子<span style=color:#960050;background-color:#1e0010>）</span> <span style=color:#960050;background-color:#1e0010>　　</span>
-</span></span><span style=display:flex><span>histSize:BIN 的数目<span style=color:#960050;background-color:#1e0010>。</span>也应该用中括号括起来<span style=color:#960050;background-color:#1e0010>，</span>例如<span style=color:#960050;background-color:#1e0010>：</span>[<span style=color:#ae81ff>256</span>]<span style=color:#960050;background-color:#1e0010>。</span> <span style=color:#960050;background-color:#1e0010>　　</span>
-</span></span><span style=display:flex><span>ranges: 像素值范围<span style=color:#960050;background-color:#1e0010>，</span>通常为 [<span style=color:#ae81ff>0</span><span style=color:#960050;background-color:#1e0010>，</span><span style=color:#ae81ff>256</span>]
+</span></span><span style=display:flex><span><span style=color:#75715e>#images: 原图像。当传入函数时应该用中括号 [] 括起来，例如：[img]。</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#channels: 如果输入图像是灰度图，它的值就是 [0]；如果是彩色图像的话，传入的参数可以是 [0]，[1]，[2] 它们分别对应着通道 B，G，R。 　　</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#mask: 掩模图像。要统计整幅图像的直方图就把它设为 None。但是如果你想统计图像某一部分的直方图的话，你就需要制作一个掩模图像，并使用它。 　　</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#histSize:BIN 的数目。也应该用中括号括起来，例如：[256]。 　　</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#ranges: 像素值范围，通常为 [0，256]</span>
+</span></span><span style=display:flex><span>histr <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>calcHist([img],[<span style=color:#ae81ff>0</span>],<span style=color:#66d9ef>None</span>,[<span style=color:#ae81ff>256</span>],[<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>256</span>])
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>figure(figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>,<span style=color:#ae81ff>6</span>),dpi<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>plot(histr)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>grid()
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>mask <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(img<span style=color:#f92672>.</span>shape[:<span style=color:#ae81ff>2</span>], np<span style=color:#f92672>.</span>uint8)<span style=color:#75715e># 2. 创建蒙版</span>
-</span></span><span style=display:flex><span>mask[<span style=color:#ae81ff>400</span>:<span style=color:#ae81ff>650</span>, <span style=color:#ae81ff>200</span>:<span style=color:#ae81ff>500</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>255</span> <span style=color:#75715e># 查找直方图的区域上创建一个白色的掩膜图像，否则创建黑色</span>
-</span></span><span style=display:flex><span>masked_img <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>bitwise_and(img,img,mask <span style=color:#f92672>=</span> mask)<span style=color:#75715e># 3.掩模</span>
-</span></span><span style=display:flex><span>mask_histr <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>calcHist([img],[<span style=color:#ae81ff>0</span>],mask,[<span style=color:#ae81ff>256</span>],[<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>256</span>])    <span style=color:#75715e># 4. 统计掩膜后图像的灰度图</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#  掩膜的应用</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 创建蒙版</span>
+</span></span><span style=display:flex><span>mask <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(img<span style=color:#f92672>.</span>shape[:<span style=color:#ae81ff>2</span>], np<span style=color:#f92672>.</span>uint8)
+</span></span><span style=display:flex><span>mask[<span style=color:#ae81ff>400</span>:<span style=color:#ae81ff>650</span>, <span style=color:#ae81ff>200</span>:<span style=color:#ae81ff>500</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>255</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 查找直方图的区域上创建一个白色的掩膜图像，否则创建黑色</span>
+</span></span><span style=display:flex><span>masked_img <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>bitwise_and(img,img,mask<span style=color:#f92672>=</span>mask)
+</span></span><span style=display:flex><span><span style=color:#75715e># 统计掩膜后图像的灰度图</span>
+</span></span><span style=display:flex><span>mask_histr <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>calcHist([img],[<span style=color:#ae81ff>0</span>],mask,[<span style=color:#ae81ff>256</span>],[<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>256</span>]) 
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># 直方图均衡化</span>
 </span></span><span style=display:flex><span>dst <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>equalizeHist(img)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 自适应的直方图均衡化</span>
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/01/fuIqpZUwlSbF7N4.png alt=quicker_d57c8302-46c3-428d-8206-ca7e1476b7ab.png></p><p>在进行完直方图均衡化之后，图片背景的对比度被改变了，在猫腿这里太暗，我们丢失了很多信息，所以在许多情况下，这样做的效果并不好。需要使用自适应的直方图均衡化</p><h3 id=自适应的直方图均衡化>自适应的直方图均衡化</h3><p>整幅图像会被分成很多小块，这些小块被称为“tiles”（在 OpenCV 中 tiles 的 大小默认是 8x8），然后再对<code>每一个小块分别进行直方图均衡化</code>。</p><p>所以在每一个的区域中， 直方图会集中在某一个小的区域。<code>如果有噪声的话，噪声会被放大。为了避免这种情况的出现要使用对比度限制</code>。对于每个小块来说，<code>如果直方图中的 bin 超过对比度的上限的话，就把其中的像素点均匀分散到其他 bins 中，然后在进行直方图均衡化。</code>最后，为了 去除每一个小块之间的边界，再使用双线性差值，对每一小块进行拼接。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 自适应的直方图均衡化</span>
 </span></span><span style=display:flex><span>cv<span style=color:#f92672>.</span>createCLAHE(clipLimit, tileGridSize)
-</span></span><span style=display:flex><span>clipLimit: 对比度限制<span style=color:#960050;background-color:#1e0010>，</span>默认是40
-</span></span><span style=display:flex><span>tileGridSize: 分块的大小<span style=color:#960050;background-color:#1e0010>，</span>默认为8<span style=color:#f92672>*</span><span style=color:#ae81ff>88</span><span style=color:#960050;background-color:#1e0010>∗</span><span style=color:#ae81ff>8</span>
-</span></span></code></pre></div><h2 id=边缘检测>边缘检测</h2><p>图像边缘检测大幅度地减少了数据量，并且剔除了可以认为不相关的信息，保留了图像重要的结构属性。有许多方法用于边缘检测，它们的绝大部分可以划分为两类：基于搜索和基于零穿越。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/01/y9czuDdmoPOR7bv.png alt=quicker_8cfce94d-4575-4cec-bc4c-3a4cfd27d0eb.png></p><p><code>Sobel边缘检测算法</code>比较简单，实际应用中效率<code>比canny边缘检测效率要高</code>，但是边缘<code>不如Canny检测的准确</code>，但是很多实际应用的场合，sobel边缘却是首选，Sobel算子是<code>高斯平滑与微分操作的结合体，所以其抗噪声能力很强，用途较多</code>。尤其是效率要求较高，而对细纹理不太关心的时候。</p><p><code>Sobel</code>（索贝尔）（高斯）卷积核，size设置为-1就是沙尔。</p><p>对噪音适应性强，先高斯滤波过滤噪声，再通过一阶导数求图像边缘， <code>Scharr</code>（沙尔）比sobel效果好，卷积核size不可改</p><p>上面两个计算边缘，只能求横、纵一个方向的，最后相加。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/01/FR6ZhUeb8flJop1.png alt=quicker_b8444d61-1a79-48a9-9df9-ec4a3cfd7d7f.png></p><p><code>Laplacian是利用二阶导数来检测边缘 。</code>（拉普拉斯），对噪音敏感，需手工降噪。可以同时求两个方向的边缘</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/02/xs7ztkwRfuWP1Qy.png alt=quicker_cb380bdc-d81c-4ac5-a4c5-6e83439c8e8d.png></p><p><code>Canny 边缘检测算法被认为是最优的边缘检测算法</code>。</p><p>使用5×5高斯滤波消除噪声
+</span></span><span style=display:flex><span><span style=color:#75715e>#clipLimit: 对比度限制，默认是40</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#tileGridSize: 分块的大小，默认为8*88∗8</span>
+</span></span></code></pre></div><h2 id=边缘检测>边缘检测</h2><p>图像边缘检测大幅度地减少了数据量，并且剔除了可以认为不相关的信息，保留了图像重要的结构属性。有许多方法用于边缘检测，它们的绝大部分可以划分为两类：基于搜索和基于零穿越。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/01/y9czuDdmoPOR7bv.png alt=quicker_8cfce94d-4575-4cec-bc4c-3a4cfd27d0eb.png></p><h3 id=sobel算子>Sobel算子</h3><p>比较简单，实际应用中效率<code>比canny边缘检测效率要高</code>，但是边缘<code>不如Canny检测的准确</code>，但是很多实际应用的场合，sobel边缘却是首选，Sobel算子是<code>高斯平滑与微分操作的结合体，所以其抗噪声能力很强，用途较多</code>。尤其是效率要求较高，而对细纹理不太关心的时候。</p><p><code>Sobel</code>（索贝尔）（高斯）卷积核，size设置为-1就是沙尔。</p><p>对噪音适应性强，先高斯滤波过滤噪声，再通过一阶导数求图像边缘， <code>Scharr</code>（沙尔）比sobel效果好，卷积核size不可改</p><p>上面两个计算边缘，只能求横、纵一个方向的，最后相加。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/01/FR6ZhUeb8flJop1.png alt=quicker_b8444d61-1a79-48a9-9df9-ec4a3cfd7d7f.png></p><h3 id=laplacian算子>Laplacian算子</h3><p>是利用二阶导数来检测边缘 。（拉普拉斯），对噪音敏感，需手工降噪。可以同时求两个方向的边缘</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/02/xs7ztkwRfuWP1Qy.png alt=quicker_cb380bdc-d81c-4ac5-a4c5-6e83439c8e8d.png></p><h3 id=canny-算法>Canny 算法</h3><p>被认为是最优的边缘检测算法。</p><p>使用5×5高斯滤波消除噪声
 计算图像梯度的方向(0°/45°/90°/135°)
 取局部极大值
 阈值计算</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/01/9w4cPjUBeXKZ1np.png alt=quicker_39c15296-346c-42e6-a6ff-4590df34bf5d.png></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Sobel_x = cv2.Sobel(src, ddepth, dx, dy, dst, ksize, scale, delta, borderType)</span>
@@ -597,36 +506,37 @@ normalize=false,a=1</p><p>当normalize=true时方盒滤波=平均滤波</p><p><c
 </span></span><span style=display:flex><span><span style=color:#75715e>#threshold1: minval，较小的阈值将间断的边缘连接起来</span>
 </span></span><span style=display:flex><span><span style=color:#75715e>#threshold2: maxval，较大的阈值检测图像中明显的边缘</span>
 </span></span><span style=display:flex><span>canny <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>Canny(img, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>100</span>) 
-</span></span></code></pre></div><h2 id=模板匹配和霍夫变换>模板匹配和霍夫变换</h2><p>模板匹配，就是在给定的图片中查找和模板最相似的区域，该算法的输入包括模板和图片，整个任务的思路就是按照滑窗的思路不断的移动模板图片，计算其与图像中对应区域的匹配度，最终将匹配度最高的区域选择为最终的结果。</p><p>霍夫变换常用来提取图像中的直线和圆等几何形状</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>res <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>matchTemplate(img,template,method)
-</span></span><span style=display:flex><span>img: 要进行模板匹配的图像
-</span></span><span style=display:flex><span>Template <span style=color:#960050;background-color:#1e0010>：</span>模板
-</span></span><span style=display:flex><span>method<span style=color:#960050;background-color:#1e0010>：</span>实现模板匹配的算法<span style=color:#960050;background-color:#1e0010>，</span>主要有<span style=color:#960050;background-color:#1e0010>：</span>
-</span></span><span style=display:flex><span>平方差匹配(CV_TM_SQDIFF)<span style=color:#960050;background-color:#1e0010>：</span>利用模板与图像之间的平方差进行匹配<span style=color:#960050;background-color:#1e0010>，</span>最好的匹配是0<span style=color:#960050;background-color:#1e0010>，</span>匹配越差<span style=color:#960050;background-color:#1e0010>，</span>匹配的值越大<span style=color:#960050;background-color:#1e0010>。</span>
-</span></span><span style=display:flex><span>相关匹配(CV_TM_CCORR)<span style=color:#960050;background-color:#1e0010>：</span>利用模板与图像间的乘法进行匹配<span style=color:#960050;background-color:#1e0010>，</span>数值越大表示匹配程度较高<span style=color:#960050;background-color:#1e0010>，</span>越小表示匹配效果差<span style=color:#960050;background-color:#1e0010>。</span>
-</span></span><span style=display:flex><span>利用相关系数匹配(CV_TM_CCOEFF)<span style=color:#960050;background-color:#1e0010>：</span>利用模板与图像间的相关系数匹配<span style=color:#960050;background-color:#1e0010>，</span><span style=color:#ae81ff>1</span>表示完美的匹配<span style=color:#960050;background-color:#1e0010>，</span><span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>表示最差的匹配<span style=color:#960050;background-color:#1e0010>。</span>
+</span></span></code></pre></div><h1 id=图像特征>图像特征</h1><h2 id=模板匹配>模板匹配</h2><p>模板匹配，就是在给定的图片中查找和模板最相似的区域，该算法的输入包括模板和图片，整个任务的思路就是按照<code>滑窗</code>的思路不断的移动模板图片，计算其与图像中对应区域的匹配度，最终将匹配度最高的区域选择为最终的结果。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2023-01-05/2023-01-05_00-55-07-208.png alt></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>res <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>matchTemplate(img,template,method)
+</span></span><span style=display:flex><span><span style=color:#75715e>#img: 要进行模板匹配的图像</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#Template ：模板</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#method：实现模板匹配的算法，主要有：</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#平方差匹配(CV_TM_SQDIFF)：利用模板与图像之间的平方差进行匹配，最好的匹配是0，匹配越差，匹配的值越大。</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#相关匹配(CV_TM_CCORR)：利用模板与图像间的乘法进行匹配，数值越大表示匹配程度较高，越小表示匹配效果差。</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#利用相关系数匹配(CV_TM_CCOEFF)：利用模板与图像间的相关系数匹配，1表示完美的匹配，-1表示最差的匹配。</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>完成匹配后<span style=color:#960050;background-color:#1e0010>，</span>使用cv<span style=color:#f92672>.</span>minMaxLoc()方法查找最大值所在的位置即可<span style=color:#960050;background-color:#1e0010>。</span>如果使用平方差作为比较方法<span style=color:#960050;background-color:#1e0010>，</span>则最小值位置是最佳匹配位置<span style=color:#960050;background-color:#1e0010>。</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#完成匹配后，使用cv.minMaxLoc()方法查找最大值所在的位置即可。如果使用平方差作为比较方法，则最小值位置是最佳匹配位置。</span>
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>res <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>matchTemplate(img, template, cv<span style=color:#f92672>.</span>TM_CCORR)<span style=color:#75715e># 2.1 模板匹配</span>
-</span></span><span style=display:flex><span>min_val, max_val, min_loc, max_loc <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>minMaxLoc(res)<span style=color:#75715e># 2.2 返回图像中最匹配的位置，确定左上角的坐标，并将匹配位置绘制在图像上</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># top_left = min_loc# 使用平方差时最小值为最佳匹配位置</span>
+</span></span><span style=display:flex><span>res <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>matchTemplate(img, template, cv<span style=color:#f92672>.</span>TM_CCORR)
+</span></span><span style=display:flex><span><span style=color:#75715e># 返回图像中最匹配的位置，确定左上角的坐标，并将匹配位置绘制在图像上</span>
+</span></span><span style=display:flex><span>min_val, max_val, min_loc, max_loc <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>minMaxLoc(res)
+</span></span><span style=display:flex><span><span style=color:#75715e># top_left = min_loc</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 使用平方差时最小值为最佳匹配位置</span>
 </span></span><span style=display:flex><span>top_left <span style=color:#f92672>=</span> max_loc
+</span></span><span style=display:flex><span>h,w,l <span style=color:#f92672>=</span> template<span style=color:#f92672>.</span>shape
 </span></span><span style=display:flex><span>bottom_right <span style=color:#f92672>=</span> (top_left[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>+</span> w, top_left[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> h)
 </span></span><span style=display:flex><span>cv<span style=color:#f92672>.</span>rectangle(img, top_left, bottom_right, (<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>255</span>,<span style=color:#ae81ff>0</span>), <span style=color:#ae81ff>2</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 霍夫线检测</span>
+</span></span></code></pre></div><h2 id=霍夫变换>霍夫变换</h2><p>霍夫变换常用来提取图像中的直线和圆等几何形状</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2023-01-05/2023-01-05_01-01-51-189.png alt></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 霍夫线检测</span>
 </span></span><span style=display:flex><span>cv<span style=color:#f92672>.</span>HoughLines(img, rho, theta, threshold)
-</span></span><span style=display:flex><span>img: 检测的图像<span style=color:#960050;background-color:#1e0010>，</span>要求是二值化的图像<span style=color:#960050;background-color:#1e0010>，</span>所以在调用霍夫变换之前首先要进行二值化<span style=color:#960050;background-color:#1e0010>，</span>或者进行Canny边缘检测
-</span></span><span style=display:flex><span>rho<span style=color:#960050;background-color:#1e0010>、</span>theta: \rhoρ 和\thetaθ的精确度
-</span></span><span style=display:flex><span>threshold: 阈值<span style=color:#960050;background-color:#1e0010>，</span>只有累加器中的值高于该阈值时才被认为是直线<span style=color:#960050;background-color:#1e0010>。</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#img: 检测的图像，要求是二值化的图像，所以在调用霍夫变换之前首先要进行二值化，或者进行Canny边缘检测</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#rho、theta: ρ 和θ的精确度</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#threshold: 阈值，只有累加器中的值高于该阈值时才被认为是直线。</span>
 </span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>img <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>imread(<span style=color:#e6db74>&#39;./image/rili.jpg&#39;</span>)<span style=color:#75715e># 1.加载图片，转为二值图</span>
+</span></span><span style=display:flex><span>img <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>imread(<span style=color:#e6db74>&#39;./image/rili.jpg&#39;</span>)
 </span></span><span style=display:flex><span>gray <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>cvtColor(img, cv<span style=color:#f92672>.</span>COLOR_BGR2GRAY)
 </span></span><span style=display:flex><span>edges <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>Canny(gray, <span style=color:#ae81ff>50</span>, <span style=color:#ae81ff>150</span>)
-</span></span><span style=display:flex><span>lines <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>HoughLines(edges, <span style=color:#ae81ff>0.8</span>, np<span style=color:#f92672>.</span>pi <span style=color:#f92672>/</span> <span style=color:#ae81ff>180</span>, <span style=color:#ae81ff>150</span>)<span style=color:#75715e># 2.霍夫直线变换</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> line <span style=color:#f92672>in</span> lines:<span style=color:#75715e># 3.将检测的线绘制在图像上（注意是极坐标噢）</span>
+</span></span><span style=display:flex><span>lines <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>HoughLines(edges, <span style=color:#ae81ff>0.8</span>, np<span style=color:#f92672>.</span>pi <span style=color:#f92672>/</span> <span style=color:#ae81ff>180</span>, <span style=color:#ae81ff>150</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># 将检测的线绘制在图像上（注意是极坐标噢）</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> line <span style=color:#f92672>in</span> lines:
 </span></span><span style=display:flex><span>    rho, theta <span style=color:#f92672>=</span> line[<span style=color:#ae81ff>0</span>]
 </span></span><span style=display:flex><span>    a <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>cos(theta)
 </span></span><span style=display:flex><span>    b <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>sin(theta)
@@ -641,9 +551,35 @@ normalize=false,a=1</p><p>当normalize=true时方盒滤波=平均滤波</p><p><c
 </span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>imshow(img[:,:,::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]),plt<span style=color:#f92672>.</span>title(<span style=color:#e6db74>&#39;霍夫变换线检测&#39;</span>)
 </span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>xticks([]), plt<span style=color:#f92672>.</span>yticks([])
 </span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()    
-</span></span></code></pre></div><h1 id=图像特征提取和描述>图像特征提取和描述</h1><p>模板匹配不适用于尺度变换，视角变换后的图像，这时我们就要使用关键点匹配算法，比较经典的关键点检测算法包括SIFT和SURF等，主要的思路是首先通过关键点检测算法获取模板和测试图片中的关键点；然后使用关键点匹配算法处理即可，这些关键点可以很好的处理尺度变化、视角变换、旋转变化、光照变化等，具有很好的不变性。</p><h2 id=角点特征>角点特征</h2><p>在角点的地方，无论你向哪个方向移动小图，结果都会有很大的不同。所以可以把它们当 成一个好的特征。</p><h3 id=harrisshi-tomas>Harris/Shi-Tomas</h3><p><code>Harris</code></p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2022-12-27/2022-12-27_10-29-56-180.png alt></p><p>光滑地区，无论向哪里移动，衡量系数不变
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#霍夫圆检测</span>
+</span></span><span style=display:flex><span>circles <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>HoughCircles(image, method, dp, minDist, param1<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>, param2<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>, minRadius<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>,maxRadius<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span> )
+</span></span><span style=display:flex><span><span style=color:#75715e>#image：输入图像，应输入灰度图像</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#method：使用霍夫变换圆检测的算法，它的参数是CV_HOUGH_GRADIENT</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#dp：霍夫空间的分辨率，dp=1时表示霍夫空间与输入图像空间的大小一致，dp=2时霍夫空间是输入图像空间的一半，以此类推</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#minDist为圆心之间的最小距离，如果检测到的两个圆心之间距离小于该值，则认为它们是同一个圆心</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#param1：边缘检测时使用Canny算子的高阈值，低阈值是高阈值的一半。</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#param2：检测圆心和确定半径时所共有的阈值</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#minRadius和maxRadius为所检测到的圆半径的最小值和最大值</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#返回：circles：输出圆向量，包括三个浮点型的元素——圆心横坐标，圆心纵坐标和圆半径</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>planets <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>imread(<span style=color:#e6db74>&#34;./image/star.jpeg&#34;</span>)
+</span></span><span style=display:flex><span>gay_img <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>cvtColor(planets, cv<span style=color:#f92672>.</span>COLOR_BGRA2GRAY)
+</span></span><span style=display:flex><span>img <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>medianBlur(gay_img, <span style=color:#ae81ff>7</span>)  
+</span></span><span style=display:flex><span>circles <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>HoughCircles(img, cv<span style=color:#f92672>.</span>HOUGH_GRADIENT, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>200</span>, param1<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>, param2<span style=color:#f92672>=</span><span style=color:#ae81ff>30</span>, minRadius<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>, maxRadius<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># 4 将检测结果绘制在图像上</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> circles[<span style=color:#ae81ff>0</span>, :]:  <span style=color:#75715e># 遍历矩阵每一行的数据</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 绘制圆形</span>
+</span></span><span style=display:flex><span>    cv<span style=color:#f92672>.</span>circle(planets, (i[<span style=color:#ae81ff>0</span>], i[<span style=color:#ae81ff>1</span>]), i[<span style=color:#ae81ff>2</span>], (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>, <span style=color:#ae81ff>0</span>), <span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>    <span style=color:#75715e># 绘制圆心</span>
+</span></span><span style=display:flex><span>    cv<span style=color:#f92672>.</span>circle(planets, (i[<span style=color:#ae81ff>0</span>], i[<span style=color:#ae81ff>1</span>]), <span style=color:#ae81ff>2</span>, (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>), <span style=color:#ae81ff>3</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>figure(figsize<span style=color:#f92672>=</span>(<span style=color:#ae81ff>10</span>,<span style=color:#ae81ff>8</span>),dpi<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>imshow(planets[:,:,::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]),plt<span style=color:#f92672>.</span>title(<span style=color:#e6db74>&#39;霍夫变换圆检测&#39;</span>)
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>xticks([]), plt<span style=color:#f92672>.</span>yticks([])
+</span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2023-01-05/2023-01-05_01-06-28-005.png alt></p><h2 id=角点特征>角点特征</h2><p>图像特征要有区分性，容易被比较。一般认为角点，斑点等是较好的图像特征</p><p>模板匹配不适用于尺度变换，视角变换后的图像，这时我们就要使用关键点匹配算法，比较经典的关键点检测算法包括SIFT和SURF等，主要的思路是首先通过关键点检测算法获取模板和测试图片中的关键点；然后使用关键点匹配算法处理即可，这些关键点可以很好的处理尺度变化、视角变换、旋转变化、光照变化等，具有很好的不变性。</p><p>在角点的地方，无论你向哪个方向移动小图，结果都会有很大的不同。所以可以把它们当 成一个好的特征。</p><h3 id=harris>Harris</h3><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2022-12-27/2022-12-27_10-29-56-180.png alt></p><p>光滑地区，无论向哪里移动，衡量系数不变
 边缘地址，垂直边缘移动时，衡量系统变化具烈
-在交点处，往那个方向移动，衡量系统都变化具烈</p><p>优点：</p><ul><li><code>旋转不变性</code>，椭圆转过一定角度但是其形状保持不变（特征值保持不变）</li><li>对于图像灰度的仿射变化具有部分的不变性，由于仅仅使用了图像的一介导数，对于图像灰度平移变化不变；对于图像灰度尺度变化不变</li></ul><p>缺点：</p><ul><li><code>对尺度很敏感</code>，不具备几何尺度不变性。</li><li>提取的角点是像素级的</li></ul><p><code>Shi-Tomasi</code></p><p>对Harris算法的改进，能够更好地检测角点；Harris角点检测算的稳定性和k有关，而k是个经验值，不好设定最佳值</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/04/NOYH29EvTesRbBJ.png alt=quicker_9e35dfbc-4202-42a3-870a-64675311f339.png></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#Hariis检测使用的API是：</span>
+在交点处，往那个方向移动，衡量系统都变化具烈</p><p>优点：</p><ul><li><code>旋转不变性</code>，椭圆转过一定角度但是其形状保持不变（特征值保持不变）</li><li>对于图像灰度的仿射变化具有部分的不变性，由于仅仅使用了图像的一介导数，对于图像灰度平移变化不变；对于图像灰度尺度变化不变</li></ul><p>缺点：</p><ul><li><code>对尺度很敏感</code>，不具备几何尺度不变性。</li><li>提取的角点是像素级的</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#Hariis检测使用的API是：</span>
 </span></span><span style=display:flex><span>dst<span style=color:#f92672>=</span>cv<span style=color:#f92672>.</span>cornerHarris(src, blockSize, ksize, k)
 </span></span><span style=display:flex><span><span style=color:#75715e>#img：数据类型为 ﬂoat32 的输入图像。</span>
 </span></span><span style=display:flex><span><span style=color:#75715e>#blockSize：角点检测中要考虑的邻域大小。</span>
@@ -666,8 +602,7 @@ normalize=false,a=1</p><p>当normalize=true时方盒滤波=平均滤波</p><p><c
 </span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>imshow(img[:,:,::<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]),plt<span style=color:#f92672>.</span>title(<span style=color:#e6db74>&#39;Harris角点检测&#39;</span>)
 </span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>xticks([]), plt<span style=color:#f92672>.</span>yticks([])
 </span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Shi-Tomasi</span>
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2023-01-05/2023-01-05_10-24-39-609.png alt></p><h3 id=shi-tomasi>Shi-Tomasi</h3><p>对Harris算法的改进，能够更好地检测角点；Harris角点检测算的稳定性和k有关，而k是个经验值，不好设定最佳值</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/04/NOYH29EvTesRbBJ.png alt=quicker_9e35dfbc-4202-42a3-870a-64675311f339.png></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Shi-Tomasi</span>
 </span></span><span style=display:flex><span>corners <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>goodFeaturesToTrack(image, maxcorners, qualityLevel, minDistance )
 </span></span><span style=display:flex><span><span style=color:#75715e>#Image: 输入灰度图像</span>
 </span></span><span style=display:flex><span><span style=color:#75715e>#maxCorners : 角点的数目。值为0表示无限制</span>
@@ -700,7 +635,7 @@ normalize=false,a=1</p><p>当normalize=true时方盒滤波=平均滤波</p><p><c
 </span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>xticks([]), plt<span style=color:#f92672>.</span>yticks([])
 </span></span><span style=display:flex><span>plt<span style=color:#f92672>.</span>show()    
 </span></span></code></pre></div><h3 id=siftsurforb>SIFT/SURF/ORB</h3><p>Harris和Shi-Tomasi角点检测算法，这两种算法具有旋转不变性，但不具有尺度不变性（缩放后，原来的角点有可能就不是角点了）</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2022-12-28/2022-12-28_09-31-50-759.png alt></p><p><code>SIFT（Scale-Invariant Feature Transform）算法的实质是在不同的尺度空间上查找关键点(特征点)，并计算出关键点的方向。SIFT所查找到的关键点是一些十分突出，不会因光照，仿射变换和噪音等因素而变化的点，如角点、边缘点、暗区的亮点及亮区的暗点</code>，但并不完美，仍然存在实时性不高，有时特征点较少，对边缘光滑的目标无法准确提取特征点等缺陷</p><p>SIFT原理：</p><ul><li>尺度空间极值检测：构建高斯金字塔，高斯差分金字塔，检测极值点。</li><li>关键点定位：去除对比度较小和边缘对极值点的影响。</li><li>关键点方向确定：利用梯度直方图确定关键点的方向。</li><li>关键点描述：对关键点周围图像区域分块，计算块内的梯度直方图，生成具有特征向量，对关键点信息进行描述。</li></ul><p>使用 SIFT 算法进行关键点检测和描述的执行速度比较慢， 需要速度更快的算法。 2006 年 Bay提出了 <code>SURF （Speeded-Up Robust Features）</code>算法，是SIFT算法的增强版，<code>它的计算量小，运算速度快，提取的特征与SIFT几乎相同</code>，将其与SIFT算法对比如下：</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/04/f1HINV4cnmzRDKp.png alt=quicker_cdef8f3f-84d9-4b0e-aa28-dd880ba6aab0.png></p><p><code>ORB(Oriented FAST and Rotated BRIEF)</code></p><p>ORB可以做到实时检测
-ORB=Oriented FAST+Rotated BRIEF</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 1.实例化sift</span>
+ORB=Oriented FAST+Rotated BRIEF</p><p>原理：是FAST算法和BRIEF算法的结合</p><p>Fast算法原理：若一个像素周围有一定数量的像素与该点像素值不同，则认为其为角点</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 1.实例化sift</span>
 </span></span><span style=display:flex><span>sift <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>SIFT_create()
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e># 2.利用sift.detectAndCompute()检测关键点并计算</span>
@@ -916,11 +851,85 @@ ORB=Oriented FAST+Rotated BRIEF</p><div class=highlight><pre tabindex=0 style=co
 </span></span><span style=display:flex><span>cv2<span style=color:#f92672>.</span>imshow(<span style=color:#e6db74>&#34;bg&#34;</span>, bg)
 </span></span><span style=display:flex><span>cv2<span style=color:#f92672>.</span>imshow(<span style=color:#e6db74>&#34;thresh&#34;</span>, thresh)
 </span></span><span style=display:flex><span>cv2<span style=color:#f92672>.</span>waitKey()
-</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2023-01-03/2023-01-03_00-36-02-020.png alt></p><h4 id=grabcut法>GrabCut法</h4><p>通过交互的方式获得前景物体</p><ul><li>用户指定前景的大体区域，剩下的为背景区域</li><li>用户还可以明确指定某些地方为前景或背景</li><li>GrabCut采用分段迭代的方法分析前景物体形成模型柄</li><li>最后根据权重决定某个像素是前影还是背景</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2023-01-03/2023-01-03_00-36-38-832.png alt></p><h4 id=meanshift法>MeanShift法</h4><p>严格来说该方法并不是用来对图像分割的，而是在色彩层面的平滑滤波
-它会中和色彩分布相近的颜色，平滑色彩细节，侵蚀掉面积较小的区域
-它以图像上任一点P为圆心，半径为sp，色彩幅值为sr进行不断的迭代</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>img <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>imread(<span style=color:#e6db74>&#39;key.png&#39;</span>)
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2023-01-03/2023-01-03_00-36-02-020.png alt></p><h4 id=grabcut法>GrabCut法</h4><p>通过交互的方式获得前景物体</p><ul><li>用户指定前景的大体区域，剩下的为背景区域</li><li>用户还可以明确指定某些地方为前景或背景</li><li>GrabCut采用分段迭代的方法分析前景物体形成模型柄</li><li>最后根据权重决定某个像素是前影还是背景</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> cv2
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>App</span>:
+</span></span><span style=display:flex><span>    flag_rect <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>
+</span></span><span style=display:flex><span>    rect <span style=color:#f92672>=</span> (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>    startX <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>    startY <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>onmouse</span>(self, event, x, y, flags, param):
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> event <span style=color:#f92672>==</span> cv2<span style=color:#f92672>.</span>EVENT_LBUTTONDOWN:  <span style=color:#75715e># 按下鼠标左键</span>
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>flag_rect <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>startX <span style=color:#f92672>=</span> x
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>startY <span style=color:#f92672>=</span> y
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;LBUTTIONDOWN&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>elif</span> event <span style=color:#f92672>==</span> cv2<span style=color:#f92672>.</span>EVENT_LBUTTONUP:
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>flag_rect <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>
+</span></span><span style=display:flex><span>            cv2<span style=color:#f92672>.</span>rectangle(self<span style=color:#f92672>.</span>img,
+</span></span><span style=display:flex><span>                          (self<span style=color:#f92672>.</span>startX, self<span style=color:#f92672>.</span>startY),
+</span></span><span style=display:flex><span>                          (x, y),
+</span></span><span style=display:flex><span>                          (<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>255</span>),
+</span></span><span style=display:flex><span>                          <span style=color:#ae81ff>3</span>)
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>rect <span style=color:#f92672>=</span> (min(self<span style=color:#f92672>.</span>startX, x), min(self<span style=color:#f92672>.</span>startY, y),
+</span></span><span style=display:flex><span>                         abs(self<span style=color:#f92672>.</span>startX <span style=color:#f92672>-</span> x),
+</span></span><span style=display:flex><span>                         abs(self<span style=color:#f92672>.</span>startY <span style=color:#f92672>-</span> y))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;LBUTTIONUP&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>elif</span> event <span style=color:#f92672>==</span> cv2<span style=color:#f92672>.</span>EVENT_MOUSEMOVE:
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>flag_rect:  <span style=color:#75715e># 鼠标左键按下才画</span>
+</span></span><span style=display:flex><span>                self<span style=color:#f92672>.</span>img <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>img2<span style=color:#f92672>.</span>copy()
+</span></span><span style=display:flex><span>                cv2<span style=color:#f92672>.</span>rectangle(self<span style=color:#f92672>.</span>img,
+</span></span><span style=display:flex><span>                              (self<span style=color:#f92672>.</span>startX, self<span style=color:#f92672>.</span>startY),
+</span></span><span style=display:flex><span>                              (x, y),
+</span></span><span style=display:flex><span>                              (<span style=color:#ae81ff>255</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>),
+</span></span><span style=display:flex><span>                              <span style=color:#ae81ff>3</span>)
+</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>&#34;MOUSEMOVE&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;onmouse&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run</span>(self):
+</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;run...&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        cv2<span style=color:#f92672>.</span>namedWindow(<span style=color:#e6db74>&#39;input&#39;</span>)
+</span></span><span style=display:flex><span>        cv2<span style=color:#f92672>.</span>setMouseCallback(<span style=color:#e6db74>&#39;input&#39;</span>, self<span style=color:#f92672>.</span>onmouse)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>img <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>imread(<span style=color:#e6db74>&#39;./lena.png&#39;</span>)
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>img2 <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>img<span style=color:#f92672>.</span>copy()
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>mask <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(self<span style=color:#f92672>.</span>img<span style=color:#f92672>.</span>shape[:<span style=color:#ae81ff>2</span>], dtype<span style=color:#f92672>=</span>np<span style=color:#f92672>.</span>uint8)
+</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>output <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros(self<span style=color:#f92672>.</span>img<span style=color:#f92672>.</span>shape, np<span style=color:#f92672>.</span>uint8)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> <span style=color:#ae81ff>1</span>:
+</span></span><span style=display:flex><span>            cv2<span style=color:#f92672>.</span>imshow(<span style=color:#e6db74>&#39;input&#39;</span>, self<span style=color:#f92672>.</span>img)
+</span></span><span style=display:flex><span>            cv2<span style=color:#f92672>.</span>imshow(<span style=color:#e6db74>&#39;output&#39;</span>, self<span style=color:#f92672>.</span>output)
+</span></span><span style=display:flex><span>            k <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>waitKey(<span style=color:#ae81ff>100</span>)
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> k <span style=color:#f92672>==</span> <span style=color:#ae81ff>27</span>:
+</span></span><span style=display:flex><span>                <span style=color:#66d9ef>break</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> k <span style=color:#f92672>==</span> ord(<span style=color:#e6db74>&#39;g&#39;</span>):
+</span></span><span style=display:flex><span>                bgdmodel <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros((<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>65</span>), np<span style=color:#f92672>.</span>float64)
+</span></span><span style=display:flex><span>                fgdmodel <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>zeros((<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>65</span>), np<span style=color:#f92672>.</span>float64)
+</span></span><span style=display:flex><span>                cv2<span style=color:#f92672>.</span>grabCut(self<span style=color:#f92672>.</span>img2, self<span style=color:#f92672>.</span>mask, self<span style=color:#f92672>.</span>rect,
+</span></span><span style=display:flex><span>                            bgdmodel, fgdmodel,
+</span></span><span style=display:flex><span>                            <span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>                            cv2<span style=color:#f92672>.</span>GC_INIT_WITH_RECT)
+</span></span><span style=display:flex><span>                <span style=color:#75715e># mask BGD:背景，0；FGD:前景，1；PR BGD:可能是背景，2；PR_FGD:可能是前景，3</span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e># rect 选取的区域，在这个区域进行前后景分离</span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e># bgdModel,np.float64 type zero arrays of size(1,65)</span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e># fgdModel,同上</span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e># iteration</span>
+</span></span><span style=display:flex><span>                <span style=color:#75715e># mode GC_INIT_WITH_RECT第一次，在区域中找前景； GC_INIT_WITH_MASK第二、三次迭代</span>
+</span></span><span style=display:flex><span>            mask2 <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>where((self<span style=color:#f92672>.</span>mask <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>|</span> (self<span style=color:#f92672>.</span>mask <span style=color:#f92672>==</span> <span style=color:#ae81ff>3</span>), <span style=color:#ae81ff>255</span>, <span style=color:#ae81ff>0</span>)<span style=color:#f92672>.</span>astype(<span style=color:#e6db74>&#39;uint8&#39;</span>)
+</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>output <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>bitwise_and(self<span style=color:#f92672>.</span>img2, self<span style=color:#f92672>.</span>img2, mask<span style=color:#f92672>=</span>mask2)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>App()<span style=color:#f92672>.</span>run()
+</span></span></code></pre></div><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2023-01-03/2023-01-03_00-36-38-832.png alt></p><h4 id=meanshift法>MeanShift法</h4><p>严格来说该方法并不是用来对图像分割的，而是在色彩层面的平滑滤波</p><p>它会中和色彩分布相近的颜色，平滑色彩细节，侵蚀掉面积较小的区域</p><p>它以图像上任一点P为圆心，半径为sp，色彩幅值为sr进行不断的迭代</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span>img <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>imread(<span style=color:#e6db74>&#39;key.png&#39;</span>)
 </span></span><span style=display:flex><span><span style=color:#75715e># pyrMeanShiftFiltering (img，dbuble sp，double sr</span>
 </span></span><span style=display:flex><span><span style=color:#75715e># sp:半径      Sr： 色彩幅值</span>
+</span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>mean_img <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>pyrMeanShiftFiltering(img, <span style=color:#ae81ff>20</span>, <span style=color:#ae81ff>30</span>)
 </span></span><span style=display:flex><span>imgcanny <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>Canny(mean_img, <span style=color:#ae81ff>150</span>, <span style=color:#ae81ff>300</span>)
 </span></span><span style=display:flex><span>contours, _ <span style=color:#f92672>=</span> cv2<span style=color:#f92672>.</span>findContours(imgcanny, cv2<span style=color:#f92672>.</span>RETR_EXTERNAL, cv2<span style=color:#f92672>.</span>CHAIN_APPROX_SIMPLE)
@@ -1037,7 +1046,7 @@ ORB=Oriented FAST+Rotated BRIEF</p><div class=highlight><pre tabindex=0 style=co
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>    cv2<span style=color:#f92672>.</span>imshow(<span style=color:#e6db74>&#39;window&#39;</span>, frame)
 </span></span><span style=display:flex><span>    cv2<span style=color:#f92672>.</span>waitKey(<span style=color:#ae81ff>1</span>)
-</span></span></code></pre></div><h1 id=应用>应用</h1><h2 id=视频追踪>视频追踪</h2><p>图像是一个矩阵信息，如何在一个视频当中使用meanshift算法来追踪一个运动的物体呢？ 大致流程如下：</p><ol><li><p>首先在图像上选定一个目标区域</p></li><li><p>计算选定区域的<code>直方图分布</code>，一般是HSV色彩空间的直方图。</p></li><li><p>对下一帧图像b同样计算直方图分布。</p></li><li><p>计算图像b当中与选定区域直方图分布最为相似的区域，使用meanshift算法将选定区域沿着最为相似的部分进行移动，直到找到最相似的区域，便完成了在图像b中的目标追踪。</p></li><li><p>重复3到4的过程，就完成整个视频目标追踪。</p><p>通常情况下我们使用直方图反向投影得到的图像和第一帧目标对象的起始位置，当目标对象的移动会反映到直方图反向投影图中，meanshift 算法就把我们的窗口移动到反向投影图像中灰度密度最大的区域了。</p></li></ol><p>直方图反向投影的流程是：</p><p>假设我们有一张100x100的输入图像，有一张10x10的模板图像，查找的过程是这样的：</p><ol><li>从输入图像的左上角(0,0)开始，切割一块(0,0)至(10,10)的临时图像；</li><li>生成临时图像的直方图；</li><li>用临时图像的直方图和模板图像的直方图对比，对比结果记为c；</li><li>直方图对比结果c，就是结果图像(0,0)处的像素值；</li><li>切割输入图像从(0,1)至(10,11)的临时图像，对比直方图，并记录到结果图像；</li><li>重复1～5步直到输入图像的右下角，就形成了直方图的反向投影。</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
+</span></span></code></pre></div><h2 id=视频追踪>视频追踪</h2><p><img src=/imgs/img-lazy-loading.gif data-src=https://gitee.com/tomding1995/picture/raw/master/2023-01-05/2023-01-05_13-52-44-403.png alt></p><p>图像是一个矩阵信息，如何在一个视频当中使用meanshift算法来追踪一个运动的物体呢？ 大致流程如下：</p><ol><li><p>首先在图像上选定一个目标区域</p></li><li><p>计算选定区域的<code>直方图分布</code>，一般是HSV色彩空间的直方图。</p></li><li><p>对下一帧图像b同样计算直方图分布。</p></li><li><p>计算图像b当中与选定区域直方图分布最为相似的区域，使用meanshift算法将选定区域沿着最为相似的部分进行移动，直到找到最相似的区域，便完成了在图像b中的目标追踪。</p></li><li><p>重复3到4的过程，就完成整个视频目标追踪。</p></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
 </span></span><span style=display:flex><span><span style=color:#f92672>import</span> cv2 <span style=color:#66d9ef>as</span> cv
 </span></span><span style=display:flex><span><span style=color:#75715e># 1.获取图像</span>
 </span></span><span style=display:flex><span>cap <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>VideoCapture(<span style=color:#e6db74>&#39;DOG.wmv&#39;</span>)
@@ -1064,14 +1073,17 @@ ORB=Oriented FAST+Rotated BRIEF</p><div class=highlight><pre tabindex=0 style=co
 </span></span><span style=display:flex><span><span style=color:#75715e># 4.1 设置窗口搜索终止条件：最大迭代次数，窗口中心漂移最小值</span>
 </span></span><span style=display:flex><span>term_crit <span style=color:#f92672>=</span> ( cv<span style=color:#f92672>.</span>TERM_CRITERIA_EPS <span style=color:#f92672>|</span> cv<span style=color:#f92672>.</span>TERM_CRITERIA_COUNT, <span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>1</span> )
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>while</span>(<span style=color:#66d9ef>True</span>):
+</span></span><span style=display:flex><span>whileTrue:
 </span></span><span style=display:flex><span>    <span style=color:#75715e># 4.2 获取每一帧图像</span>
 </span></span><span style=display:flex><span>    ret ,frame <span style=color:#f92672>=</span> cap<span style=color:#f92672>.</span>read()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> ret <span style=color:#f92672>==</span> <span style=color:#66d9ef>True</span>:
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> ret:
 </span></span><span style=display:flex><span>        <span style=color:#75715e># 4.3 计算直方图的反向投影</span>
 </span></span><span style=display:flex><span>        hsv <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>cvtColor(frame, cv<span style=color:#f92672>.</span>COLOR_BGR2HSV)
 </span></span><span style=display:flex><span>        dst <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>calcBackProject([hsv],[<span style=color:#ae81ff>0</span>],roi_hist,[<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>180</span>],<span style=color:#ae81ff>1</span>)
-</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># cv.meanShift(probImage, window, criteria)</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># probImage: ROI区域，即目标的直方图的反向投影</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># window： 初始搜索窗口，就是定义ROI的rect</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># criteria: 确定窗口搜索停止的准则，主要有迭代次数达到设置的最大值，窗口中心的漂移值大于某个设定的限值等。</span>
 </span></span><span style=display:flex><span>        <span style=color:#75715e># 4.4 进行meanshift追踪</span>
 </span></span><span style=display:flex><span>        ret, track_window <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>meanShift(dst, track_window, term_crit)
 </span></span><span style=display:flex><span>
@@ -1081,62 +1093,7 @@ ORB=Oriented FAST+Rotated BRIEF</p><div class=highlight><pre tabindex=0 style=co
 </span></span><span style=display:flex><span>        cv<span style=color:#f92672>.</span>imshow(<span style=color:#e6db74>&#39;frame&#39;</span>,img2)
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> cv<span style=color:#f92672>.</span>waitKey(<span style=color:#ae81ff>60</span>) <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFF</span> <span style=color:#f92672>==</span> ord(<span style=color:#e6db74>&#39;q&#39;</span>):
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>break</span>        
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>else</span>:
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>break</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 5. 资源释放        </span>
-</span></span><span style=display:flex><span>cap<span style=color:#f92672>.</span>release()
-</span></span><span style=display:flex><span>cv<span style=color:#f92672>.</span>destroyAllWindows()
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Meanshift的API是：</span>
-</span></span><span style=display:flex><span>cv<span style=color:#f92672>.</span>meanShift(probImage, window, criteria)
-</span></span><span style=display:flex><span>probImage: ROI区域<span style=color:#960050;background-color:#1e0010>，</span>即目标的直方图的反向投影
-</span></span><span style=display:flex><span>window<span style=color:#960050;background-color:#1e0010>：</span> 初始搜索窗口<span style=color:#960050;background-color:#1e0010>，</span>就是定义ROI的rect
-</span></span><span style=display:flex><span>criteria: 确定窗口搜索停止的准则<span style=color:#960050;background-color:#1e0010>，</span>主要有迭代次数达到设置的最大值<span style=color:#960050;background-color:#1e0010>，</span>窗口中心的漂移值大于某个设定的限值等<span style=color:#960050;background-color:#1e0010>。</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> cv2 <span style=color:#66d9ef>as</span> cv
-</span></span><span style=display:flex><span><span style=color:#75715e># 1.获取图像</span>
-</span></span><span style=display:flex><span>cap <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>VideoCapture(<span style=color:#e6db74>&#39;DOG.wmv&#39;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2.获取第一帧图像，并指定目标位置</span>
-</span></span><span style=display:flex><span>ret,frame <span style=color:#f92672>=</span> cap<span style=color:#f92672>.</span>read()
-</span></span><span style=display:flex><span><span style=color:#75715e># 2.1 目标位置（行，高，列，宽）</span>
-</span></span><span style=display:flex><span>r,h,c,w <span style=color:#f92672>=</span> <span style=color:#ae81ff>197</span>,<span style=color:#ae81ff>141</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>208</span>  
-</span></span><span style=display:flex><span>track_window <span style=color:#f92672>=</span> (c,r,w,h)
-</span></span><span style=display:flex><span><span style=color:#75715e># 2.2 指定目标的感兴趣区域</span>
-</span></span><span style=display:flex><span>roi <span style=color:#f92672>=</span> frame[r:r<span style=color:#f92672>+</span>h, c:c<span style=color:#f92672>+</span>w]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. 计算直方图</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3.1 转换色彩空间（HSV）</span>
-</span></span><span style=display:flex><span>hsv_roi <span style=color:#f92672>=</span>  cv<span style=color:#f92672>.</span>cvtColor(roi, cv<span style=color:#f92672>.</span>COLOR_BGR2HSV)
-</span></span><span style=display:flex><span><span style=color:#75715e># 3.2 去除低亮度的值</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># mask = cv.inRange(hsv_roi, np.array((0., 60.,32.)), np.array((180.,255.,255.)))</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3.3 计算直方图</span>
-</span></span><span style=display:flex><span>roi_hist <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>calcHist([hsv_roi],[<span style=color:#ae81ff>0</span>],<span style=color:#66d9ef>None</span>,[<span style=color:#ae81ff>180</span>],[<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>180</span>])
-</span></span><span style=display:flex><span><span style=color:#75715e># 3.4 归一化</span>
-</span></span><span style=display:flex><span>cv<span style=color:#f92672>.</span>normalize(roi_hist,roi_hist,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>255</span>,cv<span style=color:#f92672>.</span>NORM_MINMAX)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 4. 目标追踪</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 4.1 设置窗口搜索终止条件：最大迭代次数，窗口中心漂移最小值</span>
-</span></span><span style=display:flex><span>term_crit <span style=color:#f92672>=</span> ( cv<span style=color:#f92672>.</span>TERM_CRITERIA_EPS <span style=color:#f92672>|</span> cv<span style=color:#f92672>.</span>TERM_CRITERIA_COUNT, <span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>1</span> )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>while</span>(<span style=color:#66d9ef>True</span>):
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 4.2 获取每一帧图像</span>
-</span></span><span style=display:flex><span>    ret ,frame <span style=color:#f92672>=</span> cap<span style=color:#f92672>.</span>read()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> ret <span style=color:#f92672>==</span> <span style=color:#66d9ef>True</span>:
-</span></span><span style=display:flex><span>        <span style=color:#75715e># 4.3 计算直方图的反向投影</span>
-</span></span><span style=display:flex><span>        hsv <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>cvtColor(frame, cv<span style=color:#f92672>.</span>COLOR_BGR2HSV)
-</span></span><span style=display:flex><span>        dst <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>calcBackProject([hsv],[<span style=color:#ae81ff>0</span>],roi_hist,[<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>180</span>],<span style=color:#ae81ff>1</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#75715e># 4.4 进行meanshift追踪</span>
-</span></span><span style=display:flex><span>        ret, track_window <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>meanShift(dst, track_window, term_crit)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#75715e># 4.5 将追踪的位置绘制在视频上，并进行显示</span>
-</span></span><span style=display:flex><span>        x,y,w,h <span style=color:#f92672>=</span> track_window
-</span></span><span style=display:flex><span>        img2 <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>rectangle(frame, (x,y), (x<span style=color:#f92672>+</span>w,y<span style=color:#f92672>+</span>h), <span style=color:#ae81ff>255</span>,<span style=color:#ae81ff>2</span>)
-</span></span><span style=display:flex><span>        cv<span style=color:#f92672>.</span>imshow(<span style=color:#e6db74>&#39;frame&#39;</span>,img2)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> cv<span style=color:#f92672>.</span>waitKey(<span style=color:#ae81ff>60</span>) <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>0xFF</span> <span style=color:#f92672>==</span> ord(<span style=color:#e6db74>&#39;q&#39;</span>):
+</span></span><span style=display:flex><span>            <span style=color:#66d9ef>break</span>
 </span></span><span style=display:flex><span>            <span style=color:#75715e># cv2.waitKey(1)在有按键按下的时候返回按键的ASCII值，否则返回-1</span>
 </span></span><span style=display:flex><span>		   <span style=color:#75715e># &amp; 0xFF的按位与操作只取cv2.waitKey(1)返回值最后八位，因为有些系统cv2.waitKey(1)的返回值不止八位</span>
 </span></span><span style=display:flex><span>            <span style=color:#75715e># ord(‘q’)表示q的ASCII值</span>
@@ -1146,16 +1103,14 @@ ORB=Oriented FAST+Rotated BRIEF</p><div class=highlight><pre tabindex=0 style=co
 </span></span><span style=display:flex><span><span style=color:#75715e># 5. 资源释放        </span>
 </span></span><span style=display:flex><span>cap<span style=color:#f92672>.</span>release()
 </span></span><span style=display:flex><span>cv<span style=color:#f92672>.</span>destroyAllWindows()
-</span></span></code></pre></div><p>meanshift检测的窗口的大小是固定的，而狗狗由近及远是一个逐渐变小的过程，固定的窗口是不合适的。所以我们需要根据目标的大小和角度来对窗口的大小和角度进行修正。CamShift可以帮我们解决这个问题。</p><p>CamShift算法全称是“Continuously Adaptive Mean-Shift”（连续自适应MeanShift算法），是对MeanShift算法的改进算法，可随着跟踪目标的大小变化实时调整搜索窗口的大小，具有较好的跟踪效果。</p><p>Camshift算法首先<code>应用meanshift，一旦meanshift收敛，它就会更新窗口的大小，还计算最佳拟合椭圆的方向，从而根据目标的位置和大小更新搜索窗口。</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e>#进行camshift追踪</span>
+</span></span></code></pre></div><p>meanshift检测的窗口的大小是固定的，而狗狗由近及远是一个逐渐变小的过程，固定的窗口是不合适的。</p><p>所以我们需要根据目标的大小和角度来对窗口的大小和角度进行修正。CamShift可以帮我们解决这个问题。</p><p>CamShift算法全称是“Continuously Adaptive Mean-Shift”（连续自适应MeanShift算法），是对MeanShift算法的改进算法，可随着跟踪目标的大小变化实时调整搜索窗口的大小，具有较好的跟踪效果。</p><p>Camshift算法首先<code>应用meanshift，一旦meanshift收敛，它就会更新窗口的大小，还计算最佳拟合椭圆的方向，从而根据目标的位置和大小更新搜索窗口。</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 4.4进行camshift追踪</span>
 </span></span><span style=display:flex><span>ret, track_window <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>CamShift(dst, track_window, term_crit)
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 绘制追踪结果</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 4.5绘制追踪结果</span>
 </span></span><span style=display:flex><span>pts <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>boxPoints(ret)
 </span></span><span style=display:flex><span>pts <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>int0(pts)
 </span></span><span style=display:flex><span>img2 <span style=color:#f92672>=</span> cv<span style=color:#f92672>.</span>polylines(frame,[pts],<span style=color:#66d9ef>True</span>, <span style=color:#ae81ff>255</span>,<span style=color:#ae81ff>2</span>)
-</span></span></code></pre></div><h2 id=人脸识别>人脸识别</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>haar_face_detect.py
-</span></span></code></pre></div><p>Haar 特征会被使用，就像我们的卷积核，每一个特征是一 个值，这个值等于黑色矩形中的像素值之后减去白色矩形中的像素值之和。</p><p>Haar特征值反映了图像的灰度变化情况。例如：脸部的一些特征能由矩形特征简单的描述，眼睛要比脸颊颜色要深，鼻梁两侧比鼻梁颜色要深，嘴巴比周围颜色要深等。</p><p>Haar特征可用于于图像任意位置，大小也可以任意改变，所以矩形特征值是矩形模版类别、矩形位置和矩形大小这三个因素的函数。故类别、大小和位置的变化，使得很小的检测窗口含有非常多的矩形特征。</p><p><img src=/imgs/img-lazy-loading.gif data-src=https://s2.loli.net/2022/05/06/UkcsVhFrXRaQoq2.png alt=quicker_383542f0-ddd8-4efe-b52d-9ca4003ccad6.png></p><h2 id=测距>测距</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback><span style=display:flex><span>distance_measure.py
-</span></span></code></pre></div></div><footer class=post-footer><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
+</span></span></code></pre></div><h1 id=傅里叶变换>傅里叶变换</h1><p>傅里叶变换的理解</p><p>任何连续周期的信号都可以由一组适当的正弦曲线组合而成</p><p>相关概念：</p><p>时域：以时间作为参照来分析动态世界的方法</p><p>频域：频域它不是真实的，而是一个数学构造</p><p>幅度谱：将信号分解为若干不同频率的正弦波，那么每一个正弦波的幅度，就叫做频谱，也叫做幅度谱</p><p>相位谱：每一个正弦波的相位，就叫做相位谱</p><p>傅里叶变换分类</p><p>傅里叶级数：任意的周期连续信号的傅里叶变换</p><p>傅里叶变换：非周期连续信号</p><p>离散傅里叶变换：非周期离散信号</p></div><footer class=post-footer><div class=addthis_inline_share_toolbox style=text-align:center></div><hr><div class=post-copyright><img src=/imgs/cc/cc.svg width=75 height=75 align=right><ul><li class=post-copyright-title><strong>文章标题：</strong>
 cv-OpenCV</li><li class=post-copyright-author><strong>本文作者：</strong>
 Tomding</li><li class=post-copyright-link><strong>本文链接：</strong>
 <a id=post-cr-link href=/post/cv-opencv/ title=cv-OpenCV>/post/cv-opencv/</a></li><li class=post-copyright-license><strong>版权声明：</strong>

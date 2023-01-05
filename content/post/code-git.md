@@ -328,7 +328,7 @@ touch .gitignore
 # 所有配置文件可以直接在线浏览：https://github.com/github/gitignore
 ```
 
-## 忽略已经提交到github的文件
+## 忽略已提交文件
 
 ```shell
 # 先把项目备份，以防万一。
@@ -349,12 +349,18 @@ git check-ignore -v App.class
 
 
 #glob模式匹配示例
-logs/：忽略当前路径下的logs目录，包含logs下的所有子目录和文件
-/logs.txt：忽略根目录下的logs.txt文件
-*.class：忽略所有后缀为.class的文件
-!/classes/a.class：不忽略classes目录下的a.class文件
-tmp/*.txt：只忽略tmp目录下的.txt文件
-**/foo：可以忽略/foo, a/foo, a/b/foo等
+logs/
+#忽略当前路径下的logs目录，包含logs下的所有子目录和文件
+/logs.txt
+#忽略根目录下的logs.txt文件
+*.class
+#忽略所有后缀为.class的文件
+!/classes/a.class
+#不忽略classes目录下的a.class文件
+tmp/*.txt
+#只忽略tmp目录下的.txt文件
+**/foo
+#可以忽略/foo, a/foo, a/b/foo等
 ```
 
 # 命令简写
@@ -364,28 +370,22 @@ tmp/*.txt：只忽略tmp目录下的.txt文件
 git config --global alias.co checkout
 git config --global alias.ci commit
 git config --global alias.br branch
+#--global参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用。
+
+#命令git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区。既然是一个unstage操作，就可以配置一个unstage别名
+git config --global alias.unstage 'reset HEAD'
+
+git config --global alias.lg "log --color --graph --abbrev-commit"
+
+#而当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig中：
+cat .gitconfig
+#配置别名也可以直接修改这个文件，如果改错了，可以删掉文件重新通过命令配置。
 ```
 
---global参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用。
-
-我们知道，命令git reset HEAD file可以把暂存区的修改撤销掉（unstage），重新放回工作区。既然是一个unstage操作，就可以配置一个unstage别名：git config --global alias.unstage 'reset HEAD'
-
-配置一个git last，让其显示最后一次提交信息：git config --global alias.last 'log -1'
-
-甚至还有人丧心病狂地把lg配置成了：git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 
-而当前用户的Git配置文件放在用户主目录下的一个隐藏文件.gitconfig中：
 
-```cat .gitconfig```
-
->[alias]
-co = checkout ci = commit br = branch st = status [user] name = Your Name email = your@email.com
-
-配置别名也可以直接修改这个文件，如果改错了，可以删掉文件重新通过命令配置。
-
-
-# 搭建一台Git服务器作为私有仓库使用。
+# 搭建一台Git服务器
 推荐用Ubuntu或Debian，这样，通过几条简单的apt命令就可以完成安装。假设你已经有sudo权限的用户账号，下面，正式开始安装。
 第一步，安装git：
 ​````sudo apt-get install git```

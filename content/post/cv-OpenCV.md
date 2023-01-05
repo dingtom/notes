@@ -18,8 +18,6 @@
 grep 'COLOR_BGR2RGBA' * -rn  | grep '\.hpp'
 ```
 
-
-
 安装OpenCV-Python,
 
 ```bash
@@ -50,24 +48,7 @@ core、highgui、imgproc是最基础的模块，该课程主要是围绕这几�
 - `calib3d模块`即Calibration（校准）3D，这个模块主要是相机校准和三维重建相关的内容。包含了基本的多视角几何算法，单个立体摄像头标定，物体姿态估计，立体相似性算法，3D信息的重建等等。
 - `G-API模块`包含超高效的图像处理pipeline引擎
 
-
-
-
-
- opencv 的接口使用BGR模式，而 matplotlib.pyplot 接口使用的是RGB模式
-
-```PYTHON
-b, g, r = cv2.split(srcImage)
-srcImage_new = cv2.merge([r, g, b])
-plt.imshow(srcImage_new)
-# 通道变换之后对灰度图进行输出的图片颜色仍然为绿色,这是因为我们还是直接使用plt显示图像，它默认使用三通道显示图像
-grayImage = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)  # 灰度变换
-plt.imshow(grayImage, cmap="gray")
-```
-
-
-
-# 基本操作
+# 基本
 
 ```python
 import cv2
@@ -91,117 +72,6 @@ while True:
         print(key)
 cv2.destroyAllWindows()
 ```
-
-## 图片采集脚本
-
-```python
-'''
-
-“N”  新建文件夹 data/  用来存储图像
-"S"   开始采集图像，将采集到的图像放到 data/ 路径下
-“Q”   退出窗口
-'''
-
-import numpy as np  # 数据处理的库 Numpy
-import cv2  # 图像处理的库 OpenCv
-import os  # 读写文件
-from PIL import Image, ImageDraw, ImageFont
-
-# # OpenCv 调用摄像头 / Use camera
-cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
-
-'''
-#功能函数，只是用来往图片中显示汉字
-#示例 img = cv2ImgAddText(cv2.imread('img1.jpg'), "大家好，我是片天边的云彩", 10, 65, (0, 0, 139), 20)
-参数说明：
-img：OpenCV图片格式的图片
-text：要写入的汉字
-left：字符坐标x值
-top：字符坐标y值
-textColor：字体颜色
-：textSize：字体大小
-'''
-
-
-def cv2ImgAddText(img, text, left, top, textColor=(0, 255, 0), textSize=20):
-    if (isinstance(img, np.ndarray)):  # 判断是否OpenCV图片类型
-        img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
-    # 创建一个可以在给定图像上绘图的对象
-    draw = ImageDraw.Draw(img)
-    # 字体的格式
-    fontStyle = ImageFont.truetype(
-        "font/simsun.ttc", textSize, encoding="utf-8")
-    # 绘制文本
-    draw.text((left, top), text, textColor, font=fontStyle)
-    # 转换回OpenCV格式
-    return cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
-
-
-# 存储图像的文件夹 
-current_dir = ""
-# 保存  图像 的路径 
-path_photos_from_camera = "data/"
-
-press_n_flag = 0
-cnt_ss = 0
-
-while cap.isOpened():
-    flag, img_rd = cap.read()
-    # print(img_rd.shape)
-
-    kk = cv2.waitKey(2)
-    # 待会要写的字体 / Font to write
-    font = cv2.FONT_ITALIC
-
-    # 4. 按下 'n' 新建存储人脸的文件夹 / press 'n' to create the folders for saving faces
-    if kk == ord('N') or kk == ord('n'):
-        current_dir = path_photos_from_camera
-        # os.makedirs(current_dir)
-        if os.path.isdir(current_dir):
-            pass
-        else:
-            os.mkdir(current_dir)
-        print('\n')
-        print("新建的保存图像的文件夹 / Create folders: ", current_dir)
-
-        press_n_flag = 1  # 已经按下 'n' / have pressed 'n'
-
-    # 5. 按下 's' 保存摄像头中的图像到本地 / Press 's' to save image into local images
-    if kk == ord('S') or kk == ord('s'):
-        # 检查有没有先按'n'新建文件夹 / check if you have pressed 'n'
-        if press_n_flag:
-            cnt_ss += 1
-            cv2.imwrite(current_dir + "/img_" + str(cnt_ss) + ".jpg", img_rd)
-            print("写入本地 / Save into：", str(current_dir) + "/img_face_" + str(cnt_ss) + ".jpg")
-        else:
-            print("请在按 'S' 之前先按 'N' 来建文件夹 / Please press 'N' before 'S'")
-
-    # 添加说明 / Add some statements
-    # cv2.putText(img_rd, "Face Register", (20, 40), font, 1, (0, 255, 0), 1, cv2.LINE_AA)
-    img_rd = cv2ImgAddText(img_rd, "图片采集系统", 160, 25, (0, 255, 0), 30)
-    # cv2.putText(img_rd, "N: Create face folder", (20, 350), font, 0.8, (0, 255, 0), 1, cv2.LINE_AA)
-    img_rd = cv2ImgAddText(img_rd, "N: 创建保存图像文件夹", 20, 350, (0, 255, 0), 20)
-    # cv2.putText(img_rd, "S: Save current face", (20, 400), font, 0.8, (0, 255, 0), 1, cv2.LINE_AA)
-    img_rd = cv2ImgAddText(img_rd, "S: 保存当前图片", 20, 400, (0, 255, 0), 20)
-    # cv2.putText(img_rd, "Q: Quit", (20, 450), font, 0.8, (0, 0, 0), 1, cv2.LINE_AA)
-    img_rd = cv2ImgAddText(img_rd, "Q: 退出", 20, 450, (0, 255, 0), 20)
-
-    # 6. 按下 'Q' 键退出 / Press 'q' to exit
-    if kk == ord('Q') or kk == ord('q'):
-        break
-    # 如果需要摄像头窗口大小可调 / Uncomment this line if you want the camera window is resizeable
-    cv2.namedWindow("camera", 0)
-    cv2.imshow("camera", img_rd)
-
-# 释放摄像头 / Release camera and destroy all windows
-cap.release()
-cv2.destroyAllWindows()
-
-```
-
-
 
 ## 鼠标
 
@@ -231,11 +101,18 @@ while True:
 cv2.destroyAllWindows()
 ```
 
-
-
-
-
 ##  色相
+
+ opencv 的接口使用BGR模式，而 matplotlib.pyplot 接口使用的是RGB模式
+
+```PYTHON
+b, g, r = cv2.split(srcImage)
+srcImage_new = cv2.merge([r, g, b])
+plt.imshow(srcImage_new)
+# 通道变换之后对灰度图进行输出的图片颜色仍然为绿色,这是因为我们还是直接使用plt显示图像，它默认使用三通道显示图像
+grayImage = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)  # 灰度变换
+plt.imshow(grayImage, cmap="gray")
+```
 
 `HSV`
 
@@ -371,6 +248,7 @@ cv2.ellipse(img, (320, 240), (100, 50), 15, 0, 360, (0, 0, 255), -1)
 pts = np.array([(300, 10), (150, 100), (450, 100)], np.int32)
 cv2.polylines(img, [pts], True, (0, 0, 255))
 # 点集、是否闭环、颜色
+
 # 填充多边形
 # cv2.fillPoly(img, [pts], (255, 255, 0))
 # 点集、颜色
@@ -457,13 +335,16 @@ def drawShape(src, points):
             cv2.line(src, (x, y), (x1, y1), (0, 0, 255), 3)
         i = i + 1
 
-#最小外接矩形
-minAreaRect(points)
+# -------------最小外接旋转矩形
+# minAreaRect(points)
 # points:轮廓返回值：RotatedRect  x,y width,height angle   包含角度
-#最大外接矩形
-boundingRect(array)
-#array::轮廓 返回值：Rect x,y width,height  无角度
+# -------------最小外接正矩形
+# boundingRect(array)
+# array::轮廓 返回值：Rect x,y width,height  无角度
 r = cv2.minAreaRect(contours[1])
+#--------------求最小外接旋转矩形的四个顶点
+# 输入：rect = （（center_x, center_y）， (w, h), angle）
+# 输出：box = ((x1, y1), (x2,y2), (x3, y3), (x4, y4))
 box = cv2.boxPoints(r)
 box = np.int0(box)
 cv2.drawContours(img, [box], 0, (0, 0, 255), 2)
@@ -837,43 +718,64 @@ dst = cv2.bilateralFilter(img, 7, 20, 50)
 
 ## 直方图
 
-图像直方图（Image Histogram）是用以表示数字图像中亮度分布的直方图，标绘了图像中`每个亮度值的像素个数`。这种直方图中，横坐标的左侧为较暗的区域，而右侧为较亮的区域。因此一张较暗图片的直方图中的数据多集中于左侧和中间部分，而整体明亮、只有少量阴影的图像则相反。
+图像直方图（Image Histogram）是用以表示数字图像中亮度分布的直方图，标绘了图像中`每个亮度值的像素个数`。
 
-“直方图均衡化”是把原始图像的灰度直方图`从比较集中的某个灰度区间变成在更广泛灰度范围内的分布`。直方图均衡化就是对图像进行非线性拉伸，重新分配图像像素值，使一定灰度范围内的像素数量大致相同。
-
-这种方法`提高图像整体的对比度`，特别是有用数据的像素值分布比较接近时，`在X光图像中使用广泛，可以提高骨架结构的显示`，另外在`曝光过度或不足`的图像中可以更好的突出细节。
+这种直方图中，横坐标的左侧为较暗的区域，而右侧为较亮的区域。因此一张较暗图片的直方图中的数据多集中于左侧和中间部分，而整体明亮、只有少量阴影的图像则相反。
 
 
 
-![quicker_d57c8302-46c3-428d-8206-ca7e1476b7ab.png](https://s2.loli.net/2022/05/01/fuIqpZUwlSbF7N4.png)
 
-上述的直方图均衡，我们考虑的是图像的全局对比度。 的确在进行完直方图均衡化之后，图片背景的对比度被改变了，在猫腿这里太暗，我们丢失了很多信息，所以在许多情况下，这样做的效果并不好。
 
-需要使用自适应的直方图均衡化
+### 直方图均衡化
 
-整幅图像会被分成很多小块，这些小块被称为“tiles”（在 OpenCV 中 tiles 的 大小默认是 8x8），然后再对`每一个小块分别进行直方图均衡化`。 所以在每一个的区域中， 直方图会集中在某一个小的区域中）。`如果有噪声的话，噪声会被放大。为了避免这种情况的出现要使用对比度限制`。对于每个小块来说，`如果直方图中的 bin 超过对比度的上限的话，就把其中的像素点均匀分散到其他 bins 中，然后在进行直方图均衡化。`最后，为了 去除每一个小块之间的边界，再使用双线性差值，对每一小块进行拼接。
+是把原始图像的灰度直方图`从比较集中的某个灰度区间变成在更广泛灰度范围内的分布`。
+
+这种方法`提高图像整体的对比度`，特别是有用数据的像素值分布比较接近时，`在X光图像中使用广泛，可以提高骨架结构的显示`
+
+另外在`曝光过度或不足`的图像中可以更好的突出细节。
 
 ```python
 # 直方图
 cv2.calcHist(images,channels,mask,histSize,ranges[,hist[,accumulate]])
-images: 原图像。当传入函数时应该用中括号 [] 括起来，例如：[img]。
-channels: 如果输入图像是灰度图，它的值就是 [0]；如果是彩色图像的话，传入的参数可以是 [0]，[1]，[2] 它们分别对应着通道 B，G，R。 　　
-mask: 掩模图像。要统计整幅图像的直方图就把它设为 None。但是如果你想统计图像某一部分的直方图的话，你就需要制作一个掩模图像，并使用它。（后边有例子） 　　
-histSize:BIN 的数目。也应该用中括号括起来，例如：[256]。 　　
-ranges: 像素值范围，通常为 [0，256]
+#images: 原图像。当传入函数时应该用中括号 [] 括起来，例如：[img]。
+#channels: 如果输入图像是灰度图，它的值就是 [0]；如果是彩色图像的话，传入的参数可以是 [0]，[1]，[2] 它们分别对应着通道 B，G，R。 　　
+#mask: 掩模图像。要统计整幅图像的直方图就把它设为 None。但是如果你想统计图像某一部分的直方图的话，你就需要制作一个掩模图像，并使用它。 　　
+#histSize:BIN 的数目。也应该用中括号括起来，例如：[256]。 　　
+#ranges: 像素值范围，通常为 [0，256]
+histr = cv.calcHist([img],[0],None,[256],[0,256])
+plt.figure(figsize=(10,6),dpi=100)
+plt.plot(histr)
+plt.grid()
+plt.show()
 
-mask = np.zeros(img.shape[:2], np.uint8)# 2. 创建蒙版
-mask[400:650, 200:500] = 255 # 查找直方图的区域上创建一个白色的掩膜图像，否则创建黑色
-masked_img = cv.bitwise_and(img,img,mask = mask)# 3.掩模
-mask_histr = cv.calcHist([img],[0],mask,[256],[1,256])    # 4. 统计掩膜后图像的灰度图
+#  掩膜的应用
+# 创建蒙版
+mask = np.zeros(img.shape[:2], np.uint8)
+mask[400:650, 200:500] = 255
+# 查找直方图的区域上创建一个白色的掩膜图像，否则创建黑色
+masked_img = cv.bitwise_and(img,img,mask=mask)
+# 统计掩膜后图像的灰度图
+mask_histr = cv.calcHist([img],[0],mask,[256],[1,256]) 
 
 # 直方图均衡化
 dst = cv.equalizeHist(img)
+```
 
+![quicker_d57c8302-46c3-428d-8206-ca7e1476b7ab.png](https://s2.loli.net/2022/05/01/fuIqpZUwlSbF7N4.png)
+
+在进行完直方图均衡化之后，图片背景的对比度被改变了，在猫腿这里太暗，我们丢失了很多信息，所以在许多情况下，这样做的效果并不好。需要使用自适应的直方图均衡化
+
+### 自适应的直方图均衡化
+
+整幅图像会被分成很多小块，这些小块被称为“tiles”（在 OpenCV 中 tiles 的 大小默认是 8x8），然后再对`每一个小块分别进行直方图均衡化`。 
+
+所以在每一个的区域中， 直方图会集中在某一个小的区域。`如果有噪声的话，噪声会被放大。为了避免这种情况的出现要使用对比度限制`。对于每个小块来说，`如果直方图中的 bin 超过对比度的上限的话，就把其中的像素点均匀分散到其他 bins 中，然后在进行直方图均衡化。`最后，为了 去除每一个小块之间的边界，再使用双线性差值，对每一小块进行拼接。
+
+```python
 # 自适应的直方图均衡化
 cv.createCLAHE(clipLimit, tileGridSize)
-clipLimit: 对比度限制，默认是40
-tileGridSize: 分块的大小，默认为8*88∗8
+#clipLimit: 对比度限制，默认是40
+#tileGridSize: 分块的大小，默认为8*88∗8
 ```
 
 ## 边缘检测
@@ -884,7 +786,9 @@ tileGridSize: 分块的大小，默认为8*88∗8
 
 ![quicker_8cfce94d-4575-4cec-bc4c-3a4cfd27d0eb.png](https://s2.loli.net/2022/05/01/y9czuDdmoPOR7bv.png)
 
-`Sobel边缘检测算法`比较简单，实际应用中效率`比canny边缘检测效率要高`，但是边缘`不如Canny检测的准确`，但是很多实际应用的场合，sobel边缘却是首选，Sobel算子是`高斯平滑与微分操作的结合体，所以其抗噪声能力很强，用途较多`。尤其是效率要求较高，而对细纹理不太关心的时候。
+### Sobel算子
+
+比较简单，实际应用中效率`比canny边缘检测效率要高`，但是边缘`不如Canny检测的准确`，但是很多实际应用的场合，sobel边缘却是首选，Sobel算子是`高斯平滑与微分操作的结合体，所以其抗噪声能力很强，用途较多`。尤其是效率要求较高，而对细纹理不太关心的时候。
 
 `Sobel`（索贝尔）（高斯）卷积核，size设置为-1就是沙尔。
 
@@ -894,13 +798,17 @@ tileGridSize: 分块的大小，默认为8*88∗8
 
 ![quicker_b8444d61-1a79-48a9-9df9-ec4a3cfd7d7f.png](https://s2.loli.net/2022/05/01/FR6ZhUeb8flJop1.png)
 
-`Laplacian是利用二阶导数来检测边缘 。`（拉普拉斯），对噪音敏感，需手工降噪。可以同时求两个方向的边缘
+### Laplacian算子
+
+是利用二阶导数来检测边缘 。（拉普拉斯），对噪音敏感，需手工降噪。可以同时求两个方向的边缘
 
 ![quicker_cb380bdc-d81c-4ac5-a4c5-6e83439c8e8d.png](https://s2.loli.net/2022/05/02/xs7ztkwRfuWP1Qy.png)
 
 
 
-`Canny 边缘检测算法被认为是最优的边缘检测算法`。
+### Canny 算法
+
+被认为是最优的边缘检测算法。
 
 
 
@@ -966,47 +874,57 @@ canny = cv.Canny(img, 0, 100)
 
 
 
-## 模板匹配和霍夫变换
+# 图像特征
+
+## 模板匹配
 
 
 
-模板匹配，就是在给定的图片中查找和模板最相似的区域，该算法的输入包括模板和图片，整个任务的思路就是按照滑窗的思路不断的移动模板图片，计算其与图像中对应区域的匹配度，最终将匹配度最高的区域选择为最终的结果。
+模板匹配，就是在给定的图片中查找和模板最相似的区域，该算法的输入包括模板和图片，整个任务的思路就是按照`滑窗`的思路不断的移动模板图片，计算其与图像中对应区域的匹配度，最终将匹配度最高的区域选择为最终的结果。
 
-
-
-霍夫变换常用来提取图像中的直线和圆等几何形状
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-05/2023-01-05_00-55-07-208.png)
 
 ```python
 res = cv.matchTemplate(img,template,method)
-img: 要进行模板匹配的图像
-Template ：模板
-method：实现模板匹配的算法，主要有：
-平方差匹配(CV_TM_SQDIFF)：利用模板与图像之间的平方差进行匹配，最好的匹配是0，匹配越差，匹配的值越大。
-相关匹配(CV_TM_CCORR)：利用模板与图像间的乘法进行匹配，数值越大表示匹配程度较高，越小表示匹配效果差。
-利用相关系数匹配(CV_TM_CCOEFF)：利用模板与图像间的相关系数匹配，1表示完美的匹配，-1表示最差的匹配。
+#img: 要进行模板匹配的图像
+#Template ：模板
+#method：实现模板匹配的算法，主要有：
+#平方差匹配(CV_TM_SQDIFF)：利用模板与图像之间的平方差进行匹配，最好的匹配是0，匹配越差，匹配的值越大。
+#相关匹配(CV_TM_CCORR)：利用模板与图像间的乘法进行匹配，数值越大表示匹配程度较高，越小表示匹配效果差。
+#利用相关系数匹配(CV_TM_CCOEFF)：利用模板与图像间的相关系数匹配，1表示完美的匹配，-1表示最差的匹配。
 
-完成匹配后，使用cv.minMaxLoc()方法查找最大值所在的位置即可。如果使用平方差作为比较方法，则最小值位置是最佳匹配位置。
+#完成匹配后，使用cv.minMaxLoc()方法查找最大值所在的位置即可。如果使用平方差作为比较方法，则最小值位置是最佳匹配位置。
 
-res = cv.matchTemplate(img, template, cv.TM_CCORR)# 2.1 模板匹配
-min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)# 2.2 返回图像中最匹配的位置，确定左上角的坐标，并将匹配位置绘制在图像上
-# top_left = min_loc# 使用平方差时最小值为最佳匹配位置
+res = cv.matchTemplate(img, template, cv.TM_CCORR)
+# 返回图像中最匹配的位置，确定左上角的坐标，并将匹配位置绘制在图像上
+min_val, max_val, min_loc, max_loc = cv.minMaxLoc(res)
+# top_left = min_loc
+# 使用平方差时最小值为最佳匹配位置
 top_left = max_loc
+h,w,l = template.shape
 bottom_right = (top_left[0] + w, top_left[1] + h)
 cv.rectangle(img, top_left, bottom_right, (0,255,0), 2)
+```
 
+## 霍夫变换
 
+霍夫变换常用来提取图像中的直线和圆等几何形状
 
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-05/2023-01-05_01-01-51-189.png)
+
+```python
 # 霍夫线检测
 cv.HoughLines(img, rho, theta, threshold)
-img: 检测的图像，要求是二值化的图像，所以在调用霍夫变换之前首先要进行二值化，或者进行Canny边缘检测
-rho、theta: \rhoρ 和\thetaθ的精确度
-threshold: 阈值，只有累加器中的值高于该阈值时才被认为是直线。
+#img: 检测的图像，要求是二值化的图像，所以在调用霍夫变换之前首先要进行二值化，或者进行Canny边缘检测
+#rho、theta: ρ 和θ的精确度
+#threshold: 阈值，只有累加器中的值高于该阈值时才被认为是直线。
     
-img = cv.imread('./image/rili.jpg')# 1.加载图片，转为二值图
+img = cv.imread('./image/rili.jpg')
 gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 edges = cv.Canny(gray, 50, 150)
-lines = cv.HoughLines(edges, 0.8, np.pi / 180, 150)# 2.霍夫直线变换
-for line in lines:# 3.将检测的线绘制在图像上（注意是极坐标噢）
+lines = cv.HoughLines(edges, 0.8, np.pi / 180, 150)
+# 将检测的线绘制在图像上（注意是极坐标噢）
+for line in lines:
     rho, theta = line[0]
     a = np.cos(theta)
     b = np.sin(theta)
@@ -1021,29 +939,55 @@ plt.figure(figsize=(10,8),dpi=100)
 plt.imshow(img[:,:,::-1]),plt.title('霍夫变换线检测')
 plt.xticks([]), plt.yticks([])
 plt.show()    
+
+#霍夫圆检测
+circles = cv.HoughCircles(image, method, dp, minDist, param1=100, param2=100, minRadius=0,maxRadius=0 )
+#image：输入图像，应输入灰度图像
+#method：使用霍夫变换圆检测的算法，它的参数是CV_HOUGH_GRADIENT
+#dp：霍夫空间的分辨率，dp=1时表示霍夫空间与输入图像空间的大小一致，dp=2时霍夫空间是输入图像空间的一半，以此类推
+#minDist为圆心之间的最小距离，如果检测到的两个圆心之间距离小于该值，则认为它们是同一个圆心
+#param1：边缘检测时使用Canny算子的高阈值，低阈值是高阈值的一半。
+#param2：检测圆心和确定半径时所共有的阈值
+#minRadius和maxRadius为所检测到的圆半径的最小值和最大值
+#返回：circles：输出圆向量，包括三个浮点型的元素——圆心横坐标，圆心纵坐标和圆半径
+
+planets = cv.imread("./image/star.jpeg")
+gay_img = cv.cvtColor(planets, cv.COLOR_BGRA2GRAY)
+img = cv.medianBlur(gay_img, 7)  
+circles = cv.HoughCircles(img, cv.HOUGH_GRADIENT, 1, 200, param1=100, param2=30, minRadius=0, maxRadius=100)
+# 4 将检测结果绘制在图像上
+for i in circles[0, :]:  # 遍历矩阵每一行的数据
+    # 绘制圆形
+    cv.circle(planets, (i[0], i[1]), i[2], (0, 255, 0), 2)
+    # 绘制圆心
+    cv.circle(planets, (i[0], i[1]), 2, (0, 0, 255), 3)
+plt.figure(figsize=(10,8),dpi=100)
+plt.imshow(planets[:,:,::-1]),plt.title('霍夫变换圆检测')
+plt.xticks([]), plt.yticks([])
+plt.show()
 ```
 
-# 图像特征提取和描述
-
-模板匹配不适用于尺度变换，视角变换后的图像，这时我们就要使用关键点匹配算法，比较经典的关键点检测算法包括SIFT和SURF等，主要的思路是首先通过关键点检测算法获取模板和测试图片中的关键点；然后使用关键点匹配算法处理即可，这些关键点可以很好的处理尺度变化、视角变换、旋转变化、光照变化等，具有很好的不变性。
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-05/2023-01-05_01-06-28-005.png)
 
 ## 角点特征
 
+图像特征要有区分性，容易被比较。一般认为角点，斑点等是较好的图像特征
+
+
+
+模板匹配不适用于尺度变换，视角变换后的图像，这时我们就要使用关键点匹配算法，比较经典的关键点检测算法包括SIFT和SURF等，主要的思路是首先通过关键点检测算法获取模板和测试图片中的关键点；然后使用关键点匹配算法处理即可，这些关键点可以很好的处理尺度变化、视角变换、旋转变化、光照变化等，具有很好的不变性。
+
+
+
 在角点的地方，无论你向哪个方向移动小图，结果都会有很大的不同。所以可以把它们当 成一个好的特征。
 
-### Harris/Shi-Tomas
-
-`Harris`
+### Harris
 
 ![](https://gitee.com/tomding1995/picture/raw/master/2022-12-27/2022-12-27_10-29-56-180.png)
 
 光滑地区，无论向哪里移动，衡量系数不变
 边缘地址，垂直边缘移动时，衡量系统变化具烈
 在交点处，往那个方向移动，衡量系统都变化具烈
-
-
-
-
 
 优点：
 
@@ -1054,16 +998,6 @@ plt.show()
 
 - `对尺度很敏感`，不具备几何尺度不变性。
 - 提取的角点是像素级的
-
-`Shi-Tomasi`
-
-对Harris算法的改进，能够更好地检测角点；Harris角点检测算的稳定性和k有关，而k是个经验值，不好设定最佳值
-
-![quicker_9e35dfbc-4202-42a3-870a-64675311f339.png](https://s2.loli.net/2022/05/04/NOYH29EvTesRbBJ.png)
-
-
-
-
 
 ```python
 #Hariis检测使用的API是：
@@ -1089,7 +1023,23 @@ plt.figure(figsize=(10,8),dpi=100)
 plt.imshow(img[:,:,::-1]),plt.title('Harris角点检测')
 plt.xticks([]), plt.yticks([])
 plt.show()
+```
 
+
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-05/2023-01-05_10-24-39-609.png)
+
+### Shi-Tomasi
+
+对Harris算法的改进，能够更好地检测角点；Harris角点检测算的稳定性和k有关，而k是个经验值，不好设定最佳值
+
+![quicker_9e35dfbc-4202-42a3-870a-64675311f339.png](https://s2.loli.net/2022/05/04/NOYH29EvTesRbBJ.png)
+
+
+
+
+
+```python
 # Shi-Tomasi
 corners = cv2.goodFeaturesToTrack(image, maxcorners, qualityLevel, minDistance )
 #Image: 输入灰度图像
@@ -1155,6 +1105,10 @@ SIFT原理：
 
 ORB可以做到实时检测
 ORB=Oriented FAST+Rotated BRIEF
+
+原理：是FAST算法和BRIEF算法的结合
+
+Fast算法原理：若一个像素周围有一定数量的像素与该点像素值不同，则认为其为角点
 
 ```python
 # 1.实例化sift
@@ -1451,7 +1405,81 @@ cv2.waitKey()
 - 最后根据权重决定某个像素是前影还是背景
 
 ```python
+import cv2
+import numpy as np
+class App:
+    flag_rect = False
+    rect = (0, 0, 0, 0)
+    startX = 0
+    startY = 0
 
+    def onmouse(self, event, x, y, flags, param):
+
+        if event == cv2.EVENT_LBUTTONDOWN:  # 按下鼠标左键
+            self.flag_rect = True
+            self.startX = x
+            self.startY = y
+            print("LBUTTIONDOWN")
+        elif event == cv2.EVENT_LBUTTONUP:
+            self.flag_rect = False
+            cv2.rectangle(self.img,
+                          (self.startX, self.startY),
+                          (x, y),
+                          (0, 0, 255),
+                          3)
+            self.rect = (min(self.startX, x), min(self.startY, y),
+                         abs(self.startX - x),
+                         abs(self.startY - y))
+
+            print("LBUTTIONUP")
+        elif event == cv2.EVENT_MOUSEMOVE:
+            if self.flag_rect:  # 鼠标左键按下才画
+                self.img = self.img2.copy()
+                cv2.rectangle(self.img,
+                              (self.startX, self.startY),
+                              (x, y),
+                              (255, 0, 0),
+                              3)
+            print("MOUSEMOVE")
+
+        print("onmouse")
+
+    def run(self):
+        print("run...")
+
+        cv2.namedWindow('input')
+        cv2.setMouseCallback('input', self.onmouse)
+
+        self.img = cv2.imread('./lena.png')
+        self.img2 = self.img.copy()
+        self.mask = np.zeros(self.img.shape[:2], dtype=np.uint8)
+        self.output = np.zeros(self.img.shape, np.uint8)
+
+        while 1:
+            cv2.imshow('input', self.img)
+            cv2.imshow('output', self.output)
+            k = cv2.waitKey(100)
+            if k == 27:
+                break
+
+            if k == ord('g'):
+                bgdmodel = np.zeros((1, 65), np.float64)
+                fgdmodel = np.zeros((1, 65), np.float64)
+                cv2.grabCut(self.img2, self.mask, self.rect,
+                            bgdmodel, fgdmodel,
+                            1,
+                            cv2.GC_INIT_WITH_RECT)
+                # mask BGD:背景，0；FGD:前景，1；PR BGD:可能是背景，2；PR_FGD:可能是前景，3
+                # rect 选取的区域，在这个区域进行前后景分离
+                # bgdModel,np.float64 type zero arrays of size(1,65)
+                # fgdModel,同上
+                # iteration
+                # mode GC_INIT_WITH_RECT第一次，在区域中找前景； GC_INIT_WITH_MASK第二、三次迭代
+            mask2 = np.where((self.mask == 1) | (self.mask == 3), 255, 0).astype('uint8')
+            self.output = cv2.bitwise_and(self.img2, self.img2, mask=mask2)
+
+
+App().run()
 ```
 
 
@@ -1463,15 +1491,16 @@ cv2.waitKey()
 #### MeanShift法
 
 严格来说该方法并不是用来对图像分割的，而是在色彩层面的平滑滤波
+
 它会中和色彩分布相近的颜色，平滑色彩细节，侵蚀掉面积较小的区域
+
 它以图像上任一点P为圆心，半径为sp，色彩幅值为sr进行不断的迭代
-
-
 
 ```python
 img = cv2.imread('key.png')
 # pyrMeanShiftFiltering (img，dbuble sp，double sr
 # sp:半径      Sr： 色彩幅值
+
 mean_img = cv2.pyrMeanShiftFiltering(img, 20, 30)
 imgcanny = cv2.Canny(mean_img, 150, 300)
 contours, _ = cv2.findContours(imgcanny, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -1624,11 +1653,9 @@ while cap.isOpened():
 
 
 
-
-
-# 应用
-
 ## 视频追踪
+
+![](https://gitee.com/tomding1995/picture/raw/master/2023-01-05/2023-01-05_13-52-44-403.png)
 
 图像是一个矩阵信息，如何在一个视频当中使用meanshift算法来追踪一个运动的物体呢？ 大致流程如下：
 
@@ -1642,21 +1669,6 @@ while cap.isOpened():
 
 5. 重复3到4的过程，就完成整个视频目标追踪。
 
-   通常情况下我们使用直方图反向投影得到的图像和第一帧目标对象的起始位置，当目标对象的移动会反映到直方图反向投影图中，meanshift 算法就把我们的窗口移动到反向投影图像中灰度密度最大的区域了。
-
-直方图反向投影的流程是：
-
-假设我们有一张100x100的输入图像，有一张10x10的模板图像，查找的过程是这样的：
-
-1. 从输入图像的左上角(0,0)开始，切割一块(0,0)至(10,10)的临时图像；
-2. 生成临时图像的直方图；
-3. 用临时图像的直方图和模板图像的直方图对比，对比结果记为c；
-4. 直方图对比结果c，就是结果图像(0,0)处的像素值；
-5. 切割输入图像从(0,1)至(10,11)的临时图像，对比直方图，并记录到结果图像；
-6. 重复1～5步直到输入图像的右下角，就形成了直方图的反向投影。
-
-
-
 ```python
 import numpy as np
 import cv2 as cv
@@ -1685,14 +1697,17 @@ cv.normalize(roi_hist,roi_hist,0,255,cv.NORM_MINMAX)
 # 4.1 设置窗口搜索终止条件：最大迭代次数，窗口中心漂移最小值
 term_crit = ( cv.TERM_CRITERIA_EPS | cv.TERM_CRITERIA_COUNT, 10, 1 )
 
-while(True):
+whileTrue:
     # 4.2 获取每一帧图像
     ret ,frame = cap.read()
-    if ret == True:
+    if ret:
         # 4.3 计算直方图的反向投影
         hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
         dst = cv.calcBackProject([hsv],[0],roi_hist,[0,180],1)
-
+        # cv.meanShift(probImage, window, criteria)
+        # probImage: ROI区域，即目标的直方图的反向投影
+        # window： 初始搜索窗口，就是定义ROI的rect
+        # criteria: 确定窗口搜索停止的准则，主要有迭代次数达到设置的最大值，窗口中心的漂移值大于某个设定的限值等。
         # 4.4 进行meanshift追踪
         ret, track_window = cv.meanShift(dst, track_window, term_crit)
 
@@ -1702,67 +1717,7 @@ while(True):
         cv.imshow('frame',img2)
 
         if cv.waitKey(60) & 0xFF == ord('q'):
-            break        
-    else:
-        break
-# 5. 资源释放        
-cap.release()
-cv.destroyAllWindows()
-```
-
-
-
-```python
-# Meanshift的API是：
-cv.meanShift(probImage, window, criteria)
-probImage: ROI区域，即目标的直方图的反向投影
-window： 初始搜索窗口，就是定义ROI的rect
-criteria: 确定窗口搜索停止的准则，主要有迭代次数达到设置的最大值，窗口中心的漂移值大于某个设定的限值等。
-
-import numpy as np
-import cv2 as cv
-# 1.获取图像
-cap = cv.VideoCapture('DOG.wmv')
-
-# 2.获取第一帧图像，并指定目标位置
-ret,frame = cap.read()
-# 2.1 目标位置（行，高，列，宽）
-r,h,c,w = 197,141,0,208  
-track_window = (c,r,w,h)
-# 2.2 指定目标的感兴趣区域
-roi = frame[r:r+h, c:c+w]
-
-# 3. 计算直方图
-# 3.1 转换色彩空间（HSV）
-hsv_roi =  cv.cvtColor(roi, cv.COLOR_BGR2HSV)
-# 3.2 去除低亮度的值
-# mask = cv.inRange(hsv_roi, np.array((0., 60.,32.)), np.array((180.,255.,255.)))
-# 3.3 计算直方图
-roi_hist = cv.calcHist([hsv_roi],[0],None,[180],[0,180])
-# 3.4 归一化
-cv.normalize(roi_hist,roi_hist,0,255,cv.NORM_MINMAX)
-
-# 4. 目标追踪
-# 4.1 设置窗口搜索终止条件：最大迭代次数，窗口中心漂移最小值
-term_crit = ( cv.TERM_CRITERIA_EPS | cv.TERM_CRITERIA_COUNT, 10, 1 )
-
-while(True):
-    # 4.2 获取每一帧图像
-    ret ,frame = cap.read()
-    if ret == True:
-        # 4.3 计算直方图的反向投影
-        hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
-        dst = cv.calcBackProject([hsv],[0],roi_hist,[0,180],1)
-
-        # 4.4 进行meanshift追踪
-        ret, track_window = cv.meanShift(dst, track_window, term_crit)
-
-        # 4.5 将追踪的位置绘制在视频上，并进行显示
-        x,y,w,h = track_window
-        img2 = cv.rectangle(frame, (x,y), (x+w,y+h), 255,2)
-        cv.imshow('frame',img2)
-
-        if cv.waitKey(60) & 0xFF == ord('q'):
+            break
             # cv2.waitKey(1)在有按键按下的时候返回按键的ASCII值，否则返回-1
 		   # & 0xFF的按位与操作只取cv2.waitKey(1)返回值最后八位，因为有些系统cv2.waitKey(1)的返回值不止八位
             # ord(‘q’)表示q的ASCII值
@@ -1774,45 +1729,53 @@ cap.release()
 cv.destroyAllWindows()
 ```
 
-meanshift检测的窗口的大小是固定的，而狗狗由近及远是一个逐渐变小的过程，固定的窗口是不合适的。所以我们需要根据目标的大小和角度来对窗口的大小和角度进行修正。CamShift可以帮我们解决这个问题。
+meanshift检测的窗口的大小是固定的，而狗狗由近及远是一个逐渐变小的过程，固定的窗口是不合适的。
+
+所以我们需要根据目标的大小和角度来对窗口的大小和角度进行修正。CamShift可以帮我们解决这个问题。
 
 CamShift算法全称是“Continuously Adaptive Mean-Shift”（连续自适应MeanShift算法），是对MeanShift算法的改进算法，可随着跟踪目标的大小变化实时调整搜索窗口的大小，具有较好的跟踪效果。
+
+
 
 Camshift算法首先`应用meanshift，一旦meanshift收敛，它就会更新窗口的大小，还计算最佳拟合椭圆的方向，从而根据目标的位置和大小更新搜索窗口。`
 
 ```python
-#进行camshift追踪
+# 4.4进行camshift追踪
 ret, track_window = cv.CamShift(dst, track_window, term_crit)
 
-# 绘制追踪结果
+# 4.5绘制追踪结果
 pts = cv.boxPoints(ret)
 pts = np.int0(pts)
 img2 = cv.polylines(frame,[pts],True, 255,2)
 ```
 
-## 人脸识别
-
-```
-haar_face_detect.py
-```
-
-Haar 特征会被使用，就像我们的卷积核，每一个特征是一 个值，这个值等于黑色矩形中的像素值之后减去白色矩形中的像素值之和。
-
-Haar特征值反映了图像的灰度变化情况。例如：脸部的一些特征能由矩形特征简单的描述，眼睛要比脸颊颜色要深，鼻梁两侧比鼻梁颜色要深，嘴巴比周围颜色要深等。
-
-Haar特征可用于于图像任意位置，大小也可以任意改变，所以矩形特征值是矩形模版类别、矩形位置和矩形大小这三个因素的函数。故类别、大小和位置的变化，使得很小的检测窗口含有非常多的矩形特征。
-
-![quicker_383542f0-ddd8-4efe-b52d-9ca4003ccad6.png](https://s2.loli.net/2022/05/06/UkcsVhFrXRaQoq2.png)
+# 傅里叶变换
 
 
 
-## 测距
+傅里叶变换的理解
 
-```
-distance_measure.py
-```
+任何连续周期的信号都可以由一组适当的正弦曲线组合而成
 
 
 
+相关概念：
 
+时域：以时间作为参照来分析动态世界的方法
+
+频域：频域它不是真实的，而是一个数学构造
+
+幅度谱：将信号分解为若干不同频率的正弦波，那么每一个正弦波的幅度，就叫做频谱，也叫做幅度谱
+
+相位谱：每一个正弦波的相位，就叫做相位谱
+
+
+
+傅里叶变换分类
+
+傅里叶级数：任意的周期连续信号的傅里叶变换
+
+傅里叶变换：非周期连续信号
+
+离散傅里叶变换：非周期离散信号
 
